@@ -1,0 +1,564 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+:root {
+    --primary: #103cbe;
+}
+
+.body {
+    font-family: "Poppins", sans-serif;
+}
+
+/* login */
+.login .box-area {
+    width: 930px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.login .right-box {
+    padding: 40px 30px 40px 40px;
+}
+
+.login ::placeholder {
+    font-size: 16px;
+}
+
+.login .rounded-4 {
+    border-radius: 20px;
+}
+
+.login .rounded-5 {
+    border-radius: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+    .login .box-area {
+        margin: 0 10px;
+    }
+    .login .left-box {
+        height: 100px;
+        overflow: hidden;
+    }
+    .login .right-box {
+        padding: 20px;
+    }
+}
+
+/* footer */
+.footer {
+    margin-top: 50px;
+    background-color: white;
+}
+
+/* home */
+.c-item {
+    height: 450px;
+}
+
+.c-img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.judul-date {
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.info-panel .tanggal {
+    font-size: 10px;
+    padding: 10px;
+    box-shadow: none;
+}
+
+.info-panel {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border-radius: 15px;
+    margin-top: 150px;
+    background-color: white;
+    padding: 30px;
+}
+.info-panel input {
+    margin-top: 12px;
+}
+
+.info-panel button {
+    margin-top: 12px;
+}
+
+.galery {
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.galery .card {
+    margin-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+        rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+        rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.s-wisata {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.t-terbaru {
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
+
+/* card */
+.c-galery .card {
+    margin-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+        rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+        rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.tour-card .card {
+    margin-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+        rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+        rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.tour-card .card p {
+    font-size: 20px;
+    color: black;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tour-card .card p:hover {
+    color: var(--primary);
+}
+
+.tour-card .card h3 {
+    font-size: 20px;
+    color: red;
+}
+
+/* tour */
+.tour h1 {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.daftar-wisata {
+    margin-top: 50px;
+}
+
+/* detail tour */
+.image-tour {
+    margin-top: 50px;
+    width: 100%;
+    background-size: cover;
+}
+
+.judul-tour h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.info-detail {
+    background-color: white;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 0;
+    border-right-width: 0;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.info-detail img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.info-detail h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.info-detail p {
+    font-size: 14px;
+    color: #acacac;
+    margin-top: -5px;
+}
+
+.deskripsi {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.deskripsi h3 {
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 20px;
+}
+
+.deskripsi p {
+    font-size: 16px;
+    font-family: Poppins, sans-serif;
+    margin-top: 10px;
+}
+
+.fasilitas {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.fasilitas h2 {
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 40px;
+}
+
+.fasilitas p {
+    font-size: 16px;
+    font-family: Poppins, sans-serif;
+    margin-top: 10px;
+}
+
+.host .card {
+    margin-top: 20px;
+}
+.host .card img {
+    width: 50px;
+    height: 50px;
+}
+
+.host .card p {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.host .card a {
+    margin-top: -20px;
+}
+
+.harga .card {
+    margin-top: 20px;
+    height: 120px;
+    background-color: white;
+}
+
+.harga .card h1 {
+    font-family: "Poppins" sans-serif;
+    font-size: 20px;
+    margin-top: -5px;
+    color: red;
+}
+
+.harga .card p {
+    color: red;
+    font-size: 30px;
+    margin-top: -10px;
+}
+
+.booking .card {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+.booking .card .card-header {
+    font-weight: bold;
+    background-color: black;
+    color: white;
+}
+
+.booking .card button {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+        rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+        rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    background-color: black;
+}
+
+.jadwal .card {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.maps .card {
+    margin-top: 20px;
+}
+
+.maps .card iframe {
+    width: 100%;
+    height: 300px;
+}
+
+.maps .card .card-header h3 {
+    color: black;
+    font-size: 20px;
+}
+.maps .card .card-header button {
+    text-transform: none;
+}
+
+.penilaian {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* join-mitra */
+.mitra {
+    margin-top: 120px;
+    font-family: "Poppins" sans-serif;
+}
+
+.mitra h1 {
+    color: black;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.mitra .card {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+        rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+        rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.mitra p {
+    font-size: 16px;
+    margin-bottom: 50px;
+}
+
+c.mitra .card {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.c-mitra h3 {
+    color: black;
+    font-weight: 700;
+}
+
+.k-mitra {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.k-mitra .card {
+    margin-top: 30px;
+}
+
+.k-mitra img {
+    width: 70px;
+    height: 70px;
+}
+
+.k-mitra p {
+    color: black;
+    font-size: 24px;
+}
+
+.cj-mitra {
+    background-color: white;
+    padding: 30px;
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+
+.cj-mitra img {
+    width: 70px;
+    height: 70px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.cj-mitra h4 {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 5px;
+    color: black;
+    text-transform: none;
+}
+
+.cj-mitra p {
+    font-size: 14px;
+    color: #acacac;
+    margin-top: -5px;
+}
+
+.cj-mitra h1 {
+    margin-bottom: 70px;
+}
+
+
+/* cart */
+.cart{
+    margin-top: 120px;
+    margin-bottom: 100px;
+}
+
+.cart .card{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+        rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+        rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.card .rekening{
+    margin-top: 50px;
+}
+
+.form-penilaian{
+    margin-top: 120px;
+    margin-bottom: 100px;
+}
+
+
+/* ratting */
+.rating {
+    display: inline-block;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .star {
+    color: grey;
+  }
+  
+  .star:hover,
+  .star.active {
+    color: gold;
+  }
+  
+
+
+
+/* Desktop */
+@media (min-width: 992px) {
+    .tour h1 {
+        font-size: 50px;
+        text-align: center;
+    }
+
+    .judul p {
+        font-size: 40px;
+    }
+
+    .img-fluid {
+        padding-top: 20px;
+        width: 100%;
+    }
+
+    .info-panel input {
+        margin-top: 0;
+    }
+
+    .info-panel button {
+        margin-top: 0;
+    }
+
+    .info-panel {
+        box-shadow: 0 3px 20px rgba(0, 0, 0, 0, 5);
+        border-radius: 15px;
+        margin-top: -150px;
+        background-color: white;
+        padding: 30px;
+    }
+
+    .image-tour {
+        margin-top: -300px;
+        width: 100%;
+        background-size: cover;
+    }
+
+    .judul-tour .container {
+        margin-top: 20px;
+    }
+
+    .navbar {
+        justify-content: center;
+    }
+
+    .judul-tour h1 {
+        font-size: 40px;
+    }
+
+    .maps {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .herosection {
+        width: 100%;
+        height: auto;
+    }
+
+    .c-item {
+        height: 500px;
+    }
+
+    .judul-date {
+        font-weight: bold;
+        margin-bottom: 20px;
+        font-size: 30px;
+    }
+
+    .judul-tour h1 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-family: Poppins, sans-serif;
+        font-weight: 400;
+        font-size: 40px;
+    }
+    .tour h1 {
+        margin-top: 50px;
+    }
+
+    .mitra {
+        margin-top: 150px;
+    }
+
+    .mitra h1 {
+        color: black;
+        font-weight: bold;
+        font-size: 40px;
+    }
+
+    .mitra p {
+        font-size: 18px;
+        margin-bottom: 60px;
+    }
+
+    .k-mitra {
+        margin-bottom: 120px;
+    }
+
+    .yt {
+        margin-top: 30px;
+        margin-bottom: 150px;
+    }
+
+    .daftar-wisata {
+        margin-top: 30px;
+    }
+
+}
