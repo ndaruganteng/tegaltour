@@ -20,23 +20,23 @@
     <div class="container mt-5">
         <h1 class="text-center judul-date ">Cari Wisata Dengan Range Tanggal</h1>
         <div class="row justify-content-center">
-            <div class="col-10 info-panel ">
-                <form class="justify-content-center">
-                    <div class="row">
+            <div class="col-10 info-panel" >
+                <form class="justify-content-center" action="{{route('wisata.search_date') }}" method="GET">
+                    <div class="row" date-rangepicker>
                         <div class="col-md">
                             <div class="form-outline ">
-                                <input type="date" id="date" class="form-control" />
-                                <label class="form-label" for="form2Example1">Dari Tanggal</label>
+                                <input type="date" name="start-date" class="form-control" />
+                                <label class="form-label" for="stardate">Dari Tanggal</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-outline ">
-                                <input type="date" id="date" class="form-control" />
-                                <label class="form-label" for="form2Example1">Sampai Tanggal</label>
+                                <input type="date" name="end-date" class="form-control" />
+                                <label class="form-label" for="end-date">Sampai Tanggal</label>
                             </div>
                         </div>
                         <div class="col-lg-2 ">
-                            <button type="button" class="btn btn-dark tanggal btn-block">Cari Tour</button>
+                            <button type="submit" class="btn btn-dark tanggal btn-block">Cari Tour</button>
                         </div>
                     </div>
                 </form>
@@ -77,8 +77,23 @@
             <div class="col-lg-9 col-md-12">
                 <div class="col-lg-12 daftar-wisata">
                     <div class="d-flex justify-content-between">
-                        <h4>Daftar Wisata</h4>
                         <div>
+                            <h4>Daftar Wisata</h4>
+                        </div>    
+                        <div>
+                            <form action="{{route('wisata.search') }}">
+                                <div class="input-group" style="width: 200px;">
+                                    <div class="form-outline">
+                                        <input type="text" name="search" class="form-control" />
+                                        <label class="form-label" for="search">Cari Wisata </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark shadow-0">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- <div>
                             <div class="dropdown">
                                 <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button"
                                     id="dropdownMenuLink" data-mdb-toggle="dropdown" aria-expanded="false">
@@ -91,7 +106,7 @@
                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -130,7 +145,7 @@
                 <div class="col-lg-12 pagination mt-4 ">
                     <div class="col-lg-12">
                         <div class="text-center">
-                            {{ $wisata->links() }}
+                            
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 
 <div class="content-wrapper">
 
-    <!-- Carousel wrapper -->
+    <!-- Carousel -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -33,32 +33,26 @@
     <!-- end acrousel -->
 
     <!-- info-Panel -->
-    <div class="container mt-5 " >
+    <div class="container mt-5 ">
         <h1 class="text-center judul-date ">Cari Wisata Dengan Range Tanggal</h1>
         <div class="row justify-content-center">
             <div class="col-10 info-panel ">
-                <form class="justify-content-center">
-                    <div class="row">
+                <form class="justify-content-center" action="{{route('wisata.search_date') }}" method="GET">
+                    <div class="row" date-rangepicker>
                         <div class="col-md">
-                            <!-- <div class="input-group date" id="start_date">
-                                <input type="date" class="form-control" placeholder="Dari Tanggal">
-                            </div> -->
                             <div class="form-outline ">
-                                <input type="date" id="date" class="form-control" />
-                                <label class="form-label" for="form2Example1">Dari Tanggal</label>
+                                <input type="date" name="start-date" class="form-control" />
+                                <label class="form-label" for="stardate">Dari Tanggal</label>
                             </div>
                         </div>
                         <div class="col-md">
-                            <!-- <div class="input-group date" id="end_date">
-                                <input type="date" class="form-control" placeholder="Sampai Tanggal">
-                            </div> -->
                             <div class="form-outline ">
-                                <input type="date" id="date" class="form-control" />
-                                <label class="form-label" for="form2Example1">Sampai Tanggal</label>
+                                <input type="date" name="end-date" class="form-control" />
+                                <label class="form-label" for="end-date">Sampai Tanggal</label>
                             </div>
                         </div>
                         <div class="col-lg-2 ">
-                            <button type="button" class="btn btn-dark tanggal btn-block" >Cari Tour</button>
+                            <button type="submit" class="btn btn-dark tanggal btn-block">Cari Tour</button>
                         </div>
                     </div>
                 </form>
@@ -76,11 +70,6 @@
                     <div class="card bg-dark text-white text-center my-3">
                         <img src="{{asset('storage/image/promotion/'.$item->image_promotion)}}" class="card-img " alt="Stony Beach"  style="height:230px"/>
                         <div class="card-img-overlay">
-                            <!-- <h5 class="card-title">Wisata Alam</h5>
-                            <p class="card-text text-white">
-                                This is a wider card with supporting text below as a natural lead-in to additional
-                                content. This content is a little bit longer.
-                            </p> -->
                         </div>
                     </div>
                 </div>
@@ -93,7 +82,22 @@
     <!-- card -->
     <section class="t-terbaru">
         <div class="container tour-card">
-            <h2 class=" fw-bold">Paket Wisata Terbaru </h2>
+            <div class="d-flex justify-content-between">
+                <h2 class=" fw-bold">Paket Wisata </h2>
+                <div>
+                    <form action="{{route('wisata.search') }}">
+                        <div class="input-group" style="width: 200px;">
+                            <div class="form-outline">
+                                <input type="text" name="search" class="form-control" />
+                                <label class="form-label" for="search">Cari Wisata </label>
+                            </div>
+                            <button type="submit" class="btn btn-dark shadow-0">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>           
             <div class="row">
                 @foreach($wisata as $item)  
                     <div class="col-md-12 col-lg-3">

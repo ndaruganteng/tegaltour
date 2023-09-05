@@ -174,7 +174,5 @@ class DatawisataController extends Controller
             return view('dashboard.data-wisata',compact('wisata'));
     }
 
-
-
     
 }

@@ -24,9 +24,6 @@
             </ul>
         </div>
         <div class="d-flex align-items-center">
-            <a class="text-reset me-3" href="#">
-                <i class="fas fa-search"></i>
-            </a>
             <a class="text-reset me-3" href="{{route('transaksi.index')}}">
                 <i class="fas fa-shopping-cart"></i>
             </a>
@@ -39,9 +36,6 @@
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                     <li>
                         <a class="dropdown-item" href="{{route('pesanan-saya.index')}}">Pesanan Saya</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Settings</a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="#">Logout</a>

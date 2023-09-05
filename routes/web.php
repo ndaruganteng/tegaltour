@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Models\wisata;
 
 use App\http\Controllers\landing\HomeController;
 use App\http\Controllers\landing\WisataController;
@@ -76,3 +78,16 @@ Route::get('/promotion/edit/{id}', [PromotionController::class, 'edit'])->name('
 Route::put('/promotion/update/{id}', [PromotionController::class, 'update'])->name('updatePromotion.index');
 Route::get('/promotion/hapus/{id}', [PromotionController::class, 'hapus'])->name('hapus.index');
 Route::get('/search_promotion',[PromotionController::class, 'search_promotion'])->name('promotion.search_promotion');
+
+//SEARCH RANGE TANGGAL
+Route::get('/search_date', function (Request $request) {
+    $startDate = $request->input('start-date');
+    $endDate = $request->input('end-date'); 
+    $wisata = wisata::whereBetween('tanggalberangkat', [$startDate, $endDate])->get();
+
+    return view('landing.wisata', compact('wisata'));
+
+})->name('wisata.search_date');
+
+// SEARCH WISATA
+Route::get('/search',[WisataController::class, 'search'])->name('wisata.search');
