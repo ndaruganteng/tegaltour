@@ -31,29 +31,29 @@
                 <div class="featured-image mb-3">
                     <img src="images/login/tour-logo.png" class="img-fluid" style="width: 250px;">
                 </div>
-                <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Join experienced Designers on this platform.</small>
+                <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Gabung dan dapatkan pengalaman berwisata yang menarik.</small>
                 <a href="{{route('home.index')}}" type="button" class="btn btn-light btn-rounded shadow-0 my-3"><i class="fa-solid fa-house me-2"></i></i>Home</a>
             </div>       
             <div class="col-md-6 right-box">
                 <div class="row align-items-center">
-                    <form action="">
+                    <form action="{{route('login.store')}}" method="post">
+                        @csrf
                         <div class="header-text mb-4">
-                            <h2>Login</h2>
-                            <p>We are happy to have you back.</p>
+                            <h1>Login</h1>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Email address">
+                            <input type="email" class="form-control form-control-lg bg-light fs-6" name="email" placeholder="Masukan Email">
                         </div>
                         <div class="input-group mb-1">
-                            <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password">
+                            <input type="password" class="form-control form-control-lg bg-light fs-6"  name="password" placeholder="Masukan Password">
                         </div>
                         <div class="input-group mb-3">
                             <div class="forgot">
-                                <small><a href="#">Forgot Password?</a></small>
+                                <small><a href="#">Lupa Password?</a></small>
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <button class="btn btn-lg btn-primary w-100 fs-6" style="background: #103cbe;">Login</button>
+                            <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" style="background: #103cbe;">Login</button>
                         </div>
                         <div class="row">
                             <small>Belum punya akun? <a href="{{route('register.index')}}">Register</a></small>

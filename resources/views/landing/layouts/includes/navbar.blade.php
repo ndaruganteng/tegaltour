@@ -24,26 +24,33 @@
             </ul>
         </div>
         <div class="d-flex align-items-center">
-            <a class="text-reset me-3" href="{{route('transaksi.index')}}">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
-            <div class="dropdown ">
-                <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
-                    id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                    <img src="images/icon/profile.png" class="rounded-circle" height="25"
-                        alt="Black and White Portrait of a Man" loading="lazy" />
+            
+            @if(auth()->user()->role == "user")
+                <a class="text-reset me-3" href="{{route('transaksi.index')}}">
+                    <i class="fas fa-shopping-cart"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                    <li>
-                        <a class="dropdown-item" href="{{route('pesanan-saya.index')}}">Pesanan Saya</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Logout</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- <a href="{{route('login.index')}}"  type="button" class="btn btn-outline-dark btn-rounded btn-sm" data-mdb-ripple-color="dark">Login </a> -->
+                <div class="dropdown ">
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
+                        id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <img src="images/icon/profile.png" class="rounded-circle" height="30"
+                            alt="Black and White Portrait of a Man" loading="lazy" />
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                        <li>
+                            <a class="dropdown-item" href="{{route('pesanan-saya.index')}}">Pesanan Saya</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>         
+            @else{
+                <a class="text-reset me-3" href="{{route('transaksi.index')}}">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="{{route('login.index')}}"  type="button" class="btn btn-outline-dark btn-rounded btn-sm" data-mdb-ripple-color="dark">Login </a>
+            }
+            @endif
         </div>
-
     </div>
 </nav>

@@ -17,15 +17,30 @@ use App\http\Controllers\dashboard\RequestmitraController;
 use App\http\Controllers\dashboard\PromotionController;
 
 use App\http\Controllers\auth\LoginController;
+use App\http\Controllers\auth\RegisterController;
 
 //AUTH
-Route::get('/login', [LoginController::class, 'index'])->name('login.index');
-Route::get('/register', [LoginController::class, 'Register'])->name('register.index');
+Route::group(['middleware' => ['guest']], function(){
+    Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+    Route::post('/login', [LoginController::class, 'login'])->name('login.store');
+    Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+});
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Grup
+Route::group(['middleware' => ['auth', 'ceklevel:user']], function(){
+    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+    Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
+    Route::get('/join-mitra', [RequestmitraController::class, 'tambah'])->name('join-mitra.index');
+    Route::get('/pesanan-saya', [HomeController::class, 'pesanan'])->name('pesanan-saya.index');
+    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+
+});
 
 //LANDING
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
-Route::get('/join-mitra', [HomeController::class, 'mitra'])->name('join-mitra.index');
 Route::get('/pesanan-saya', [HomeController::class, 'pesanan'])->name('pesanan-saya.index');
 Route::get('/form-penilaian', [HomeController::class, 'penilaian'])->name('form-penilaian');
 

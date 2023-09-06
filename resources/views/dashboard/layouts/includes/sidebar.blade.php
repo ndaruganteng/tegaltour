@@ -10,18 +10,27 @@
       <div class="image">
         <img src="/images/icon/profile.png" class="img-circle" alt="User Image">
       </div>
+      @if(auth()->user()->role == "admin")
       <div class="info">
-        <a href="#" class="d-block">Ndaru Ganteng</a>
+        <a href="#" class="d-block">{{ Auth::User()->nama_lengkap }}</a>
       </div>
+      @endif
+      @if(auth()->user()->role == "mitra")
+      <div class="info">
+        <a href="#" class="d-block">{{ Auth::User()->nama_lengkap }}</a>
+      </div>
+      @endif
     </div>
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
         <li class="nav-item">
           <a href="{{route('dashboard.index')}}" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Dashboard</p>
           </a>
         </li>
+        @if(auth()->user()->role == "admin")
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fa-solid fa-store"></i>
@@ -69,7 +78,8 @@
             <p>Sliders</p>
           </a>
         </li>
-        <li class="nav-header">Menu Mitra</li>
+        @endif
+        @if(auth()->user()->role == "mitra")
         <li class="nav-item">
           <a href="{{route('data-wisata.index')}}" class="nav-link">
             <i class="nav-icon fa-solid fa-store"></i>
@@ -88,6 +98,7 @@
             <p>Data Order</p>
           </a>
         </li>
+        @endif
       </ul>
     </nav>
   </div>

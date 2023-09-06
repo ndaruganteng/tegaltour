@@ -31,30 +31,32 @@
                 <div class="featured-image mb-3">
                     <img src="images/login/tour-logo.png" class="img-fluid" style="width: 250px;">
                 </div>
-                <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Join experienced Designers on this platform.</small>
+                <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Gabung dan dapatkan pengalaman berwisata yang menarik.</small>
                 <a href="{{route('home.index')}}" type="button" class="btn btn-light btn-rounded shadow-0 my-3"><i class="fa-solid fa-house me-2"></i></i>Home</a>
             </div>       
             <div class="col-md-6 right-box">
                 <div class="row align-items-center">
                         <div class="header-text mb-4">
-                            <h2>Register</h2>
-                            <p>We are happy to have you back.</p>
+                            <h1>Register</h1>
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Full Name">
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Nomor Telephone">
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="email" class="form-control form-control-lg bg-light fs-6" placeholder="Email address">
-                        </div>
-                        <div class="input-group mb-4">
-                            <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password">
-                        </div>
-                        <div class="input-group mb-3">
-                            <button class="btn btn-lg btn-primary w-100 fs-6" style="background: #103cbe;">Login</button>
-                        </div>
+                        <form action="/register" method="POST">
+                            @csrf
+                            <div class="input-group mb-3">
+                                <input type="text" name="nama_lengkap" class="form-control form-control-lg bg-light fs-6" placeholder="Nama Lengkap">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" name="no_telepon" class="form-control form-control-lg bg-light fs-6" placeholder="Nomor Telepon">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="email" name="email" class="form-control form-control-lg bg-light fs-6" placeholder="Email">
+                            </div>
+                            <div class="input-group mb-4">
+                                <input type="password" name="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password">
+                            </div>
+                            <div class="input-group mb-3">
+                                <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" style="background: #103cbe;">Login</button>
+                            </div>
+                        </form>
                         <div class="row">
                             <small>Sudah memiliki akun? <a href="{{route('login.index')}}">Login</a></small>
                         </div>

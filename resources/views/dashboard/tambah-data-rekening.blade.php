@@ -37,6 +37,10 @@
                                     <option>Bank Keliling</option>
                                 </select>
                             </div> -->
+                            <div class="form-group ">
+                                <label for="image_rekening" class="col-form-label">Image</label>
+                                <input type="file" class="form-control" id="image_rekening" required="required" name="image_rekening">
+                            </div>
                             <div class="form-group">
                                 <label for="nama_bank">Nama Bank</label>
                                 <input type="text" class="form-control" required="required"  name="nama_bank"  placeholder="Masukan Nama Bank">
@@ -49,7 +53,7 @@
                                 <label for="nama_rekening">Nama Rekening</label>
                                 <input type="text" class="form-control" required="required"  name="nama_rekening" placeholder="Masukan Nama Rekening">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="image_rekening">Image</label>
                                 <div class="input-group">
                                     <div class="custom-file">
@@ -57,8 +61,8 @@
                                         <label class="custom-file-label" for="image_rekening">Image Bank</label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="#">
+                            </div> -->
+                            <div>
                                 <button type="submit" class="btn btn-secondary " value="Simpan Data" >Simpan</button>
                             </div>
                         </form>    

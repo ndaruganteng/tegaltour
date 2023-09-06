@@ -28,12 +28,9 @@
                             <form class="form-sample" action="{{ route('Wisata.index') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                 <div class="form-group mb-2">
-                                    <label for="image">Image</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" required="required"  name="image">
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                    </div>
-                                    <p class="fst-italic text-secondary">size foto maksimal 2 mb dan extensi jpg, png, jpeg</p>             
+                                    <label for="image" class="col-form-label">Image</label>
+                                    <input type="file" class="form-control" id="image" required="required" name="image">
+                                    <p class="fst-italic text-secondary">size foto maksimal 2 mb dan extensi jpg, png, jpeg</p>     
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">

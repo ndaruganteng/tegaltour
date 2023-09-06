@@ -33,10 +33,11 @@
                                     <label for="image">Image</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" value="{{ $wisata->image}}" name="image">
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                        <label class="custom-file-label" for="customFile">{{ $wisata->image}}</label>
                                     </div>
                                     <p class="fst-italic text-secondary">size foto maksimal 2 mb dan extensi jpg, png, jpeg</p>             
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">

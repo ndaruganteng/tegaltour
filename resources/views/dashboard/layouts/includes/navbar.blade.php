@@ -14,7 +14,7 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-        <a class="nav-link"  href="#" role="button">
+        <a class="nav-link"  href="/logout" role="button">
           <i class="fa-solid fa-right-from-bracket"></i>
         </a>
       </li>
