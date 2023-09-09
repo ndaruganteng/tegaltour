@@ -1,5 +1,5 @@
 <p align="center">
-    php artisan storage:link <br>
+    php artisan storage:link </br>
     php artisan db:seed --class=AdminSeeder
 </p>
 
