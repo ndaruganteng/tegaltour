@@ -1,4 +1,5 @@
 <p align="center">
+    APLIKASI SKRIPSI (M. NDARU SABBITURAHMAN) </br> 
     php artisan storage:link </br>
     php artisan db:seed --class=AdminSeeder
 </p>
