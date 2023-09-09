@@ -213,61 +213,53 @@
                             <div class="card text-center border border-2">
                                 <div class="card-header fw-blod">-BOOKING-</div>
                                 <div class="card-body">
-                                    <form>
+                                    <form action="/boking" method="post" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="form-outline mb-4">
-                                            <input type="date" id="date" class="form-control" />
-                                            <label class="form-label" for="form2Example1">Masukan Tanggal</label>
+                                            <input class="form-control bg-white" id="{{$detail_wisata->namawisata}}" for="namawisata" name="namawisata"
+                                            value="{{ $detail_wisata->namawisata }}" readonly />
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <input type="number" id="typeNumber" class="form-control" />
-                                            <label class="form-label" for="typeNumber">Masukan Jumlah Orang</label>
+                                            <input class="form-control bg-white" id="{{$detail_wisata->namawisata}}" for="namauser" name="namauser"
+                                             value="{{ Auth::user()->nama_lengkap }}" readonly />
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <input class="form-control bg-white" id="formControlReadonly" type="text"
-                                                value="" aria-label="readonly input example" readonly />
-                                            <label class="form-label" for="formControlReadonly">Harga Total</label>
+                                            <input type="date" datepicker id="{{$detail_wisata->namawisata}}" class="form-control" name="tanggalberangkat" required="required" for="tanggal_berangkat" />
+                                            <label class="form-label" for="tanggalberangkat">Pilih Tanggal</label>
                                         </div>
-                                        <a href="{{ route('transaksi.index') }}" type="submit"
-                                            class="btn btn-dark btn-block mb-4">Pesan Sekarang</a>
+                                        <div class="form-outline mb-4">
+                                            <input type="number" name="jumlahorang" id="jumlahorang" class="form-control" onchange="updateHargaTotal()"/>
+                                            <label class="form-label" for="jumlahorang">Masukan Jumlah Orang</label>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input class="form-control" name="hargasatuan" id="hargasatuan" type="text"
+                                                value="{{ $detail_wisata->harga }}"  onchange="updateHargaTotal()" />
+                                            <label class="form-label" for="hargasatuan">Harga /pax</label>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input class="form-control bg-white" name="hargatotal" id="hargatotal" type="text" readonly />
+                                        </div>
+                                        <button type="submit"
+                                            class="btn btn-dark btn-block mb-4">Pesan Sekarang</button>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-lg-12 jadwal">
-                            <div class="card text-center border border-2 shadow-0">
-                                <div class="card-body">
-                                    <ul class="list-group list-group-light list-group-small text-center">
-                                        <li class="list-group-item">
-                                            Senin 08.00 - 16.00
-                                        </li>
-                                        <li class="list-group-item">
-                                            Selasa 08.00 - 16.00
-                                        </li>
-                                        <li class="list-group-item">
-                                            Rabu 08.00 - 16.00
-                                        </li>
-                                        <li class="list-group-item">
-                                            Kamis 08.00 - 16.00
-                                        </li>
-                                        <li class="list-group-item">
-                                            Jumat 08.00 - 16.00
-                                        </li>
-                                        <li class="list-group-item">
-                                            Sabtu 08.00 - 16.00
-                                        </li>
-                                        <li class="list-group-item text-danger">
-                                            Minggu Tutup
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+
+    <script>
+    function updateHargaTotal() {
+      const jumlahOrang = parseInt(document.getElementById('jumlahorang').value);
+      const hargaSatuan = parseInt(document.getElementById('hargasatuan').value);
+      const hargaTotal = isNaN(jumlahOrang) || isNaN(hargaSatuan) ? '' : jumlahOrang * hargaSatuan;
+      document.getElementById('hargatotal').value = hargaTotal;
+    }
+  </script>
 </div>
 
 @endsection

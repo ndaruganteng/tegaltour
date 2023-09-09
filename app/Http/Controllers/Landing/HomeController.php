@@ -13,14 +13,11 @@ class HomeController extends Controller
 
     public function index()
     {
-        $wisata = DB::table('wisata')->simplepaginate(4);
+        $wisata = DB::table('wisata')->simplePaginate(4);
         $promotion = DB::table('promotion')->get();
         return view('landing.home', ['wisata' => $wisata, 'promotion' => $promotion]);
     }
-        public function pesanan()
-    {
-        return view('landing.pesanan-saya');
-    }
+
         public function penilaian()
     {
         return view('landing.form-penilaian');

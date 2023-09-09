@@ -44,7 +44,7 @@
                                 <thead>
                                     <tr>
                                         <th>Bukti Tf</th>
-                                        <th>Nama Tour</th>
+                                        <th>Nama Wisata</th>
                                         <th>Nama Pembeli</th>
                                         <th>Tanggal Berangkat</th>
                                         <th>Jumlah Orang</th>
@@ -52,49 +52,66 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                @foreach($pemesanan as $p)
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <a href="#" data-toggle="modal" data-target="#buktiModal" data-whatever="@getbootstrap">
-                                                <img src="images/dashboard/bukti.jpg" alt="wisata" style="width:50px" >
+                                            <a href="#" data-toggle="modal" data-target="#buktiModal{{$p->id_pemesanan}}" data-whatever="@getbootstrap">
+                                                <img src="{{asset('storage/image/bukti-transfer/'.$p->bukti_pembayaran)}}" alt="wisata" style="width:50px" >
                                             </a>
                                         </td>
-                                        <td>Wisata Tegal</td>
-                                        <td>Jamal</td>
-                                        <td>11-7-2014</td>
-                                        <td>1 Orang</td>
+                                        <td>{{ $p->namawisata}}</td>
+                                        <td>{{ $p->namauser}}</td>
+                                        <td>{{ $p->tanggalberangkat}}</td>
+                                        <td>{{ $p->jumlahorang}}</td>
                                         <td>
-                                            <span class="badge badge-success">Disetuji</span>
+                                            @if($p->status == null)
+                                                <div class="badge badge-warning">Belum disetuji </div>
+                                            @else($p->status == 2)
+                                                <div class="badge badge-success"> Disetuji</div>
+                                            @endif
                                         </td>
                                         <td>
-                                            <!-- <button class="btn btn-success btn-sm">
-                                                <i class="fas fa-check"></i>
-                                            </button> -->
-                                            <a class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#" data-toggle="modal" data-target="#buktiModal" data-whatever="@getbootstrap">
-                                                <img src="images/dashboard/bukti.jpg" alt="wisata" style="width:50px" >
-                                            </a>
-                                        </td>
-                                        <td>Wisata Tegal</td>
-                                        <td>Jamal</td>
-                                        <td>11-7-2014</td>
-                                        <td>1 Orang</td>
-                                        <td>
-                                            <span class="badge badge-danger">Belum Disetuji</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-success btn-sm">
-                                                <i class="fas fa-check"></i>
-                                            </button>
+                                            @if($p->status == null)
+                                                <form  method="post" action="{{route('konfirmasi', ['id_pemesanan'=> $p->id_pemesanan])}}">
+                                                @csrf
+                                                @method('put')
+                                                <button type="submit" class="btn btn-success btn-sm">
+                                                    <i class="fa-solid fa-check"></i>
+                                                </button>
+                                            </form>
+                                            @else
+                                                <a href="/data-order/hapus/{{ $p->id_pemesanan }}">
+                                                    <button type="button"  class="btn btn-danger btn-sm">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 </tbody>
+                                <!-- modal bukti -->
+                                <div class="modal fade" id="buktiModal{{$p->id_pemesanan}}" tabindex="-1" role="dialog" aria-labelledby="buktiModalLabel{{$p->id_pemesanan}}" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="buktiModalLabel">Bukti Transfer</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="p-2">
+                                                    <img src="{{asset('storage/image/bukti-transfer/'.$p->bukti_pembayaran)}}"  alt="wisata" class="img-fluid"/>   
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
                             </table>
                         </div>
                     </div>
@@ -103,27 +120,7 @@
         </div>
     </section>
 
-    <!-- modal bukti -->
-    <div class="modal fade" id="buktiModal" tabindex="-1" role="dialog" aria-labelledby="buktiModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="buktiModalLabel">Bukti Transfer</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="p-2">
-                        <img src="images/dashboard/bukti.jpg"  alt="wisata" class="img-fluid"/>   
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 </div>
 

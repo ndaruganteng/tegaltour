@@ -25,7 +25,7 @@
         </div>
         <div class="d-flex align-items-center">
             
-            @if(auth()->user()->role == "user")
+            @auth
                 <a class="text-reset me-3" href="{{route('transaksi.index')}}">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
@@ -44,13 +44,9 @@
                         </li>
                     </ul>
                 </div>         
-            @else{
-                <a class="text-reset me-3" href="{{route('transaksi.index')}}">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
+            @else
                 <a href="{{route('login.index')}}"  type="button" class="btn btn-outline-dark btn-rounded btn-sm" data-mdb-ripple-color="dark">Login </a>
-            }
-            @endif
+            @endauth
         </div>
     </div>
 </nav>

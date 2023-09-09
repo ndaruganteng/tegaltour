@@ -8,6 +8,7 @@ use App\http\Controllers\landing\HomeController;
 use App\http\Controllers\landing\WisataController;
 use App\http\Controllers\landing\DetailwisataController;
 use App\http\Controllers\landing\TransaksiController;
+use App\http\Controllers\landing\PemesananController;
 
 use App\http\Controllers\dashboard\DashboardController;
 use App\http\Controllers\dashboard\DetaildatawisataController;
@@ -18,6 +19,7 @@ use App\http\Controllers\dashboard\PromotionController;
 
 use App\http\Controllers\auth\LoginController;
 use App\http\Controllers\auth\RegisterController;
+use App\http\Controllers\auth\ForgoPasswordController;
 
 //AUTH
 Route::group(['middleware' => ['guest']], function(){
@@ -33,20 +35,19 @@ Route::group(['middleware' => ['auth', 'ceklevel:user']], function(){
     Route::get('/home', [HomeController::class, 'index'])->name('home.index');
     Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
     Route::get('/join-mitra', [RequestmitraController::class, 'tambah'])->name('join-mitra.index');
-    Route::get('/pesanan-saya', [HomeController::class, 'pesanan'])->name('pesanan-saya.index');
+    Route::get('/pesanan-saya', [PemesananController::class, 'pesanan_saya'])->name('pesanan-saya.index');
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-
 });
 
 //LANDING
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
-Route::get('/pesanan-saya', [HomeController::class, 'pesanan'])->name('pesanan-saya.index');
 Route::get('/form-penilaian', [HomeController::class, 'penilaian'])->name('form-penilaian');
+Route::get('/pesanan-saya', [PemesananController::class, 'pesanan_saya'])->name('pesanan-saya.index');
+Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
 
 //DASHBOARD
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-Route::get('/data-order', [DashboardController::class, 'order'])->name('data-order.index');
 Route::get('/kategori', [DashboardController::class, 'kategori'])->name('kategori.index');
 Route::get('/request-mitra', [DashboardController::class, 'requestmitra'])->name('request-mitra.index');
 Route::get('/data-user', [DashboardController::class, 'user'])->name('data-user.index');
@@ -82,9 +83,6 @@ Route::post('/join-mitra', [RequestmitraController::class, 'store'])->name('Mitr
 Route::get('/request-mitra/hapus/{id_mitra}', [RequestmitraController::class, 'hapus'])->name('hapus.index');
 Route::get('/search_data_mitra',[RequestmitraController::class, 'search_data_mitra'])->name('mitra.search_data_mitra');
 
-// TRANSAKSI
-Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-
 // PROMOTION
 Route::get('/promotion', [PromotionController::class, 'index'])->name('promotion.index');
 Route::get('/tambah-promotion', [PromotionController::class, 'tambah'])->name('tambah-promotion.index');
@@ -106,3 +104,14 @@ Route::get('/search_date', function (Request $request) {
 
 // SEARCH WISATA
 Route::get('/search',[WisataController::class, 'search'])->name('wisata.search');
+
+// PEMESANAN
+Route::post('/boking', [PemesananController::class, 'store']);
+Route::put('/konfirmasi/{id_pemesanan}', [PemesananController::class, 'konfirmasi'])->name('konfirmasi');
+Route::get('/data-order/hapus/{id}', [PemesananController::class, 'hapus'])->name('hapus.index');
+Route::group(['middleware' => ['auth','ceklevel:user']], function(){
+Route::post('/upload-bukti_pembayaran/{id}', [PemesananController::class, 'update'])->name('upload-bukti_pembayaran');
+});
+
+// DATA-ORDER
+Route::get('/data-order', [PemesananController::class, 'data_order'])->name('data-order.index');

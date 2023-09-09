@@ -11,10 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class DetaildatawisataController extends Controller
 {
-        // menampilkan data detail-data-wisata
-        public function showdetail($id)
-        {      
-            $data_wisata_detail = wisata::findOrFail($id);
-            return view('dashboard.detail-data-wisata', compact('data_wisata_detail'));
-        }  
+    // menampilkan data detail-data-wisata
+    public function showdetail($id)
+    {      
+        $data_wisata_detail = wisata::findOrFail($id);
+        return view('dashboard.detail-data-wisata', compact('data_wisata_detail'));
+    }
+    
+     
+
 }
