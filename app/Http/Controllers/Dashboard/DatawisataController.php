@@ -2,24 +2,27 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\wisata;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
-
+use App\Models\wisata;
 
 class DatawisataController extends Controller
 {
 
     public function index()
     {   
-        // menampilkan dta dari database
-    	$wisata = DB::table('wisata')->get();
+        $wisata = DB::table('wisata')->get();
+        // $idUsers = Auth()->user()->id;
+        // $wisata = DB::table('wisata')
+        // ->where('id_wisata','=', $idUsers)->get();
         return view('dashboard.data-wisata',['wisata' => $wisata]);
     }
 
@@ -144,7 +147,7 @@ class DatawisataController extends Controller
          $wisata->deskripsi = $request->deskripsi;
          $wisata->save();
  
-         return redirect('data-wisata')->with('toast_success','Data wisata Telah Diupdate!');
+         return redirect('data-wisata')->with('success','Data wisata Telah Diupdate!');
          
     }
 
@@ -156,7 +159,7 @@ class DatawisataController extends Controller
             File::delete($path);
         }
         $wisata->delete(); 
-        return back() -> with('toast_info', "Data Wisata berhasil dihapus!");
+        return back() -> with('error', "Data Wisata berhasil dihapus!");
     }
 
     // search data wisata

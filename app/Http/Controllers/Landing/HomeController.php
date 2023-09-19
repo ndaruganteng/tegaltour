@@ -14,8 +14,8 @@ class HomeController extends Controller
     public function index()
     {
         $wisata = DB::table('wisata')->simplePaginate(4);
-        $promotion = DB::table('promotion')->get();
-        return view('landing.home', ['wisata' => $wisata, 'promotion' => $promotion]);
+        // $wisata = wisata::inRandomOrder()->take(3)->get();
+        return view('landing.home', ['wisata' => $wisata]);
     }
 
         public function penilaian()

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('hargatotal');
             $table->string('tanggalberangkat');
             $table->string('status')->nullable();
+            $table->string('status_perjalanan')->nullable();
             $table->timestamps();
         });
     }

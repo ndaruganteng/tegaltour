@@ -10,15 +10,17 @@
             <div class="col-md-12 col-lg-9 mt-5">
                 <div class="col-lg-12">
                     <div class="card">
-                    <!-- <h4 class="p-3">Keranjang Kosong</h4> -->
+                        @if($pemesanan->isEmpty())
+                        <h5 class="p-3 text-center">Belum Ada Transaksi</h5> 
+                        @else
                         @foreach($pemesanan as $p)
                             <div class="row g-0 border border-top">
-                                <div class="col-md-6 p-3">
-                                    <img src="{{asset('storage/image/bukti-transfer/'.$p->bukti_pembayaran)}}"  class="img-thumbnail" style="width: 100%; height: 100%;"/>
+                                <div class="col-md-6 p-3">  
+                                    <img src="images/icon/tour-logo.png" class="img-thumbnail" style="width: 100%; height: 100%;" />
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card-body">
-                                        <a class="btn position-absolute top-0 end-0 mt-3 mr-3 btn-floating btn-danger btn-sm shadow-0 " href="#!">
+                                        <a href="/data-order/hapus/{{ $p->id_pemesanan }}" class="btn position-absolute top-0 end-0 mt-3 mr-3 btn-floating btn-danger btn-sm shadow-0 " href="#!">
                                             <i class="fa-solid fa-trash-can pt-2"></i>
                                         </a>
                                         <h5 class="card-title">Wisata : {{$p->namawisata}}</h5>
@@ -42,10 +44,11 @@
                                         </div>
                                         @endif
                                         <div>
+                                            @if($p->status == null)
                                             <button type="button" class="btn btn-dark shadow-0 btn-sm" data-toggle="modal" data-target="#buktiModal{{$p->id_pemesanan}}" data-whatever="@getbootstrap">
                                                 <i class="fa-solid fa-upload me-2"></i>Upload Bukti transfer
                                             </button>                      
-                                            @if($p->status == 2)
+                                            @else
                                             <button type="button"  class="btn btn-primary shadow-0 btn-sm" data-toggle="modal" data-target="#imagebuktiModal{{$p->id_pemesanan}}" data-whatever="@getbootstrap">
                                                 <i class="fa-solid fa-eye me-2"></i>Bukti Transfer
                                             </button>
@@ -54,7 +57,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- modal upload bukti tf -->
                             <div class="modal fade" id="buktiModal{{$p->id_pemesanan}}" tabindex="-1" role="dialog" aria-labelledby="buktiModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -80,7 +82,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- modal bukti tf -->
                             <div class="modal fade" id="imagebuktiModal{{$p->id_pemesanan}}" tabindex="-1" role="dialog" aria-labelledby="imagebuktiModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -97,6 +98,7 @@
                                 </div>
                             </div>
                         @endforeach
+                    @endif
                     </div>
                 </div>
             </div>

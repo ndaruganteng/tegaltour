@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Models\pemesanan; // Ganti "Pemesanan" dengan huruf kapital
-use App\Models\wisata; // Ganti "Wisata" dengan huruf kapital
-use Illuminate\Support\Facades\File; // Import class File
+use Illuminate\Support\Facades\File;
+use App\Models\pemesanan; 
+use App\Models\wisata; 
 
 class PemesananController extends Controller
 {
@@ -22,6 +22,7 @@ class PemesananController extends Controller
         $pemesanan->hargatotal = $request->input('hargatotal');
         $pemesanan->tanggalberangkat = $request->input('tanggalberangkat');
         $pemesanan->status = null;
+        $pemesanan->status_perjalanan = null;
         if ($request->hasFile('bukti_pembayaran')) {
             $file = $request->file('bukti_pembayaran');
             $extension = $file->getClientOriginalExtension();
@@ -31,7 +32,7 @@ class PemesananController extends Controller
         }
         $pemesanan->save();
 
-        return redirect('/transaksi')->with('success', "Data berhasil ditambahkan!");
+        return redirect('/transaksi')->with('success', "Transaksi Telah Diproses!");
     }
 
     public function update(Request $request, $id)
@@ -46,12 +47,14 @@ class PemesananController extends Controller
             $pemesanan->bukti_pembayaran = $filename;
         }
         $pemesanan->save();
-        return redirect()->back()->with('toast_success', "Bukti Pembayaran sudah ke upload!");
+        return redirect()->back()->with('toast_success', "Bukti Pembayaran Sudah Dikirim!");
     }
 
+
+    // menampilkan view data order
     public function data_order()
     {
-        $pemesanan = DB::table('pemesanan')->simplePaginate(5); // Ubah "simplepaginate" menjadi "simplePaginate"
+        $pemesanan = DB::table('pemesanan')->simplePaginate(5);
         return view('dashboard.data-order', ['pemesanan' => $pemesanan]);
     }
 
@@ -64,8 +67,10 @@ class PemesananController extends Controller
                 'status' => 2
             ]);
 
-        return redirect('data-order')->with('toast_success', 'Pembayaran telah dikonfirmasi ');
+        return redirect('data-order')->with('success', 'Pembayaran telah dikonfirmasi ');
     }
+
+
 
     // Method untuk hapus data pemesanan
     public function hapus($id)
@@ -80,13 +85,52 @@ class PemesananController extends Controller
         return back()->with('toast_info', "Data berhasil dihapus!");
     }
 
-
+    
     // method untuk menampilkan halaman pesanan saya
     public function pesanan_saya()
     {
         {  
-            $pemesanan = DB::table('pemesanan')->simplePaginate(5);
+            // $pemesanan = DB::table('pemesanan')->get();
+            $idUsers = Auth()->user()->nama_lengkap;
+            $pemesanan = DB::table('pemesanan')->where('namauser', '=', $idUsers)->get();
+            // $pemesanan = DB::table('pemesanan')
+            // ->select('pemesanan.*', 'wisata.image')
+            // ->rightJoin('wisata','pemesanan.namawisata','=','wisata.namawisata')
+            // ->rightJoin('users','pemesanan.namauser','=','users.nama_lengkap')
+            // ->where('pemesanan.namauser','=','zaim zaim')
+            // ->get();
              return view('landing.pesanan-saya',['pemesanan' => $pemesanan]);
          }
+    }
+
+    // menampilkan view status perjalanan
+    public function status_perjalanan()
+    {
+        $pemesanan = DB::table('pemesanan')->get();
+        return view('dashboard.status-perjalanan', ['pemesanan' => $pemesanan]);
+    }
+
+    // fungsi status perjalanan berangkat
+    public function berangkat(Request $request, $id)
+    { 
+        $konfirmasi = DB::table('pemesanan')
+            ->where('id_pemesanan', $id)
+            ->update([
+                'status_perjalanan' => 2
+            ]);
+
+        return redirect('status-perjalanan')->with('toast_success', 'Status Perjalanan Berangkat ');
+    }
+
+    // status perjalanan selesai
+    public function selesai(Request $request, $id)
+    { 
+        $konfirmasi = DB::table('pemesanan')
+            ->where('id_pemesanan', $id)
+            ->update([
+                'status_perjalanan' => 3
+            ]);
+
+        return redirect('status-perjalanan')->with('toast_success', 'Perjalanan telah Selesai ');
     }
 }

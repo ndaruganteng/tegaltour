@@ -11,14 +11,6 @@ class DashboardController extends Controller
     {
         return view('dashboard.dashboard');
     }
-    public function order()
-    {
-        return view('dashboard.data-order');
-    }
-    public function kategori()
-    {
-        return view('dashboard.kategori');
-    }
     public function requestmitra()
     {
         return view('dashboard.request-mitra');
@@ -26,10 +18,6 @@ class DashboardController extends Controller
     public function user()
     {
         return view('dashboard.data-user');
-    }
-    public function detail()
-    {
-        return view('dashboard.detail-data-wisata');
     }
 
 

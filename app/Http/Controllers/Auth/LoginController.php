@@ -10,14 +10,7 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
-    // public function index()
-    // {
-    //     return view('auth.login');
-    // }
-    // public function Register()
-    // {
-    //     return view('auth.register');
-    // }
+
 
     public function index()
     {
@@ -48,7 +41,7 @@ class LoginController extends Controller
                 return redirect('/dashboard');
             } elseif ($role == 'user') {
                 // alert()->success('Berhasil', 'Anda Berhasil Login');
-                return redirect('/home');
+                return redirect('/');
             } elseif ($role == 'mitra') {
                 // alert()->success('Berhasil', 'Anda Berhasil Login');
                 return redirect('/dashboard');

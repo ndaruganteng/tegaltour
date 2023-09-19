@@ -24,12 +24,12 @@
             </ul>
         </div>
         <div class="d-flex align-items-center">
-            
-            @auth
-                <a class="text-reset me-3" href="{{route('transaksi.index')}}">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-                <div class="dropdown ">
+            @if (Auth::check() && Auth::user()->role == 'user')
+                @if (Auth::check())
+                <span class="me-2">{{ Auth::user()->nama_lengkap }}</span>
+                @else
+                @endif
+                <div class="dropdown">
                     <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
                         id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                         <img src="images/icon/profile.png" class="rounded-circle" height="30"
@@ -43,10 +43,13 @@
                             <a class="dropdown-item" href="/logout">Logout</a>
                         </li>
                     </ul>
-                </div>         
+                </div>
+                <a class="text-reset ms-2" href="{{route('transaksi.index')}}">
+                    <i class="fas fa-shopping-cart"></i>
+                </a> 
             @else
                 <a href="{{route('login.index')}}"  type="button" class="btn btn-outline-dark btn-rounded btn-sm" data-mdb-ripple-color="dark">Login </a>
-            @endauth
+            @endif
         </div>
     </div>
 </nav>

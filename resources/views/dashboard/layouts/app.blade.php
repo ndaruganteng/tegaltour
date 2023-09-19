@@ -44,6 +44,7 @@
         @include('dashboard.layouts.includes.sidebar')
 
         <div>
+            @include('sweetalert::alert')
             @yield('content')
         </div>
 

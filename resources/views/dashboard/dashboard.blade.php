@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.app')
+@include('sweetalert::alert')
 @section('content')
 
 
 @if(auth()->user()->role == "admin")
 <div class="content-wrapper">
-
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -74,12 +74,11 @@
         </div>
       </div>
     </section>
-
 </div>
 @endif
 
 @if(auth()->user()->role == "mitra")
-<div class="content-wrapper" style="min-height: 574.4px;">
+<div class="content-wrapper">
   <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">

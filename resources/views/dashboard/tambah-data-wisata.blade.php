@@ -1,5 +1,6 @@
 @extends('dashboard.layouts.app')
 @section('content')
+@include('sweetalert::alert')
 
 <div class="content-wrapper">
     <div class="content-header">

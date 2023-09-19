@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'nama_lengkap' => 'M Ndaru Sabitturahman',
+            'nama_lengkap' => 'Ndaru',
             'no_telepon' => '085647019630',
             'email' => 'ndaru123@gmail.com',
             'password' => bcrypt("Ndaru123"),
@@ -34,6 +34,13 @@ class AdminSeeder extends Seeder
             'no_telepon' => '085647019630',
             'email' => 'ndarutour@gmail.com',
             'password' => bcrypt("Ndarutour123"),
+            'role' => 'mitra',
+        ]);
+        DB::table('users')->insert([
+            'nama_lengkap' => 'Seno Tour',
+            'no_telepon' => '0856557019632',
+            'email' => 'senotour@gmail.com',
+            'password' => bcrypt("Senotour123"),
             'role' => 'mitra',
         ]);
 

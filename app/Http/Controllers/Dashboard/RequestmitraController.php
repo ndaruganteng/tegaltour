@@ -58,7 +58,7 @@ class RequestmitraController extends Controller
        
         $mitra->save();
 
-        return redirect('/join-mitra') -> with('success', "Data berhasil ditambahkan!");
+        return redirect('/join-mitra') -> with('success', "Data Telah Terkirim! ");
     }
 
     // method untuk hapus data mitra
@@ -67,7 +67,7 @@ class RequestmitraController extends Controller
         $mitra = Mitra::find($id);
         $mitra->delete();
         
-        return back() -> with('info', "Data berhasil dihapus!");
+        return back() -> with('error', "Data berhasil dihapus!");
     }
 
     // search data mitra

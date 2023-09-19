@@ -30,7 +30,8 @@
     <div>
         @include('landing.layouts.includes.navbar')
         <div class="wrapper" >
-            @yield('content')
+          @include('sweetalert::alert')
+          @yield('content')
         </div>
         @include('landing.layouts.includes.footer')
         
