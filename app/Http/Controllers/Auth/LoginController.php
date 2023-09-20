@@ -37,13 +37,13 @@ class LoginController extends Controller
             $role = $user->role;
 
             if ($role == 'admin') {
-                // alert()->success('Berhasil', 'Anda Berhasil Login');
+                alert()->success('Berhasil', 'Anda Berhasil Login');
                 return redirect('/dashboard');
             } elseif ($role == 'user') {
-                // alert()->success('Berhasil', 'Anda Berhasil Login');
+                alert()->success('Berhasil', 'Anda Berhasil Login');
                 return redirect('/');
             } elseif ($role == 'mitra') {
-                // alert()->success('Berhasil', 'Anda Berhasil Login');
+                alert()->success('Berhasil', 'Anda Berhasil Login');
                 return redirect('/dashboard');
             } else {
                 Auth::logout();

@@ -17,9 +17,9 @@ use App\http\Controllers\dashboard\DatarekeningController;
 use App\http\Controllers\dashboard\RequestmitraController;
 use App\http\Controllers\dashboard\PromotionController;
 
-use App\http\Controllers\auth\LoginController;
-use App\http\Controllers\auth\RegisterController;
-use App\http\Controllers\auth\ForgoPasswordController;
+use App\http\Controllers\Auth\LoginController;
+use App\http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 //AUTH
 Route::group(['middleware' => ['guest']], function(){
@@ -120,3 +120,10 @@ Route::get('/request-mitra', [RequestmitraController::class, 'index'])->name('re
 Route::post('/join-mitra', [RequestmitraController::class, 'store'])->name('Mitra.index');
 Route::get('/request-mitra/hapus/{id_mitra}', [RequestmitraController::class, 'hapus'])->name('hapus.index');
 Route::get('/search_data_mitra',[RequestmitraController::class, 'search_data_mitra'])->name('mitra.search_data_mitra');
+
+
+// ResetPassword
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');

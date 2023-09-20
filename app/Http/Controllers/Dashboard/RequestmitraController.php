@@ -58,7 +58,7 @@ class RequestmitraController extends Controller
        
         $mitra->save();
 
-        return redirect('/join-mitra') -> with('success', "Data Telah Terkirim! ");
+        return redirect('/join-mitra')->with('message', 'Permintaan Join Mitra Anda telah Terkirim Silahkan Cek Email!');
     }
 
     // method untuk hapus data mitra

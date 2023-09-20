@@ -25,23 +25,36 @@
   </head>
   <body >
 
-    <div class="container d-flex justify-content-center align-items-center min-vh-100 login">
+     <div class="container d-flex justify-content-center align-items-center min-vh-100 login">
         <div class="row border rounded-5 p-3 bg-white box-area">
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #103cbe;">
                 <div class="featured-image mb-3">
                     <img src="images/login/tour-logo.png" class="img-fluid" style="width: 250px;">
                 </div>
+                <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Gabung dan dapatkan pengalaman berwisata yang menarik.</small>
+                <a href="{{route('home.index')}}" type="button" class="btn btn-light btn-rounded shadow-0 my-3"><i class="fa-solid fa-house me-2"></i></i>Home</a>
             </div>       
             <div class="col-md-6 right-box">
-                <div class="row align-items-center">
-                    <form action="#" method="post">
-                        <div class="header-text mb-4">
-                            <h1>Reset Password Akun Anda</h1>
-                        </div>
+                <div class="row align-items-center"> 
+                    <div class="header-text mb-4">
+                        <h1>Reset Password</h1>
+                    </div>
+                    @if (Session::has('message'))
+                    <div class="alert alert-warning" role="alert">
+                        {{ Session::get('message') }} Berhasil
+                    </div>
+                    @endif
+                    <form action="{{ route('forget.password.post') }}" method="POST">
+                        @csrf
+                        
                         <div class="input-group mb-3">
-                            <input type="email" class="form-control form-control-lg bg-light fs-6" name="email" placeholder="Masukan Email">
+                            <input type="email" id="email_address" name="email" required autofocus class="form-control form-control-lg bg-light fs-6" placeholder="Masukan Email">
                         </div>
-
+                        @if ($errors->has('email'))
+                            <div class="alert alert-danger" role="alert">
+                            {{ $errors->first('email') }} 
+                            </div>
+                        @endif
                         <div class="input-group mb-3">
                             <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" style="background: #103cbe;">Kirim</button>
                         </div>
@@ -51,6 +64,7 @@
         </div>
     </div>
 
+    <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

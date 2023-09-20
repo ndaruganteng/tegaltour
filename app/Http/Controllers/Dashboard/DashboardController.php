@@ -11,10 +11,6 @@ class DashboardController extends Controller
     {
         return view('dashboard.dashboard');
     }
-    public function requestmitra()
-    {
-        return view('dashboard.request-mitra');
-    }
     public function user()
     {
         return view('dashboard.data-user');
