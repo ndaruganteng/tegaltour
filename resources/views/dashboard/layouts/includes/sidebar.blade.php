@@ -31,44 +31,15 @@
         @endif
         @if(auth()->user()->role == "admin")
         <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fa-solid fa-store"></i>
-            <p>Wisata</p>
+          <a href="{{route('data-user.index')}}" class="nav-link">
+            <i class="fa-solid fa-user nav-icon"></i>
+            <p>Data User</p>
           </a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fa-solid fa-users-viewfinder"></i>
-            <p>
-              Kelola User
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview" style="display: none;">
-            <li class="nav-item">
-              <a href="{{route('data-user.index')}}" class="nav-link">
-                <i class="fa-solid fa-user nav-icon"></i>
-                <p>User</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/search/enhanced.html" class="nav-link">
-                <i class="fa-solid fa-user-plus nav-icon"></i>
-                <p>Mitra</p>
-              </a>
-            </li>
-          </ul>
         </li>
         <li class="nav-item">
           <a href="{{route('request-mitra.index')}}" class="nav-link">
             <i class="nav-icon fa-regular fa-handshake"></i>
             <p>Request Mitra</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="pages/calendar.html" class="nav-link">
-            <i class="nav-icon fa-regular fa-images"></i>
-            <p>Sliders</p>
           </a>
         </li>
         @endif

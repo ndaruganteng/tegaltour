@@ -28,16 +28,6 @@
                         <div class="card-body">
                         <form action="{{ route('Rekening.index') }}"  method="post" enctype="multipart/form-data">
                          {{ csrf_field() }}
-                            <!-- <div class="form-group">
-                                <label>Nama Bank</label>
-                                <select class="custom-select">
-                                    <option>Bank BCA</option>
-                                    <option>Bank BRI</option>
-                                    <option>Bank BNI</option>
-                                    <option>Bank Mandiri</option>
-                                    <option>Bank Keliling</option>
-                                </select>
-                            </div> -->
                             <div class="form-group ">
                                 <label for="image_rekening" class="col-form-label">Image</label>
                                 <input type="file" class="form-control" id="image_rekening" required="required" name="image_rekening">

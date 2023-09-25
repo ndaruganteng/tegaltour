@@ -28,6 +28,7 @@
                         <div class="card-body">
                             <form class="form-sample" action="{{ route('Wisata.index') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                                
                                 <div class="form-group mb-2">
                                     <label for="image" class="col-form-label">Image</label>
                                     <input type="file" class="form-control" id="image" required="required" name="image">

@@ -25,21 +25,27 @@
                         <div class="card-header">
                             <h3 class="text-center ">Edit Data Rekening</h3>
                         </div>
-                        <form action="{{ url('/data-rekening/update/'.$rekening->id) }}"  method="post" enctype="multipart/form-data">
+                        <form action="{{ url('/data-rekening/update/'.$rekening->id_rekening) }}"  method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="card-body">
-                            <input type="hidden" name="id" id="id" value="{{ $rekening->id }}">
-                                <!-- <div class="form-group">
-                                    <label>Nama Bank</label>
-                                    <select class="custom-select">
-                                        <option>Bank BCA</option>
-                                        <option>Bank BRI</option>
-                                        <option>Bank BNI</option>
-                                        <option>Bank Mandiri</option>
-                                        <option>Bank Keliling</option>
-                                    </select>
-                                </div> -->
+                            <input type="hidden" name="id" id="id" value="{{ $rekening->id_rekening }}">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="image_rekening" class="col-form-label">Image</label>
+                                            <input type="file" value="{{ $rekening->image_rekening}}" name="image_rekening" class="form-control">
+                                            <p class="fst-italic text-secondary">size foto maksimal 2 mb dan extensi jpg, png, jpeg</p>     
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-grup">
+                                            @if ($rekening->image_rekening)
+                                            <img src="{{asset('storage/image/rekening/'.$rekening->image_rekening)}}" class="img-thumbnail" width="200">
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="nama_bank">Nama Bank</label>
                                     <input type="text" class="form-control" value="{{ $rekening->nama_bank}}"  name="nama_bank"  placeholder="Masukan Nama Bank">
@@ -52,16 +58,8 @@
                                     <label for="nama_rekening">Nama Rekening</label>
                                     <input type="text" class="form-control" value="{{ $rekening->nama_rekening}}"  name="nama_rekening" placeholder="Nama Rekening">
                                 </div>
-                                <div class="form-group">
-                                    <label for="image_rekening">Image</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" value="{{ $rekening->image_rekening}}"  name="image_rekening" >
-                                            <label class="custom-file-label" for="image_rekening"> {{ $rekening->image_rekening}} </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="#">
+
+                                <div>
                                     <button type="submit" class="btn btn-secondary " value="Simpan Data" >Simpan</button>
                                 </div>
                             </div>

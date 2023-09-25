@@ -17,6 +17,8 @@ class DetaildatawisataController extends Controller
         $data_wisata_detail = wisata::findOrFail($id);
         return view('dashboard.detail-data-wisata', compact('data_wisata_detail'));
     }
+
+    
     
      
 

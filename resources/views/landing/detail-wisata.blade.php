@@ -216,28 +216,33 @@
                                     <form action="/boking" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-outline mb-4">
-                                            <input class="form-control bg-white" id="{{$detail_wisata->namawisata}}" for="namawisata" name="namawisata"
-                                            value="{{ $detail_wisata->namawisata }}" readonly />
+                                            <input class="form-control bg-white" for="namawisata" name="id_wisata"
+                                            value="{{ $detail_wisata->id_wisata }}" readonly/>
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <input class="form-control bg-white" id="{{$detail_wisata->namawisata}}" for="namauser" name="namauser"
-                                             value="{{ Auth::user()->nama_lengkap }}" readonly />
+                                            <input class="form-control bg-white" for="namawisata" name="id_mitra"
+                                            value="{{ $detail_wisata->id_mitra }}" readonly/>
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <input type="date" datepicker id="{{$detail_wisata->namawisata}}" class="form-control" name="tanggalberangkat" required="required" for="tanggal_berangkat" />
-                                            <label class="form-label" for="tanggalberangkat">Pilih Tanggal</label>
+                                            <input class="form-control bg-white" for="namauser" name="id_user"
+                                             value="{{ Auth::user()->id }}" readonly/>
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <input type="number" name="jumlahorang" id="jumlahorang" class="form-control" onchange="updateHargaTotal()"/>
-                                            <label class="form-label" for="jumlahorang">Masukan Jumlah Orang</label>
-                                        </div>
-                                        <div class="form-outline mb-4">
-                                            <input class="form-control" name="hargasatuan" id="hargasatuan" type="text"
-                                                value="{{ $detail_wisata->harga }}"  onchange="updateHargaTotal()" />
+                                            <input class="form-control" name="harga_satuan" id="hargasatuan" type="text"
+                                                value="{{ $detail_wisata->harga }}"  onchange="updateHargaTotal()" readonly/>
                                             <label class="form-label" for="hargasatuan">Harga /pax</label>
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <input class="form-control bg-white" name="hargatotal" id="hargatotal" type="text" readonly />
+                                            <input type="date" datepicker id="{{$detail_wisata->namawisata}}" class="form-control" name="tanggal_berangkat" required="required" for="tanggal_berangkat" />
+                                            <label class="form-label" for="tanggalberangkat">Pilih Tanggal</label>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input type="number" name="jumlah_orang" id="jumlahorang" class="form-control" onchange="updateHargaTotal()"/>
+                                            <label class="form-label" for="jumlahorang">Masukan Jumlah Orang</label>
+                                        </div>
+                                       
+                                        <div class="form-outline mb-4">
+                                            <input class="form-control bg-white" name="harga_total" id="hargatotal" type="text" placeholder="Total Harga" readonly/>
                                         </div>
                                         <button type="submit"
                                             class="btn btn-dark btn-block mb-4">Pesan Sekarang</button>

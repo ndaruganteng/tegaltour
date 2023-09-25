@@ -19,10 +19,11 @@ class DatawisataController extends Controller
 
     public function index()
     {   
-        $wisata = DB::table('wisata')->get();
-        // $idUsers = Auth()->user()->id;
-        // $wisata = DB::table('wisata')
-        // ->where('id_wisata','=', $idUsers)->get();
+        $mitraId = Auth::user()->id;
+
+        $wisata = DB::table('wisata')
+        ->where('wisata.id_mitra', $mitraId) 
+        ->get();
         return view('dashboard.data-wisata',['wisata' => $wisata]);
     }
 
@@ -61,6 +62,7 @@ class DatawisataController extends Controller
         ]);
 
         $wisata = new Wisata;
+        $wisata->id_mitra = Auth::user()->id;
         $wisata->namawisata= $request->input('namawisata');
         $wisata->harga= $request->input('harga');
         $wisata->kategori= $request->input('kategori');
@@ -176,6 +178,8 @@ class DatawisataController extends Controller
 
             return view('dashboard.data-wisata',compact('wisata'));
     }
+
+    // menampilkan jumlah data wisata 
 
     
 }

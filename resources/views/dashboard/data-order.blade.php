@@ -66,10 +66,10 @@
                                             @endif
                                         </td>
                                         
-                                        <td>{{ $p->namawisata}}</td>
-                                        <td>{{ $p->namauser}}</td>
-                                        <td>{{ $p->tanggalberangkat}}</td>
-                                        <td>{{ $p->jumlahorang}}</td>
+                                        <td>{{$p->nama_wisata}}</td>
+                                        <td>{{$p->nama_pengguna}}</td>
+                                        <td>{{ $p->tanggal}}</td>
+                                        <td>{{ $p->jumlah_orang}}</td>
                                         <td>
                                             @if($p->status == null)
                                                 <div class="badge badge-warning">Belum disetuji </div>

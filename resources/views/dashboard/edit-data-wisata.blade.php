@@ -30,15 +30,22 @@
                             @method('put')
                             <div class="card-body">
                                 <input type="hidden" name="id" id="id" value="{{ $wisata->id }}">
-                                <div class="form-group mb-2">
-                                    <label for="image">Image</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" value="{{ $wisata->image}}" name="image">
-                                        <label class="custom-file-label" for="customFile">{{ $wisata->image}}</label>
+                                <div class="row">
+                                    <div class="col-md-10 ">
+                                        <div class="form-group row">
+                                            <label for="image" class="col-form-label">Image</label>
+                                            <input type="file" value="{{ $wisata->image}}" name="image" class="form-control">
+                                            <p class="fst-italic text-secondary">size foto maksimal 2 mb dan extensi jpg, png, jpeg</p>     
+                                        </div>             
                                     </div>
-                                    <p class="fst-italic text-secondary">size foto maksimal 2 mb dan extensi jpg, png, jpeg</p>             
+                                    <div class="col-md-2">
+                                        <div class="form-grup">
+                                            @if ($wisata->image)
+                                            <img src="{{asset('storage/image/wisata/'.$wisata->image)}}" class="img-thumbnail" width="200">
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">

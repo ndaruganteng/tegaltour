@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" style="background: #103cbe;">Register</button>
+                            <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" style="background: #103cbe;">Login</button>
                         </div>
                         <div class="row">
                             <small>Belum punya akun? <a href="{{route('register.index')}}">Register</a></small>

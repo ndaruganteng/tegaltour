@@ -23,52 +23,28 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>10</h3>
-                <p>Request wisata</p>
-              </div>
-              <div class="icon">
-              <i class="fa-solid fa-code-pull-request"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>10</h3>
-                <p>Request Mitra</p>
+                <h3>{{ $jumlahUser }}</h3>
+                <p>Data Request Mitra</p>
               </div>
               <div class="icon">
                 <i class="fa-solid fa-handshake"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('request-mitra.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-warning ">
+          <div class="col-lg-6">
+            <div class="small-box bg-primary ">
               <div class="inner">
-                <h3>44</h3>
-                <p>User Registrations</p>
+                <h3>{{ $jumlahUser }}</h3>
+                <p>Data User</p>
               </div>
               <div class="icon">
                 <i class="fa-solid fa-users"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>5</h3>
-                <p>Kategori</p>
-              </div>
-              <div class="icon">
-                <i class="fa-solid fa-bars"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('data-user.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -97,10 +73,10 @@
     <div class="content">
         <div class="container-fluid">
           <div class="row">
-              <div class="col-lg-3 col-6">
+              <div class="col-lg-4">
                 <div class="small-box bg-info">
                     <div class="inner">
-                      <h3>5</h3>
+                      <h3>{{ $totalWisata }}</h3>
                       <p>Total Wisata</p>
                     </div>
                     <div class="icon">
@@ -109,10 +85,10 @@
                     <a href="{{ route('data-wisata.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
               </div>
-              <div class="col-lg-3 col-6">
+              <div class="col-lg-4">
                 <div class="small-box bg-secondary">
                     <div class="inner">
-                      <h3>3</h3>
+                      <h3>10</h3>
                       <p>Rekening</p>
                     </div>
                     <div class="icon">
@@ -121,26 +97,14 @@
                     <a href="{{ route('data-rekening.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
               </div>
-              <div class="col-lg-3 col-6">
+              <div class="col-lg-4">
                 <div class="small-box bg-success">
                     <div class="inner">
                       <h3>0</h3>
-                      <p>Pesanan Terkonfirmasi</p>
+                      <p>Data order</p>
                     </div>
                     <div class="icon">
-                      <i class="ion fa-solid fa-check"></i>
-                    </div>
-                    <a href="{{ route('data-order.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
-              <div class="col-lg-3 col-6">
-                <div class="small-box bg-danger">
-                    <div class="inner">
-                      <h3>0</h3>
-                      <p>Pesanan Pending</p>
-                    </div>
-                    <div class="icon">
-                      <i class="ion fa-solid fa-ban"></i>
+                      <i class="ion fa-solid fa-cart-shopping"></i>
                     </div>
                     <a href="{{ route('data-order.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>

@@ -14,16 +14,27 @@ class TransaksiController extends Controller
 {
     public function index()
     {
-        $idUsers = Auth()->user()->nama_lengkap;
-        $rekening = DB::table('rekening')->get();
-        $pemesanan = DB::table('pemesanan')->where('namauser', '=', $idUsers)->get();
-        // $pemesanan = pemesanan::where('namauser', '=', $idUsers)->with('wisata')->get();
-        // $pemesanan = DB::table('pemesanan')
-        // ->select('pemesanan.*', 'wisata.image')
-        // ->rightJoin('wisata','pemesanan.namawisata','=','wisata.namawisata')
-        // ->rightJoin('users','pemesanan.namauser','=','users.nama_lengkap')
-        // ->where('pemesanan.namauser','=','users.nama_lengkap')
-        // ->get();
+        $userId = Auth::user()->id;
+
+        $pemesanan = DB::table('pemesanan')
+            ->join('users', 'pemesanan.id_user', '=', 'users.id')
+            ->join('wisata', 'pemesanan.id_wisata', '=', 'wisata.id_wisata')
+            ->where('pemesanan.id_user', $userId)
+            ->select('pemesanan.id_pemesanan as id_pemesanan','pemesanan.id_user', 'users.nama_lengkap as nama_pengguna', 'wisata.namawisata as nama_wisata','wisata.image as image',
+                'pemesanan.status as status','pemesanan.harga_total as hargatotal','pemesanan.bukti_pembayaran as bukti_pembayaran','pemesanan.jumlah_orang as jumlah_orang', 'wisata.harga as harga','pemesanan.tanggal_berangkat as tanggal', 'pemesanan.id_mitra as id_mitra')
+            ->get();
+
+        // Mengambil data rekening
+        $rekeningByMitra  = DB::table('rekening')
+            ->join('pemesanan', 'rekening.id_mitra', '=', 'pemesanan.id_mitra')
+            ->where('pemesanan.id_user', $userId)
+            ->select('rekening.*', 'pemesanan.id_mitra')
+            ->get();
+
+        // Mengelompokkan data rekening berdasarkan id_mitra
+        $rekening= $rekeningByMitra ->groupBy('id_mitra');
+
+           
 
         return view('landing.transaksi', ['rekening' => $rekening, 'pemesanan' => $pemesanan]);
     }

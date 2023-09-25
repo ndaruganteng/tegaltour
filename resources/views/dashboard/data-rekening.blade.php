@@ -66,10 +66,10 @@
                                         <td>{{ $p->no_rekening}}</td>
                                         <td>{{ $p->nama_rekening}}</td>
                                         <td>
-                                            <a href="/data-rekening/edit/{{ $p->id }}" class="btn btn-warning btn-sm">
+                                            <a href="/data-rekening/edit/{{ $p->id_rekening }}" class="btn btn-warning btn-sm">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="/data-rekening/hapus/{{ $p->id }}" class="btn btn-danger btn-sm">
+                                            <a href="/data-rekening/hapus/{{ $p->id_rekening }}" class="btn btn-danger btn-sm">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>

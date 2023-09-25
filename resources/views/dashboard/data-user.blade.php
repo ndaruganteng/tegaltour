@@ -44,45 +44,21 @@
                             <table class="table table-hover text-nowrap text-center">
                                 <thead>
                                     <tr>
-                                    <th>Image</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
-                                    <th>No Telephone</th>
-                                    <th>
-                                        Role
-                                    </th>
-                                    <th>Aksi</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>No Telephone</th>
+                                        <th>Role</th> 
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                @foreach($users as $p)
                                 <tbody>
                                     <tr>
+                                        <td>{{$p->nama_lengkap}}</td>
+                                        <td>{{$p->email}}</td>
+                                        <td>{{$p->no_telepon}}</td>
                                         <td>
-                                            <img src="images/icon/profile.png" alt="wisata" style="width:50px">
-                                        </td>
-                                        <td>Jamal</td>
-                                        <td>Jamal@gmail.com</td>
-                                        <td>1234567890</td>
-                                        <td>
-                                            <span class="badge badge-dark">wisatawan</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal" data-whatever="@getbootstrap">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <a class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img src="images/icon/profile.png" alt="wisata" style="width:50px">
-                                        </td>
-                                        <td>Agus Tour</td>
-                                        <td>Agus@gmail.com</td>
-                                        <td>1234567890</td>
-                                        <td>
-                                            <span class="badge badge-dark">Mitra</span>
+                                            <span class="badge badge-dark">{{$p->role}}</span>
                                         </td>
                                         <td>
                                             <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal" data-whatever="@getbootstrap">
@@ -94,6 +70,7 @@
                                         </td>
                                     </tr>
                                 </tbody>
+                                @endforeach
                             </table>
                         </div>
                     </div>
@@ -131,16 +108,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- <div class="form-group">
-                            <label for="exampleInputFile">Image</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile">
-                                    <label class="custom-file-label" for="exampleInputFile">Image Bank</label>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="form-group">
                             <label for="exampleInputPassword1">Nama</label>
                             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nama">

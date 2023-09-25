@@ -12,14 +12,11 @@ class pemesanan extends Model
     protected $primaryKey = 'id_pemesanan';
     protected $fillable = [
       'bukti_pembayaran',
-      'namauser',
-      'namawisata',
-      'jumlahorang',
-      'hargasatuan',
-      'hargatotal',
-      'tanggalberangkat',
+      'jumlah_orang',
+      'harga_satuan',
+      'harga_total',
+      'tanggal_berangkat',
       'status',
-      'status_perjalanan',
     ];
     
 }

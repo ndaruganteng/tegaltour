@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rekening', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_rekening');
+            $table->integer('id_mitra');
             $table->string ('image_rekening')->default("");
             $table->string('nama_bank');
             $table->string('no_rekening');

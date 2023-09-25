@@ -7,7 +7,7 @@
     <div class="container">
         <h3 class="text-center fw-bold">Transaksi</h3>
         <div class="row">
-            <div class="col-md-12 col-lg-9 mt-5">
+            <div class="col-md-12 col-lg-12 mt-5">
                 <div class="col-lg-12">
                     <div class="card">
                         @if($pemesanan->isEmpty())
@@ -16,20 +16,20 @@
                         @foreach($pemesanan as $p)
                             <div class="row g-0 border border-top">
                                 <div class="col-md-6 p-3">  
-                                    <img src="images/icon/tour-logo.png" class="img-thumbnail" style="width: 100%; height: 100%;" />
+                                    <img src="{{asset('storage/image/wisata/'.$p->image)}}" class="img-thumbnail" style="width: 100%; height: 100%;" />
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card-body">
                                         <a href="/data-order/hapus/{{ $p->id_pemesanan }}" class="btn position-absolute top-0 end-0 mt-3 mr-3 btn-floating btn-danger btn-sm shadow-0 " href="#!">
                                             <i class="fa-solid fa-trash-can pt-2"></i>
                                         </a>
-                                        <h5 class="card-title">Wisata : {{$p->namawisata}}</h5>
-                                        <p class="card-text" >Nama : {{ $p->namauser}}</p>
-                                        <p class="card-text" style="margin-top: -10px;" >Tanggal Berangkat : {{ $p->tanggalberangkat}}</p>
-                                        <p class="card-text" style="margin-top: -10px;" >Jumlah Orang : {{ $p->jumlahorang}}</p>
-                                        <p class="card-text" style="margin-top: -10px;" >Harga/pax : Rp {{ $p->hargasatuan}}</p>
+                                        <h5 class="card-title">Wisata : {{$p->nama_wisata}}</h5>
+                                        <p class="card-text" >Nama : {{$p->nama_pengguna}} </p>
+                                        <p class="card-text" style="margin-top: -10px;" >Tanggal Berangkat : {{$p->tanggal}}</p>
+                                        <p class="card-text" style="margin-top: -10px;" >Jumlah Orang : {{$p->jumlah_orang}}</p>
+                                        <p class="card-text" style="margin-top: -10px;" >Harga/pax : Rp.{{$p->harga}}</p>
                                         @if($p->status == 2)
-                                        <p class="card-text" style="margin-top: -10px;" >Harga Total : Rp {{ $p->hargatotal}}</p>
+                                        <p class="card-text" style="margin-top: -10px;" >Harga Total : Rp.{{ $p->hargatotal}} </p>
                                         @endif
                                         <p class="card-text" style="margin-top: -10px;" >Status : 
                                             @if($p->status == null)
@@ -54,6 +54,18 @@
                                             </button>
                                             @endif
                                         </div>                      
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="card-body">
+                                        <div class="card-header text-center fs-5">Daftar rekening </div>
+                                        <h5 class="card-title">Data Rekening:</h5>
+                                            @foreach ($rekening[$p->id_mitra] as $rekeningItem)
+                                                <img src="{{asset('storage/image/rekening/'.$rekeningItem->image_rekening)}}" style="width:100px" alt="">
+                                                <p class="card-text">Nomor Rekening: {{ $rekeningItem->no_rekening }}</p>
+                                                <p class="card-text">Nama Bank: {{ $rekeningItem->nama_bank }}</p>
+                                                <p class="card-text">Nama Rekening: {{ $rekeningItem->nama_rekening }}</p>
+                                            @endforeach                          
                                     </div>
                                 </div>
                             </div>
@@ -102,22 +114,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 col-lg-3 mt-5">
-                <div class="col-lg-12">
-                    <div class="card text-center">
-                        <div class="card-header text-center fs-5">Daftar rekening </div>
-                            @foreach($rekening as $item)  
-                                <div class="card-body m-0">
-                                    <img src="{{asset('storage/image/rekening/'.$item->image_rekening)}}" class="" style="width: 100px;">
-                                    <p class="mt-2">{{ $item->nama_bank }}</p>
-                                    <p style="margin-top: -15px;"> {{ $item->no_rekening }}</p>
-                                    <p style="margin-top: -15px;">A/N {{ $item->nama_rekening }}</p>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
+         
         </div>
     </div>
 
@@ -126,6 +123,7 @@
 
 
 </div>
+
 
 
 @endsection

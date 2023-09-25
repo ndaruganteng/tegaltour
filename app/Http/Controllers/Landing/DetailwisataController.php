@@ -14,6 +14,8 @@ class DetailwisataController extends Controller
     public function show($id)
     {      
         $detail_wisata = wisata::findOrFail($id);
+
+
         return view('landing.detail-wisata', compact('detail_wisata'));
     }   
 }

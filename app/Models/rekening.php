@@ -10,6 +10,7 @@ class rekening extends Model
     use HasFactory;
 
     protected $table = 'rekening';
+    protected $primaryKey = 'id_rekening';
     protected $fillable = [
       'image_rekening',
       'nama_bank',

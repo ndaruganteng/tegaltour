@@ -15,14 +15,14 @@ class PemesananController extends Controller
     public function store(Request $request)
     {
         $pemesanan = new Pemesanan;
-        $pemesanan->namauser = $request->input('namauser');
-        $pemesanan->namawisata = $request->input('namawisata');
-        $pemesanan->jumlahorang = $request->input('jumlahorang');
-        $pemesanan->hargasatuan = $request->input('hargasatuan');
-        $pemesanan->hargatotal = $request->input('hargatotal');
-        $pemesanan->tanggalberangkat = $request->input('tanggalberangkat');
+        $pemesanan->id_user = $request->input('id_user');
+        $pemesanan->id_wisata = $request->input('id_wisata');
+        $pemesanan->id_mitra = $request->input('id_mitra');
+        $pemesanan->jumlah_orang = $request->input('jumlah_orang');
+        $pemesanan->harga_satuan = $request->input('harga_satuan');
+        $pemesanan->harga_total = $request->input('harga_total');
+        $pemesanan->tanggal_berangkat = $request->input('tanggal_berangkat');
         $pemesanan->status = null;
-        $pemesanan->status_perjalanan = null;
         if ($request->hasFile('bukti_pembayaran')) {
             $file = $request->file('bukti_pembayaran');
             $extension = $file->getClientOriginalExtension();
@@ -54,7 +54,15 @@ class PemesananController extends Controller
     // menampilkan view data order
     public function data_order()
     {
-        $pemesanan = DB::table('pemesanan')->simplePaginate(5);
+        $mitraId = Auth::user()->id;
+        $pemesanan = DB::table('pemesanan')
+            ->join('users', 'pemesanan.id_user', '=', 'users.id')
+            ->join('wisata', 'pemesanan.id_wisata', '=', 'wisata.id_wisata')
+            ->where('pemesanan.id_mitra', $mitraId) 
+            ->select('pemesanan.id_pemesanan as id_pemesanan','pemesanan.id_user', 'users.nama_lengkap as nama_pengguna', 'wisata.namawisata as nama_wisata','wisata.image as image',
+            'pemesanan.status as status','pemesanan.harga_total as hargatotal','pemesanan.bukti_pembayaran as bukti_pembayaran','pemesanan.jumlah_orang as jumlah_orang', 'wisata.harga as harga','pemesanan.tanggal_berangkat as tanggal')
+            ->simplePaginate(5);
+     
         return view('dashboard.data-order', ['pemesanan' => $pemesanan]);
     }
 
@@ -89,18 +97,19 @@ class PemesananController extends Controller
     // method untuk menampilkan halaman pesanan saya
     public function pesanan_saya()
     {
-        {  
-            // $pemesanan = DB::table('pemesanan')->get();
-            $idUsers = Auth()->user()->nama_lengkap;
-            $pemesanan = DB::table('pemesanan')->where('namauser', '=', $idUsers)->get();
-            // $pemesanan = DB::table('pemesanan')
-            // ->select('pemesanan.*', 'wisata.image')
-            // ->rightJoin('wisata','pemesanan.namawisata','=','wisata.namawisata')
-            // ->rightJoin('users','pemesanan.namauser','=','users.nama_lengkap')
-            // ->where('pemesanan.namauser','=','zaim zaim')
-            // ->get();
-             return view('landing.pesanan-saya',['pemesanan' => $pemesanan]);
-         }
+        {
+            $usersId = Auth::user()->id;
+            $pemesanan = DB::table('pemesanan')
+                ->join('users', 'pemesanan.id_user', '=', 'users.id')
+                ->join('wisata', 'pemesanan.id_wisata', '=', 'wisata.id_wisata')
+                ->where('pemesanan.id_user', $usersId) 
+                ->where('pemesanan.status', '2')
+                ->select('pemesanan.id_pemesanan as id_pemesanan','pemesanan.id_user', 'users.nama_lengkap as nama_pengguna', 'wisata.namawisata as nama_wisata','wisata.image as image',
+                'pemesanan.status as status','pemesanan.harga_total as hargatotal','pemesanan.bukti_pembayaran as bukti_pembayaran','pemesanan.jumlah_orang as jumlah_orang', 'wisata.harga as harga','pemesanan.tanggal_berangkat as tanggal')
+                ->get();
+         
+            return view('landing.pesanan-saya', ['pemesanan' => $pemesanan]);
+        }
     }
 
     // menampilkan view status perjalanan

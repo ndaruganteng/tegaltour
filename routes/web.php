@@ -15,7 +15,7 @@ use App\http\Controllers\dashboard\DetaildatawisataController;
 use App\http\Controllers\dashboard\DatawisataController;
 use App\http\Controllers\dashboard\DatarekeningController;
 use App\http\Controllers\dashboard\RequestmitraController;
-use App\http\Controllers\dashboard\PromotionController;
+use App\http\Controllers\dashboard\DatauserController;
 
 use App\http\Controllers\Auth\LoginController;
 use App\http\Controllers\Auth\RegisterController;
@@ -45,6 +45,8 @@ Route::get('/join-mitra', [RequestmitraController::class, 'tambah'])->name('join
 
 
 Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){ 
+
+    
     
     //DATA WISATA 
     Route::get('/data-wisata', [DatawisataController::class, 'index'])->name('data-wisata.index');
@@ -61,9 +63,9 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){
     Route::get('/data-rekening', [DatarekeningController::class, 'index'])->name('data-rekening.index');
     Route::get('/tambah-data-rekening', [DatarekeningController::class, 'tambah'])->name('tambah-data-rekening.index');
     Route::post('/tambah-data-rekening', [DatarekeningController::class, 'store'])->name('Rekening.index');
-    Route::get('/data-rekening/edit/{id}', [DatarekeningController::class, 'edit'])->name('edit-data-rekening.index');
-    Route::put('/data-rekening/update/{id}', [DatarekeningController::class, 'update'])->name('updateRekening.index');
-    Route::get('/data-rekening/hapus/{id}', [DatarekeningController::class, 'hapus'])->name('hapus.index');
+    Route::get('/data-rekening/edit/{id_rekening}', [DatarekeningController::class, 'edit'])->name('edit-data-rekening.index');
+    Route::put('/data-rekening/update/{id_rekening}', [DatarekeningController::class, 'update'])->name('updateRekening.index');
+    Route::get('/data-rekening/hapus/{id_rekening}', [DatarekeningController::class, 'hapus'])->name('hapus.index');
     Route::get('/search_data_rekening',[DatarekeningController::class, 'search_data_rekening'])->name('rekening.search_data_rekening');
 
     // DATA-ORDER
@@ -80,9 +82,10 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 
     //DASHBOARD
     Route::get('/request-mitra', [DashboardController::class, 'requestmitra'])->name('request-mitra.index');
-    Route::get('/data-user', [DashboardController::class, 'user'])->name('data-user.index');
 
-    
+    //DATAUSER
+    Route::get('/data-user', [DatauserController::class, 'index'])->name('data-user.index');
+   
  });
 
  Route::group(['middleware' => ['auth', 'ceklevel:admin,mitra']], function () {
@@ -127,3 +130,5 @@ Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPassw
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
+

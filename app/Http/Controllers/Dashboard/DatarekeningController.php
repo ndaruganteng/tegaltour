@@ -6,6 +6,7 @@ use App\Models\rekening;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
@@ -16,8 +17,10 @@ class DatarekeningController extends Controller
     
     // menampilkan data dari database
     public function index()
-    {   
-        $rekening = DB::table('rekening')->simplepaginate(5);
+    {   $mitraId = Auth::user()->id;
+        $rekening = DB::table('rekening')
+        ->where('id_mitra', $mitraId)
+        ->simplepaginate(5);
         return view('dashboard.data-rekening',['rekening' => $rekening]);
     }
 
@@ -42,6 +45,7 @@ class DatarekeningController extends Controller
         ]);
 
         $rekening = new Rekening;
+        $rekening->id_mitra = Auth::user()->id;
         $rekening->nama_bank= $request->input('nama_bank');
         $rekening->no_rekening= $request->input('no_rekening');
         $rekening->nama_rekening= $request->input('nama_rekening');

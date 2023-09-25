@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('pemesanan', function (Blueprint $table) {
             $table->id('id_pemesanan');
-            $table->string ('bukti_pembayaran')->nullable();
-            $table->string('namauser');
-            $table->string('namawisata');
-            $table->string('jumlahorang');
-            $table->string('hargasatuan');
-            $table->string('hargatotal');
-            $table->string('tanggalberangkat');
+            $table->integer('id_wisata');
+            $table->integer('id_user');
+            $table->integer('id_mitra');
+            $table->string('jumlah_orang');
+            $table->string('harga_satuan');
+            $table->string('harga_total');
+            $table->string('tanggal_berangkat');
             $table->string('status')->nullable();
-            $table->string('status_perjalanan')->nullable();
+            $table->string ('bukti_pembayaran')->nullable();
             $table->timestamps();
         });
     }
