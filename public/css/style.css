@@ -128,12 +128,19 @@
         rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
         rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
+.tour-card .card img{
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    padding: 8px;
+}
 
 .tour-card .card p {
     font-size: 20px;
     color: black;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 18px;
+    margin-bottom: 18px;
 }
 
 .tour-card .card p:hover {
@@ -414,7 +421,7 @@ c.mitra .card {
 /* cart */
 .cart{
     margin-top: 120px;
-    margin-bottom: 100px;
+    margin-bottom: 200px;
 }
 
 .cart .card{
@@ -423,8 +430,23 @@ c.mitra .card {
         rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 
-.card .rekening{
-    margin-top: 50px;
+
+.cart .info-rekening {
+    background-color: white;
+    padding: 30px;
+
+}
+
+.cart .info-rekening img {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.cart .info-rekening p {
+    font-size: 16px;
+    margin-top: -10px;
 }
 
 .form-penilaian{
@@ -448,6 +470,7 @@ c.mitra .card {
   .star.active {
     color: gold;
   }
+
   
 
 

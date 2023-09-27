@@ -85,6 +85,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 
     //DATAUSER
     Route::get('/data-user', [DatauserController::class, 'index'])->name('data-user.index');
+    Route::get('/search_user',[DatauserController::class, 'search_user'])->name('users.search_user');
+
    
  });
 

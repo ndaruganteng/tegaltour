@@ -29,14 +29,16 @@
                             <div class="d-flex justify-content-between">
                                 <h3 class="card-title">Data User</h3>
                                 <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default">
-                                                <i class="fas fa-search"></i>
-                                            </button>
+                                    <form action="{{route('users.search_user') }}" method="GET">
+                                        <div class="input-group input-group-sm" style="width: 150px;">
+                                            <input type="text" name="search_user"  id="search_user" class="form-control float-right" placeholder="Search" >
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form> 
                                 </div>
                             </div>
                         </div>
@@ -78,8 +80,6 @@
             </div>
         </div>
     </section>
-
-
 
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

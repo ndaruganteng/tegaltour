@@ -7,15 +7,14 @@
         <div class="container">
             <h2 class="text-center fw-bold">Pesanan Saya</h2>
             <div class="row">
-                <div class="col-md-12 col-lg-12 mt-5">
+                <div class="col-md-12 col-lg-12 mt-3">
                     <div class="col-lg-12">
-                        <div class="card">
-                            @if($pemesanan->isEmpty())
-                                <h4 class="p-3 text-center"> Belum Ada Pesanan</h4> 
-                            @else
-                                @foreach($pemesanan as $p)
-                                    @if($p->status == 2)
-                                    <div class="row g-0 border border-top">
+                        @if($pemesanan->isEmpty())
+                            <h4 class="p-3 text-center"> Belum Ada Pesanan</h4> 
+                        @else($p->status == 2)
+                            @foreach($pemesanan as $p)
+                                <div class="card mt-3">
+                                    <div class="row g-0">
                                         <div class="col-md-6 p-3">
                                             <img src="{{asset('storage/image/wisata/'.$p->image)}}"  class="img-thumbnail" style="width: 100%; height: 100%;"/>
                                         </div>
@@ -28,18 +27,26 @@
                                                 <p class="card-text"  >Harga/pax : Rp {{$p->harga}}</p>
                                                 <p class="card-text"  >Harga Total : Rp {{$p->hargatotal}}</p>
                                                 @if($p->status == 2)
-                                                    <p class="card-text" >Pembayaran : <span class="badge badge-success">Terkonfirmasi</span></p>
+                                                    <p class="card-text" >Transaksi : <span class="badge badge-success">Telah Dikonfirmasi</span></p>
                                                 @endif
-
+                                                @if($p->status_perjalanan == null)
+                                                <p class="card-text" >Status Perjalanan : <span class="badge badge-warning">Menunggu</span> </p>
+                                                @elseif($p->status_perjalanan == 2)
+                                                <p class="card-text" >Status Perjalanan : <span class="badge badge-info">Berangkat</span> </p>
+                                                @elseif($p->status_perjalanan == 3)
+                                                <p class="card-text" >Status Perjalanan : <span class="badge badge-success">Selesai</span> </p>
+                                                @endif
                                                 <div>
-                                                    <button type="button"  class="btn btn-primary shadow-0 btn-sm" data-toggle="modal" data-target="#imagebuktiModal{{$p->id_pemesanan}}" data-whatever="@getbootstrap">
+                                                    @if($p->status_perjalanan == null)
+                                                    <button type="button"  class="btn btn-primary shadow-0 btn-sm mt-2" data-toggle="modal" data-target="#imagebuktiModal{{$p->id_pemesanan}}" data-whatever="@getbootstrap">
                                                         <i class="fa-solid fa-eye me-2"></i>Bukti Transfer
                                                     </button>
                                                     <button type="button" class="btn btn-dark btn-sm shadow-0 ">
                                                         <i class="fa-solid fa-download me-2"></i>Download invoice
                                                     </button>
+                                                    @elseif($p->status_perjalanan == 3)
                                                     <button type="button" class="btn btn-info btn-sm shadow-0" data-mdb-toggle="modal" data-mdb-target="#ulasanModal"><i class="fa-solid fa-envelope me-2"></i>Beri Ulasan</button>
-
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -85,10 +92,9 @@
                                         </div>
                                     </div>
                                     <!-- end modal bukti pembayaran -->
-                                    @endif
-                                @endforeach
-                            @endif
-                        </div>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

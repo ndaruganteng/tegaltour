@@ -20,10 +20,17 @@ class DatauserController extends Controller
         return view('dashboard.data-user',['users' => $users]);
     }
 
-    public function tampilkanJumlahUser()
+    // search data User
+    public function search_user(Request $request)
     {
-        $jumlahUser = User::count();
+        $keyword = $request->input('search_user');
+        $users = User::where('nama_lengkap', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('no_telepon','LIKE', '%' . $keyword . '%')
+            ->orWhere('email','LIKE', '%' . $keyword . '%')
+            ->orWhere('role', 'LIKE', '%' . $keyword . '%')
+            ->get();
 
-        return view('dashboard.dashboard', compact('jumlahUser'));
+            return view('dashboard.data-user',compact('users'));
     }
+
 }

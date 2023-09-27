@@ -27,20 +27,20 @@ class RegisterController extends Controller
     
         if ($existingUser) {
            
-            // alert()->error('Gagal', 'Email sudah digunakan');
+            alert()->error('Gagal', 'Email sudah digunakan');
             return redirect()->back()->withInput();
         } else if (!checkdnsrr($Domain[1],"MX")){
             alert()->error('Gagal', 'Domain email tidak ditemukan');
             return redirect()->back()->withInput();
         } else{
-            // alert()->success('Berhasil', 'Akun berhasil dibuat');
+            alert()->success('Berhasil', 'Akun berhasil dibuat');
             $user = new User();
             $user->nama_lengkap = $request->input('nama_lengkap');
             $user->email = $request->input('email');
             $user->role = ($request->input('role') === 'user') ? 'user' : 'user';
             $password = $request->input('password');
             if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', $password)) {
-                // alert()->error('Gagal', 'Password harus mengandung setidaknya satu huruf kecil, satu huruf besar, dan satu angka.');
+                alert()->error('Gagal', 'Password harus mengandung setidaknya satu huruf kecil, satu huruf besar, dan satu angka.');
                 return redirect()->back()->withInput(); 
             } else {
                 $hashedPassword = bcrypt($password);
@@ -54,7 +54,7 @@ class RegisterController extends Controller
              $user->no_telepon = $phone;
             }
             $user->save();
-            return redirect()->route('login.index')->with('success', 'Data berhasil ditambahkan');
+            return redirect()->route('login.index')->with('toast_success', 'Berhasil Membuat Akun');
         }
     }
 }

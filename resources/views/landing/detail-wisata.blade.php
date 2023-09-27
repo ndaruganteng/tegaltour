@@ -42,43 +42,6 @@
                             <h3>Fasilitas</h3>
                             <p> {!! $detail_wisata->fasilitas !!}</p>
                         </div>
-                        <!-- <div class="col-lg-12 fasilitas">
-                            <h2>Fasilitas</h2>
-                            <div class="row">
-                                <div class="col-lg">
-                                    <ul class="list-unstyled">
-                                        <li class="mb-1">
-                                            <i class="fas fa-check-circle me-2 text-success"></i>
-                                            Lorem ipsum dolor sit amet.
-                                        </li>
-                                        <li class="mb-1">
-                                            <i class="fas fa-check-circle me-2 text-success"></i>
-                                            Lorem ipsum dolor sit amet.
-                                        </li>
-                                        <li class="mb-1">
-                                            <i class="fas fa-check-circle me-2 text-success"></i>
-                                            Lorem ipsum dolor sit amet.
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg">
-                                    <ul class="list-unstyled">
-                                        <li class="mb-1">
-                                            <i class="fa-solid fa-x me-2" style="color: #e00000"></i>
-                                            Lorem ipsum dolor sit amet.
-                                        </li>
-                                        <li class="mb-1">
-                                            <i class="fa-solid fa-x me-2" style="color: #e00000"></i>
-                                            Lorem ipsum dolor sit amet.
-                                        </li>
-                                        <li class="mb-1">
-                                            <i class="fa-solid fa-x me-2" style="color: #e00000"></i>
-                                            Lorem ipsum dolor sit amet.
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="col-lg-12 maps">
                             <div class="card text-center border shadow-2 rounded-0">
                                 <div class="card-header d-flex justify-content-between">
@@ -215,19 +178,19 @@
                                 <div class="card-body">
                                     <form action="/boking" method="post" enctype="multipart/form-data">
                                         @csrf
-                                        <div class="form-outline mb-4">
+                                        <div class="form-outline mb-4" style="display: none;">
                                             <input class="form-control bg-white" for="namawisata" name="id_wisata"
                                             value="{{ $detail_wisata->id_wisata }}" readonly/>
                                         </div>
-                                        <div class="form-outline mb-4">
+                                        <div class="form-outline mb-4" style="display: none;">
                                             <input class="form-control bg-white" for="namawisata" name="id_mitra"
                                             value="{{ $detail_wisata->id_mitra }}" readonly/>
                                         </div>
-                                        <div class="form-outline mb-4">
+                                        <div class="form-outline mb-4" style="display: none;">
                                             <input class="form-control bg-white" for="namauser" name="id_user"
                                              value="{{ Auth::user()->id }}" readonly/>
                                         </div>
-                                        <div class="form-outline mb-4">
+                                        <div class="form-outline mb-4"  style="display: none;">
                                             <input class="form-control" name="harga_satuan" id="hargasatuan" type="text"
                                                 value="{{ $detail_wisata->harga }}"  onchange="updateHargaTotal()" readonly/>
                                             <label class="form-label" for="hargasatuan">Harga /pax</label>

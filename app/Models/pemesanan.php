@@ -17,6 +17,7 @@ class pemesanan extends Model
       'harga_total',
       'tanggal_berangkat',
       'status',
+      'status_perjalanan',
     ];
     
 }
