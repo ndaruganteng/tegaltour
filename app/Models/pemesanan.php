@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\carbon;
 
 class pemesanan extends Model
 {
@@ -18,6 +19,13 @@ class pemesanan extends Model
       'tanggal_berangkat',
       'status',
       'status_perjalanan',
+      'date',
+      
     ];
+
+    public function getFromDateAttribute() {
+      return Carbon::parse($this->attributes['created_at'])
+      ->translatedFormat('1, d  F Y');
+    }
     
 }

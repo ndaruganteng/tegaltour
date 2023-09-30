@@ -9,6 +9,8 @@ use App\http\Controllers\landing\WisataController;
 use App\http\Controllers\landing\DetailwisataController;
 use App\http\Controllers\landing\TransaksiController;
 use App\http\Controllers\landing\PemesananController;
+use App\http\Controllers\landing\UlasanController;
+use App\http\Controllers\landing\HistoryController;
 
 use App\http\Controllers\dashboard\DashboardController;
 use App\http\Controllers\dashboard\DetaildatawisataController;
@@ -33,20 +35,19 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // Grup User 
 Route::group(['middleware' => ['auth', 'ceklevel:user']], function(){
     Route::get('/join-mitra', [RequestmitraController::class, 'tambah'])->name('join-mitra.index');
-    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');  
+    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+    Route::post('/pesanan-saya', [UlasanController::class, 'store'])->name('Ulasan.index');
+    Route::get('/history', [HistoryController::class, 'history_user'])->name('history.index');
 });
 
 //LANDING
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
-Route::get('/form-penilaian', [HomeController::class, 'penilaian'])->name('form-penilaian');
 Route::get('/pesanan-saya', [PemesananController::class, 'pesanan_saya'])->name('pesanan-saya.index');
 Route::get('/join-mitra', [RequestmitraController::class, 'tambah'])->name('join-mitra.index');
 
 
-Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){ 
-
-    
+Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){  
     
     //DATA WISATA 
     Route::get('/data-wisata', [DatawisataController::class, 'index'])->name('data-wisata.index');
@@ -62,7 +63,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){
     //DATA REKENINGG
     Route::get('/data-rekening', [DatarekeningController::class, 'index'])->name('data-rekening.index');
     Route::get('/tambah-data-rekening', [DatarekeningController::class, 'tambah'])->name('tambah-data-rekening.index');
-    Route::post('/tambah-data-rekening', [DatarekeningController::class, 'store'])->name('Rekening.index');
+    Route::post('/data-rekening', [DatarekeningController::class, 'store'])->name('Rekening.index');
     Route::get('/data-rekening/edit/{id_rekening}', [DatarekeningController::class, 'edit'])->name('edit-data-rekening.index');
     Route::put('/data-rekening/update/{id_rekening}', [DatarekeningController::class, 'update'])->name('updateRekening.index');
     Route::get('/data-rekening/hapus/{id_rekening}', [DatarekeningController::class, 'hapus'])->name('hapus.index');
@@ -78,6 +79,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){
 
 });
 
+
 Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 
     //DASHBOARD
@@ -87,7 +89,6 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     Route::get('/data-user', [DatauserController::class, 'index'])->name('data-user.index');
     Route::get('/search_user',[DatauserController::class, 'search_user'])->name('users.search_user');
 
-   
  });
 
  Route::group(['middleware' => ['auth', 'ceklevel:admin,mitra']], function () {

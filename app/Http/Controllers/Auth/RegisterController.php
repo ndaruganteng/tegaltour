@@ -21,6 +21,10 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 
+        ]);
+        
         $existingUser = User::where('email', $request->input('email'))->first();
         $email = $request->input('email');
         $Domain = explode('@', $email);
@@ -54,7 +58,7 @@ class RegisterController extends Controller
              $user->no_telepon = $phone;
             }
             $user->save();
-            return redirect()->route('login.index')->with('toast_success', 'Berhasil Membuat Akun');
+            return redirect()->route('login.index')->with('success', "Akun berhasil dibuat");
         }
     }
 }

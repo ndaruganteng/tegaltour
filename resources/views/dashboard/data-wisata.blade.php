@@ -66,16 +66,16 @@
                                         <td>Rp {{ $p->harga}}</td>
                                         <td>
                                             <a href="/detail-data-wisata/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm" >
-                                                <i class="fas fa-eye"></i>
+                                                <i class="fas fa-eye"></i> Detail
                                             </a>
                                             <a href="/data-wisata/edit/{{ $p->id_wisata }}">
                                                 <button class="btn btn-warning btn-sm">
-                                                    <i class="fas fa-edit"></i>
+                                                    <i class="fas fa-edit"></i> Edit
                                                 </button>
                                             </a>
                                             <a href="/data-wisata/hapus/{{ $p->id_wisata }}">
                                                 <button class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash"></i>
+                                                    <i class="fas fa-trash"></i> Hapus
                                                 </button>
                                             </a>
                                         </td>

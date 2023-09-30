@@ -6,7 +6,6 @@
         <div class="container">
             <h1 class="text-center">Gabung Menjadi Mitra</h1>
             <p class="text-center">Anda mempunyai bisnis di bidang pariwisata? <br>Bergabunglah menjadi mitra dan nikmati berbagai keuntungan menarik bersama kami.</p>
-
             <div class="row">
                 <div class="col-md-12 col-lg-10 mx-auto grid-margin c-mitra">
                     @if (Session::has('message'))
@@ -16,7 +15,7 @@
                     @endif
                     <div class="card card-secondary">
                         <div class="card-header">
-                            <h3 class="text-center ">Form Join Mitra</h3>
+                            <h3 class="text-center ">Form Pengajuan Gabung Mitra</h3>
                         </div>
                         <div class="card-body">
                             <form class="form-sample" action="{{ route('Mitra.index') }}" method="post" enctype="multipart/form-data">

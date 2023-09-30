@@ -10,7 +10,7 @@
                 <div class="col-md-12 col-lg-12 mt-3">
                     <div class="col-lg-12">
                         @if($pemesanan->isEmpty())
-                        <h5 class="p-3 text-center">Belum Ada Transaksi</h5>
+                        <h5 class="p-3 text-center">Tidak Ada Transaksi</h5>
                         @else
                         @foreach($pemesanan as $p)
                             @if($p->status == null)                       
@@ -24,8 +24,9 @@
                                         <div class="card-body">
                                             <h5 class="card-title">Wisata : {{$p->nama_wisata}}</h5>
                                             <p class="card-text">Nama : {{$p->nama_pengguna}} </p>
+                                            <p class="card-text" style="margin-top: -10px;">Tanggal Pemesanan : {{$p->date}}</p>
                                             <p class="card-text" style="margin-top: -10px;">Tanggal Berangkat : {{$p->tanggal}}</p>
-                                            <p class="card-text" style="margin-top: -10px;">Jumlah Orang : {{$p->jumlah_orang}}</p>
+                                            <p class="card-text" style="margin-top: -10px;">Jumlah Orang : {{$p->jumlah_orang}} Orang</p>
                                             <p class="card-text" style="margin-top: -10px;">Harga/pax : Rp.{{$p->harga}}</p>
                                             @if($p->status == 2)
                                             <p class="card-text" style="margin-top: -10px;">Harga Total : Rp.{{$p->hargatotal}}</p>
@@ -52,17 +53,12 @@
                                             </div>
                                             @endif
                                             <div>
-                                                @if($p->bukti_pembayaran)
-                                                <button type="button" class="btn btn-dark shadow-0 btn-sm"
-                                                    data-toggle="modal" data-target="#buktiModal{{$p->id_pemesanan}}"
-                                                    data-whatever="@getbootstrap">
-                                                    <i class="fa-solid fa-upload me-2"></i>Upload Bukti transfer
-                                                </button>
-                                                @else
                                                 <a href="/data-order/hapus/{{ $p->id_pemesanan }}"
                                                     class="btn  btn-danger btn-sm shadow-0">
                                                     <i class="fa-solid fa-circle-xmark me-2"></i>Cancel
                                                 </a>
+                                                @if($p->bukti_pembayaran)
+                                                @else
                                                 <button type="button" class="btn btn-dark shadow-0 btn-sm"
                                                     data-toggle="modal" data-target="#buktiModal{{$p->id_pemesanan}}"
                                                     data-whatever="@getbootstrap">
@@ -74,7 +70,7 @@
                                     </div>
                                     <div class="col-lg-12 info-rekening border-top">
                                         <div class="row">
-                                            @foreach ($rekening[$p->id_mitra] as $rekeningItem)
+                                            @foreach ($rekening[$p->id_pemesanan]  as $rekeningItem)
                                             <div class="col-lg-4 col-md-12">
                                                 <img src="{{asset('storage/image/rekening/'.$rekeningItem->image_rekening)}}" class="float-left" />
                                                 <p>Nama Bank: {{ $rekeningItem->nama_bank }}</p>
@@ -114,38 +110,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="modal fade" id="imagebuktiModal{{$p->id_pemesanan}}" tabindex="-1" role="dialog"
-                                    aria-labelledby="imagebuktiModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="imagebuktiModalLabel{{$p->id_pemesanan}}">Bukti
-                                                    Pembayaran</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <img src="{{asset('storage/image/bukti-transfer/'.$p->bukti_pembayaran)}}"
-                                                    class="img-thumbnail" style="width: 100%; height: 100%;" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
                             </div>
                             @else($p->status == 2)
                             @endif
-                        @endforeach
+                        @endforeach 
                         @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
+    
 </div>
-
-
 
 @endsection

@@ -40,6 +40,9 @@
                             <a class="dropdown-item" href="{{route('pesanan-saya.index')}}">Pesanan Saya</a>
                         </li>
                         <li>
+                            <a class="dropdown-item" href="{{route('history.index')}}">History Pesanan</a>
+                        </li>
+                        <li>
                             <a class="dropdown-item" href="/logout">Logout</a>
                         </li>
                     </ul>

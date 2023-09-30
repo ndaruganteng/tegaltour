@@ -83,7 +83,7 @@
                                                         @csrf
                                                         @method('put')
                                                         <button type="submit" class="btn btn-success btn-sm mx-1">
-                                                            <i class="fa-solid fa-circle-stop mr-2"></i>Selesai
+                                                            <i class="fa-solid fa-check-to-slot mr-2"></i>Selesai
                                                         </button>
                                                     </form>
                                                 @elseif($p->status_perjalanan == 3)                               

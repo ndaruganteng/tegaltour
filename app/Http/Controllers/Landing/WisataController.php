@@ -13,7 +13,7 @@ class WisataController extends Controller
     // menampilkan data dari table wisata
     public function index()
     {
-        $wisata = DB::table('wisata')->get();
+        $wisata = DB::table('wisata')->inRandomOrder()->get();
         return view('landing.wisata', ['wisata' => $wisata]);
     }
 

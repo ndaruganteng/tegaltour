@@ -21,8 +21,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet" />
     <!-- aos -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    
-  </head>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </head>   
   <body >
 
      <div class="container d-flex justify-content-center align-items-center min-vh-100 login">
@@ -49,6 +49,11 @@
                             </div>
                             <div class="input-group mb-3">
                                 <input type="email" name="email" class="form-control form-control-lg bg-light fs-6" placeholder="Email">
+                                @error('email')
+                                <script>
+                                    swal("Gagal", "{{ $message }}", "error");
+                                </script>
+                                 @enderror        
                             </div>
                             <div class="input-group mb-4">
                                 <input type="password" name="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password">
@@ -64,8 +69,6 @@
             </div> 
         </div>
     </div>
-
-    <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

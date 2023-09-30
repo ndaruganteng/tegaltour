@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\Support\carbon;
 use App\Models\pemesanan; 
 use App\Models\wisata; 
 
@@ -24,6 +28,7 @@ class PemesananController extends Controller
         $pemesanan->tanggal_berangkat = $request->input('tanggal_berangkat');
         $pemesanan->status = null;
         $pemesanan->status_perjalanan = null;
+        $pemesanan['date']= Carbon::now($request->date);
         if ($request->hasFile('bukti_pembayaran')) {
             $file = $request->file('bukti_pembayaran');
             $extension = $file->getClientOriginalExtension();
@@ -33,7 +38,7 @@ class PemesananController extends Controller
         }
         $pemesanan->save();
 
-        return redirect('/transaksi')->with('success', "Transaksi Telah Diproses!");
+        return redirect('/transaksi')->with('success', "Pemesanan Telah Berhasil, <br> Silahkan Melakukan Pembayaran!");
     }
 
     public function update(Request $request, $id)
@@ -48,7 +53,7 @@ class PemesananController extends Controller
             $pemesanan->bukti_pembayaran = $filename;
         }
         $pemesanan->save();
-        return redirect()->back()->with('toast_success', "Bukti Pembayaran Sudah Dikirim!");
+        return redirect()->back()->with('success', "Bukti Pembayaran Sudah Dikirim!");
     }
 
 
@@ -60,8 +65,20 @@ class PemesananController extends Controller
             ->join('users', 'pemesanan.id_user', '=', 'users.id')
             ->join('wisata', 'pemesanan.id_wisata', '=', 'wisata.id_wisata')
             ->where('pemesanan.id_mitra', $mitraId) 
-            ->select('pemesanan.id_pemesanan as id_pemesanan','pemesanan.id_user', 'users.nama_lengkap as nama_pengguna', 'wisata.namawisata as nama_wisata','wisata.image as image',
-            'pemesanan.status as status','pemesanan.status_perjalanan as status_perjalanan','pemesanan.harga_total as hargatotal','pemesanan.bukti_pembayaran as bukti_pembayaran','pemesanan.jumlah_orang as jumlah_orang', 'wisata.harga as harga','pemesanan.tanggal_berangkat as tanggal')
+            ->select(
+                'pemesanan.id_pemesanan as id_pemesanan',
+                'pemesanan.id_user', 
+                'users.nama_lengkap as nama_pengguna', 
+                'wisata.namawisata as nama_wisata',
+                'wisata.image as image',
+                'pemesanan.status as status',
+                'pemesanan.status_perjalanan as status_perjalanan',
+                'pemesanan.date as date',
+                'pemesanan.harga_total as hargatotal',
+                'pemesanan.bukti_pembayaran as bukti_pembayaran',
+                'pemesanan.jumlah_orang as jumlah_orang', 
+                'wisata.harga as harga',
+                'pemesanan.tanggal_berangkat as tanggal')
             ->get();
      
         return view('dashboard.data-order', ['pemesanan' => $pemesanan]);
@@ -79,8 +96,6 @@ class PemesananController extends Controller
         return redirect('data-order')->with('success', 'Pembayaran telah dikonfirmasi ');
     }
 
-
-
     // Method untuk hapus data pemesanan
     public function hapus($id)
     {
@@ -91,7 +106,7 @@ class PemesananController extends Controller
         }
         $pemesanan->delete();
         
-        return back()->with('toast_info', "Data berhasil dihapus!");
+        return back()->with('error', "Data berhasil dihapus!");
     }
 
     
@@ -105,8 +120,21 @@ class PemesananController extends Controller
                 ->join('wisata', 'pemesanan.id_wisata', '=', 'wisata.id_wisata')
                 ->where('pemesanan.id_user', $usersId) 
                 ->where('pemesanan.status', '2')
-                ->select('pemesanan.id_pemesanan as id_pemesanan','pemesanan.id_user', 'users.nama_lengkap as nama_pengguna', 'wisata.namawisata as nama_wisata','wisata.image as image',
-                'pemesanan.status as status','pemesanan.status_perjalanan as status_perjalanan','pemesanan.harga_total as hargatotal','pemesanan.bukti_pembayaran as bukti_pembayaran','pemesanan.jumlah_orang as jumlah_orang', 'wisata.harga as harga','pemesanan.tanggal_berangkat as tanggal')
+                ->select(
+                    'pemesanan.id_pemesanan as id_pemesanan',
+                    'pemesanan.id_user', 
+                    'users.nama_lengkap as nama_pengguna', 
+                    'wisata.namawisata as nama_wisata',
+                    'wisata.image as image',
+                    'pemesanan.status as status',
+                    'pemesanan.status_perjalanan as status_perjalanan',
+                    'pemesanan.date as date',
+                    'pemesanan.harga_total as hargatotal',
+                    'pemesanan.bukti_pembayaran as bukti_pembayaran',
+                    'pemesanan.jumlah_orang as jumlah_orang', 
+                    'wisata.harga as harga',
+                    'pemesanan.tanggal_berangkat as tanggal',
+                    'pemesanan.id_wisata as id_wisata')
                 ->get();
          
             return view('landing.pesanan-saya', ['pemesanan' => $pemesanan]);
@@ -121,8 +149,20 @@ class PemesananController extends Controller
             ->join('users', 'pemesanan.id_user', '=', 'users.id')
             ->join('wisata', 'pemesanan.id_wisata', '=', 'wisata.id_wisata')
             ->where('pemesanan.id_mitra', $mitraId) 
-            ->select('pemesanan.id_pemesanan as id_pemesanan','pemesanan.id_user', 'users.nama_lengkap as nama_pengguna', 'wisata.namawisata as nama_wisata','wisata.image as image',
-            'pemesanan.status as status','pemesanan.status_perjalanan as status_perjalanan','pemesanan.harga_total as hargatotal','pemesanan.bukti_pembayaran as bukti_pembayaran','pemesanan.jumlah_orang as jumlah_orang', 'wisata.harga as harga','pemesanan.tanggal_berangkat as tanggal')
+            ->select(
+                'pemesanan.id_pemesanan as id_pemesanan',
+                'pemesanan.id_user', 
+                'users.nama_lengkap as nama_pengguna', 
+                'wisata.namawisata as nama_wisata',
+                'wisata.image as image',
+                'pemesanan.status as status',
+                'pemesanan.status_perjalanan as status_perjalanan',
+                'pemesanan.date as date',
+                'pemesanan.harga_total as hargatotal',
+                'pemesanan.bukti_pembayaran as bukti_pembayaran',
+                'pemesanan.jumlah_orang as jumlah_orang', 
+                'wisata.harga as harga',
+                'pemesanan.tanggal_berangkat as tanggal')
             ->get();
 
         return view('dashboard.status-perjalanan', ['pemesanan' => $pemesanan]);
@@ -132,24 +172,24 @@ class PemesananController extends Controller
     // fungsi status perjalanan berangkat
     public function berangkat(Request $request, $id)
     { 
-        $konfirmasi = DB::table('pemesanan')
+        $berangkat = DB::table('pemesanan')
             ->where('id_pemesanan', $id)
             ->update([
                 'status_perjalanan' => 2
             ]);
 
-        return redirect('status-perjalanan')->with('toast_success', 'Status Perjalanan Berangkat ');
+        return redirect('status-perjalanan')->with('success', 'Status Perjalanan Berangkat ');
     }
 
     // status perjalanan selesai
     public function selesai(Request $request, $id)
     { 
-        $konfirmasi = DB::table('pemesanan')
+        $selesai = DB::table('pemesanan')
             ->where('id_pemesanan', $id)
             ->update([
                 'status_perjalanan' => 3
             ]);
 
-        return redirect('status-perjalanan')->with('toast_success', 'Perjalanan telah Selesai ');
+        return redirect('status-perjalanan')->with('success', 'Perjalanan telah Selesai ');
     }
 }

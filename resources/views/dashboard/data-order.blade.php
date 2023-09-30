@@ -48,6 +48,7 @@
                                         <th>Nama Wisata</th>
                                         <th>Nama Konsumen</th>
                                         <th>Tanggal Berangkat</th>
+                                        <th>Tanggal Pemesanan</th>
                                         <th>Jumlah Orang</th>
                                         <th>Harga/Pax</th>
                                         <th>Harga Total</th>
@@ -71,6 +72,7 @@
                                             <td>{{$p->nama_wisata}}</td>
                                             <td>{{$p->nama_pengguna}}</td>
                                             <td>{{ $p->tanggal}}</td>
+                                            <td>{{ $p->date}}</td>
                                             <td>{{ $p->jumlah_orang}}</td>
                                             <td>Rp.{{$p->harga}}</td>
                                             <td>Rp.{{$p->hargatotal}}</td>
@@ -87,13 +89,13 @@
                                                     @csrf
                                                     @method('put')
                                                     <button type="submit" class="btn btn-success btn-sm">
-                                                        <i class="fa-solid fa-check"></i>
+                                                        <i class="fa-solid fa-check mr-2"></i> Setujui 
                                                     </button>
                                                 </form>
                                                 @else
                                                     <a href="/data-order/hapus/{{ $p->id_pemesanan }}">
                                                         <button type="button"  class="btn btn-danger btn-sm">
-                                                            <i class="fa-solid fa-trash"></i>
+                                                            <i class="fa-solid fa-trash mr-1"></i> Hapus
                                                         </button>
                                                     </a>
                                                 @endif
@@ -102,7 +104,7 @@
                                     </tbody>
                                     <!-- modal bukti -->
                                     <div class="modal fade" id="buktiModal{{$p->id_pemesanan}}" tabindex="-1" role="dialog" aria-labelledby="buktiModalLabel{{$p->id_pemesanan}}" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="buktiModalLabel">Bukti Transfer</h5>

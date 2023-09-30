@@ -67,10 +67,10 @@
                                         <td>{{ $p->nama_rekening}}</td>
                                         <td>
                                             <a href="/data-rekening/edit/{{ $p->id_rekening }}" class="btn btn-warning btn-sm">
-                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-edit"></i> Edit
                                             </a>
                                             <a href="/data-rekening/hapus/{{ $p->id_rekening }}" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
+                                                <i class="fas fa-trash"></i> Hapus
                                             </a>
                                         </td>
                                     </tr>
@@ -83,7 +83,6 @@
             </div>
         </div>
     </section>
-
 
 </div>
 

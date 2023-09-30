@@ -15,7 +15,7 @@
             <img class="d-block w-100 c-img" src="https://jatenglive.com/images/news/Situs-Sejarah-Museum-Semedo-Sudah-Buka-Untuk-Umum-news20221021-1.png" alt="First slide">
           </div>
           <div class="carousel-item c-item">
-            <img class="d-block w-100 c-img" src="https://panturapost.com/wp-content/uploads/2022/12/IMG-20221210-WA0065.jpg" alt="Second slide">
+            <img class="d-block w-100 c-img" src="https://pantainesia.com/wp-content/uploads/2021/01/Pantai-Alam-Indah-Tegal.jpg" alt="Second slide">
           </div>
           <div class="carousel-item c-item">
             <img class="d-block w-100 c-img" src="https://public.urbanasia.com/images/post/2021/07/26/1627287112-Pemandian-air-panas-Guci.-(Instagram-@info-wisata-guci-official).jpg" alt="Third slide">
@@ -65,7 +65,7 @@
     <section style="background-color: #F5F5F5;" class="s-wisata">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-lg-4 " data-aos="fade-right" data-aos-duration="5000" >
+                <div class="col-md-12 col-lg-4 " data-aos="fade-right" data-aos-duration="500" >
                     <div class="card bg-dark text-white text-center my-3">
                         <img src="images/home/g1.jpg" class="card-img " alt="Stony Beach"  style="height:230px"/>
                         <div class="card-img-overlay">
@@ -128,17 +128,13 @@
                                 <a href="/{{ ($item->id_wisata) }}#{{$item->namawisata}}" class="mt-2">
                                     <p class="card-title">{{ $item->namawisata }}</p>
                                 </a>
-                                <div class="d-flex justify-content-between">
-                                    <div class="durasi">
-                                        <i class="fa-regular fa-clock"></i>
-                                        <small>{{ $item->durasi }}</small>
-                                    </div>
-                                    <h3 class="float-right">Rp {{ $item->harga }}</h3>
-                                </div>
+                                <h3 class="card-text">Rp {{ $item->harga }}</h3>
+                                
                             </div>
                         </div>
                     </div>
                 @endforeach
+            </div>
         </div>
     </section>
     <!-- endcard -->

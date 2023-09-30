@@ -63,87 +63,31 @@
                         <div class="col-lg-12 penilaian">
                             <div class="card border shadow-0 rounded-0">
                                 <div class="card-header fs-4">Ulasan</div>
-                                <div class="card-body">
+                                @if($ulasan->isEmpty())
+                                <h1 class="text-center">belum Ada ulasan</h1>
+                                @else
+                                @foreach($ulasan as $item) 
+                                <div class="card-body mt-2">                             
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <img src="images/icon/profile.png" alt="" class="float-left me-3"
-                                                style="width: 50px" />
-                                            <p class="pt-2">Jamal Anak pertama</p>
+                                            <img src="images/icon/profile.png" alt="" class="float-left me-3" />
+                                            <h1 class="pt-2">{{ $item->nama }}</h1> 
                                         </div>
                                         <div class="col-lg-8">
-                                            <p class="">
-                                                Lorem ipsum dolor sit, amet
-                                                consectetur adipisicing elit. Sint
-                                                quia et aspernatur beatae illo
-                                                repellat aut aliquid debitis, a
-                                                doloremque officia neque odio nemo
-                                                incidunt deleniti molestiae quaerat
-                                                modi iure?
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <img src="images/icon/profile.png" alt="" class="float-left me-3"
-                                                style="width: 50px" />
-                                            <p class="pt-2">Jamal Anak pertama</p>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <p class="">
-                                                Lorem ipsum dolor sit, amet
-                                                consectetur adipisicing elit. Sint
-                                                quia et aspernatur beatae illo
-                                                repellat aut aliquid debitis, a
-                                                doloremque officia neque odio nemo
-                                                incidunt deleniti molestiae quaerat
-                                                modi iure?
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <img src="images/icon/profile.png" alt="" class="float-left me-3"
-                                                style="width: 50px" />
-                                            <p class="pt-2">Jamal Anak pertama</p>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <p class="">
-                                                Lorem ipsum dolor sit, amet
-                                                consectetur adipisicing elit. Sint
-                                                quia et aspernatur beatae illo
-                                                repellat aut aliquid debitis, a
-                                                doloremque officia neque odio nemo
-                                                incidunt deleniti molestiae quaerat
-                                                modi iure?
-                                            </p>
+                                        @for ($i = 1; $i <= $item->rating; $i++)
+                                            <span class="fa fa-star checked"></span>
+                                        @endfor
+                                        @for ($i = $item->rating + 1; $i <= 5; $i++)
+                                            <span class="fa fa-star"></span>
+                                        @endfor
+                                           
+                                        <h2 >{{ $item->komentar }}</h2>
+                                        <h4 >{{ $item->date }}</h4>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer text-center">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-center">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">1</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">2</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">3</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
+                                @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -219,15 +163,15 @@
         </div>
     </section>
 
-
     <script>
-    function updateHargaTotal() {
-      const jumlahOrang = parseInt(document.getElementById('jumlahorang').value);
-      const hargaSatuan = parseInt(document.getElementById('hargasatuan').value);
-      const hargaTotal = isNaN(jumlahOrang) || isNaN(hargaSatuan) ? '' : jumlahOrang * hargaSatuan;
-      document.getElementById('hargatotal').value = hargaTotal;
-    }
-  </script>
-</div>
+        function updateHargaTotal() {
+        const jumlahOrang = parseInt(document.getElementById('jumlahorang').value);
+        const hargaSatuan = parseInt(document.getElementById('hargasatuan').value);
+        const hargaTotal = isNaN(jumlahOrang) || isNaN(hargaSatuan) ? '' : jumlahOrang * hargaSatuan;
+        document.getElementById('hargatotal').value = hargaTotal;
+        }
+    </script>
+    <style>.checked { color: orange; }</style> 
 
+</div>
 @endsection

@@ -10,6 +10,7 @@
     <!-- link css & js -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('js/script.js') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- link font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

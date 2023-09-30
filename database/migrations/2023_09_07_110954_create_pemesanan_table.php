@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('status_perjalanan')->nullable();
             $table->string ('bukti_pembayaran')->nullable();
+            $table->timestamp('date')->nullable();
             $table->timestamps();
         });
     }

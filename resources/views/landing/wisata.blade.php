@@ -93,20 +93,6 @@
                                 </div>
                             </form>
                         </div>
-                        <!-- <div>
-                            <div class="dropdown">
-                                <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button"
-                                    id="dropdownMenuLink" data-mdb-toggle="dropdown" aria-expanded="false">
-                                    Rekomendasi
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Direkomendasikan</a></li>
-                                    <li><a class="dropdown-item" href="#">Harga (Rendah Ke Tinggi)</a></li>
-                                    <li><a class="dropdown-item" href="#">Harga (Tinggi Ke Rendah)</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
                 <div class="col-lg-12">

@@ -20,7 +20,6 @@ class DatawisataController extends Controller
     public function index()
     {   
         $mitraId = Auth::user()->id;
-
         $wisata = DB::table('wisata')
         ->where('wisata.id_mitra', $mitraId) 
         ->get();
