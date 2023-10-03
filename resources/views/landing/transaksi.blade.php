@@ -53,12 +53,12 @@
                                             </div>
                                             @endif
                                             <div>
+                                                @if($p->bukti_pembayaran)
+                                                @else
                                                 <a href="/data-order/hapus/{{ $p->id_pemesanan }}"
                                                     class="btn  btn-danger btn-sm shadow-0">
                                                     <i class="fa-solid fa-circle-xmark me-2"></i>Cancel
                                                 </a>
-                                                @if($p->bukti_pembayaran)
-                                                @else
                                                 <button type="button" class="btn btn-dark shadow-0 btn-sm"
                                                     data-toggle="modal" data-target="#buktiModal{{$p->id_pemesanan}}"
                                                     data-whatever="@getbootstrap">
@@ -68,7 +68,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 info-rekening border-top">
+                                    <div class="col-lg-12 info-rekening ">
+                                        <h4 class="text-center mb-5 border p-2">Daftar Rekening</h4>
                                         <div class="row">
                                             @foreach ($rekening[$p->id_pemesanan]  as $rekeningItem)
                                             <div class="col-lg-4 col-md-12">

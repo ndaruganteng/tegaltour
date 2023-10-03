@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\carbon;
 use App\Models\pemesanan; 
 use App\Models\wisata; 
+use Dompdf\Dompdf;
 
 class PemesananController extends Controller
 {
@@ -191,5 +192,35 @@ class PemesananController extends Controller
             ]);
 
         return redirect('status-perjalanan')->with('success', 'Perjalanan telah Selesai ');
+    }
+
+    public function pdf($id){
+        $dompdf = new Dompdf();
+        $pemesanan = DB::table('pemesanan')
+            ->join('users', 'pemesanan.id_user', '=', 'users.id')
+            ->join('wisata', 'pemesanan.id_wisata', '=', 'wisata.id_wisata')
+            ->where('pemesanan.id_pemesanan', $id) 
+            ->select(
+                'pemesanan.id_pemesanan as id_pemesanan',
+                'pemesanan.id_user', 
+                'users.nama_lengkap as nama_pengguna', 
+                'wisata.namawisata as nama_wisata',
+                'wisata.image as image',
+                'pemesanan.status as status',
+                'pemesanan.status_perjalanan as status_perjalanan',
+                'pemesanan.date as date',
+                'pemesanan.harga_total as hargatotal',
+                'pemesanan.bukti_pembayaran as bukti_pembayaran',
+                'pemesanan.jumlah_orang as jumlah_orang', 
+                'wisata.harga as harga',
+                'pemesanan.tanggal_berangkat as tanggal',
+                'pemesanan.id_wisata as id_wisata')
+            ->first();
+
+        $html = view('landing.invoice',compact('pemesanan'))->render();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4');
+        $dompdf->render();
+        $dompdf->stream();
     }
 }

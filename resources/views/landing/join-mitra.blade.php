@@ -29,14 +29,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label  for="nama_bisnis" class="col-sm-3 col-form-label">Nama Bisnis</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" required="required" name="nama_bisnis"  placeholder="Masukan Nama Bisnis">
-                                            </div>
-                                        </div>
-                                    </div>
+                                  
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -47,14 +40,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label  for="alamat" class="col-sm-3 col-form-label">Alamat</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" required="required" name="alamat" placeholder="Masukan Alamat">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="row">
 
@@ -76,7 +62,7 @@
                                     </div>
                                 </div>                                                   
                                 <div class="mx-auto mt-3">
-                                    <button type="submit" class="btn btn-black shadow-0 " value="Simpan Data">Simpan</button>
+                                    <button type="submit" class="btn btn-black shadow-0 " value="Simpan Data">JOIN MITRA</button>
                                  </div>
                             </form>
                         </div>

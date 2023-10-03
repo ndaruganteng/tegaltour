@@ -139,6 +139,52 @@
     </section>
     <!-- endcard -->
 
+    <section class="mb-5 invoice">
+        <div class="container">
+            <div class="text-center p-3 border" style="background-color: #F5F5F5;">
+                <h3 class="">INVOICE</h3>
+            </div>
+            <div class="card kwitansi shadow-0 ">
+                <div class="mt-5 mb-3">
+                    <h6>Nama Biro : xxxxx</h6>
+                    <h6>Tanggal Pemesanan : 09-10-23</h6>
+                    <h6>Status Pembayaran : <span class="badge badge-success">Selesai</span> </h6>
+                </div>
+                <div class=" table-responsive">
+                    <table class="table border text-center ">
+                        <thead>
+                          <tr>
+                            <th scope="col">Wisata</th>
+                            <th scope="col">Nama Pemebeli</th>
+                            <th scope="col">Tanggal Berangkat</th>
+                            <th scope="col">Jumlah Orang</th>
+                            <th scope="col">Harga/pax</th>
+                            <th scope="col">Harga Ttal</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Guci</td>
+                            <td>Ndaru</td>
+                            <td>11-10-23</td>
+                            <td>5 Orang</td>
+                            <td>Rp 100.000</td>
+                            <td>Rp 500.000</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .invoice .h3{
+            font-size: 10px;
+            font-style: italic;
+        }
+    </style>
+
 </div>
 
 

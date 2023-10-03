@@ -16,7 +16,7 @@
                                 <div class="card mt-3" >
                                     <div class="row g-0">
                                         <div class="col-md-4 p-3">
-                                            <img src="{{asset('storage/image/wisata/'.$p->image)}}"  class="img-thumbnail" style="width: 300px;  "/>
+                                            <img src="{{asset('storage/image/wisata/'.$p->image)}}"  class="img-thumbnail" style="width: 100%;  height:100%" />
                                         </div>
                                         <div class="col-md-4">
                                             <div class="card-body">

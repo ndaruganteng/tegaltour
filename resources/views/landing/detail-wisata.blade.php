@@ -97,10 +97,10 @@
                                 <div class="card-body">
                                     <img src="images/detail-tour/profile.png" alt="" class="rounded-circle" />
                                     <p class="card-text">
-                                        Ojan Tour & Travel
+                                        {{$mitra->nama_lengkap}}
                                         <i class="fas fa-check-circle" style="color: #1fbd00"></i>
                                     </p>
-                                    <a href="https://wa.me/085647019630" target="_blank" type="button"
+                                    <a href="https://wa.me/{{$mitra->no_telepon}}" target="_blank" type="button"
                                         class="btn btn-dark shadow-0">
                                         <i class="fa-brands fa-whatsapp me-2"></i>
                                         Chat Host
@@ -117,6 +117,7 @@
                             </div>
                         </div>
                         <div class="col-lg-12 booking">
+                        @if (Auth::check())
                             <div class="card text-center border border-2">
                                 <div class="card-header fw-blod">-BOOKING-</div>
                                 <div class="card-body">
@@ -156,6 +157,7 @@
                                     </form>
                                 </div>
                             </div>
+                        @endif
                         </div>
                     </div>
                 </div>

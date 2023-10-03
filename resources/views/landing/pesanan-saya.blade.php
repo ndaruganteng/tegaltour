@@ -43,9 +43,9 @@
                                                     <button type="button"  class="btn btn-primary shadow-0 btn-sm mt-2" data-toggle="modal" data-target="#imagebuktiModal{{$p->id_pemesanan}}" data-whatever="@getbootstrap">
                                                         <i class="fa-solid fa-eye me-2"></i>Bukti Transfer
                                                     </button>
-                                                    <button type="button" class="btn btn-dark btn-sm shadow-0 mt-2">
+                                                    <a href="/invoice/{{$p->id_pemesanan}}" class="btn btn-dark btn-sm shadow-0 mt-2">
                                                         <i class="fa-solid fa-download me-2"></i>Download invoice
-                                                    </button>
+                                                    </a>
                                                     @elseif($p->status_perjalanan == 3)
                                                     <button type="button" class="btn btn-info btn-sm shadow-0" data-mdb-toggle="modal" data-mdb-target="#ulasanModal{{$p->id_pemesanan}}"><i class="fa-solid fa-envelope me-2"></i>Beri Ulasan</button>
                                                     @endif

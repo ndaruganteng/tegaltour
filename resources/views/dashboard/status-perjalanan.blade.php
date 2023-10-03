@@ -95,7 +95,7 @@
                                                 @endif
                                             </td>
                                         </tr>
-                                    </tbody>
+                                    </tbody>                                       
                                     @endif
                                 @endforeach
                             </table>

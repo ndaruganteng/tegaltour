@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\mitra;
+use App\Models\User;
+use App\Mail\Email;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,32 +34,37 @@ class RequestmitraController extends Controller
     {
         $validator = $request -> validate([
             'nama_lengkap' => 'required',
-            'nama_bisnis' => 'required',
-            'alamat' => 'required',
             'telepon' => 'required',
             'email' => 'required',
             'password' => 'required',
         ], 
         [
             "nama_lengkap.required" => "Please enter Nama Lengkap",
-            "nama_bisnis.required" => "Please enter Nama Bisnis",
-            "alamat.required" => "Please enter Alamat",
             "telepon.required" => "Please enter telepon",
             "email.required" => "Please enter email",
             "password.required" => "Please enter password",
         ]);
 
 
-        $mitra = new Mitra;
-        $mitra->nama_lengkap= $request->input('nama_lengkap');
-        $mitra->nama_bisnis= $request->input('nama_bisnis');
-        $mitra->telepon= $request->input('telepon');
-        $mitra->alamat= $request->input('alamat');
-        $mitra->email= $request->input('email');
-        $mitra->password= $request->input('password');
+        $mitra = new User;
+        $namaMitra = $mitra->nama_lengkap= $request->input('nama_lengkap');
+        $mitra->no_telepon= $request->input('telepon');
+        $email = $mitra->email= $request->input('email');
+        $mitra->role= 'mitra';
+        $password = $request->input('password');
+        $hashedPassword = bcrypt($password);
+        $mitra->password = $hashedPassword;
        
-        $mitra->save();
 
+        $mitra->save();
+        
+        $details = [
+            'email' => $email,
+            'mitra' => $namaMitra,
+        ];
+       
+        \Mail::to($email)->send(new Email($details));
+       
         return redirect('/join-mitra')->with('message', 'Permintaan Join Mitra Anda telah Terkirim Silahkan Cek Email!');
     }
 
