@@ -6,8 +6,8 @@
         <div class="container">
             <h1 class="text-center">Gabung Menjadi Mitra</h1>
             <p class="text-center">Anda mempunyai bisnis di bidang pariwisata? <br>Bergabunglah menjadi mitra dan nikmati berbagai keuntungan menarik bersama kami.</p>
-            <div class="row">
-                <div class="col-md-12 col-lg-10 mx-auto grid-margin c-mitra">
+            <!-- <div class="row">
+                <div class="col-md-12 col-lg-6  grid-margin c-mitra">
                     @if (Session::has('message'))
                         <div class="alert alert-success text-center" role="alert">
                             {{ Session::get('message') }}
@@ -20,53 +20,79 @@
                         <div class="card-body">
                             <form class="form-sample" action="{{ route('Mitra.index') }}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }} 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label  for="nama_lengkap" class="col-sm-3 col-form-label">Nama Lengkap</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" required="required" name="nama_lengkap" placeholder="Masukan Nama Lengkap">
-                                            </div>
-                                        </div>
+                                <div class="form-group row">
+                                    <label  for="nama_lengkap" class="col-sm-3 col-form-label">Nama Lengkap</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" required="required" name="nama_lengkap" placeholder="Masukan Nama Lengkap">
                                     </div>
-                                  
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label  for="telepon" class="col-sm-3 col-form-label">Telepon</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" required="required" name="telepon" placeholder="Masukan Nomor Telepon/Whatsapp">
-                                            </div>
-                                        </div>
+                                <div class="form-group row">
+                                    <label  for="telepon" class="col-sm-3 col-form-label">Telepon</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" required="required" name="telepon" placeholder="Masukan Nomor Telepon/Whatsapp">
                                     </div>
-                                    
                                 </div>
-                                <div class="row">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label  for="email" class="col-sm-3 col-form-label">Email</label>
-                                            <div class="col-sm-9">
-                                                <input type="email" class="form-control" required="required" name="email" placeholder="Masukan Email">
-                                            </div>
-                                        </div>
+                                <div class="form-group row">
+                                    <label  for="email" class="col-sm-3 col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" required="required" name="email" placeholder="Masukan Email">
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label  for="password" class="col-sm-3 col-form-label">Kata Sandi</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" required="required" name="password" placeholder="Masukan Kata Sandi">
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label  for="password" class="col-sm-3 col-form-label">Kata Sandi</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" required="required" name="password" placeholder="Masukan Kata Sandi">
                                     </div>
-                                </div>                                                   
+                                </div>                                                  
                                 <div class="mx-auto mt-3">
                                     <button type="submit" class="btn btn-black shadow-0 " value="Simpan Data">JOIN MITRA</button>
                                  </div>
                             </form>
                         </div>
                     </div>
+                </div>
+            </div> -->
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                @if (Session::has('message'))
+                    <div class="alert alert-success text-center" role="alert">
+                        {{ Session::get('message') }}
+                    </div>
+                @endif
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                    class="img-fluid" alt="Sample image">
+                </div>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <form action="{{ route('Mitra.index') }}" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }} 
+                        <div class="divider d-flex align-items-center my-4">
+                            <h4 class="text-center fw-bold mx-3 mb-0">Form Pengajuan Gabung Mitra</h4>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="text" class="form-control form-control-lg"
+                            placeholder="Nama Lengkap" required="required" name="nama_lengkap" />
+                            <label class="form-label" for="nama_lengkap">Nama Lengkap</label>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="text" class="form-control form-control-lg"
+                            placeholder="No Telepon" required="required" name="telepon" />
+                            <label class="form-label" for="telepon">No Telepon</label>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="email" class="form-control form-control-lg"
+                            placeholder="Enter" required="required" name="email"/>
+                            <label class="form-label" for="email">Email</label>
+                        </div>
+                        <div class="form-outline mb-3">
+                            <input type="password" class="form-control form-control-lg"
+                            placeholder="Enter password" required="required" name="password"/>
+                            <label class="form-label" for="password">Password</label>
+                        </div>
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button type="submit" class="btn btn-primary "
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

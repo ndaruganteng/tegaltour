@@ -60,6 +60,7 @@ class RequestmitraController extends Controller
         
         $details = [
             'email' => $email,
+            'password' => $password,
             'mitra' => $namaMitra,
         ];
        

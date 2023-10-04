@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>websitepercobaan.com</title>
+    <title>TegalTour</title>
 </head>
 <body>
-    <h1>{{ $details['email'] }}</h1>
-    <p>{{ $details['mitra'] }}</p>
-   
-    <p>Thank you</p>
+    <h2>Email : {{ $details['email'] }}</h2>
+    <h2>password : {{ $details['password'] }}</h2>
+    <h2>Nama :{{ $details['mitra'] }}</h2>
+    <p class="mt-3">Thank you</p>
 </body>
 </html>
