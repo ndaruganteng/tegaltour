@@ -30,10 +30,10 @@ class AdminSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'nama_lengkap' => 'Ndaru Tour',
-            'no_telepon' => '085647019630',
-            'email' => 'ndarutour@gmail.com',
-            'password' => bcrypt("Ndarutour123"),
+            'nama_lengkap' => 'Cipung Tour',
+            'no_telepon' => '085647019560',
+            'email' => 'cipungtour@gmail.com',
+            'password' => bcrypt("Cipungtour123"),
             'role' => 'mitra',
         ]);
         DB::table('users')->insert([

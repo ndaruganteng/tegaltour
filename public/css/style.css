@@ -363,7 +363,7 @@
 
 /* join-mitra */
 .mitra {
-    margin-top: 120px;
+    margin-top: 100px;
     font-family: "Poppins" sans-serif;
 }
 
@@ -587,7 +587,7 @@ c.mitra .card {
     }
 
     .mitra {
-        margin-top: 150px;
+        margin-top: 100px;
     }
 
     .mitra h1 {
@@ -598,7 +598,7 @@ c.mitra .card {
 
     .mitra p {
         font-size: 18px;
-        margin-bottom: 60px;
+        margin-bottom: 30px;
     }
 
     .k-mitra {

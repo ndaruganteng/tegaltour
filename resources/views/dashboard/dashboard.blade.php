@@ -26,11 +26,11 @@
             <div class="col-lg-6">
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>{{ $totalMitra }}</h3>
-                  <p>Data Request Mitra</p>
+                  <h3>{{ $totalwisataadmin }}</h3>
+                  <p>Data Wisata</p>
                 </div>
                 <div class="icon">
-                  <i class="fa-solid fa-handshake"></i>
+                  <i class="fa-solid fa-store"></i>
                 </div>
                 <a href="{{ route('request-mitra.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>

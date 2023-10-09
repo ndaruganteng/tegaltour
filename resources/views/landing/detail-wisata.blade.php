@@ -167,8 +167,8 @@
 
     <script>
         function updateHargaTotal() {
-        const jumlahOrang = parseInt(document.getElementById('jumlahorang').value);
-        const hargaSatuan = parseInt(document.getElementById('hargasatuan').value);
+        const jumlahOrang = parseFloat(document.getElementById('jumlahorang').value);
+        const hargaSatuan = parseFloat(document.getElementById('hargasatuan').value);
         const hargaTotal = isNaN(jumlahOrang) || isNaN(hargaSatuan) ? '' : jumlahOrang * hargaSatuan;
         document.getElementById('hargatotal').value = hargaTotal;
         }

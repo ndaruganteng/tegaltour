@@ -29,14 +29,16 @@
                             <div class="d-flex justify-content-between">
                                 <h3 class="card-title">Data Order</h3>
                                 <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default">
-                                                <i class="fas fa-search"></i>
-                                            </button>
+                                    <form action="" method="GET">
+                                        <div class="input-group input-group-sm" style="width: 150px;">
+                                            <input type="text" name="search_data_order" class="form-control float-right" placeholder="Search">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +54,8 @@
                                         <th>Jumlah Orang</th>
                                         <th>Harga/Pax</th>
                                         <th>Harga Total</th>
-                                        <th>Status</th>
+                                        <th>Status Perjalalanan</th>
+                                        <th>Status Pemesanan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -76,6 +79,12 @@
                                             <td>{{ $p->jumlah_orang}}</td>
                                             <td>Rp.{{$p->harga}}</td>
                                             <td>Rp.{{$p->hargatotal}}</td>
+
+                                            <td>
+                                                @if($p->status_perjalanan == 3)
+                                                    <div class="badge badge-success">Selesai </div>
+                                                @endif
+                                            </td>
                                             <td>
                                                 @if($p->status == null)
                                                     <div class="badge badge-warning">Belum disetuji </div>

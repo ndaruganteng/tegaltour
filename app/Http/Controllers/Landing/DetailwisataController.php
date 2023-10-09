@@ -23,10 +23,10 @@ class DetailwisataController extends Controller
         ->get();
         
         $mitra = DB::table('users')
-    ->join('wisata', 'users.id', '=', 'wisata.id_mitra')
-    ->select('users.*')
-    ->where('wisata.id_wisata', $id)
-    ->first(); 
+        ->join('wisata', 'users.id', '=', 'wisata.id_mitra')
+        ->select('users.*')
+        ->where('wisata.id_wisata', $id)
+        ->first(); 
 
 
         return view('landing.detail-wisata', compact('detail_wisata','ulasan','mitra'));

@@ -6,52 +6,6 @@
         <div class="container">
             <h1 class="text-center">Gabung Menjadi Mitra</h1>
             <p class="text-center">Anda mempunyai bisnis di bidang pariwisata? <br>Bergabunglah menjadi mitra dan nikmati berbagai keuntungan menarik bersama kami.</p>
-            <!-- <div class="row">
-                <div class="col-md-12 col-lg-6  grid-margin c-mitra">
-                    @if (Session::has('message'))
-                        <div class="alert alert-success text-center" role="alert">
-                            {{ Session::get('message') }}
-                        </div>
-                    @endif
-                    <div class="card card-secondary">
-                        <div class="card-header">
-                            <h3 class="text-center ">Form Pengajuan Gabung Mitra</h3>
-                        </div>
-                        <div class="card-body">
-                            <form class="form-sample" action="{{ route('Mitra.index') }}" method="post" enctype="multipart/form-data">
-                                {{ csrf_field() }} 
-                                <div class="form-group row">
-                                    <label  for="nama_lengkap" class="col-sm-3 col-form-label">Nama Lengkap</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" required="required" name="nama_lengkap" placeholder="Masukan Nama Lengkap">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label  for="telepon" class="col-sm-3 col-form-label">Telepon</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" required="required" name="telepon" placeholder="Masukan Nomor Telepon/Whatsapp">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label  for="email" class="col-sm-3 col-form-label">Email</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" class="form-control" required="required" name="email" placeholder="Masukan Email">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label  for="password" class="col-sm-3 col-form-label">Kata Sandi</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" required="required" name="password" placeholder="Masukan Kata Sandi">
-                                    </div>
-                                </div>                                                  
-                                <div class="mx-auto mt-3">
-                                    <button type="submit" class="btn btn-black shadow-0 " value="Simpan Data">JOIN MITRA</button>
-                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <div class="row d-flex justify-content-center align-items-center h-100">
                 @if (Session::has('message'))
                     <div class="alert alert-success text-center" role="alert">
@@ -59,14 +13,14 @@
                     </div>
                 @endif
                 <div class="col-md-9 col-lg-6 col-xl-5">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                    class="img-fluid" alt="Sample image">
+                    <img src="images/mitra/mitra.png"
+                    class="img-fluid" alt="Sample image" style="width: 100;">
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                     <form action="{{ route('Mitra.index') }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }} 
                         <div class="divider d-flex align-items-center my-4">
-                            <h4 class="text-center fw-bold mx-3 mb-0">Form Pengajuan Gabung Mitra</h4>
+                            <h4 class="text-center fw-bold">Form Pengajuan Gabung Mitra</h4>
                         </div>
                         <div class="form-outline mb-4">
                             <input type="text" class="form-control form-control-lg"
@@ -89,8 +43,8 @@
                             <label class="form-label" for="password">Password</label>
                         </div>
                         <div class="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" class="btn btn-primary "
-                            style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                            <button type="submit" class="btn btn-dark "
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;">Join Mitra</button>
                         </div>
                     </form>
                 </div>

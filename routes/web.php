@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){
 
     // DATA-ORDER
     Route::get('/data-order', [PemesananController::class, 'data_order'])->name('data-order.index');
+
     
     // STATUS PERJALANAN
     Route::get('/status-perjalanan', [PemesananController::class, 'status_perjalanan'])->name('status-perjalanan.index');
@@ -84,6 +85,12 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 
     //DASHBOARD
     Route::get('/request-mitra', [DashboardController::class, 'requestmitra'])->name('request-mitra.index');
+
+    //DATA WISATA
+    Route::get('/data-wisata-admin', [DatawisataController::class, 'wisata_admin'])->name('data-wisata-admin.index');
+    Route::pattern('id', '[0-9]+');
+    Route::get('/detail-data-wisata-admin/{id}', [DetaildatawisataController::class,'showdetailadmin']);
+    Route::get('/search_data_wisata_admin',[DatawisataController::class, 'search_data_wisata_admin'])->name('wisata.search_data_wisata_admin');
 
     //DATAUSER
     Route::get('/data-user', [DatauserController::class, 'index'])->name('data-user.index');

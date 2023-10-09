@@ -22,8 +22,8 @@ class DashboardController extends Controller
     public function index()
     {   
         $mitraId = Auth::user()->id;
+        $totalwisataadmin = DB::table('wisata')->count();
         $totalUsers = DB::table('users')->count();
-        $totalMitra = DB::table('mitra')->count();
         $totalRekening = DB::table('rekening')
         ->where('id_mitra', $mitraId)
         ->count();
@@ -34,7 +34,7 @@ class DashboardController extends Controller
         ->where('id_mitra', $mitraId)
         ->count();
 
-        return view('dashboard.dashboard',compact('totalWisata','totalUsers','totalMitra','totalRekening','totalOrder'));
+        return view('dashboard.dashboard',compact('totalWisata','totalUsers','totalwisataadmin','totalRekening','totalOrder'));
     }
 
 

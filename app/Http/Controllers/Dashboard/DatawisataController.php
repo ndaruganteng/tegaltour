@@ -32,7 +32,6 @@ class DatawisataController extends Controller
         return view('dashboard.tambah-data-wisata');
     }
 
-
     public function store(Request $request)
     {
         $validator = $request -> validate([
@@ -84,7 +83,6 @@ class DatawisataController extends Controller
         return redirect('/data-wisata') -> with('success', "Data wisata berhasil ditambahkan!");
     }
 
-
     // method untuk edit data wisata
     public function edit($id)
     {
@@ -96,10 +94,9 @@ class DatawisataController extends Controller
         ]);
     }
 
-    
      // update data wisata
      public function update(Request $request,$id)
-     {
+    {
          $wisata = Wisata::find($id); 
 
          $validator = $request -> validate([
@@ -178,7 +175,32 @@ class DatawisataController extends Controller
             return view('dashboard.data-wisata',compact('wisata'));
     }
 
-    // menampilkan jumlah data wisata 
+    
+    // view data wisata admin
+    public function wisata_admin(){
 
+        $wisata = DB::table('wisata')
+        ->join('users', 'wisata.id_mitra', '=', 'users.id')
+        ->select('wisata.*','users.nama_lengkap as nama')
+        ->get();
+        
+        return view('dashboard.data-wisata-admin',['wisata' => $wisata]);
+    }
+
+
+    // search data wisata admin
+    public function search_data_wisata_admin(Request $request)
+    {
+        $keyword = $request->input('search_data_wisata_admin');
+        $wisata = wisata::where('namawisata', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('tanggalberangkat','LIKE', '%' . $keyword . '%')
+            ->orWhere('kategori', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('harga', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('durasi', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('lokasi', 'LIKE', '%' . $keyword . '%')
+            ->get();
+
+            return view('dashboard.data-wisata-admin',compact('wisata'));
+    }
     
 }

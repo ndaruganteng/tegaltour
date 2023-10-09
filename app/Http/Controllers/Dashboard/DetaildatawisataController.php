@@ -18,6 +18,14 @@ class DetaildatawisataController extends Controller
         return view('dashboard.detail-data-wisata', compact('data_wisata_detail'));
     }
 
+
+    // detail data wisata admin
+    public function showdetailadmin($id)
+    {      
+        $detail_data_wisata_admin = wisata::findOrFail($id);
+        return view('dashboard.detail-data-wisata-admin', compact('detail_data_wisata_admin'));
+    }
+
     
     
      

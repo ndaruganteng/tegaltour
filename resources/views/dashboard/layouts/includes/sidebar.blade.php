@@ -31,6 +31,12 @@
         @endif
         @if(auth()->user()->role == "admin")
         <li class="nav-item">
+          <a href="{{route('data-wisata-admin.index')}}" class="nav-link">
+            <i class="nav-icon fa-solid fa-store"></i>
+            <p>Data wisata</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{route('data-user.index')}}" class="nav-link">
             <i class="fa-solid fa-user nav-icon"></i>
             <p>Data User</p>

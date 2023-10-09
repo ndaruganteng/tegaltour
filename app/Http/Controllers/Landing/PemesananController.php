@@ -85,6 +85,7 @@ class PemesananController extends Controller
         return view('dashboard.data-order', ['pemesanan' => $pemesanan]);
     }
 
+
     // Fungsi konfirmasi pemesanan
     public function konfirmasi(Request $request, $id)
     { 
@@ -194,6 +195,7 @@ class PemesananController extends Controller
         return redirect('status-perjalanan')->with('success', 'Perjalanan telah Selesai ');
     }
 
+    // invoice
     public function pdf($id){
         $dompdf = new Dompdf();
         $pemesanan = DB::table('pemesanan')
