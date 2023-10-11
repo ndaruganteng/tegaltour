@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\wisata;
+use App\Models\kategori;
+use Illuminate\Support\Facades\DB;
 
 use App\http\Controllers\landing\HomeController;
 use App\http\Controllers\landing\WisataController;
@@ -18,6 +20,7 @@ use App\http\Controllers\dashboard\DatawisataController;
 use App\http\Controllers\dashboard\DatarekeningController;
 use App\http\Controllers\dashboard\RequestmitraController;
 use App\http\Controllers\dashboard\DatauserController;
+use App\http\Controllers\dashboard\DatakategoriController;
 
 use App\http\Controllers\Auth\LoginController;
 use App\http\Controllers\Auth\RegisterController;
@@ -72,7 +75,6 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){
     // DATA-ORDER
     Route::get('/data-order', [PemesananController::class, 'data_order'])->name('data-order.index');
 
-    
     // STATUS PERJALANAN
     Route::get('/status-perjalanan', [PemesananController::class, 'status_perjalanan'])->name('status-perjalanan.index');
     Route::put('/berangkat/{id_pemesanan}', [PemesananController::class, 'berangkat'])->name('berangkat');
@@ -96,6 +98,14 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     Route::get('/data-user', [DatauserController::class, 'index'])->name('data-user.index');
     Route::get('/search_user',[DatauserController::class, 'search_user'])->name('users.search_user');
 
+    //DATA kATERGORI
+    Route::get('/data-kategori', [DatakategoriController::class, 'index'])->name('data-kategori.index');
+    Route::post('/data-kategori', [DatakategoriController::class, 'store'])->name('Kategori.index');
+    Route::put('/data-kategori/update/{id_rekening}', [DatakategoriController::class, 'update'])->name('updateKategori.index');
+    // Route::get('/data-kategori/hapus/{id_kategori}', [DatakategoriController::class, 'hapus'])->name('hapus.index');
+    Route::delete('data-kategori/delete/element/{id}', [DatakategoriController::class, 'deleteElement'])->name('delete.element');
+
+
  });
 
  Route::group(['middleware' => ['auth', 'ceklevel:admin,mitra']], function () {
@@ -105,14 +115,19 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 
 // DETAIL WISATA
 Route::pattern('id', '[0-9]+');
-Route::get('/{id}', [DetailwisataController::class,'show']);
+Route::get('/{id}/{slug}', [DetailwisataController::class,'show']);
 
 //SEARCH RANGE TANGGAL
 Route::get('/search_date', function (Request $request) {
     $startDate = $request->input('start-date');
     $endDate = $request->input('end-date'); 
-    $wisata = wisata::whereBetween('tanggalberangkat', [$startDate, $endDate])->get();
-    return view('landing.wisata', compact('wisata'));
+    $kategori = kategori::all();
+    $wisata = DB::table('wisata')
+    ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
+    ->select('wisata.*', 'kategori.nama_kategori as kategori')
+    ->whereBetween('tanggalberangkat', [$startDate, $endDate])
+    ->get();
+    return view('landing.wisata', compact('wisata','kategori'));
 
 })->name('wisata.search_date');
 

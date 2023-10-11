@@ -1,12 +1,3 @@
-
-<!-- <footer class="text-center text-lg-start bg-white  text-muted">
-  <div class="text-center p-4 border footer" style="background-color: white;">
-    © 2023 Copyright:
-    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">YouTour Marketplace</a>
-  </div>
-</footer> -->
-
-
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
 
@@ -42,23 +33,15 @@
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos incidunt dolor illo? Sequi, fugiat magni.
           </p>
         </div>
-
-
-        <!-- Grid column -->
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">
-            Products
+            Produk
           </h6>
           <p>
             <a href="{{route('wisata.index')}}" class="text-reset">Paket Wisata</a>
           </p>
         </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">
             Menu
           </h6>
@@ -66,7 +49,7 @@
             <a href="{{route('home.index')}}" class="text-reset">Home</a>
           </p>
           <p>
-            <a href="{{route('wisata.index')}}" class="text-reset">Daftar Wisata</a>
+            <a href="{{route('wisata.index')}}" class="text-reset">Paket Wisata</a>
           </p>
           <p>
             <a href="{{route('join-mitra.index')}}" class="text-reset">Join Mitra</a>
@@ -93,7 +76,7 @@
 
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
     © 2023 Copyright:
-    <a class="text-reset fw-bold" href="#">TegalTour.com</a>
+    <a class="text-reset fw-bold" href="#">TegalTour.com </a>
   </div>
 
 </footer>

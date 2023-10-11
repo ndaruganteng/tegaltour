@@ -9,7 +9,7 @@
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div class="text-white">
-                    <h1 class="mb-3 ">Daftar Wisata </h1>
+                    <h1 class="mb-3 ">Daftar Paket Wisata </h1>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
     <!-- end info-panel -->
 
     <!-- card -->
-    <div class="container mt-5 mb-5 tour-card ">
+    <div class="container mt-5 mb-5 tour-card "> 
         <div class="row">
             <div class="col md-12 col-lg-3">
                 <div class="col-lg-12">
@@ -54,23 +54,13 @@
                         <div class="card-header fs-5 text-center">FILTER</div>
                         <div class="card-body">
                             <h5 class="mb-3 card-title">Kategori</h5>
-                            <div class="form-check mb-3">
-                                <label class="form-check-label " for="flexCheckDefault">Wisata Alam</label>
-                                <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault" />
-                            </div>
-                            <div class="form-check mb-3">
-                                <label class="form-check-label " for="flexCheckDefault">Wisata Keluarga</label>
-                                <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault" />
-                            </div>
-                            <div class="form-check mb-3">
-                                <label class="form-check-label " for="flexCheckDefault">Wisata Religi</label>
-                                <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault" />
-                            </div>
-                            <div class="form-check mb-3">
-                                <label class="form-check-label " for="flexCheckDefault">Wisata Sejarah</label>
-                                <input class="form-check-input " type="checkbox" value="" id="flexCheckDefault" />
-                            </div>
-                        </div>
+                            <select id="filter" class="form-select">
+                                <option value="">Semua Kategori</option>
+                                @foreach($kategori as $data)
+                                <option value="{{$data->nama_kategori}}">{{$data->nama_kategori}}</option>
+                                @endforeach                               
+                            </select>                         
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -96,23 +86,23 @@
                     </div>
                 </div>
                 <div class="col-lg-12">
-                    <div class="row">
-                        @foreach($wisata as $item)              
+                    <div class="row" id="wisata-list">
+                        @foreach($wisata as $item)                           
                         <div class="col-md-12 col-lg-4">                     
                             <div class="card shadow-0 border border-2">
-                                <a href="/{{ ($item->id_wisata) }}#{{$item->namawisata}}" class="bg-image hover-zoom">
+                                <a href="/{{ ($item->id_wisata) }}/{{$item->slug}}" class="bg-image hover-zoom">
                                     <img class="card-img-top" src="{{asset('storage/image/wisata/'.$item->image)}}" alt="Card image cap w-100"
                                         style="height:180px">
                                 </a>
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
                                         <span class="badge badge-dark">{{ $item->kategori }}</span>
-                                        <div class="lokasi">
-                                            <i class="fa-solid fa-location-dot"></i>
-                                            <small>{{ $item->lokasi }}</small>
+                                        <div class="durasi">
+                                            <i class="fa-regular fa-clock"></i>
+                                            <small>{{ $item->durasi }}</small>
                                         </div>
                                     </div>
-                                    <a href="/{{ ($item->id_wisata) }}#{{$item->namawisata}}" class="mt-2">
+                                    <a href="/{{ ($item->id_wisata) }}/{{$item->slug}}" class="mt-2">
                                         <p>{{ $item->namawisata }}</p>
                                     </a>
                                     <div class="d-flex justify-content-between">
@@ -124,14 +114,16 @@
                                     </div>
                                 </div>                      
                             </div>  
-                        </div>  
-                        @endforeach  
+                        </div>                        
+                        @endforeach                       
+                        <div id="no-category-found" style="display: none;">
+                            Tidak Ada Wisata
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-12 pagination mt-4 ">
                     <div class="col-lg-12">
-                        <div class="text-center">
-                            
+                        <div class="text-center">                          
                         </div>
                     </div>
                 </div>
@@ -141,5 +133,37 @@
     <!-- end card -->
 
 </div>
+
+<script>
+    const filterSelect = document.getElementById("filter");
+    const wisataList = document.getElementById("wisata-list");
+    const noCategoryFound = document.getElementById("no-category-found");
+    filterSelect.addEventListener("change", filterItems);
+
+    function filterItems() {
+        const selectedValue = filterSelect.value;
+
+        const items = wisataList.getElementsByClassName("col-md-12 col-lg-4");
+        let found = false;
+
+        for (const item of items) {
+            const category = item.querySelector(".badge").textContent;
+            if (selectedValue === "" || category === selectedValue) {
+                item.style.display = "block";
+                found = true;
+            } else {
+                item.style.display = "none";
+            }
+        }
+
+        if (!found) {
+            noCategoryFound.style.display = "block";
+        } else {
+            noCategoryFound.style.display = "none";
+        }
+    }
+
+    filterItems();
+</script>
 
 @endsection

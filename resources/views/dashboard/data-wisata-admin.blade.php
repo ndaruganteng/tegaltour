@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0"> Data Wisata </h1>
+            <h1 class="m-0">Paket Wisata </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">Dashboard</a></li>
-              <li class="breadcrumb-item active"> Data wisata</li>
+              <li class="breadcrumb-item active"> Paket wisata</li>
             </ol>
           </div>
         </div>
@@ -26,7 +26,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-between">
-                                <h3 class="card-title">Data Wisata</h3>
+                                <h3 class="card-title">Paket Wisata</h3>
                                 <div class="card-tools">
                                     <form action="{{route('wisata.search_data_wisata_admin') }}" method="GET">
                                         <div class="input-group input-group-sm" style="width: 150px;">
@@ -46,7 +46,7 @@
                                 <thead>
                                     <tr>
                                         <th>Image</th>
-                                        <th>Nama Wisata</th>
+                                        <th>Nama Paket Wisata</th>
                                         <th>Nama Mitra</th>
                                         <th>Kategori</th>
                                         <th>harga</th>

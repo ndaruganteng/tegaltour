@@ -13,7 +13,10 @@ class HomeController extends Controller
 
     public function index()
     {
-        $wisata = DB::table('wisata')->inRandomOrder()->simplePaginate(4);
+        $wisata = DB::table('wisata')
+        ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
+        ->select('wisata.*', 'kategori.nama_kategori as kategori')
+        ->inRandomOrder()->simplePaginate(4);
         return view('landing.home', ['wisata' => $wisata]);
     }
 

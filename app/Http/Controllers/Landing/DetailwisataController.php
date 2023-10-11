@@ -15,7 +15,12 @@ class DetailwisataController extends Controller
     // menampilkan data detail-wisata
     public function show($id)
     {      
-        $detail_wisata = wisata::findOrFail($id);
+        $detail_wisata = DB::table('wisata')
+        ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
+        ->select('wisata.*', 'kategori.nama_kategori as kategori')
+        ->where('id_wisata', $id)
+        ->first();
+
         $ulasan = DB::table('ulasan')
         ->join('users', 'ulasan.id_user', '=', 'users.id')
         ->select('ulasan.*', 'users.nama_lengkap as nama')

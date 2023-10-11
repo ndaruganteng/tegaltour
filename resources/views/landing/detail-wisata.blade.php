@@ -13,22 +13,22 @@
                         <div class="col-lg-12 info-detail border border-start-0 border-end-0">
                             <div class="row">
                                 <div class="col-lg">
-                                    <img src="images/detail-tour/durasi-tour.png" alt="" class="float-left" />
+                                    <img src="/images/detail-tour/durasi-tour.png" alt="" class="float-left" />
                                     <h4>Durasi Wisata</h4>
                                     <p>{{ $detail_wisata->durasi }}</p>
                                 </div>
                                 <div class="col-lg">
-                                    <img src="images/detail-tour/jenis-tour.png" alt="" class="float-left" />
+                                    <img src="/images/detail-tour/jenis-tour.png" alt="" class="float-left" />
                                     <h4>Jenis Wisata</h4>
                                     <p>{{ $detail_wisata->kategori }}</p>
                                 </div>
                                 <div class="col-lg">
-                                    <img src="images/detail-tour/lokasi-tour.png" alt="" class="float-left" />
+                                    <img src="/images/detail-tour/lokasi-tour.png" alt="" class="float-left" />
                                     <h4>Lokasi Wisata</h4>
                                     <p>{{ $detail_wisata->lokasi }}</p>
                                 </div>
                                 <div class="col-lg">
-                                    <img src="images/detail-tour/money.png" alt="" class="float-left" />
+                                    <img src="/images/detail-tour/money.png" alt="" class="float-left" />
                                     <h4>Harga</h4>
                                     <p>Rp {{ $detail_wisata->harga }}</p>
                                 </div>
@@ -70,7 +70,7 @@
                                 <div class="card-body mt-2">                             
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <img src="images/icon/profile.png" alt="" class="float-left me-3" />
+                                            <img src="/images/icon/profile.png" alt="" class="float-left me-3" />
                                             <h1 class="pt-2">{{ $item->nama }}</h1> 
                                         </div>
                                         <div class="col-lg-8">
@@ -95,7 +95,7 @@
                         <div class="col-lg-12 host">
                             <div class="card text-center border border-2 shadow-0">
                                 <div class="card-body">
-                                    <img src="images/detail-tour/profile.png" alt="" class="rounded-circle" />
+                                    <img src="/images/detail-tour/profile.png" alt="" class="rounded-circle" />
                                     <p class="card-text">
                                         {{$mitra->nama_lengkap}}
                                         <i class="fas fa-check-circle" style="color: #1fbd00"></i>

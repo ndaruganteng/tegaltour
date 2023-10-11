@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0"> Data Wisata </h1>
+            <h1 class="m-0">Paket Wisata </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">Dashboard</a></li>
-              <li class="breadcrumb-item active"> Data wisata</li>
+              <li class="breadcrumb-item active">Paket wisata</li>
             </ol>
           </div>
         </div>
@@ -40,7 +40,7 @@
                                 </div>
                                 <a href="{{route('tambah-data-wisata.index')}}"  class="btn bg-dark btn-sm">
                                     <i class="fa-solid fa-plus mr-1"></i>
-                                    Tambah Wisata
+                                    Tambah Paket Wisata
                                 </a>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                 <thead>
                                     <tr>
                                         <th>Image</th>
-                                        <th>Nama Wisata</th>
+                                        <th>Nama Paket Wisata</th>
                                         <th>Kategori</th>
                                         <th>harga</th>
                                         <th>Aksi</th>
@@ -66,16 +66,16 @@
                                         <td>Rp {{ $p->harga}}</td>
                                         <td>
                                             <a href="/detail-data-wisata/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm" >
-                                                <i class="fas fa-eye"></i> Detail
+                                                <i class="fas fa-eye"></i>
                                             </a>
                                             <a href="/data-wisata/edit/{{ $p->id_wisata }}">
                                                 <button class="btn btn-warning btn-sm">
-                                                    <i class="fas fa-edit"></i> Edit
+                                                    <i class="fas fa-edit"></i>
                                                 </button>
                                             </a>
                                             <a href="/data-wisata/hapus/{{ $p->id_wisata }}">
                                                 <button class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash"></i> Hapus
+                                                    <i class="fas fa-trash"></i> 
                                                 </button>
                                             </a>
                                         </td>

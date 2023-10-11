@@ -63,9 +63,6 @@
                                             <span class="badge badge-dark">{{$p->role}}</span>
                                         </td>
                                         <td>
-                                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal" data-whatever="@getbootstrap">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
                                             <a class="btn btn-danger btn-sm">
                                                 <i class="fas fa-trash"></i>
                                             </a>

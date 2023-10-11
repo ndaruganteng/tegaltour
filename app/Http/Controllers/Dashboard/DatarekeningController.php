@@ -24,9 +24,9 @@ class DatarekeningController extends Controller
         return view('dashboard.data-rekening',['rekening' => $rekening]);
     }
 
-    // memanggil view tambah data rekening
     public function tambah()
     {
+        // memanggil view tambah data wisata
         return view('dashboard.tambah-data-rekening');
     }
 

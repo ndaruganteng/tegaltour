@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Models\wisata;
+use App\Models\kategori;
 
 class DatawisataController extends Controller
 {
@@ -21,15 +22,18 @@ class DatawisataController extends Controller
     {   
         $mitraId = Auth::user()->id;
         $wisata = DB::table('wisata')
-        ->where('wisata.id_mitra', $mitraId) 
+        ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
+        ->where('wisata.id_mitra', $mitraId)
+        ->select('wisata.*', 'kategori.nama_kategori as kategori')
         ->get();
+    
         return view('dashboard.data-wisata',['wisata' => $wisata]);
     }
 
     public function tambah()
     {
-        // memanggil view tambah data wisata
-        return view('dashboard.tambah-data-wisata');
+        $kategori = kategori::all();
+        return view('dashboard.tambah-data-wisata',compact('kategori'));
     }
 
     public function store(Request $request)
@@ -62,6 +66,7 @@ class DatawisataController extends Controller
         $wisata = new Wisata;
         $wisata->id_mitra = Auth::user()->id;
         $wisata->namawisata= $request->input('namawisata');
+        $wisata['slug'] = Str::slug($request->namawisata);
         $wisata->harga= $request->input('harga');
         $wisata->kategori= $request->input('kategori');
         $wisata->durasi= $request->input('durasi');
@@ -174,19 +179,18 @@ class DatawisataController extends Controller
 
             return view('dashboard.data-wisata',compact('wisata'));
     }
-
-    
+   
     // view data wisata admin
     public function wisata_admin(){
 
         $wisata = DB::table('wisata')
         ->join('users', 'wisata.id_mitra', '=', 'users.id')
-        ->select('wisata.*','users.nama_lengkap as nama')
+        ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
+        ->select('wisata.*','users.nama_lengkap as nama','kategori.nama_kategori as kategori')
         ->get();
         
         return view('dashboard.data-wisata-admin',['wisata' => $wisata]);
     }
-
 
     // search data wisata admin
     public function search_data_wisata_admin(Request $request)

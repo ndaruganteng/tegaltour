@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Models\wisata;
+use App\Models\kategori;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,16 +14,25 @@ class WisataController extends Controller
     // menampilkan data dari table wisata
     public function index()
     {
-        $wisata = DB::table('wisata')->inRandomOrder()->get();
-        return view('landing.wisata', ['wisata' => $wisata]);
+        $kategori = kategori::all();
+        $wisata = DB::table('wisata')
+        ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
+        ->select('wisata.*', 'kategori.nama_kategori as kategori')
+        ->inRandomOrder()->get();
+ 
+        return view('landing.wisata', ['wisata' => $wisata],compact('kategori'));
     }
 
     // search wisata
     public function search(Request $request)
     {
+       $kategori = kategori::all();
         $keyword = $request->input('search');
-        $wisata = wisata::where('namawisata', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('tanggalberangkat','LIKE', '%' . $keyword . '%')
+        $wisata = DB::table('wisata')
+            ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
+            ->select('wisata.*', 'kategori.nama_kategori as kategori')
+            ->where('namawisata', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('tanggalberangkat', 'LIKE', '%' . $keyword . '%')
             ->orWhere('kategori', 'LIKE', '%' . $keyword . '%')
             ->orWhere('harga', 'LIKE', '%' . $keyword . '%')
             ->orWhere('durasi', 'LIKE', '%' . $keyword . '%')
@@ -31,17 +41,20 @@ class WisataController extends Controller
             ->orWhere('deskripsi', 'LIKE', '%' . $keyword . '%')
             ->get();
 
-            return view('landing.wisata',compact('wisata'));
+            return view('landing.wisata',compact('wisata','kategori'));
     }
 
     // search range tanggal
     public function search_date(Request $request)
     {
+       $kategori = kategori::all();
         $keyword = $request->input('search_date');
-        $wisata = wisata::where('tanggalberangkat', 'LIKE', '%' . $keyword . '%')
-            ->get();
-
-            return view('landing.wisata',compact('wisata'));
+        $wisata = DB::table('wisata')
+        ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
+        ->select('wisata.*', 'kategori.nama_kategori as kategori')
+        ->where('tanggalberangkat', 'LIKE', '%' . $keyword . '%')
+        ->get();
+        return view('landing.wisata',compact('wisata','kategori'));
     }
 
     

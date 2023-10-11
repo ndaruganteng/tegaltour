@@ -27,12 +27,12 @@
               <div class="small-box bg-info">
                 <div class="inner">
                   <h3>{{ $totalwisataadmin }}</h3>
-                  <p>Data Wisata</p>
+                  <p>Data Paket Wisata</p>
                 </div>
                 <div class="icon">
                   <i class="fa-solid fa-store"></i>
                 </div>
-                <a href="{{ route('request-mitra.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('data-wisata-admin.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <div class="col-lg-6">
@@ -78,7 +78,7 @@
                         <p>Total Wisata</p>
                       </div>
                       <div class="icon">
-                      <i class=" ion fa-solid fa-cart-shopping"></i>
+                      <i class=" ion fa-solid fa-store"></i>
                       </div>
                       <a href="{{ route('data-wisata.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                   </div>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('id_mitra');
             $table->string ('image')->default("");
             $table->string('namawisata');
+            $table->string('slug');
             $table->string('harga');
             $table->string('durasi');
             $table->string('kategori');

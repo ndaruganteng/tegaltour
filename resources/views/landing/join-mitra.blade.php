@@ -111,7 +111,7 @@
         </div>
     </div>
 
-    <div class="content fAQs border ">
+    <div class="content fAQs border">
         <div class="container mt-5 mb-5">
             <h2 class="text-center fw-bold mb-3">FAQs</h2>
             <div class="row">

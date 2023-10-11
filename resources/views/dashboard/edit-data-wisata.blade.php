@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2 class="m-0 ">Edit Data Wisata</h2>
+                    <h2 class="m-0 ">Edit Paket Wisata</h2>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -23,7 +23,7 @@
                 <div class="col-12 grid-margin">
                     <div class="card card-secondary">
                         <div class="card-header">
-                            <h3 class="text-center ">Edit Data Wisata</h3>
+                            <h3 class="text-center ">Edit Paket Wisata</h3>
                         </div>
                         <form class="form-sample" action="{{ url('/data-wisata/update/'.$wisata->id_wisata) }}" method="post" enctype="multipart/form-data">
                              @csrf
@@ -49,7 +49,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="namawisata" class="col-sm-3 col-form-label">Nama Wisata</label>
+                                            <label for="namawisata" class="col-sm-3 col-form-label">Nama Paket Wisata</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" value="{{ $wisata->namawisata}}"  name="namawisata">
                                             </div>
@@ -65,11 +65,24 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <!-- <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="kategori" class="col-sm-3 col-form-label">Kategori</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" value="{{ $wisata->kategori}}" name="kategori">    
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="kategori" class="col-sm-3 col-form-label">Kategori</label>
+                                            <div class="col-sm-9">
+                                                <select class="custom-select form-control" name="kategori">
+                                                    <option value="Wisata Alam" {{ $wisata->kategori === 'Wisata Alam' ? 'selected' : '' }}>Wisata Alam</option>
+                                                    <option value="Wisata Keluarga" {{ $wisata->kategori === 'Wisata Keluarga' ? 'selected' : '' }}>Wisata Keluarga</option>
+                                                    <option value="Wisata Religi" {{ $wisata->kategori === 'Wisata Religi' ? 'selected' : '' }}>Wisata Religi</option>
+                                                    <option value="Wisata Edukasi" {{ $wisata->kategori === 'Wisata Edukasi' ? 'selected' : '' }}>Wisata Edukasi</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

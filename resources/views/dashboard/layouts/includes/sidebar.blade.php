@@ -33,27 +33,33 @@
         <li class="nav-item">
           <a href="{{route('data-wisata-admin.index')}}" class="nav-link">
             <i class="nav-icon fa-solid fa-store"></i>
-            <p>Data wisata</p>
+            <p>Paket wisata</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="{{route('data-user.index')}}" class="nav-link">
-            <i class="fa-solid fa-user nav-icon"></i>
+            <i class="fa-solid fa-users nav-icon"></i>
             <p>Data User</p>
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{route('data-kategori.index')}}" class="nav-link">
+            <i class="nav-icon fa-solid fa-list"></i>
+            <p>Data Kategori</p>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
           <a href="{{route('request-mitra.index')}}" class="nav-link">
             <i class="nav-icon fa-regular fa-handshake"></i>
             <p>Request Mitra</p>
           </a>
-        </li>
+        </li> -->
         @endif
         @if(auth()->user()->role == "mitra")
         <li class="nav-item">
           <a href="{{route('data-wisata.index')}}" class="nav-link">
             <i class="nav-icon fa-solid fa-store"></i>
-            <p>Data Wisata</p>
+            <p>Paket Wisata</p>
           </a>
         </li>
         <li class="nav-item">
@@ -64,7 +70,7 @@
         </li>
         <li class="nav-item">
           <a href="{{route('data-order.index')}}" class="nav-link">
-            <i class="nav-icon fa-solid fa-coins"></i>
+            <i class="nav-icon fa-solid fa-cart-shopping"></i>
             <p>Data Order</p>
           </a>
         </li>
