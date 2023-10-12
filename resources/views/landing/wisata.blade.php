@@ -53,13 +53,26 @@
                     <div class="card shadow-0 border rounded-0">
                         <div class="card-header fs-5 text-center">FILTER</div>
                         <div class="card-body">
-                            <h5 class="mb-3 card-title">Kategori</h5>
-                            <select id="filter" class="form-select">
-                                <option value="">Semua Kategori</option>
-                                @foreach($kategori as $data)
-                                <option value="{{$data->nama_kategori}}">{{$data->nama_kategori}}</option>
-                                @endforeach                               
-                            </select>                         
+                            <div class="kategori">
+                                <h5 class="mb-3 card-title">Kategori</h5>
+                                <select id="filter" class="form-select">
+                                    <option value="">Semua Kategori</option>
+                                    @foreach($kategori as $data)
+                                    <option value="{{$data->nama_kategori}}">{{$data->nama_kategori}}</option>
+                                    @endforeach                               
+                                </select>
+                            </div>
+                            <!-- <div class="harga mt-3">
+                                <h5 class="mb-3 card-title">Harga</h5>
+                                <select id="filter_harga" class="form-select">
+                                    <option value="">Semua Harga</option>
+                                    <option value="10000">Rp 10000</option>                             
+                                    <option value="15000">Rp 15000</option>                             
+                                    <option value="20000">Rp 20000</option>                             
+                                    <option value="25000">Rp 25000</option>                             
+                                    <option value="50000">Rp 50000</option>                             
+                                </select> 
+                            </div> -->                                                     
                         </div> 
                     </div>
                 </div>
@@ -105,13 +118,7 @@
                                     <a href="/{{ ($item->id_wisata) }}/{{$item->slug}}" class="mt-2">
                                         <p>{{ $item->namawisata }}</p>
                                     </a>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="durasi">
-                                            <i class="fa-regular fa-clock"></i>
-                                            <small>{{ $item->durasi }}</small>
-                                        </div>
-                                        <h3 class="float-right">Rp {{ $item->harga }}</h3>
-                                    </div>
+                                    <h3 class="card-text harga">Rp {{ $item->harga }} <span style="color: grey;">/orang</span></h3>
                                 </div>                      
                             </div>  
                         </div>                        
@@ -165,5 +172,6 @@
 
     filterItems();
 </script>
+
 
 @endsection

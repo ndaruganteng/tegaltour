@@ -65,9 +65,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){
 
     //DATA REKENINGG
     Route::get('/data-rekening', [DatarekeningController::class, 'index'])->name('data-rekening.index');
-    Route::get('/tambah-data-rekening', [DatarekeningController::class, 'tambah'])->name('tambah-data-rekening.index');
     Route::post('/data-rekening', [DatarekeningController::class, 'store'])->name('Rekening.index');
-    Route::get('/data-rekening/edit/{id_rekening}', [DatarekeningController::class, 'edit'])->name('edit-data-rekening.index');
     Route::put('/data-rekening/update/{id_rekening}', [DatarekeningController::class, 'update'])->name('updateRekening.index');
     Route::get('/data-rekening/hapus/{id_rekening}', [DatarekeningController::class, 'hapus'])->name('hapus.index');
     Route::get('/search_data_rekening',[DatarekeningController::class, 'search_data_rekening'])->name('rekening.search_data_rekening');
@@ -104,7 +102,6 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     Route::put('/data-kategori/update/{id_rekening}', [DatakategoriController::class, 'update'])->name('updateKategori.index');
     // Route::get('/data-kategori/hapus/{id_kategori}', [DatakategoriController::class, 'hapus'])->name('hapus.index');
     Route::delete('data-kategori/delete/element/{id}', [DatakategoriController::class, 'deleteElement'])->name('delete.element');
-
 
  });
 
@@ -149,7 +146,6 @@ Route::get('/request-mitra', [RequestmitraController::class, 'index'])->name('re
 Route::post('/join-mitra', [RequestmitraController::class, 'store'])->name('Mitra.index');
 Route::get('/request-mitra/hapus/{id_mitra}', [RequestmitraController::class, 'hapus'])->name('hapus.index');
 Route::get('/search_data_mitra',[RequestmitraController::class, 'search_data_mitra'])->name('mitra.search_data_mitra');
-
 
 // ResetPassword
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');

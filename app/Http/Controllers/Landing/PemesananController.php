@@ -26,7 +26,6 @@ class PemesananController extends Controller
         $pemesanan->jumlah_orang = $request->input('jumlah_orang');
         $pemesanan->harga_satuan = $request->input('harga_satuan');
         $pemesanan->harga_total = $request->input('harga_total');
-        $pemesanan->tanggal_berangkat = $request->input('tanggal_berangkat');
         $pemesanan->status = null;
         $pemesanan->status_perjalanan = null;
         $pemesanan['date']= Carbon::now($request->date);
@@ -72,14 +71,15 @@ class PemesananController extends Controller
                 'users.nama_lengkap as nama_pengguna', 
                 'wisata.namawisata as nama_wisata',
                 'wisata.image as image',
+                'wisata.tanggalberangkat as tanggal',
                 'pemesanan.status as status',
                 'pemesanan.status_perjalanan as status_perjalanan',
                 'pemesanan.date as date',
                 'pemesanan.harga_total as hargatotal',
                 'pemesanan.bukti_pembayaran as bukti_pembayaran',
                 'pemesanan.jumlah_orang as jumlah_orang', 
-                'wisata.harga as harga',
-                'pemesanan.tanggal_berangkat as tanggal')
+                'wisata.harga as harga')
+                
             ->get();
      
         return view('dashboard.data-order', ['pemesanan' => $pemesanan]);
@@ -125,18 +125,19 @@ class PemesananController extends Controller
                 ->select(
                     'pemesanan.id_pemesanan as id_pemesanan',
                     'pemesanan.id_user', 
+                    'pemesanan.id_wisata', 
                     'users.nama_lengkap as nama_pengguna', 
                     'wisata.namawisata as nama_wisata',
                     'wisata.image as image',
+                    'wisata.tanggalberangkat as tanggal',
+                    'wisata.harga as harga',
                     'pemesanan.status as status',
                     'pemesanan.status_perjalanan as status_perjalanan',
                     'pemesanan.date as date',
                     'pemesanan.harga_total as hargatotal',
                     'pemesanan.bukti_pembayaran as bukti_pembayaran',
-                    'pemesanan.jumlah_orang as jumlah_orang', 
-                    'wisata.harga as harga',
-                    'pemesanan.tanggal_berangkat as tanggal',
-                    'pemesanan.id_wisata as id_wisata')
+                    'pemesanan.jumlah_orang as jumlah_orang')
+
                 ->get();
          
             return view('landing.pesanan-saya', ['pemesanan' => $pemesanan]);
@@ -157,14 +158,15 @@ class PemesananController extends Controller
                 'users.nama_lengkap as nama_pengguna', 
                 'wisata.namawisata as nama_wisata',
                 'wisata.image as image',
+                'wisata.tanggalberangkat as tanggal',
+                'wisata.harga as harga',
                 'pemesanan.status as status',
                 'pemesanan.status_perjalanan as status_perjalanan',
                 'pemesanan.date as date',
                 'pemesanan.harga_total as hargatotal',
                 'pemesanan.bukti_pembayaran as bukti_pembayaran',
-                'pemesanan.jumlah_orang as jumlah_orang', 
-                'wisata.harga as harga',
-                'pemesanan.tanggal_berangkat as tanggal')
+                'pemesanan.jumlah_orang as jumlah_orang')
+                
             ->get();
 
         return view('dashboard.status-perjalanan', ['pemesanan' => $pemesanan]);
@@ -208,6 +210,7 @@ class PemesananController extends Controller
                 'users.nama_lengkap as nama_pengguna', 
                 'wisata.namawisata as nama_wisata',
                 'wisata.image as image',
+                'wisata.tanggalberangkat as tanggal',
                 'pemesanan.status as status',
                 'pemesanan.status_perjalanan as status_perjalanan',
                 'pemesanan.date as date',
@@ -215,7 +218,6 @@ class PemesananController extends Controller
                 'pemesanan.bukti_pembayaran as bukti_pembayaran',
                 'pemesanan.jumlah_orang as jumlah_orang', 
                 'wisata.harga as harga',
-                'pemesanan.tanggal_berangkat as tanggal',
                 'pemesanan.id_wisata as id_wisata')
             ->first();
 

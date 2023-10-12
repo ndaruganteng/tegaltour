@@ -47,8 +47,8 @@
                                 <thead>
                                     <tr>
                                         <th>Bukti Tf</th>
-                                        <th>Nama Wisata</th>
-                                        <th>Nama Konsumen</th>
+                                        <th>Nama Paket Wisata</th>
+                                        <th>Nama Pemesan</th>
                                         <th>Tanggal Berangkat</th>
                                         <th>Tanggal Pemesanan</th>
                                         <th>Jumlah Orang</th>
@@ -81,26 +81,30 @@
                                             <td>Rp.{{$p->hargatotal}}</td>
 
                                             <td>
-                                                @if($p->status_perjalanan == 3)
-                                                    <div class="badge badge-success">Selesai </div>
+                                                @if($p->status_perjalanan == null)
+                                                <p class="card-text" > <span class="badge badge-warning">Menunggu</span> </p>
+                                                @elseif($p->status_perjalanan == 2)
+                                                <p class="card-text" ><span class="badge badge-info">Berangkat</span> </p>
+                                                @elseif($p->status_perjalanan == 3)
+                                                <p class="card-text" ><span class="badge badge-success">Selesai</span> </p>
                                                 @endif
                                             </td>
                                             <td>
                                                 @if($p->status == null)
                                                     <div class="badge badge-warning">Belum disetuji </div>
                                                 @else($p->status == 2)
-                                                    <div class="badge badge-success"> Disetuji</div>
+                                                    <div class="badge badge-success"> Dikonfirmasi</div>
                                                 @endif
                                             </td>
                                             <td>
                                                 @if($p->status == null)
                                                     <form  method="post" action="{{route('konfirmasi', ['id_pemesanan'=> $p->id_pemesanan])}}">
-                                                    @csrf
-                                                    @method('put')
-                                                    <button type="submit" class="btn btn-success btn-sm">
-                                                        <i class="fa-solid fa-check mr-2"></i> Setujui 
-                                                    </button>
-                                                </form>
+                                                        @csrf
+                                                        @method('put')
+                                                        <button type="submit" class="btn btn-success btn-sm">
+                                                            <i class="fa-solid fa-check mr-2"></i> Konfirmasi 
+                                                        </button>
+                                                    </form>
                                                 @else
                                                     <a href="/data-order/hapus/{{ $p->id_pemesanan }}">
                                                         <button type="button"  class="btn btn-danger btn-sm">

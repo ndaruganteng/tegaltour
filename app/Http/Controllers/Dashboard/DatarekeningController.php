@@ -24,11 +24,11 @@ class DatarekeningController extends Controller
         return view('dashboard.data-rekening',['rekening' => $rekening]);
     }
 
-    public function tambah()
-    {
-        // memanggil view tambah data wisata
-        return view('dashboard.tambah-data-rekening');
-    }
+    // public function tambah()
+    // {
+    //     // memanggil view tambah data wisata
+    //     return view('dashboard.tambah-data-rekening');
+    // }
 
     public function store(Request $request)
     {
@@ -65,7 +65,7 @@ class DatarekeningController extends Controller
     public function edit($id)
     {
         $rekening =  Rekening:: find($id);
-        return view('dashboard.edit-data-rekening', [
+        return view('dashboard.data-rekening', [
             'method'=> "PUT",
             'action'=> "/data-rekening/edit/{id}'",
             'rekening'=> $rekening

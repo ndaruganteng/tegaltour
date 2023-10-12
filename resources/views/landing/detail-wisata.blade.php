@@ -2,14 +2,14 @@
 
 <div class="content-wrapper">
     <section id="{{$detail_wisata->namawisata}}">
-        <div class="image-tour">
+        <div class="image-tour text-center">
             <img src="{{asset('storage/image/wisata/'.$detail_wisata->image)}}" class="img-fluid" alt="detail-tour image" />
         </div>
         <div class="judul-tour">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-lg-9">
-                        <h1>{{ $detail_wisata->namawisata }}</h1>
+                        <h1 class="fw-bold">{{ $detail_wisata->namawisata }}</h1>
                         <div class="col-lg-12 info-detail border border-start-0 border-end-0">
                             <div class="row">
                                 <div class="col-lg">
@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="col-lg">
                                     <img src="/images/detail-tour/jenis-tour.png" alt="" class="float-left" />
-                                    <h4>Jenis Wisata</h4>
+                                    <h4>Kategori Wisata</h4>
                                     <p>{{ $detail_wisata->kategori }}</p>
                                 </div>
                                 <div class="col-lg">
@@ -28,9 +28,9 @@
                                     <p>{{ $detail_wisata->lokasi }}</p>
                                 </div>
                                 <div class="col-lg">
-                                    <img src="/images/detail-tour/money.png" alt="" class="float-left" />
-                                    <h4>Harga</h4>
-                                    <p>Rp {{ $detail_wisata->harga }}</p>
+                                    <img src="/images/detail-tour/calendar.png" alt="" class="float-left" />
+                                    <h4>Tanggal Berangkat</h4>
+                                    <p>{{ $detail_wisata->tanggalberangkat }}</p>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                                             value="{{ $detail_wisata->id_wisata }}" readonly/>
                                         </div>
                                         <div class="form-outline mb-4" style="display: none;">
-                                            <input class="form-control bg-white" for="namawisata" name="id_mitra"
+                                            <input class="form-control bg-white"  name="id_mitra"
                                             value="{{ $detail_wisata->id_mitra }}" readonly/>
                                         </div>
                                         <div class="form-outline mb-4" style="display: none;">
@@ -139,10 +139,6 @@
                                             <input class="form-control" name="harga_satuan" id="hargasatuan" type="text"
                                                 value="{{ $detail_wisata->harga }}"  onchange="updateHargaTotal()" readonly/>
                                             <label class="form-label" for="hargasatuan">Harga /pax</label>
-                                        </div>
-                                        <div class="form-outline mb-4">
-                                            <input type="date" datepicker id="{{$detail_wisata->namawisata}}" class="form-control" name="tanggal_berangkat" required="required" for="tanggal_berangkat" />
-                                            <label class="form-label" for="tanggalberangkat">Pilih Tanggal</label>
                                         </div>
                                         <div class="form-outline mb-4">
                                             <input type="number" name="jumlah_orang" id="jumlahorang" class="form-control" onchange="updateHargaTotal()"/>

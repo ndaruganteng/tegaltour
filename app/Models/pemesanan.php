@@ -16,7 +16,6 @@ class pemesanan extends Model
       'jumlah_orang',
       'harga_satuan',
       'harga_total',
-      'tanggal_berangkat',
       'status',
       'status_perjalanan',
       'date',

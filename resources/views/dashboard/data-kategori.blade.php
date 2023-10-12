@@ -52,15 +52,8 @@
                                         <th>Kategori</th>
                                         <th>Aksi</th>
                                     </tr>
-                                </thead>
-
-                            
-                                
-                                
+                                </thead>                   
                                 <tbody>
-
-                                
-
                                 @foreach($kategori as $p)
                                     <tr>
                                     <td>{{ $loop->iteration }}</td>
@@ -102,7 +95,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <!-- modal edit -->
                                 <div class="modal fade" id="editkategori{{ $p->id_kategori }}" tabindex="-1" role="dialog" aria-labelledby="editkategoriTitle" aria-hidden="true">
                                     <div class="modal-dialog " role="document">

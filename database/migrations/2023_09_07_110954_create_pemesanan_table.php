@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('jumlah_orang');
             $table->string('harga_satuan');
             $table->string('harga_total');
-            $table->string('tanggal_berangkat');
             $table->string('status')->nullable();
             $table->string('status_perjalanan')->nullable();
             $table->string ('bukti_pembayaran')->nullable();

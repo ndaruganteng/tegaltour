@@ -26,6 +26,7 @@ class TransaksiController extends Controller
             'users.nama_lengkap as nama_pengguna',
             'wisata.namawisata as nama_wisata',
             'wisata.image as image',
+            'wisata.tanggalberangkat as tanggal',
             'pemesanan.status as status',
             'pemesanan.status_perjalanan as status_perjalanan',
             'pemesanan.date as date',
@@ -33,9 +34,8 @@ class TransaksiController extends Controller
             'pemesanan.bukti_pembayaran as bukti_pembayaran',
             'pemesanan.jumlah_orang as jumlah_orang',
             'wisata.harga as harga',
-            'pemesanan.tanggal_berangkat as tanggal',
-            'pemesanan.id_mitra as id_mitra'
-        )
+            'pemesanan.id_mitra as id_mitra')
+        
         ->get();
     
     $rekening = DB::table('rekening')

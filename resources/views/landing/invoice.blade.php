@@ -32,6 +32,7 @@
                     <thead>
                         <tr class="text-center">
                             <th>Wisata</th>
+                            <th>Tanggal Berangkat</th>
                             <th>Jumlah Orang</th>
                             <th>Harga/pax</th>
                             <th>Total Harga</th>
@@ -40,6 +41,7 @@
                     <tbody>
                         <tr class="text-center">
                             <td>{{$pemesanan->nama_wisata}}</td>
+                            <td>{{$pemesanan->tanggal}}</td>
                             <td>{{$pemesanan->jumlah_orang}}</td>
                             <td>Rp. {{$pemesanan->harga}} </td>
                             <td>Rp. {{$pemesanan->hargatotal}}</td>

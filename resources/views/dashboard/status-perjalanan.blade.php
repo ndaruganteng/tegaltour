@@ -62,7 +62,7 @@
                                             <td>{{ $p->jumlah_orang}}</td>
                                             <td>
                                                 @if($p->status_perjalanan == null)
-                                                    <div class="badge badge-warning">Belum Berangkat </div>
+                                                    <div class="badge badge-warning">Menunggu </div>
                                                 @elseif($p->status_perjalanan == 2)
                                                     <div class="badge badge-info">Berangkat </div>
                                                 @elseif($p->status_perjalanan == 3)

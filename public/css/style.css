@@ -152,6 +152,8 @@
     color: red;
 }
 
+
+
 /* tour */
 .tour h1 {
     font-size: 30px;
@@ -501,6 +503,15 @@ c.mitra .card {
     color: gold;
   }
 
+  .fAQs{
+    margin-bottom: 100px;
+  }
+
+  .image-tour {
+    width: 100%;
+    background-size: cover;
+    margin-top: 100px;
+}
   
 
 
@@ -538,7 +549,7 @@ c.mitra .card {
     }
 
     .image-tour {
-        margin-top: -100px;
+        margin-top: -150px;
         width: 100%;
         background-size: cover;
     }
