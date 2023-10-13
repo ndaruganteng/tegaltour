@@ -65,23 +65,14 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <!-- <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="kategori" class="col-sm-3 col-form-label">Kategori</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="{{ $wisata->kategori}}" name="kategori">    
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="kategori" class="col-sm-3 col-form-label">Kategori</label>
                                             <div class="col-sm-9">
                                                 <select class="custom-select form-control" name="kategori">
-                                                    <option value="Wisata Alam" {{ $wisata->kategori === 'Wisata Alam' ? 'selected' : '' }}>Wisata Alam</option>
-                                                    <option value="Wisata Keluarga" {{ $wisata->kategori === 'Wisata Keluarga' ? 'selected' : '' }}>Wisata Keluarga</option>
-                                                    <option value="Wisata Religi" {{ $wisata->kategori === 'Wisata Religi' ? 'selected' : '' }}>Wisata Religi</option>
-                                                    <option value="Wisata Edukasi" {{ $wisata->kategori === 'Wisata Edukasi' ? 'selected' : '' }}>Wisata Edukasi</option>
+                                                @foreach($kategori as $data)
+                                                <option value="{{$data->id_kategori}}" {{ $data->nama_kategori == $wisata->kategori ? 'selected' : '' }}>{{$data->nama_kategori}}</option>
+                                                @endforeach
                                                 </select>
                                             </div>
                                         </div>

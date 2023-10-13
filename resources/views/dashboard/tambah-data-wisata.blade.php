@@ -75,15 +75,6 @@
                                             </div>                                        
                                         </div>
                                     </div>
-                                    <!-- <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="kategori" class="col-sm-3 col-form-label">Kategori</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" required="required"
-                                                    name="kategori" placeholder="Masukan Kategori Wisata">
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="harga" class="col-sm-3 col-form-label">Harga Wisata</label>

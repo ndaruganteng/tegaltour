@@ -90,20 +90,20 @@ class DatawisataController extends Controller
 
     // method untuk edit data wisata
     public function edit($id)
-    {
+    {   
+        $kategori = kategori::all();
         $wisata =  Wisata:: find($id);
         return view('dashboard.edit-data-wisata', [
             'method'=> "PUT",
             'action'=> "/data-wisata/edit/{id}'",
             'wisata'=> $wisata
-        ]);
+        ],compact('kategori'));
     }
 
      // update data wisata
      public function update(Request $request,$id)
     {
          $wisata = Wisata::find($id); 
-
          $validator = $request -> validate([
             'namawisata' => 'required',
             'harga' => 'required',

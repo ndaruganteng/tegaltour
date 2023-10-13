@@ -60,42 +60,18 @@
                                             <button class="btn btn-warning btn-sm"  data-toggle="modal" data-target="#editkategori{{ $p->id_kategori }}">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalHapus{{ $p->id_kategori }}">
-                                                <i class="fas fa-trash"></i> 
-                                            </button>
+                                            <a href="/data-kategori/hapus/{{ $p->id_kategori }}" class="btn btn-danger btn-sm delete-kategori" id="delete-kategori">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
-                                <!-- Modal Hapus -->
-                                <div class="modal fade" id="modalHapus{{ $p->id_kategori }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Apakah Anda yakin ingin menghapus Kategori ini?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                                <form action="{{ route('delete.element', $p->id_kategori) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- modal edit -->
                                 <div class="modal fade" id="editkategori{{ $p->id_kategori }}" tabindex="-1" role="dialog" aria-labelledby="editkategoriTitle" aria-hidden="true">
                                     <div class="modal-dialog " role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="editkategoriTitle">edit Kategori Wisata</h5>
+                                                <h5 class="modal-title" id="editkategoriTitle">Edit Kategori Wisata</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -119,6 +95,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- end modal edit -->
                                 @endforeach
                             </table>
                         </div>
@@ -154,6 +131,33 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const deleteButtons = document.querySelectorAll('.delete-kategori');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault(); 
+
+                Swal.fire({
+                    title: 'Konfirmasi Hapus Kategori',
+                    text: 'Apakah Anda yakin ingin menghapus kategori ini?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, Hapus',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+    
+                        window.location.href = button.getAttribute('href');
+                    }
+                });
+            });
+        });
+    </script>
+
 
 </div>
 

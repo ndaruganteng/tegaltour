@@ -2,7 +2,7 @@
 @section('content')
 @include('sweetalert::alert')
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 <div class="content-wrapper">
 
@@ -71,7 +71,7 @@
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                             <a href="/data-rekening/hapus/{{ $p->id_rekening }}" class="btn btn-danger btn-sm delete-button">
-                                                    <i class="fas fa-trash"></i>
+                                                <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -226,6 +226,8 @@
             });
         });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </div>

@@ -77,12 +77,12 @@ class DatakategoriController extends Controller
         return redirect('data-kategori')->with('success','Data kategori Telah Diupdate!');
     }
 
-    public function deleteElement($id)
+
+    public function hapus($id)
     {
         $kategori = Kategori::find($id);
-         $kategori->delete(); 
-
-        return back()->with('success', 'Kategori berhasil dihapus');
+        $kategori->delete(); 
+        return back() -> with('success', "Data kategori berhasil dihapus!");
     }
 
     public function search_data_kategori(Request $request)

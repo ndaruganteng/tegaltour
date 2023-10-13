@@ -95,8 +95,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     //DATA kATERGORI
     Route::get('/data-kategori', [DatakategoriController::class, 'index'])->name('data-kategori.index');
     Route::post('/data-kategori', [DatakategoriController::class, 'store'])->name('Kategori.index');
-    Route::put('/data-kategori/update/{id_rekening}', [DatakategoriController::class, 'update'])->name('updateKategori.index');
-    Route::delete('data-kategori/delete/element/{id}', [DatakategoriController::class, 'deleteElement'])->name('delete.element');
+    Route::put('/data-kategori/update/{id_kategori}', [DatakategoriController::class, 'update'])->name('updateKategori.index');
+    Route::get('/data-kategori/hapus/{id_kategori}', [DatakategoriController::class, 'hapus'])->name('hapus.index');
     Route::get('/search_data_kategori',[DatakategoriController::class, 'search_data_kategori'])->name('kategori.search_data_kategori');
 
  });

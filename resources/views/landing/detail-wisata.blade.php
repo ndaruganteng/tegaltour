@@ -23,16 +23,20 @@
                                     <p>{{ $detail_wisata->kategori }}</p>
                                 </div>
                                 <div class="col-lg">
-                                    <img src="/images/detail-tour/lokasi-tour.png" alt="" class="float-left" />
-                                    <h4>Lokasi Wisata</h4>
-                                    <p>{{ $detail_wisata->lokasi }}</p>
-                                </div>
-                                <div class="col-lg">
                                     <img src="/images/detail-tour/calendar.png" alt="" class="float-left" />
                                     <h4>Tanggal Berangkat</h4>
                                     <p>{{ $detail_wisata->tanggalberangkat }}</p>
                                 </div>
+                                <div class="col-lg">
+                                    <img src="/images/detail-tour/money.png" alt="" class="float-left" />
+                                    <h4>Harga</h4>
+                                    <p>{{ $detail_wisata->harga }} /orang</p>
+                                </div>
                             </div>
+                        </div>
+                        <div class="col-lg-12 deskripsi">
+                            <h3>Highlight : </h3>
+                            <p> {!! $detail_wisata->lokasi !!}</p>
                         </div>
                         <div class="col-lg-12 deskripsi">
                             <h3>Deskripsi</h3>

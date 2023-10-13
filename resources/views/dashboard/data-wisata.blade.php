@@ -73,7 +73,7 @@
                                                     <i class="fas fa-edit"></i>
                                                 </button>
                                             </a>
-                                            <a href="/data-wisata/hapus/{{ $p->id_wisata }}" class="btn btn-danger btn-sm delete-button-wisata">
+                                            <a href="/data-wisata/hapus/{{ $p->id_wisata }}" class="btn btn-danger btn-sm delete-wisata">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
@@ -88,22 +88,20 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        const deleteButtons = document.querySelectorAll('.delete-button-wisata');
+        const deleteButtons = document.querySelectorAll('.delete-wisata');
         deleteButtons.forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
-
+                
                 Swal.fire({
-                    title: 'Konfirmasi Hapus',
-                    text: 'Apakah Anda yakin ingin menghapus data Paket Wisata ini?',
+                    title: 'Apakah Anda yakin Menghapus Data Paket Wisata Ini?',
+                    text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Ya, Hapus',
-                    cancelButtonText: 'Batal'
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Hapus!'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = e.target.getAttribute('href');
@@ -113,7 +111,7 @@
         });
     </script>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </div>
 

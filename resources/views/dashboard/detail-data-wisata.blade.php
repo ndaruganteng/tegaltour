@@ -27,7 +27,7 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                            <img src="{{asset('storage/image/wisata/'.$data_wisata_detail->image)}}" class="img-thumbnail" alt="Wild Landscape"/>
+                            <img src="{{asset('storage/image/wisata/'.$data_wisata_detail->image)}}" class="img-thumbnail" style="width:100%" alt="Wild Landscape"/>
                             </div>
                         </div>
                     </div>
