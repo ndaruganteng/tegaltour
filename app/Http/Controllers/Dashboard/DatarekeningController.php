@@ -115,7 +115,7 @@ class DatarekeningController extends Controller
            File::delete($path);
        }
        $rekening->delete(); 
-       return back() -> with('toast_error', "Data rekening berhasil dihapus!");
+       return back() -> with('success', "Data rekening berhasil dihapus!");
    }
 
       // search data rekening

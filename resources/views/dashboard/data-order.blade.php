@@ -106,10 +106,8 @@
                                                         </button>
                                                     </form>
                                                 @else
-                                                    <a href="/data-order/hapus/{{ $p->id_pemesanan }}">
-                                                        <button type="button"  class="btn btn-danger btn-sm">
+                                                    <a href="/data-order/hapus/{{ $p->id_pemesanan }}" class="btn btn-danger btn-sm delete-button-pemesanan">
                                                             <i class="fa-solid fa-trash mr-1"></i> Hapus
-                                                        </button>
                                                     </a>
                                                 @endif
                                             </td>
@@ -144,6 +142,32 @@
             </div>
         </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const deleteButtons = document.querySelectorAll('.delete-button-pemesanan');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Konfirmasi Hapus',
+                    text: 'Apakah Anda yakin ingin menghapus data ini?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, Hapus',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = e.target.getAttribute('href');
+                    }
+                });
+            });
+        });
+    </script>
 
 
 

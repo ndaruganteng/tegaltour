@@ -59,31 +59,23 @@ class DatakategoriController extends Controller
     }
 
 
-        // update data rekening
-        public function update(Request $request,$id)
-        {
-            $kategori = Kategori::find($id); 
-            $validator = $request -> validate([
-                'nama_kategori' => 'required|unique:kategori,nama_kategori',
-            ], 
-            [
-                "nama_kategori.required" => "Please enter nama kategori",
-                'nama_kategori.unique' => 'Nama kategori sudah ada .',
-            ]);
-    
-            $kategori->nama_kategori = $request->nama_kategori;
-            $kategori->save();
-    
-            return redirect('data-kategori')->with('success','Data kategori Telah Diupdate!');
-       }
+    // update data rekening
+    public function update(Request $request,$id)
+    {
+        $kategori = Kategori::find($id); 
+        $validator = $request -> validate([
+            'nama_kategori' => 'required|unique:kategori,nama_kategori',
+        ], 
+        [
+            "nama_kategori.required" => "Please enter nama kategori",
+            'nama_kategori.unique' => 'Nama kategori sudah ada .',
+        ]);
 
-    // fungsi hapus kategori
-//     public function hapus($id)
-//    {
-//        $kategori = Kategori::find($id);
-//        $kategori->delete(); 
-//        return back()->with('toast_error', "Data kategori berhasil dihapus!");
-//    }
+        $kategori->nama_kategori = $request->nama_kategori;
+        $kategori->save();
+
+        return redirect('data-kategori')->with('success','Data kategori Telah Diupdate!');
+    }
 
     public function deleteElement($id)
     {
@@ -91,5 +83,14 @@ class DatakategoriController extends Controller
          $kategori->delete(); 
 
         return back()->with('success', 'Kategori berhasil dihapus');
+    }
+
+    public function search_data_kategori(Request $request)
+    {
+        $keyword = $request->input('search_data_kategori');
+        $kategori = kategori::where('nama_kategori', 'LIKE', '%' . $keyword . '%')
+            ->get();
+
+            return view('dashboard.data-kategori',compact('kategori'));
     }
 }

@@ -26,6 +26,8 @@ use App\http\Controllers\Auth\LoginController;
 use App\http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
+
+
 //AUTH
 Route::group(['middleware' => ['guest']], function(){
     Route::get('/login', [LoginController::class, 'index'])->name('login.index');
@@ -42,12 +44,6 @@ Route::group(['middleware' => ['auth', 'ceklevel:user']], function(){
     Route::post('/pesanan-saya', [UlasanController::class, 'store'])->name('Ulasan.index');
     Route::get('/history', [HistoryController::class, 'history_user'])->name('history.index');
 });
-
-//LANDING
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
-Route::get('/pesanan-saya', [PemesananController::class, 'pesanan_saya'])->name('pesanan-saya.index');
-Route::get('/join-mitra', [RequestmitraController::class, 'tambah'])->name('join-mitra.index');
 
 
 Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){  
@@ -100,10 +96,11 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     Route::get('/data-kategori', [DatakategoriController::class, 'index'])->name('data-kategori.index');
     Route::post('/data-kategori', [DatakategoriController::class, 'store'])->name('Kategori.index');
     Route::put('/data-kategori/update/{id_rekening}', [DatakategoriController::class, 'update'])->name('updateKategori.index');
-    // Route::get('/data-kategori/hapus/{id_kategori}', [DatakategoriController::class, 'hapus'])->name('hapus.index');
     Route::delete('data-kategori/delete/element/{id}', [DatakategoriController::class, 'deleteElement'])->name('delete.element');
+    Route::get('/search_data_kategori',[DatakategoriController::class, 'search_data_kategori'])->name('kategori.search_data_kategori');
 
  });
+
 
  Route::group(['middleware' => ['auth', 'ceklevel:admin,mitra']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
@@ -153,4 +150,7 @@ Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPa
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
-
+//LANDING
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
+Route::get('/pesanan-saya', [PemesananController::class, 'pesanan_saya'])->name('pesanan-saya.index');

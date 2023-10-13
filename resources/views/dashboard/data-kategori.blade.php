@@ -28,9 +28,9 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between">
                                 <div class="card-tools">
-                                    <form action="#" method="GET">
+                                    <form action="{{route('kategori.search_data_kategori') }}" method="GET">
                                         <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="search_data_rekening" class="form-control float-right" placeholder="Search">
+                                            <input type="text" name="search_data_kategori" class="form-control float-right" placeholder="Search">
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-default">
                                                     <i class="fas fa-search"></i>
@@ -48,7 +48,6 @@
                             <table class="table table-hover text-nowrap text-center">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
                                         <th>Kategori</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -56,15 +55,11 @@
                                 <tbody>
                                 @foreach($kategori as $p)
                                     <tr>
-                                    <td>{{ $loop->iteration }}</td>
                                         <td>{{ $p->nama_kategori}}</td>
                                         <td>
                                             <button class="btn btn-warning btn-sm"  data-toggle="modal" data-target="#editkategori{{ $p->id_kategori }}">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <!-- <a href="/data-kategori/hapus/{{ $p->id_kategori }}" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i> 
-                                            </a> -->
                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalHapus{{ $p->id_kategori }}">
                                                 <i class="fas fa-trash"></i> 
                                             </button>

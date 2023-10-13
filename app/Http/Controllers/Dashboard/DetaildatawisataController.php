@@ -22,7 +22,12 @@ class DetaildatawisataController extends Controller
     // detail data wisata admin
     public function showdetailadmin($id)
     {      
-        $detail_data_wisata_admin = wisata::findOrFail($id);
+        $detail_data_wisata_admin = DB::table('wisata')
+        ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
+        ->select('wisata.*', 'kategori.nama_kategori as kategori')
+        ->where('id_wisata', $id)
+        ->first();
+        
         return view('dashboard.detail-data-wisata-admin', compact('detail_data_wisata_admin'));
     }
 

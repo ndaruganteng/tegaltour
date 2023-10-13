@@ -48,6 +48,7 @@
                                         <th>Image</th>
                                         <th>Nama Paket Wisata</th>
                                         <th>Nama Mitra</th>
+                                        <th>Tanggal Berangkat</th>
                                         <th>Kategori</th>
                                         <th>harga</th>
                                         
@@ -61,6 +62,7 @@
                                         </td>
                                         <td>{{ $p->namawisata}}</td>
                                         <td>{{ $p->nama}}</td>
+                                        <td>{{ $p->tanggalberangkat}}</td>
                                         <td>
                                             <span class="badge badge-dark">{{ $p->kategori}}</span>
                                         </td>

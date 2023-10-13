@@ -55,9 +55,8 @@
                                             <div>
                                                 @if($p->bukti_pembayaran)
                                                 @else
-                                                <a href="/data-order/hapus/{{ $p->id_pemesanan }}"
-                                                    class="btn  btn-danger btn-sm shadow-0">
-                                                    <i class="fa-solid fa-circle-xmark me-2"></i>Cancel
+                                                <a href="/data-order/hapus/{{ $p->id_pemesanan }}" class="btn btn-danger btn-sm shadow-0 delete-button-pemesanan" >
+                                                        <i class="fa-solid fa-circle-xmark me-2"></i> Cancel
                                                 </a>
                                                 <button type="button" class="btn btn-dark shadow-0 btn-sm"
                                                     data-toggle="modal" data-target="#buktiModal{{$p->id_pemesanan}}"
@@ -121,6 +120,32 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const deleteButtons = document.querySelectorAll('.delete-button-pemesanan');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Konfirmasi Batal',
+                    text: 'Apakah Anda yakin ingin membatalkan Pemesanan Paket wisata ini?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, Batal',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = e.target.getAttribute('href');
+                    }
+                });
+            });
+        });
+    </script>
     
 </div>
 

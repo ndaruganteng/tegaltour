@@ -2,6 +2,8 @@
 @section('content')
 @include('sweetalert::alert')
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <div class="content-wrapper">
 
     <div class="content-header">
@@ -65,14 +67,11 @@
                                         <td>{{ $p->no_rekening}}</td>
                                         <td>{{ $p->nama_rekening}}</td>
                                         <td>
-                                            <!-- <a href="/data-rekening/edit/{{ $p->id_rekening }}" class="btn btn-warning btn-sm">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a> -->
                                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editrekening{{ $p->id_rekening }}">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <a href="/data-rekening/hapus/{{ $p->id_rekening }}" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
+                                            <a href="/data-rekening/hapus/{{ $p->id_rekening }}" class="btn btn-danger btn-sm delete-button">
+                                                    <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -204,26 +203,31 @@
                 }
             }
     </script>
+
     <script>
-            function previewImage(event) {
-                var input = event.target;
-                var preview = document.getElementById('image-preview');
-
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        preview.src = e.target.result;
-                        preview.style.display = 'block';
-                    };
-
-                    reader.readAsDataURL(input.files[0]);
-                } else {
-                    preview.src = "";
-                    preview.style.display = 'none';
-                }
-            }
+        const deleteButtons = document.querySelectorAll('.delete-button');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                Swal.fire({
+                    title: 'Apakah Anda yakin Menghapus Data Rekening Ini?',
+                    text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Hapus!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = e.target.getAttribute('href');
+                    }
+                });
+            });
+        });
     </script>
+
+
 </div>
 
 

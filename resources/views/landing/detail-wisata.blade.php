@@ -46,10 +46,10 @@
                             <div class="card text-center border shadow-2 rounded-0">
                                 <div class="card-header d-flex justify-content-between">
                                     <h3>lokasi wisata</h3>
-                                    <a class="text-black" href="{{ $detail_wisata->linklokasi }}" target="_blank"
-                                        role="button">
+                                    <a class="btn btn-dark btn-rounded btn-sm shadow-0" href="{{ $detail_wisata->linklokasi }}" target="_blank"
+                                        role="button" style="text-transform: lowercase;"> 
                                         <i class="fa-solid fa-location-dot me-1"></i>
-                                        {{ $detail_wisata->lokasi }}
+                                        detail lokasi
                                     </a>
                                 </div>
                                 <div class="card-body">
@@ -111,8 +111,8 @@
                         <div class="col-lg-12 harga">
                             <div class="card text-center border border-2 shadow-0">
                                 <div class="card-body">
-                                    <h1>Harga /pax</h1>
-                                    <p>Rp {{ $detail_wisata->harga }}</p>
+                                    <h1>Harga /orang</h1>
+                                    <p>Rp.{{ $detail_wisata->harga }}</p>
                                 </div>
                             </div>
                         </div>

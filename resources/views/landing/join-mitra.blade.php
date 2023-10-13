@@ -25,8 +25,8 @@
                         </div>
                         <div class="form-outline mb-4">
                             <input type="text" class="form-control form-control-lg"
-                            placeholder="Nama Lengkap" required="required" name="nama_lengkap" />
-                            <label class="form-label" for="nama_lengkap">Nama Lengkap</label>
+                            placeholder="Nama Bisnis" required="required" name="nama_lengkap" />
+                            <label class="form-label" for="nama_lengkap">Nama Bisnis</label>
                         </div>
                         <div class="form-outline mb-4">
                             <input type="text" class="form-control form-control-lg"

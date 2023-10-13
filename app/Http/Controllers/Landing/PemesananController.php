@@ -108,7 +108,7 @@ class PemesananController extends Controller
         }
         $pemesanan->delete();
         
-        return back()->with('error', "Data berhasil dihapus!");
+        return back()->with('success', "Data Pemesanan berhasil dihapus!");
     }
 
     

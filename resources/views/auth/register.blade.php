@@ -57,7 +57,13 @@
                             </div>
                             <div class="input-group mb-4">
                                 <input type="password" name="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password">
+                                @error('password')
+                                <script>
+                                    swal("Gagal", "{{ $message }}", "error");
+                                </script>
+                                @enderror  
                             </div>
+                           
                             <div class="input-group mb-3">
                                 <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" style="background: #103cbe;">Register</button>
                             </div>
