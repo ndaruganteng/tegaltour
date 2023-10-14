@@ -21,10 +21,11 @@ return new class extends Migration
             $table->string('durasi');
             $table->string('kategori');
             $table->string('lokasi');
-            $table->string('fasilitas');
+            $table->string('titikkumpul');
+            $table->text('fasilitas');
             $table->string('tanggalberangkat');
             $table->string('linklokasi');
-            $table->string('deskripsi',9000);
+            $table->longText('deskripsi');
             $table->timestamp('date')->nullable();
             $table->timestamps();
         });

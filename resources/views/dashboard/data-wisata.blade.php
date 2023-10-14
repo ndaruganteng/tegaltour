@@ -73,7 +73,7 @@
                                                     <i class="fas fa-edit"></i>
                                                 </button>
                                             </a>
-                                            <a href="/data-wisata/hapus/{{ $p->id_wisata }}" class="btn btn-danger btn-sm delete-wisata">
+                                            <a href="/data-wisata/hapus/{{ $p->id_wisata }}" class="btn btn-danger btn-sm deletewisata" id="deletwisata">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
@@ -88,30 +88,31 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        const deleteButtons = document.querySelectorAll('.delete-wisata');
+        const deleteButtons = document.querySelectorAll('.deletewisata');
         deleteButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                
+            button.addEventListener('click', (event) => {
+                event.preventDefault(); 
+
                 Swal.fire({
-                    title: 'Apakah Anda yakin Menghapus Data Paket Wisata Ini?',
-                    text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
+                    title: 'Konfirmasi Hapus Paket Wisata ',
+                    text: 'Apakah Anda yakin ingin menghapus Paket Wisata ini?',
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, Hapus!'
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, Hapus',
+                    cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = e.target.getAttribute('href');
+    
+                        window.location.href = button.getAttribute('href');
                     }
                 });
             });
         });
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </div>
 

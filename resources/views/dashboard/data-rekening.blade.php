@@ -70,9 +70,10 @@
                                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editrekening{{ $p->id_rekening }}">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <a href="/data-rekening/hapus/{{ $p->id_rekening }}" class="btn btn-danger btn-sm delete-button">
+                                            <a href="/data-rekening/hapus/{{ $p->id_rekening }}" class="btn btn-danger btn-sm delete-rekening" id="delete-rekening">
                                                 <i class="fas fa-trash"></i>
                                             </a>
+
                                         </td>
                                     </tr>
                                     <div class="modal fade" id="editrekening{{ $p->id_rekening }}" tabindex="-1" role="dialog" aria-labelledby="editrekeningTitle" aria-hidden="true">
@@ -204,30 +205,31 @@
             }
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        const deleteButtons = document.querySelectorAll('.delete-button');
+        const deleteButtons = document.querySelectorAll('.delete-rekening');
         deleteButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                
+            button.addEventListener('click', (event) => {
+                event.preventDefault(); 
+
                 Swal.fire({
-                    title: 'Apakah Anda yakin Menghapus Data Rekening Ini?',
-                    text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
+                    title: 'Konfirmasi Hapus rekening',
+                    text: 'Apakah Anda yakin ingin menghapus Rekening ini?',
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, Hapus!'
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, Hapus',
+                    cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = e.target.getAttribute('href');
+    
+                        window.location.href = button.getAttribute('href');
                     }
                 });
             });
         });
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </div>

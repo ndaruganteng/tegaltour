@@ -38,45 +38,54 @@ class DatawisataController extends Controller
 
     public function store(Request $request)
     {
-        $validator = $request -> validate([
+        $validator = $request->validate([
             'namawisata' => 'required',
-            'harga' => 'required',
+            'harga' => 'required|numeric',
             'kategori' => 'required',
             'durasi' => 'required',
             'lokasi' => 'required',
-            'fasilitas' => 'required',
+            'titikkumpul' => 'required',
+            'fasilitas' => 'required|string|max:9000',
             'tanggalberangkat' => 'required',
             'linklokasi' => 'required',
-            'deskripsi' => 'required',
-            'image' => 'image|file|max:2048,jpeg,png,jpg',  
-        ], 
+            'deskripsi' => 'required|string|max:9000',
+            'image' => 'image|file|max:2048,jpeg,png,jpg',
+        ],
         [
-            "namawisata.required" => "Please enter nama wisata",
-            "harga.required" => "Please enter harga wisata",
-            "kategori.required" => "Please enter kategori wisata",
-            "durasi.required" => "Please enter durasi wisata",
-            "lokasi.required" => "Please enter lokasi wisata",
-            "fasilitas.required" => "Please enter fasilitas wisata",
-            "tanggalberangkat.required" => "Please enter tanggal berangkat",
-            "linklokasi.required" => "Please enter link lokasi",
-            "deskripsi.required" => "Please enter deskripsi wisata",
-            "date.required" => "Please enter date",
+            "namawisata.required" => "Harap masukkan nama wisata",
+            "harga.required" => "Harap masukkan harga wisata",
+            "harga.numeric" => "Harga harus berupa angka",
+            "kategori.required" => "Harap masukkan kategori wisata",
+            "durasi.required" => "Harap masukkan durasi wisata",
+            "lokasi.required" => "Harap masukkan lokasi wisata",
+            "titikkumpul.required" => "Harap masukkan titik kumpul wisata",
+            "fasilitas.required" => "Harap masukkan fasilitas wisata",
+            "tanggalberangkat.required" => "Harap masukkan tanggal berangkat",
+            "linklokasi.required" => "Harap masukkan link lokasi",
+            "deskripsi.required" => "Harap masukkan deskripsi wisata",
+            "deskripsi.max" => "Deskripsi tidak boleh melebihi 9000 karakter.",
+            "fasilitas.max" => "Fasilitas tidak boleh melebihi 9000 karakter.",
+            "image.required" => "Silakan unggah gambar untuk wisata",
+            "image.mimes" => "Gambar harus berformat: jpeg, png, jpg",
+            "image.max" => "Ukuran gambar tidak boleh melebihi 2048 kilobita (2MB)",
         ]);
+        
 
         $wisata = new Wisata;
         $wisata->id_mitra = Auth::user()->id;
         $wisata->namawisata= $request->input('namawisata');
-        $wisata['slug'] = Str::slug($request->namawisata);
+        $wisata->slug = Str::slug($request->namawisata);
         $wisata->harga= $request->input('harga');
         $wisata->kategori= $request->input('kategori');
         $wisata->durasi= $request->input('durasi');
         $wisata->lokasi= $request->input('lokasi');
+        $wisata->titikkumpul= $request->input('titikkumpul');
         $wisata->fasilitas= $request->input('fasilitas');
         $wisata->tanggalberangkat= $request->input('tanggalberangkat');
         $wisata->linklokasi= $request->input('linklokasi');
         $wisata->deskripsi= $request->input('deskripsi');
-        $wisata['date']= Carbon::now($request->date);
-        if($request->hasFile('image')){
+        $wisata->date = Carbon::now();
+        if($request->hasFile('image')&& $request->file('image')->isValid()){
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
             $filename = $request->namawisata.'_'.now()->timestamp.'.'.$extention;
@@ -104,50 +113,62 @@ class DatawisataController extends Controller
      public function update(Request $request,$id)
     {
          $wisata = Wisata::find($id); 
-         $validator = $request -> validate([
+         $validator = $request->validate([
             'namawisata' => 'required',
-            'harga' => 'required',
+            'harga' => 'required|numeric',
             'kategori' => 'required',
             'durasi' => 'required',
             'lokasi' => 'required',
-            'fasilitas' => 'required',
+            'titikkumpul' => 'required',
+            'fasilitas' => 'required|string|max:9000',
             'tanggalberangkat' => 'required',
             'linklokasi' => 'required',
-            'deskripsi' => 'required',
-            'image' => 'image|file|max:2048,jpeg,png,jpg',  
+            'deskripsi' => 'required|string|max:9000',
+            'image' => 'image|file|max:2048,jpeg,png,jpg',
         ],
         [
-            "namawisata.required" => "Please enter nama wisata",
-            "harga.required" => "Please enter harga wisata",
-            "kategori.required" => "Please enter kategori wisata",
-            "durasi.required" => "Please enter durasi wisata",
-            "lokasi.required" => "Please enter lokasi wisata",
-            "fasilitas.required" => "Please enter fasilitas wisata",
-            "tanggalberangkat.required" => "Please enter tanggal berangkat",
-            "linklokasi.required" => "Please enter link lokasi",
-            "deskripsi.required" => "Please enter deskripsi wisata",
-            "date.required" => "Please enter date",
+            "namawisata.required" => "Harap masukkan nama wisata",
+            "harga.required" => "Harap masukkan harga wisata",
+            "harga.numeric" => "Harga harus berupa angka",
+            "kategori.required" => "Harap masukkan kategori wisata",
+            "durasi.required" => "Harap masukkan durasi wisata",
+            "lokasi.required" => "Harap masukkan lokasi wisata",
+            "titikkumpul.required" => "Harap masukkan titik kumpul wisata",
+            "fasilitas.required" => "Harap masukkan fasilitas wisata",
+            "tanggalberangkat.required" => "Harap masukkan tanggal berangkat",
+            "linklokasi.required" => "Harap masukkan link lokasi",
+            "deskripsi.required" => "Harap masukkan deskripsi wisata",
+            "deskripsi.max" => "Deskripsi tidak boleh melebihi 9000 karakter.",
+            "fasilitas.max" => "Fasilitas tidak boleh melebihi 9000 karakter.",
+            "image.required" => "Silakan unggah gambar untuk wisata",
+            "image.mimes" => "Gambar harus berformat: jpeg, png, jpg",
+            "image.max" => "Ukuran gambar tidak boleh melebihi 2048 kilobita (2MB)",
         ]);
 
-         if($request->hasFile('image')){
-             $request->validate([ 'image' => 'image|file|max:2048,jpeg,png,jpg',]);
-             Storage::delete($wisata->image);
-             $file = $request->file('image');
-             $extention = $file->getClientOriginalExtension();
-             $filename = $request->namawisata.'_'.now()->timestamp.'.'.$extention;
-             $file->storeAs('image/wisata/',$filename);
-             $wisata->image = $filename;
-         }
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $request->validate([
+                'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            ]);      
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = $request->input('namawisata') . '_' . now()->timestamp . '.' . $extension;
+            $file->storeAs('image/wisata/', $filename);
+            if (!empty($wisata->image)) {
+                Storage::delete('image/wisata/' . $wisata->image);
+            }
+            $wisata->image = $filename;
+        }
 
          $wisata->namawisata = $request->namawisata;
          $wisata->harga = $request->harga;
          $wisata->kategori = $request->kategori;
          $wisata->durasi = $request->durasi;
          $wisata->lokasi = $request->lokasi;
-         $wisata->fasilitas = $request->fasilitas;
+         $wisata->titikkumpul = $request->titikkumpul;
          $wisata->tanggalberangkat = $request->tanggalberangkat;
          $wisata->linklokasi = $request->linklokasi;
          $wisata->deskripsi = $request->deskripsi;
+         $wisata->fasilitas = $request->fasilitas;
          $wisata->save();
  
          return redirect('data-wisata')->with('success','Data wisata Telah Diupdate!');
@@ -178,6 +199,7 @@ class DatawisataController extends Controller
             ->orWhere('harga', 'LIKE', '%' . $keyword . '%')
             ->orWhere('durasi', 'LIKE', '%' . $keyword . '%')
             ->orWhere('lokasi', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('titikkumpul', 'LIKE', '%' . $keyword . '%')
             ->get();
 
             return view('dashboard.data-wisata',compact('wisata','kategori'));
@@ -209,6 +231,7 @@ class DatawisataController extends Controller
             ->orWhere('harga', 'LIKE', '%' . $keyword . '%')
             ->orWhere('durasi', 'LIKE', '%' . $keyword . '%')
             ->orWhere('lokasi', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('titikkumpul', 'LIKE', '%' . $keyword . '%')
             ->orWhere('nama_lengkap', 'LIKE', '%' . $keyword . '%')
             ->get();
 

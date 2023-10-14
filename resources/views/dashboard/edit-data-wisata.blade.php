@@ -57,9 +57,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="lokasi" class="col-sm-3 col-form-label">Lokasi</label>
+                                            <label for="titikkumpul" class="col-sm-3 col-form-label">Titik Kumpul</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="{{ $wisata->lokasi}}" name="lokasi"> 
+                                                <input type="text" class="form-control" value="{{ $wisata->titikkumpul}}" name="titikkumpul"> 
                                             </div>
                                         </div>
                                     </div>
@@ -71,7 +71,9 @@
                                             <div class="col-sm-9">
                                                 <select class="custom-select form-control" name="kategori">
                                                 @foreach($kategori as $data)
-                                                <option value="{{$data->id_kategori}}" {{ $data->nama_kategori == $wisata->kategori ? 'selected' : '' }}>{{$data->nama_kategori}}</option>
+                                                    <option value="{{$data->id_kategori}}" {{ $data->id_kategori == $wisata->kategori ? 'selected' : '' }}>
+                                                        {{$data->nama_kategori}}
+                                                    </option>
                                                 @endforeach
                                                 </select>
                                             </div>
@@ -105,6 +107,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="lokasi">Highlight</label>
+                                    <input type="text" class="form-control" value="{{ $wisata->lokasi}}" name="lokasi">
+                                </div>
+                                <div class="form-group">
                                     <label for="linklokasi">Link Lokasi</label>
                                     <input type="text" class="form-control" value="{{ $wisata->linklokasi}}" name="linklokasi">
                                 </div>
@@ -118,7 +124,7 @@
                                     <input id="fasilitas" type="hidden" name="fasilitas" value="{{ $wisata->fasilitas}}">
                                     <trix-editor input="fasilitas"></trix-editor>
                                 </div>
-                                <div class="#">
+                                <div>
                                     <button type="submit" class="btn btn-secondary " value="Simpan Data">Simpan</button>
                                 </div>
                             </div>
