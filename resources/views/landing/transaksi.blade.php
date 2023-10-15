@@ -101,8 +101,8 @@
                                                         <input type="file" id="bukti_pembayaran" class="form-control" name="bukti_pembayaran" 
                                                         accept="image/*" onchange="previewImage(event)">
                                                     </div>
-                                                    <div class="mb-3">
-                                                    <img id="image-preview" src="" class="img-thumbnail" style="display:none; max-width: 100%; max-height: 100px;" alt="Preview Image">
+                                                    <div class="col-lg-12 mb-3">
+                                                    <img id="image-preview" src="" class="img-thumbnail" style="display:none; max-width: 100%; max-height: 100%;" alt="Preview Image">
                                                     </div>
 
                                                     <div class="modal-footer ">

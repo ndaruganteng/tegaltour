@@ -10,13 +10,15 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Carbon\Carbon;
 use App\Models\pemesanan; 
 use App\Models\wisata; 
 use Dompdf\Dompdf;
+use Carbon\Carbon;
 
 class PemesananController extends Controller
 {
+
+
     public function store(Request $request)
     {
         $pemesanan = new Pemesanan;
@@ -44,18 +46,32 @@ class PemesananController extends Controller
     public function update(Request $request, $id)
     {
         $pemesanan = Pemesanan::where('id_pemesanan', $id)->first();
-
+    
+        $validator = Validator::make($request->all(), [
+            'bukti_pembayaran' => 'image|mimes:jpeg,png,jpg|max:2048',
+        ], [
+            'bukti_pembayaran.image' => 'File yang diunggah harus berupa gambar.',
+            'bukti_pembayaran.mimes' => 'File harus berupa gambar dengan tipe jpeg, png, atau jpg.',
+            'bukti_pembayaran.max' => 'Ukuran file tidak boleh melebihi 2MB.',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+    
         if ($request->hasFile('bukti_pembayaran')) {
             $file = $request->file('bukti_pembayaran');
             $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
+            $filename = $pemesanan->id_user . '_' . time() . '.' . $extension;
             $file->storeAs('image/bukti-transfer/', $filename);
             $pemesanan->bukti_pembayaran = $filename;
         }
         $pemesanan->save();
+    
         return redirect()->back()->with('success', "Bukti Pembayaran Sudah Dikirim!");
     }
-
 
     // menampilkan view data order
     public function data_order()
@@ -85,7 +101,6 @@ class PemesananController extends Controller
         return view('dashboard.data-order', ['pemesanan' => $pemesanan]);
     }
 
-
     // Fungsi konfirmasi pemesanan
     public function konfirmasi(Request $request, $id)
     { 
@@ -98,7 +113,7 @@ class PemesananController extends Controller
         return redirect('data-order')->with('success', 'Pembayaran telah dikonfirmasi ');
     }
 
-    // Method untuk hapus data pemesanan
+    // fungsi untuk hapus
     public function hapus($id)
     {
         $pemesanan = Pemesanan::find($id);
@@ -111,7 +126,6 @@ class PemesananController extends Controller
         return back()->with('success', "Data Pemesanan berhasil dihapus!");
     }
 
-    
     // method untuk menampilkan halaman pesanan saya
     public function pesanan_saya()
     {
@@ -172,7 +186,6 @@ class PemesananController extends Controller
         return view('dashboard.status-perjalanan', ['pemesanan' => $pemesanan]);
     }
 
-
     // fungsi status perjalanan berangkat
     public function berangkat(Request $request, $id)
     { 
@@ -197,7 +210,7 @@ class PemesananController extends Controller
         return redirect('status-perjalanan')->with('success', 'Perjalanan telah Selesai ');
     }
 
-    // invoice
+    // invoice wisata
     public function pdf($id){
         $dompdf = new Dompdf();
         $pemesanan = DB::table('pemesanan')
@@ -227,4 +240,5 @@ class PemesananController extends Controller
         $dompdf->render();
         $dompdf->stream();
     }
+
 }
