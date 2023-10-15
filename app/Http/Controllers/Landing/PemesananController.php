@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Illuminate\Support\carbon;
+use Carbon\Carbon;
 use App\Models\pemesanan; 
 use App\Models\wisata; 
 use Dompdf\Dompdf;
@@ -28,7 +28,7 @@ class PemesananController extends Controller
         $pemesanan->harga_total = $request->input('harga_total');
         $pemesanan->status = null;
         $pemesanan->status_perjalanan = null;
-        $pemesanan['date']= Carbon::now($request->date);
+        $pemesanan->date = Carbon::now()->toDateTimeString();
         if ($request->hasFile('bukti_pembayaran')) {
             $file = $request->file('bukti_pembayaran');
             $extension = $file->getClientOriginalExtension();

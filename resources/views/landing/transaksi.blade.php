@@ -96,10 +96,15 @@
                                                 <form action="/upload-bukti_pembayaran/{{$p->id_pemesanan}}" method="post"
                                                     enctype="multipart/form-data">
                                                     @csrf
-                                                    <div class="form-group mb-5">
+                                                    <div class="form-group ">
                                                         <label class="col-form-label">Bukti transfer</label>
-                                                        <input type="file" class="form-control" name="bukti_pembayaran">
+                                                        <input type="file" id="bukti_pembayaran" class="form-control" name="bukti_pembayaran" 
+                                                        accept="image/*" onchange="previewImage(event)">
                                                     </div>
+                                                    <div class="mb-3">
+                                                    <img id="image-preview" src="" class="img-thumbnail" style="display:none; max-width: 100%; max-height: 100px;" alt="Preview Image">
+                                                    </div>
+
                                                     <div class="modal-footer ">
                                                         <button type="button" class="btn btn-danger"
                                                             data-dismiss="modal">Close</button>
@@ -145,6 +150,27 @@
                 });
             });
         });
+    </script>
+
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var preview = document.getElementById('image-preview');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = "";
+                preview.style.display = 'none';
+            }
+        }
     </script>
     
 </div>
