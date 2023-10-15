@@ -71,7 +71,7 @@
                                         <h4 class="text-center mb-5 border p-2">Daftar Rekening</h4>
                                         <div class="row">
                                             @foreach ($rekening[$p->id_pemesanan]  as $rekeningItem)
-                                            <div class="col-lg-4 col-md-12">
+                                            <div class="col-lg-4 col-md-12 mt-3">
                                                 <img src="{{asset('storage/image/rekening/'.$rekeningItem->image_rekening)}}" class="float-left" />
                                                 <p>Nama Bank: {{ $rekeningItem->nama_bank }}</p>
                                                 <p>Nomor Rekening: {{ $rekeningItem->no_rekening }}</p>
