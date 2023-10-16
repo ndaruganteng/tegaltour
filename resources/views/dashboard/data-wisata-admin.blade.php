@@ -54,28 +54,38 @@
                                         
                                     </tr>
                                 </thead>
-                                @foreach($wisata as $p)
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <img src="{{asset('storage/image/wisata/'.$p->image)}}" alt="wisata" style="width:100px">
-                                        </td>
-                                        <td>{{ $p->namawisata}}</td>
-                                        <td>{{ $p->nama}}</td>
-                                        <td>{{ $p->tanggalberangkat}}</td>
-                                        <td>
-                                            <span class="badge badge-dark">{{ $p->kategori}}</span>
-                                        </td>
-                                        
-                                        <td>Rp {{ $p->harga}}</td>
-                                        <td>
-                                            <a href="/detail-data-wisata-admin/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm" >
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                @endforeach
+                                @if(count($wisata) > 0)
+                                    @foreach($wisata as $p)
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <img src="{{asset('storage/image/wisata/'.$p->image)}}" alt="wisata" style="width:100px">
+                                            </td>
+                                            <td>{{ $p->namawisata}}</td>
+                                            <td>{{ $p->nama}}</td>
+                                            <td>{{ $p->tanggalberangkat}}</td>
+                                            <td>
+                                                <span class="badge badge-dark">{{ $p->kategori}}</span>
+                                            </td>
+                                            
+                                            <td>Rp {{ $p->harga}}</td>
+                                            <td>
+                                                <a href="/detail-data-wisata-admin/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm" >
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    @endforeach
+                                @else
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="6" class="text-center">
+                                                <p>Paket Wisata kosong.</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                @endif
                             </table>
                         </div>
                     </div>

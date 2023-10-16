@@ -55,49 +55,59 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                @foreach($users as $p)
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="#" data-toggle="modal" data-target="#buktimitraModal{{$p->id}}" data-whatever="@getbootstrap">
-                                                <img src="{{ asset('storage/image/bukti-mitra/' . $p->bukti_mitra) }}" alt="wisata" style="width: 50px;">
-                                            </a>
-                                        </td>
-                                        <td>{{$p->nama_lengkap}}</td>
-                                        <td>{{$p->alamat}}</td>
-                                        <td>{{$p->email}}</td>
-                                        <td>{{$p->no_telepon}}</td>
-                                        <td>
-                                            <span class="badge badge-dark">{{$p->role}}</span>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-success btn-sm" href="/konfirmasi-mitra/{{$p->id}}">
-                                                <i class="fa-solid fa-envelope"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <div class="modal fade" id="buktimitraModal{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="buktimitraModalLabel{{$p->id}}" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="buktimitraModalLabel">Bukti Transfer</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class=" text-center">
-                                                        <img src="{{asset('storage/image/bukti-mitra/'.$p->bukti_mitra)}}"  alt="wisata" class="img-fluid"/>   
+                                @if(count($users) > 0)
+                                    @foreach($users as $p)
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <a href="#" data-toggle="modal" data-target="#buktimitraModal{{$p->id}}" data-whatever="@getbootstrap">
+                                                        <img src="{{ asset('storage/image/bukti-mitra/' . $p->bukti_mitra) }}" alt="wisata" style="width: 50px;">
+                                                    </a>
+                                                </td>
+                                                <td>{{$p->nama_lengkap}}</td>
+                                                <td>{{$p->alamat}}</td>
+                                                <td>{{$p->email}}</td>
+                                                <td>{{$p->no_telepon}}</td>
+                                                <td>
+                                                    <span class="badge badge-dark">{{$p->role}}</span>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-success btn-sm" href="/konfirmasi-mitra/{{$p->id}}">
+                                                        <i class="fa-solid fa-envelope"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <div class="modal fade" id="buktimitraModal{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="buktimitraModalLabel{{$p->id}}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="buktimitraModalLabel">Bukti Transfer</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <div class="modal-body">
+                                                        <div class=" text-center">
+                                                            <img src="{{asset('storage/image/bukti-mitra/'.$p->bukti_mitra)}}"  alt="wisata" class="img-fluid"/>   
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                @else
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6" class="text-center">
+                                            <p>Request-mitra kosong.</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                @endif
                             </table>
                         </div>
                     </div>

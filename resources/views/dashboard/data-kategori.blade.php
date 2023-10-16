@@ -51,52 +51,62 @@
                                         <th>Kategori</th>
                                         <th>Aksi</th>
                                     </tr>
-                                </thead>                   
-                                <tbody>
-                                @foreach($kategori as $p)
-                                    <tr>
-                                        <td>{{ $p->nama_kategori}}</td>
-                                        <td>
-                                            <button class="btn btn-warning btn-sm"  data-toggle="modal" data-target="#editkategori{{ $p->id_kategori }}">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <a href="/data-kategori/hapus/{{ $p->id_kategori }}" class="btn btn-danger btn-sm delete-kategori" id="delete-kategori">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <!-- modal edit -->
-                                <div class="modal fade" id="editkategori{{ $p->id_kategori }}" tabindex="-1" role="dialog" aria-labelledby="editkategoriTitle" aria-hidden="true">
-                                    <div class="modal-dialog " role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="editkategoriTitle">Edit Kategori Wisata</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="{{ url('/data-kategori/update/'.$p->id_kategori) }}"  method="post" enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('put')
-                                                    <input type="hidden" name="id" id="id" value="{{ $p->id_kategori }}">
-                                                    <div class="form-group">
-                                                        <label for="no_rekening">Nama Kategori</label>
-                                                        <input type="text" class="form-control"  value="{{ $p->nama_kategori}}" name="nama_kategori">
+                                </thead>
+                                @if(count($kategori) > 0) 
+                                    @foreach($kategori as $p)                  
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ $p->nama_kategori}}</td>
+                                                <td>
+                                                    <button class="btn btn-warning btn-sm"  data-toggle="modal" data-target="#editkategori{{ $p->id_kategori }}">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <a href="/data-kategori/hapus/{{ $p->id_kategori }}" class="btn btn-danger btn-sm delete-kategori" id="delete-kategori">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <!-- modal edit -->
+                                        <div class="modal fade" id="editkategori{{ $p->id_kategori }}" tabindex="-1" role="dialog" aria-labelledby="editkategoriTitle" aria-hidden="true">
+                                            <div class="modal-dialog " role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="editkategoriTitle">Edit Kategori Wisata</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-dark">Simpan</button>
+                                                    <div class="modal-body">
+                                                        <form action="{{ url('/data-kategori/update/'.$p->id_kategori) }}"  method="post" enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('put')
+                                                            <input type="hidden" name="id" id="id" value="{{ $p->id_kategori }}">
+                                                            <div class="form-group">
+                                                                <label for="no_rekening">Nama Kategori</label>
+                                                                <input type="text" class="form-control"  value="{{ $p->nama_kategori}}" name="nama_kategori">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-dark">Simpan</button>
+                                                            </div>
+                                                        </form> 
                                                     </div>
-                                                </form> 
+                                                
+                                                </div>
                                             </div>
-                                        
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- end modal edit -->
-                                @endforeach
+                                        <!-- end modal edit -->
+                                    @endforeach
+                                @else
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="6" class="text-center">
+                                                <p>Data Kategori kosong.</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                @endif
                             </table>
                         </div>
                     </div>
