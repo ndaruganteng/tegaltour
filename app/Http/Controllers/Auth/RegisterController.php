@@ -41,6 +41,7 @@ class RegisterController extends Controller
             $user = new User();
             $user->nama_lengkap = $request->input('nama_lengkap');
             $user->email = $request->input('email');
+            $user->status = 1;
             $user->role = ($request->input('role') === 'user') ? 'user' : 'user';
             $password = $request->input('password');
             if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', $password)) {

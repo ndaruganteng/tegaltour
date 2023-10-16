@@ -18,24 +18,26 @@ class LoginController extends Controller
     }
 
     public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        $data = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
+    $data = [
+        'email' => $request->email,
+        'password' => $request->password
+    ];
 
-        if (Auth::attempt($data)) {
-            $request->session()->regenerate();
+    if (Auth::attempt($data)) {
+        $request->session()->regenerate();
 
-            // Get the logged-in user and their role
-            $user = Auth::user();
-            $role = $user->role;
+        // Get the logged-in user and their role
+        $user = Auth::user();
+        $role = $user->role;
+        $status = $user->status;
 
+        if ($status == 1) {
             if ($role == 'admin') {
                 alert()->success('Berhasil', 'Anda Berhasil Login');
                 return redirect('/dashboard');
@@ -51,10 +53,16 @@ class LoginController extends Controller
                 return redirect('/login');
             }
         } else {
-            Session::flash('error', 'Email atau Password Salah');
+            Auth::logout();
+            Session::flash('error', 'User belum dikonfirmasi admin');
             return redirect('/login');
         }
+    } else {
+        Session::flash('error', 'Email atau Password Salah');
+        return redirect('/login');
     }
+}
+
 
     public function logout(Request $request){
         Auth::logout();

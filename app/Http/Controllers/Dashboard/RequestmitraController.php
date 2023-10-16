@@ -50,22 +50,19 @@ class RequestmitraController extends Controller
         $namaMitra = $mitra->nama_lengkap= $request->input('nama_lengkap');
         $mitra->no_telepon= $request->input('telepon');
         $email = $mitra->email= $request->input('email');
+        $alamat = $mitra->alamat= $request->input('alamat');
         $mitra->role= 'mitra';
         $password = $request->input('password');
-        $hashedPassword = bcrypt($password);
-        $mitra->password = $hashedPassword;
-       
-
+        $mitra->password = $password;
+        if ($request->hasFile('bukti_mitra')) {
+            $file = $request->file('bukti_mitra');
+            $extension = $file->getClientOriginalExtension();
+            $filename = $mitra->nama_lengkap. '_' . now()->timestamp . '.' . $extension;
+            $file->storeAs('image/bukti-mitra/', $filename);
+            $mitra->bukti_mitra = $filename;
+        }
         $mitra->save();
         
-        $details = [
-            'email' => $email,
-            'password' => $password,
-            'mitra' => $namaMitra,
-        ];
-       
-        \Mail::to($email)->send(new Email($details));
-       
         return redirect('/join-mitra')->with('message', 'Permintaan Join Mitra Anda telah Terkirim Silahkan Cek Email!');
     }
 
@@ -75,7 +72,7 @@ class RequestmitraController extends Controller
         $mitra = Mitra::find($id);
         $mitra->delete();
         
-        return back() -> with('error', "Data berhasil dihapus!");
+        return back()->with('error', "Data berhasil dihapus!");
     }
 
     // search data mitra
@@ -93,4 +90,24 @@ class RequestmitraController extends Controller
         return view('dashboard.request-mitra',compact('mitra'));
     }
 
+
+    public function konfirmasiMitra($id)
+    {
+        $mitra = User::find($id);
+        $mitra->status = 1; 
+        $mitra->save();
+
+        $email = $mitra->email;
+        $namaMitra = $mitra->nama_lengkap;
+      
+
+        $details = [
+            'email' => $email,
+            'nama_lengkap' => $namaMitra,
+        ];
+       
+        \Mail::to($email)->send(new Email($details));
+
+        return redirect('/request-mitra')->with('success', "Mitra Telah Dikonfirmasi!");
+    }
 }

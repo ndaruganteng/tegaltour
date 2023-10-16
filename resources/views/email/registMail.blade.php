@@ -35,6 +35,10 @@
             border-radius: 0 0 10px 10px;
             color: #000;
         }
+        .card h1{
+            font-size: 20px;
+            color: #706C61;
+        }
         .card h4 {
             font-size: 16px;
             color: #706C61;
@@ -57,10 +61,10 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card">
+                    <h1>Selamat akun anda telah dikonfimarsi oleh admin</h1>
                     <h4>Informasi Mitra:</h4>
                     <p>Email: {{ $details['email'] }}</p>
-                    <p>Password: {{ $details['password'] }}</p>
-                    <p>Nama: {{ $details['mitra'] }}</p>
+                    <p>Nama: {{ $details['nama_lengkap'] }}</p>
                 </div>
             </div>
         </div>

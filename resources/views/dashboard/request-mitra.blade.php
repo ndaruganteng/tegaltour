@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0"> Request Mitra </h1>
+            <h1 class="m-0"> Data User </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">Dashboard</a></li>
-              <li class="breadcrumb-item active">Request Mitra</li>
+              <li class="breadcrumb-item active"> Data User</li>
             </ol>
           </div>
         </div>
@@ -27,18 +27,18 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-between">
-                                <h3 class="card-title">Data Request Mitra</h3>
+                                <h3 class="card-title">Data User</h3>
                                 <div class="card-tools">
-                                    <form action="{{route('mitra.search_data_mitra') }}" method="GET">
+                                    <form action="{{route('users.search_user') }}" method="GET">
                                         <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="search_data_mitra" class="form-control float-right" placeholder="Search">
+                                            <input type="text" name="search_user"  id="search_user" class="form-control float-right" placeholder="Search" >
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-default">
                                                     <i class="fas fa-search"></i>
                                                 </button>
                                             </div>
                                         </div>
-                                    </form>  
+                                    </form> 
                                 </div>
                             </div>
                         </div>
@@ -46,36 +46,59 @@
                             <table class="table table-hover text-nowrap text-center">
                                 <thead>
                                     <tr>
-                                        <th>Nama Lengkap</th>
-                                        <th>Nama Bisnis</th>
+                                        <th>Bukti Mitra</th>
+                                        <th>Nama</th>
                                         <th>Alamat</th>
-                                        <th>Telepon</th>
                                         <th>Email</th>
-                                        <th>Password</th>
+                                        <th>No Telephone</th>
+                                        <th>Role</th> 
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                @foreach($mitra as $p)
+                                @foreach($users as $p)
                                 <tbody>
                                     <tr>
-                                        <td>{{$p->nama_lengkap}}</td>
-                                        <td>{{$p->nama_bisnis}}</td>
-                                        <td>{{$p->alamat}}</td>
-                                        <td>{{$p->telepon}}</td>
-                                        <td>{{$p->email}}</td>
-                                        <td>{{$p->password}}</td>
                                         <td>
-                                            <a href="/request-mitra/hapus/{{ $p->id_mitra }}" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
+                                            <a href="#" data-toggle="modal" data-target="#buktimitraModal{{$p->id}}" data-whatever="@getbootstrap">
+                                                <img src="{{ asset('storage/image/bukti-mitra/' . $p->bukti_mitra) }}" alt="wisata" style="width: 50px;">
+                                            </a>
+                                        </td>
+                                        <td>{{$p->nama_lengkap}}</td>
+                                        <td>{{$p->alamat}}</td>
+                                        <td>{{$p->email}}</td>
+                                        <td>{{$p->no_telepon}}</td>
+                                        <td>
+                                            <span class="badge badge-dark">{{$p->role}}</span>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success btn-sm" href="/konfirmasi-mitra/{{$p->id}}">
+                                                <i class="fa-solid fa-envelope"></i>
                                             </a>
                                         </td>
                                     </tr>
                                 </tbody>
+                                <div class="modal fade" id="buktimitraModal{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="buktimitraModalLabel{{$p->id}}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="buktimitraModalLabel">Bukti Transfer</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class=" text-center">
+                                                        <img src="{{asset('storage/image/bukti-mitra/'.$p->bukti_mitra)}}"  alt="wisata" class="img-fluid"/>   
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </table>
-                            <div class="pt-3">
-                                {{ $mitra->links() }}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -84,6 +107,5 @@
     </section>
 
 </div>
-
 
 @endsection

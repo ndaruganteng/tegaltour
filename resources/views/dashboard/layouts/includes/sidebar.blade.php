@@ -48,12 +48,12 @@
             <p>Data Kategori</p>
           </a>
         </li>
-        <!-- <li class="nav-item">
+        <li class="nav-item">
           <a href="{{route('request-mitra.index')}}" class="nav-link">
             <i class="nav-icon fa-regular fa-handshake"></i>
-            <p>Request Mitra</p>
+            <p>Join Mitra</p>
           </a>
-        </li> -->
+        </li>
         @endif
         @if(auth()->user()->role == "mitra")
         <li class="nav-item">

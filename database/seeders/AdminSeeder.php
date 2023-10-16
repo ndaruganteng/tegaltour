@@ -19,6 +19,7 @@ class AdminSeeder extends Seeder
             'email' => 'superadmin@gmail.com',
             'password' => bcrypt("Superadmin123"),
             'role' => 'admin',
+            'status' => 1,
         ]);
 
         DB::table('users')->insert([
@@ -27,6 +28,7 @@ class AdminSeeder extends Seeder
             'email' => 'ndaru123@gmail.com',
             'password' => bcrypt("Ndaru123"),
             'role' => 'user',
+            'status' => 1,
         ]);
 
         DB::table('users')->insert([
@@ -35,6 +37,7 @@ class AdminSeeder extends Seeder
             'email' => 'cipungtour@gmail.com',
             'password' => bcrypt("Cipungtour123"),
             'role' => 'mitra',
+            'status' => 1,
         ]);
         DB::table('users')->insert([
             'nama_lengkap' => 'Seno Tour',
@@ -42,6 +45,7 @@ class AdminSeeder extends Seeder
             'email' => 'senotour@gmail.com',
             'password' => bcrypt("Senotour123"),
             'role' => 'mitra',
+            'status' => 1,
         ]);
 
     }

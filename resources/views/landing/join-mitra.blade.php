@@ -28,12 +28,17 @@
                             placeholder="Nama Bisnis" required="required" name="nama_lengkap" />
                             <label class="form-label" for="nama_lengkap">Nama Bisnis</label>
                         </div>
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-3">
                             <input type="text" class="form-control form-control-lg"
                             placeholder="No Telepon" required="required" name="telepon" />
                             <label class="form-label" for="telepon">No Telepon</label>
                         </div>
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-3">
+                            <input type="text" class="form-control form-control-lg"
+                            placeholder="Masukan Alamat" required="required" name="alamat"/>
+                            <label class="form-label" for="alamat">Alamat</label>
+                        </div>
+                        <div class="form-outline mb-3">
                             <input type="email" class="form-control form-control-lg"
                             placeholder="Enter" required="required" name="email"/>
                             <label class="form-label" for="email">Email</label>
@@ -43,6 +48,19 @@
                             placeholder="Enter password" required="required" name="password"/>
                             <label class="form-label" for="password">Password</label>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div>
+                                    <label class="form-label" for="customFile">Upload Bukti Usaha</label>
+                                    <input type="file" class="form-control" name="bukti_mitra" id="bukti_mitra" accept="image/*" onchange="previewImage(event)"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div>
+                                    <img id="image-preview" src="" class="img-thumbnail" style="display:none; max-width: 50%; max-height: 50%;" alt="Preview Image">
+                                </div>
+                            </div>
+                        </div>             
                         <div class="text-center text-lg-start mt-4 pt-2">
                             <button type="submit" class="btn btn-dark "
                             style="padding-left: 2.5rem; padding-right: 2.5rem;">Join Mitra</button>
@@ -143,6 +161,27 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var preview = document.getElementById('image-preview');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = "";
+                preview.style.display = 'none';
+            }
+        }
+    </script>
 
 </div>
 

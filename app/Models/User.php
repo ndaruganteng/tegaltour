@@ -23,6 +23,9 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'status',
+        'alamat',
+        'bukti_mitra',
     ];
 
     /**

@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('no_telepon');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('role');
+            $table->string('role');       
+            $table->string ('status')->nullable(); 
+            $table->string ('alamat')->nullable(); 
+            $table->string ('bukti_mitra')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
         });

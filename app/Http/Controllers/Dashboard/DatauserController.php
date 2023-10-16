@@ -33,4 +33,16 @@ class DatauserController extends Controller
             return view('dashboard.data-user',compact('users'));
     }
 
+
+    // join mitra
+    public function join_mitra()
+    {   
+    	$users = DB::table('users')
+    ->where('status', null)
+    ->get();
+
+
+        return view('dashboard.request-mitra',['users' => $users]);
+    }
+
 }

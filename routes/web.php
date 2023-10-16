@@ -90,7 +90,9 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 
     //DATAUSER
     Route::get('/data-user', [DatauserController::class, 'index'])->name('data-user.index');
+    Route::get('/request-mitra', [DatauserController::class, 'join_mitra'])->name('request-mitra.index');
     Route::get('/search_user',[DatauserController::class, 'search_user'])->name('users.search_user');
+    Route::get('/konfirmasi-mitra/{id}', [RequestmitraController::class, 'konfirmasiMitra']);
 
     //DATA kATERGORI
     Route::get('/data-kategori', [DatakategoriController::class, 'index'])->name('data-kategori.index');
@@ -139,10 +141,7 @@ Route::group(['middleware' => ['auth','ceklevel:user']], function(){
 
 // MITRA
 Route::get('/join-mitra', [RequestmitraController::class, 'tambah'])->name('join-mitra.index');
-Route::get('/request-mitra', [RequestmitraController::class, 'index'])->name('request-mitra.index');
 Route::post('/join-mitra', [RequestmitraController::class, 'store'])->name('Mitra.index');
-Route::get('/request-mitra/hapus/{id_mitra}', [RequestmitraController::class, 'hapus'])->name('hapus.index');
-Route::get('/search_data_mitra',[RequestmitraController::class, 'search_data_mitra'])->name('mitra.search_data_mitra');
 
 // ResetPassword
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
