@@ -26,7 +26,7 @@
                                                 <p class="card-text">Tanggal Pemesanan : {{$p->date}}</p>
                                                 <p class="card-text">Tanggal Berangkat : {{$p->tanggal}}</p>
                                                 <p class="card-text">Jumlah Orang : {{$p->jumlah_orang}}</p>
-                                                <p class="card-text">Harga/pax : Rp {{$p->harga}}</p>
+                                                <p class="card-text">Harga/pax : Rp.{{ number_format($P->harga, 0, ',', '.') }}</p>
                                                 <p class="card-text">Harga Total : Rp {{$p->hargatotal}}</p>
                                                 @if($p->status == 2)
                                                     <p class="card-text">Transaksi : <span class="badge badge-success">Telah Dikonfirmasi</span></p>

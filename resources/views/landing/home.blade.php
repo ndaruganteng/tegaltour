@@ -128,7 +128,7 @@
                                 <a href="/{{ ($item->id_wisata) }}/{{$item->slug}}" class="mt-2">
                                     <p class="card-title">{{ $item->namawisata }}</p>
                                 </a>
-                                <h3 class="card-text">Rp {{ $item->harga }} <span style="color: grey;">/orang</span></h3>
+                                <h3 class="card-text">Rp.{{ number_format($item->harga, 0, ',', '.') }} <span style="color: grey;">/orang</span></h3>
                                 
                             </div>
                         </div>

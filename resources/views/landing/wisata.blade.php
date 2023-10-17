@@ -61,18 +61,7 @@
                                     <option value="{{$data->nama_kategori}}">{{$data->nama_kategori}}</option>
                                     @endforeach                               
                                 </select>
-                            </div>
-                            <!-- <div class="harga mt-3">
-                                <h5 class="mb-3 card-title">Harga</h5>
-                                <select id="filter_harga" class="form-select">
-                                    <option value="">Semua Harga</option>
-                                    <option value="10000">Rp 10000</option>                             
-                                    <option value="15000">Rp 15000</option>                             
-                                    <option value="20000">Rp 20000</option>                             
-                                    <option value="25000">Rp 25000</option>                             
-                                    <option value="50000">Rp 50000</option>                             
-                                </select> 
-                            </div> -->                                                     
+                            </div>                                          
                         </div> 
                     </div>
                 </div>
@@ -118,7 +107,7 @@
                                     <a href="/{{ ($item->id_wisata) }}/{{$item->slug}}" class="mt-2">
                                         <p>{{ $item->namawisata }}</p>
                                     </a>
-                                    <h3 class="card-text harga">Rp {{ $item->harga }} <span style="color: grey;">/orang</span></h3>
+                                    <h3 class="card-text harga">Rp.{{ number_format($item->harga, 0, ',', '.') }} <span style="color: grey;">/orang</span></h3>
                                 </div>                      
                             </div>  
                         </div>                        

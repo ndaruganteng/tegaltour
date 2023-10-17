@@ -30,7 +30,7 @@
                                 <div class="col-lg">
                                     <img src="/images/detail-tour/money.png" alt="" class="float-left" />
                                     <h4>Harga</h4>
-                                    <p>{{ $detail_wisata->harga }} /orang</p>
+                                    <p>Rp.{{ number_format($detail_wisata->harga, 0, ',', '.') }} /orang</p>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                             <div class="card text-center border border-2 shadow-0">
                                 <div class="card-body">
                                     <h1>Harga /orang</h1>
-                                    <p>Rp.{{ $detail_wisata->harga }}</p>
+                                    <p>Rp.{{ number_format($detail_wisata->harga, 0, ',', '.') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -151,12 +151,15 @@
                                             <label class="form-label" for="hargasatuan">Harga /pax</label>
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <input type="number" name="jumlah_orang" id="jumlahorang" class="form-control" onchange="updateHargaTotal()"/>
+                                            <input type="number" min="1" name="jumlah_orang" id="jumlahorang" class="form-control" onchange="updateHargaTotal()"/>
                                             <label class="form-label" for="jumlahorang">Masukan Jumlah Orang</label>
                                         </div>
                                        
                                         <div class="form-outline mb-4">
-                                            <input class="form-control bg-white" name="harga_total" id="hargatotal" type="text" placeholder="Total Harga" readonly/>
+                                            <input class="form-control bg-white" id="viewhargatotal" type="text" placeholder="Total Harga" readonly/>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input class="form-control bg-white" name="harga_total" id="hargatotal" type="text" placeholder="Total Harga" hidden/>
                                         </div>
                                         <button type="submit"
                                             class="btn btn-dark btn-block mb-4">Pesan Sekarang</button>
@@ -177,8 +180,14 @@
         const hargaSatuan = parseFloat(document.getElementById('hargasatuan').value);
         const hargaTotal = isNaN(jumlahOrang) || isNaN(hargaSatuan) ? '' : jumlahOrang * hargaSatuan;
         document.getElementById('hargatotal').value = hargaTotal;
+        const viewhargaTotal = isNaN(jumlahOrang) || isNaN(hargaSatuan) ? '' : (jumlahOrang * hargaSatuan).toLocaleString('id-ID', {
+            style: 'currency',
+            currency: 'IDR'
+        });
+        document.getElementById('viewhargatotal').value = viewhargaTotal;
         }
     </script>
+
     <style>.checked { color: orange; }</style> 
 
 </div>
