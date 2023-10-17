@@ -50,7 +50,7 @@
                                         <th>Nama Mitra</th>
                                         <th>Tanggal Berangkat</th>
                                         <th>Kategori</th>
-                                        <th>harga</th>
+                                        <th>harga/Orang</th>
                                         
                                     </tr>
                                 </thead>
@@ -68,7 +68,7 @@
                                                 <span class="badge badge-dark">{{ $p->kategori}}</span>
                                             </td>
                                             
-                                            <td>Rp {{ $p->harga}}</td>
+                                            <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                             <td>
                                                 <a href="/detail-data-wisata-admin/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm" >
                                                     <i class="fas fa-eye"></i>

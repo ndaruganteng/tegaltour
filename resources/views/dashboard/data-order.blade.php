@@ -52,7 +52,7 @@
                                         <th>Tanggal Berangkat</th>
                                         <th>Tanggal Pemesanan</th>
                                         <th>Jumlah Orang</th>
-                                        <th>Harga/Pax</th>
+                                        <th>Harga/Orang</th>
                                         <th>Harga Total</th>
                                         <th>Status Perjalalanan</th>
                                         <th>Status Pemesanan</th>
@@ -77,8 +77,8 @@
                                             <td>{{ $p->tanggal}}</td>
                                             <td>{{ $p->date}}</td>
                                             <td>{{ $p->jumlah_orang}}</td>
-                                            <td>Rp.{{$p->harga}}</td>
-                                            <td>Rp.{{$p->hargatotal}}</td>
+                                            <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
+                                            <td>Rp {{ number_format($p->hargatotal, 0, ',', '.') }}</td>
 
                                             <td>
                                                 @if($p->status_perjalanan == null)

@@ -97,17 +97,11 @@
                                         style="height:180px">
                                 </a>
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <span class="badge badge-dark">{{ $item->kategori }}</span>
-                                        <div class="durasi">
-                                            <i class="fa-regular fa-clock"></i>
-                                            <small>{{ $item->durasi }}</small>
-                                        </div>
-                                    </div>
+                                    <span class="badge badge-dark">{{ $item->kategori }}</span>
                                     <a href="/{{ ($item->id_wisata) }}/{{$item->slug}}" class="mt-2">
                                         <p>{{ $item->namawisata }}</p>
                                     </a>
-                                    <h3 class="card-text harga">Rp.{{ number_format($item->harga, 0, ',', '.') }} <span style="color: grey;">/orang</span></h3>
+                                    <h3 class="card-text harga">Rp {{ number_format($item->harga, 0, ',', '.') }} <span style="color: grey;">/orang</span></h3>
                                 </div>                      
                             </div>  
                         </div>                        

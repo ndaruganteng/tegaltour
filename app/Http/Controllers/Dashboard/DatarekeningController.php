@@ -84,11 +84,7 @@ class DatarekeningController extends Controller
         $validator = $request->validate([
             'nama_bank' => 'required',
             'nama_rekening' => 'required',
-            'no_rekening' => [
-                'required',
-                'numeric',
-                Rule::unique('rekening', 'no_rekening')->ignore($rekening->id),
-            ],
+            'no_rekening' => 'required|numeric',
             'image_rekening' => 'image|file|max:2048,jpeg,png,jpg',
         ], 
         [

@@ -33,10 +33,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <p class="card-text">Nama Paket Wisata : {{ $detail_data_wisata_admin->namawisata }}</p>
-                                <p class="card-text">Kategori :{{ $detail_data_wisata_admin->kategori }}</p>
+                                <p class="card-text">Kategori : {{ $detail_data_wisata_admin->kategori }}</p>
                                 <p class="card-text">Durasi : {{ $detail_data_wisata_admin->durasi }}</p>
                                 <p class="card-text">Lokasi : {{ $detail_data_wisata_admin->lokasi }}</p>
-                                <p class="card-text">Harga : Rp {{ $detail_data_wisata_admin->harga }}</p>
+                                <p class="card-text">Harga/Orang : Rp {{ number_format($detail_data_wisata_admin->harga, 0, ',', '.') }}</p>
                                 <p class="card-text">Titik Kumpul : {{ $detail_data_wisata_admin->titikkumpul }}</p>
                                 <p class="card-text">Tanggal Berangkat : {{ $detail_data_wisata_admin->tanggalberangkat}}</p>
                                 <a type="button" href="{{ $detail_data_wisata_admin->linklokasi }}" target="_blank" class="btn btn-dark btn-sm  shadow-0 me-2"><i class="fa-solid fa-location-dot mr-2"></i>Link Lokasi</a>

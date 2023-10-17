@@ -73,7 +73,7 @@
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-success btn-sm" href="/konfirmasi-mitra/{{$p->id}}">
-                                                        <i class="fa-solid fa-envelope"></i>
+                                                        <i class="fa-solid fa-envelope"></i> Konfimasi
                                                     </a>
                                                 </td>
                                             </tr>

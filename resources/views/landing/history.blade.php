@@ -29,8 +29,8 @@
                                         <div class="col-md-4">
                                             <div class="card-body">
                                                 <p class="card-text">Jumlah Orang : {{$p->jumlah_orang}}</p>
-                                                <p class="card-text">Harga/pax : Rp {{$p->harga}}</p>
-                                                <p class="card-text">Harga Total : Rp {{$p->hargatotal}}</p>
+                                                <p class="card-text">Harga/Orang : Rp {{ number_format($p->harga, 0, ',', '.') }}</p>
+                                                <p class="card-text">Harga Total : Rp {{ number_format($p->hargatotal, 0, ',', '.') }}</p>
                                                 @if($p->status_perjalanan == 3)
                                                 <p class="card-text" >Status Perjalanan : <span class="badge badge-success">Selesai</span> </p>
                                                 @endif                                          

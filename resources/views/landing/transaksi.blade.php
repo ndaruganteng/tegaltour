@@ -24,11 +24,11 @@
                                         <div class="col-md-6">
                                             <div class="card-body">
                                                 <h5 class="card-title">Wisata : {{$p->nama_wisata}}</h5>
-                                                <p class="card-text">Nama : {{$p->nama_pengguna}} </p>
+                                                <p class="card-text">Nama Pemesan: {{$p->nama_pengguna}} </p>
                                                 <p class="card-text" style="margin-top: -10px;">Tanggal Pemesanan : {{$p->date}}</p>
                                                 <p class="card-text" style="margin-top: -10px;">Tanggal Berangkat : {{$p->tanggal}}</p>
                                                 <p class="card-text" style="margin-top: -10px;">Jumlah Orang : {{$p->jumlah_orang}} Orang</p>
-                                                <p class="card-text" style="margin-top: -10px;">Harga/pax : Rp.{{ number_format($p->harga, 0, ',', '.') }}</p>
+                                                <p class="card-text" style="margin-top: -10px;">Harga/pax : Rp {{ number_format($p->harga, 0, ',', '.') }}</p>
                                                 @if($p->status == 2)
                                                 <p class="card-text" style="margin-top: -10px;">Harga Total : Rp.{{$p->hargatotal}}</p>
                                                 @endif
@@ -49,21 +49,21 @@
                                                     @endif
                                                 </p>
                                                 @if($p->status == null)
-                                                <div class="alert alert-warning" role="alert">
-                                                    Harga Yang harus Dibayar : Rp.{{ number_format($p->hargatotal, 0, ',', '.') }}
+                                                <div class="alert alert-warning">
+                                                    Harga Yang harus Dibayar : Rp {{ number_format($p->hargatotal, 0, ',', '.') }}
                                                 </div>
                                                 @endif
                                                 <div>
                                                     @if($p->bukti_pembayaran)
                                                     @else
-                                                    <a href="/data-order/hapus/{{ $p->id_pemesanan }}" class="btn btn-danger btn-sm shadow-0 delete-button-pemesanan" >
-                                                            <i class="fa-solid fa-circle-xmark me-2"></i> Cancel
-                                                    </a>
-                                                    <button type="button" class="btn btn-dark shadow-0 btn-sm"
+                                                    <button type="button" class="btn btn-dark shadow-0 btn-sm mt-2"
                                                         data-toggle="modal" data-target="#buktiModal{{$p->id_pemesanan}}"
                                                         data-whatever="@getbootstrap">
                                                         <i class="fa-solid fa-upload me-2"></i>Upload Bukti transfer
                                                     </button>
+                                                    <a href="/data-order/hapus/{{ $p->id_pemesanan }}" class="btn btn-danger btn-sm shadow-0 delete-button-pemesanan mt-2" >
+                                                        <i class="fa-solid fa-circle-xmark me-2"></i> Cancel
+                                                    </a>
                                                     @endif
                                                 </div>
                                             </div>
@@ -74,9 +74,9 @@
                                                 @foreach ($rekening[$p->id_pemesanan]  as $rekeningItem)
                                                 <div class="col-lg-4 col-md-12 mt-3">
                                                     <img src="{{asset('storage/image/rekening/'.$rekeningItem->image_rekening)}}" class="float-left" />
-                                                    <p>Nama Bank: {{ $rekeningItem->nama_bank }}</p>
-                                                    <p>Nomor Rekening: {{ $rekeningItem->no_rekening }}</p>
-                                                    <p>A/N: {{ $rekeningItem->nama_rekening }}</p>
+                                                    <p>Bank {{ $rekeningItem->nama_bank }}</p>
+                                                    <p>Nomor Rekening : {{ $rekeningItem->no_rekening }}</p>
+                                                    <p>A.N : {{ $rekeningItem->nama_rekening }}</p>
                                                 </div>
                                                 @endforeach
                                             </div>

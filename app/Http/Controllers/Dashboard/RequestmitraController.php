@@ -30,19 +30,28 @@ class RequestmitraController extends Controller
     }
 
     public function store(Request $request)
-
     {
-        $validator = $request -> validate([
+        $validator = $request->validate([
             'nama_lengkap' => 'required',
-            'telepon' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'telepon' => 'required|regex:/^[0-9]{11,13}$/',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
+            'bukti_mitra' => 'required|file|mimes:jpg,jpeg,png|max:2048', 
         ], 
         [
-            "nama_lengkap.required" => "Please enter Nama Lengkap",
-            "telepon.required" => "Please enter telepon",
-            "email.required" => "Please enter email",
-            "password.required" => "Please enter password",
+            "nama_lengkap.required" => "Harap masukkan Nama Lengkap",
+            "telepon.required" => "Harap masukkan nomor telepon",
+            "telepon.regex" => "Nomor telepon harus berisi hanya angka dan panjang 11-13 karakter",
+            "email.required" => "Harap masukkan alamat email",
+            "email.email" => "Format alamat email tidak valid",
+            "email.unique" => "Alamat email sudah digunakan",
+            "password.required" => "Harap masukkan kata sandi",
+            "password.min" => "Kata sandi minimal harus 6 karakter",
+            "password.regex" => "Kata sandi harus mengandung huruf besar, huruf kecil, angka, dan karakter khusus (@$!%*?&)",
+            "bukti_mitra.required" => "Harap unggah bukti mitra",
+            "bukti_mitra.file" => "Bukti mitra harus berupa berkas",
+            "bukti_mitra.mimes" => "Format berkas yang diizinkan adalah jpeg dan png",
+            "bukti_mitra.max" => "Ukuran berkas maksimum adalah 2 MB",
         ]);
 
 
@@ -53,7 +62,7 @@ class RequestmitraController extends Controller
         $alamat = $mitra->alamat= $request->input('alamat');
         $mitra->role= 'mitra';
         $password = $request->input('password');
-        $mitra->password = $password;
+        $mitra->password = bcrypt($password);
         if ($request->hasFile('bukti_mitra')) {
             $file = $request->file('bukti_mitra');
             $extension = $file->getClientOriginalExtension();
@@ -63,7 +72,7 @@ class RequestmitraController extends Controller
         }
         $mitra->save();
         
-        return redirect('/join-mitra')->with('message', 'Permintaan Join Mitra Anda telah Terkirim Silahkan Cek Email!');
+        return redirect('/join-mitra')->with('message', 'Permintaan Join Mitra Anda telah Terkirim, Silahkan Cek Email! ');
     }
 
     // method untuk hapus data mitra
@@ -90,7 +99,6 @@ class RequestmitraController extends Controller
         return view('dashboard.request-mitra',compact('mitra'));
     }
 
-
     public function konfirmasiMitra($id)
     {
         $mitra = User::find($id);
@@ -110,4 +118,5 @@ class RequestmitraController extends Controller
 
         return redirect('/request-mitra')->with('success', "Mitra Telah Dikonfirmasi!");
     }
+
 }

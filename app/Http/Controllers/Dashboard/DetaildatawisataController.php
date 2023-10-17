@@ -14,7 +14,11 @@ class DetaildatawisataController extends Controller
     // menampilkan data detail-data-wisata
     public function showdetail($id)
     {      
-        $data_wisata_detail = wisata::findOrFail($id);
+        $data_wisata_detail = DB::table('wisata')
+        ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
+        ->select('wisata.*', 'kategori.nama_kategori as kategori')
+        ->where('id_wisata', $id)
+        ->first();
         return view('dashboard.detail-data-wisata', compact('data_wisata_detail'));
     }
 

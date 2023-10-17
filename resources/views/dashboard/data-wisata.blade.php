@@ -51,7 +51,7 @@
                                         <th>Image</th>
                                         <th>Nama Paket Wisata</th>
                                         <th>Kategori</th>
-                                        <th>harga</th>
+                                        <th>harga/Orang</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -63,7 +63,7 @@
                                         </td>
                                         <td>{{ $p->namawisata}}</td>
                                         <td>{{ $p->kategori}}</td>
-                                        <td>Rp {{ $p->harga}}</td>
+                                        <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                         <td>
                                             <a href="/detail-data-wisata/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm" >
                                                 <i class="fas fa-eye"></i>

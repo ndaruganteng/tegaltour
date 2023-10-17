@@ -35,14 +35,12 @@
                             </div>
                         </div>
                         <div class="col-lg-12 deskripsi">
-                            <h3>Titik Kumpul : 
-                                <span style="font-size: 18px; text-transform: lowercase;">{{ $detail_wisata->titikkumpul }}</span>
-                            </h3>
+                            <h3>Titik Kumpul</h3>
+                            <p>{{ $detail_wisata->titikkumpul }}</p>
                         </div>
                         <div class="col-lg-12 deskripsi ">
-                            <h3>Highlight : 
-                                <span style="font-size: 18px; text-transform: lowercase;">{{ $detail_wisata->lokasi }}</span> 
-                            </h3>
+                            <h3>Highlight</h3>                
+                            <p>{{ $detail_wisata->lokasi }}</p>
                         </div>
                         <div class="col-lg-12 deskripsi">
                             <h3>Deskripsi</h3>
