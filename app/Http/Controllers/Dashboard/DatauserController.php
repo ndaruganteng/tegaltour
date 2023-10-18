@@ -20,27 +20,12 @@ class DatauserController extends Controller
         return view('dashboard.data-user',['users' => $users]);
     }
 
-    // search data User
-    public function search_user(Request $request)
-    {
-        $keyword = $request->input('search_user');
-        $users = User::where('nama_lengkap', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('no_telepon','LIKE', '%' . $keyword . '%')
-            ->orWhere('email','LIKE', '%' . $keyword . '%')
-            ->orWhere('role', 'LIKE', '%' . $keyword . '%')
-            ->get();
-
-            return view('dashboard.data-user',compact('users'));
-    }
-
-
     // join mitra
     public function join_mitra()
     {   
     	$users = DB::table('users')
-    ->where('status', null)
-    ->get();
-
+        ->where('status', null)
+        ->get();
 
         return view('dashboard.request-mitra',['users' => $users]);
     }

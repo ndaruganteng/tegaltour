@@ -3,7 +3,8 @@
 @include('sweetalert::alert')
 
 <div class="content-wrapper">
-    <section id="{{$detail_data_wisata_admin->namawisata}}">
+    
+    <div id="{{$detail_data_wisata_admin->namawisata}}">
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
@@ -62,9 +63,7 @@
                 </div>
             </div>
         </div>
-
-    </section>
-
+    </div>
 
 </div>
 

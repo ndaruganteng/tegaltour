@@ -6,7 +6,7 @@
 
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row ">
           <div class="col-sm-6">
             <h1 class="m-0">Paket Wisata </h1>
           </div>
@@ -19,30 +19,14 @@
         </div>
       </div>
     </div>
+    
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between">
-                                <h3 class="card-title">Paket Wisata</h3>
-                                <div class="card-tools">
-                                    <form action="{{route('wisata.search_data_wisata_admin') }}" method="GET">
-                                        <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="search_data_wisata_admin" class="form-control float-right" placeholder="Search">
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-default">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>     
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap text-center">
+                        <div class="card-body">
+                            <table id="paket-table" class="table table-striped table-bordered text-center" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Image</th>
@@ -51,23 +35,22 @@
                                         <th>Tanggal Berangkat</th>
                                         <th>Kategori</th>
                                         <th>harga/Orang</th>
+                                        <th>Aksi</th>
                                         
                                     </tr>
-                                </thead>
-                                @if(count($wisata) > 0)
+                                </thead>        
+                                <tbody>
                                     @foreach($wisata as $p)
-                                    <tbody>
                                         <tr>
                                             <td>
-                                                <img src="{{asset('storage/image/wisata/'.$p->image)}}" alt="wisata" style="width:100px">
+                                                <img src="{{asset('storage/image/wisata/'.$p->image)}}" alt="wisata" style="width:70px">
                                             </td>
                                             <td>{{ $p->namawisata}}</td>
                                             <td>{{ $p->nama}}</td>
                                             <td>{{ $p->tanggalberangkat}}</td>
                                             <td>
                                                 <span class="badge badge-dark">{{ $p->kategori}}</span>
-                                            </td>
-                                            
+                                            </td>                                         
                                             <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                             <td>
                                                 <a href="/detail-data-wisata-admin/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm" >
@@ -75,17 +58,8 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                    </tbody>
                                     @endforeach
-                                @else
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="6" class="text-center">
-                                                <p>Paket Wisata kosong.</p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                @endif
+                                </tbody>
                             </table>
                         </div>
                     </div>

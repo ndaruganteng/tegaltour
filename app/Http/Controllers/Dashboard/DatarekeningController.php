@@ -130,18 +130,6 @@ class DatarekeningController extends Controller
        $rekening->delete(); 
        return back() -> with('success', "Data rekening berhasil dihapus!");
    }
-
-      // search data rekening
-    public function search_data_rekening(Request $request)
-    {
-        $keyword = $request->input('search_data_rekening');
-        $rekening = rekening::where('nama_bank', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('nama_rekening','LIKE', '%' . $keyword . '%')
-            ->orWhere('no_rekening', 'LIKE', '%' . $keyword . '%')
-            ->get();
-
-            return view('dashboard.data-rekening',compact('rekening'));
-    }
-
+   
 
 }

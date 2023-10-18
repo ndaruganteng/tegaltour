@@ -186,25 +186,6 @@ class DatawisataController extends Controller
         return back() -> with('success', "Data Wisata berhasil dihapus!");
     }
 
-    // search data wisata
-    public function search_data_wisata(Request $request)
-    {
-        $kategori = kategori::all();
-        $keyword = $request->input('search_data_wisata');
-        $wisata = wisata::where('namawisata', 'LIKE', '%' . $keyword . '%')
-            ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
-            ->select('wisata.*', 'kategori.nama_kategori as kategori')
-            ->orWhere('tanggalberangkat','LIKE', '%' . $keyword . '%')
-            ->orWhere('kategori', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('harga', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('durasi', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('lokasi', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('titikkumpul', 'LIKE', '%' . $keyword . '%')
-            ->get();
-
-            return view('dashboard.data-wisata',compact('wisata','kategori'));
-    }
-   
     // view data wisata admin
     public function wisata_admin(){
 
@@ -215,27 +196,6 @@ class DatawisataController extends Controller
         ->get();
         
         return view('dashboard.data-wisata-admin',['wisata' => $wisata]);
-    }
-
-    // search data wisata admin
-    public function search_data_wisata_admin(Request $request)
-    {   
-        $kategori = kategori::all();
-        $keyword = $request->input('search_data_wisata_admin');
-        $wisata = wisata::where('namawisata', 'LIKE', '%' . $keyword . '%')
-            ->join('users', 'wisata.id_mitra', '=', 'users.id')
-            ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
-            ->select('wisata.*','users.nama_lengkap as nama','kategori.nama_kategori as kategori')
-            ->orWhere('tanggalberangkat','LIKE', '%' . $keyword . '%')
-            ->orWhere('kategori', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('harga', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('durasi', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('lokasi', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('titikkumpul', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('nama_lengkap', 'LIKE', '%' . $keyword . '%')
-            ->get();
-
-            return view('dashboard.data-wisata-admin',compact('wisata','kategori'));
     }
     
 }

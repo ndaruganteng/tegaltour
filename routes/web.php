@@ -57,14 +57,12 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){
     Route::get('/data-wisata/hapus/{id_wisata}', [DatawisataController::class, 'hapus'])->name('hapus.index');
     Route::pattern('id', '[0-9]+');
     Route::get('/detail-data-wisata/{id}', [DetaildatawisataController::class,'showdetail']);
-    Route::get('/data-wisata/search_data_wisata',[DatawisataController::class, 'search_data_wisata'])->name('wisata.search_data_wisata');
 
     //DATA REKENINGG
     Route::get('/data-rekening', [DatarekeningController::class, 'index'])->name('data-rekening.index');
     Route::post('/data-rekening', [DatarekeningController::class, 'store'])->name('Rekening.index');
     Route::put('/data-rekening/update/{id_rekening}', [DatarekeningController::class, 'update'])->name('updateRekening.index');
     Route::get('/data-rekening/hapus/{id_rekening}', [DatarekeningController::class, 'hapus'])->name('hapus.index');
-    Route::get('/search_data_rekening',[DatarekeningController::class, 'search_data_rekening'])->name('rekening.search_data_rekening');
 
     // DATA-ORDER
     Route::get('/data-order', [PemesananController::class, 'data_order'])->name('data-order.index');
@@ -86,12 +84,10 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     Route::get('/data-wisata-admin', [DatawisataController::class, 'wisata_admin'])->name('data-wisata-admin.index');
     Route::pattern('id', '[0-9]+');
     Route::get('/detail-data-wisata-admin/{id}', [DetaildatawisataController::class,'showdetailadmin']);
-    Route::get('/search_data_wisata_admin',[DatawisataController::class, 'search_data_wisata_admin'])->name('wisata.search_data_wisata_admin');
 
     //DATAUSER
     Route::get('/data-user', [DatauserController::class, 'index'])->name('data-user.index');
     Route::get('/request-mitra', [DatauserController::class, 'join_mitra'])->name('request-mitra.index');
-    Route::get('/search_user',[DatauserController::class, 'search_user'])->name('users.search_user');
     Route::get('/konfirmasi-mitra/{id}', [RequestmitraController::class, 'konfirmasiMitra']);
 
     //DATA kATERGORI
@@ -99,7 +95,6 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     Route::post('/data-kategori', [DatakategoriController::class, 'store'])->name('Kategori.index');
     Route::put('/data-kategori/update/{id_kategori}', [DatakategoriController::class, 'update'])->name('updateKategori.index');
     Route::get('/data-kategori/hapus/{id_kategori}', [DatakategoriController::class, 'hapus'])->name('hapus.index');
-    Route::get('/search_data_kategori',[DatakategoriController::class, 'search_data_kategori'])->name('kategori.search_data_kategori');
 
  });
 
@@ -139,7 +134,7 @@ Route::group(['middleware' => ['auth','ceklevel:user']], function(){
     Route::post('/upload-bukti_pembayaran/{id}', [PemesananController::class, 'update'])->name('upload-bukti_pembayaran');
 });
 
-// MITRA
+// // MITRA
 Route::get('/join-mitra', [RequestmitraController::class, 'tambah'])->name('join-mitra.index');
 Route::post('/join-mitra', [RequestmitraController::class, 'store'])->name('Mitra.index');
 

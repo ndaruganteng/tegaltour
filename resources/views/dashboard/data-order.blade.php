@@ -6,7 +6,7 @@
 
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row">
           <div class="col-sm-6">
             <h1 class="m-0"> Data Order </h1>
           </div>
@@ -20,47 +20,30 @@
       </div>
     </div>
 
-    <section class="content">
+    <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between">
-                                <h3 class="card-title">Data Order</h3>
-                                <div class="card-tools">
-                                    <form action="" method="GET">
-                                        <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="search_data_order" class="form-control float-right" placeholder="Search">
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-default">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap text-center">
+                        <div class="card-body">
+                            <table id="order-table" class="table table-striped table-bordered table-responsive text-center" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Bukti Tf</th>
                                         <th>Nama Paket Wisata</th>
                                         <th>Nama Pemesan</th>
+                                        <th>Status Perjalalanan</th>
+                                        <th>Status Pemesanan</th>
                                         <th>Tanggal Berangkat</th>
                                         <th>Tanggal Pemesanan</th>
                                         <th>Jumlah Orang</th>
                                         <th>Harga/Orang</th>
                                         <th>Harga Total</th>
-                                        <th>Status Perjalalanan</th>
-                                        <th>Status Pemesanan</th>
                                         <th>Aksi</th>
                                     </tr>
-                                </thead>
-                                @foreach($pemesanan as $p)
-                                    <tbody>
+                                </thead>  
+                                <tbody>
+                                    @foreach($pemesanan as $p)
                                         <tr>
                                             <td>
                                                 @if($p->bukti_pembayaran)
@@ -68,18 +51,12 @@
                                                         <img src="{{ asset('storage/image/bukti-transfer/' . $p->bukti_pembayaran) }}" alt="wisata" style="width: 50px;">
                                                     </a>
                                                 @else
-                                                    <p class="p-3 text-center">Bukti Transfer Kosong</p>
+                                                    <h1 class="p-3 text-center" style="font-size:10px">Bukti Transfer Kosong</h1>
                                                 @endif
                                             </td>
                                             
                                             <td>{{$p->nama_wisata}}</td>
                                             <td>{{$p->nama_pengguna}}</td>
-                                            <td>{{ $p->tanggal}}</td>
-                                            <td>{{ $p->date}}</td>
-                                            <td>{{ $p->jumlah_orang}}</td>
-                                            <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
-                                            <td>Rp {{ number_format($p->hargatotal, 0, ',', '.') }}</td>
-
                                             <td>
                                                 @if($p->status_perjalanan == null)
                                                 <p class="card-text" > <span class="badge badge-warning">Menunggu</span> </p>
@@ -96,82 +73,86 @@
                                                     <div class="badge badge-success"> Dikonfirmasi</div>
                                                 @endif
                                             </td>
+                                            <td>{{ $p->tanggal}}</td>
+                                            <td>{{ $p->date}}</td>
+                                            <td>{{ $p->jumlah_orang}}</td>
+                                            <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
+                                            <td>Rp {{ number_format($p->hargatotal, 0, ',', '.') }}</td>
                                             <td>
                                                 @if($p->status == null)
                                                     <form  method="post" action="{{route('konfirmasi', ['id_pemesanan'=> $p->id_pemesanan])}}">
                                                         @csrf
                                                         @method('put')
                                                         <button type="submit" class="btn btn-success btn-sm">
-                                                            <i class="fa-solid fa-check mr-2"></i> Konfirmasi 
+                                                            <i class="fa-solid fa-check mr-2"></i>  
                                                         </button>
                                                     </form>
                                                 @else
                                                     <a href="/data-order/hapus/{{ $p->id_pemesanan }}" class="btn btn-danger btn-sm delete-button-pemesanan">
-                                                            <i class="fa-solid fa-trash mr-1"></i> Hapus
+                                                        <i class="fa-solid fa-trash mr-1"></i> 
                                                     </a>
                                                 @endif
                                             </td>
                                         </tr>
-                                    </tbody>
-                                    <!-- modal bukti -->
-                                    <div class="modal fade" id="buktiModal{{$p->id_pemesanan}}" tabindex="-1" role="dialog" aria-labelledby="buktiModalLabel{{$p->id_pemesanan}}" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="buktiModalLabel">Bukti Transfer</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class=" text-center">
-                                                        <img src="{{asset('storage/image/bukti-transfer/'.$p->bukti_pembayaran)}}"  alt="wisata" class="img-fluid"/>   
+                                        <!-- modal bukti -->
+                                        <div class="modal fade" id="buktiModal{{$p->id_pemesanan}}" tabindex="-1" role="dialog" aria-labelledby="buktiModalLabel{{$p->id_pemesanan}}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="buktiModalLabel">Bukti Transfer</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <div class="modal-body">
+                                                        <div class=" text-center">
+                                                            <img src="{{asset('storage/image/bukti-transfer/'.$p->bukti_pembayaran)}}"  alt="wisata" class="img-fluid"/>   
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                        <!-- end modal bukti -->
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        const deleteButtons = document.querySelectorAll('.delete-button-pemesanan');
-
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-
-                Swal.fire({
-                    title: 'Konfirmasi Hapus',
-                    text: 'Apakah Anda yakin ingin menghapus data ini?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Ya, Hapus',
-                    cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = e.target.getAttribute('href');
-                    }
-                });
-            });
-        });
-    </script>
-
-
+    </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const deleteButtons = document.querySelectorAll('.delete-button-pemesanan');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                text: 'Apakah Anda yakin ingin menghapus data ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = e.target.getAttribute('href');
+                }
+            });
+        });
+    });
+</script>
 
 
 @endsection

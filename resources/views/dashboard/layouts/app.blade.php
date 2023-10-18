@@ -30,12 +30,16 @@
   <link rel="stylesheet" href="{{asset('AdminLTE')}}/plugins/summernote/summernote-bs4.min.css">
   <!-- trix editor -->
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+  <!-- datatables -->
+   <!-- Tambahkan tautan ke library CSS Bootstrap -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Tambahkan tautan ke library CSS DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
 
 
 </head>
 <body class="sidebar-mini layout-fixed sidebar-open bg-dark"  >
-
-
 
 
     <div class="wrapper bg-white" >
@@ -88,7 +92,60 @@
 <script src="{{asset('AdminLTE')}}/dist/js/adminlte.js"></script>
 <!-- trixeditor -->
 <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+<!-- data tables -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Tambahkan tautan ke library JavaScript Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Tambahkan tautan ke library JavaScript DataTables -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#kategori-table').DataTable();
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#datauser-table').DataTable();
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#paket-table').DataTable();
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#requestmitra-table').DataTable();
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#rekening-table').DataTable();
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#wisata-table').DataTable();
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#order-table').DataTable();
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#perjalanan-table').DataTable();
+    });
+</script>
+
 
 </body>
-
 </html>

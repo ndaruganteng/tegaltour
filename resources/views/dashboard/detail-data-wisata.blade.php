@@ -4,7 +4,7 @@
 
 <div class="content-wrapper">
 
-    <section id="{{$data_wisata_detail->namawisata}}">
+    <div id="{{$data_wisata_detail->namawisata}}">
 
         <div class="content-header">
             <div class="container-fluid">
@@ -64,7 +64,8 @@
                 </div>
             </div>
         </div>
-    </section>
+        
+    </div>
 
 </div>
 

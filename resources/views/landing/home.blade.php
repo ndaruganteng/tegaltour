@@ -115,7 +115,7 @@
                     <div class="col-md-12 col-lg-3">
                         <div class="card" data-aos="zoom-in"  data-aos-duration="500"  data-aos-delay="100">
                             <a href="/{{$item->id_wisata}}/{{$item->slug}}" class="bg-image hover-zoom">
-                                <img class="card-img-top" src="{{asset('storage/image/wisata/'.$item->image)}}"  alt="Card image cap w-100" style="height:180px">
+                                <img class="card-img-top" src="{{asset('storage/image/wisata/'.$item->image)}}"  alt="Card image cap w-100" >
                             </a>        
                             <div class="card-body">
                                 <span class="badge badge-dark">{{ $item->kategori }}</span>

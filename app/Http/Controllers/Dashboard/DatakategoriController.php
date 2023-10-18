@@ -45,8 +45,6 @@ class DatakategoriController extends Controller
         return redirect('/data-kategori')->with('success', " Kategori berhasil ditambahkan!");
     }
 
-
-
     // method untuk edit data kategori
     public function edit($id)
     {
@@ -57,7 +55,6 @@ class DatakategoriController extends Controller
             'kategori'=> $kategori
         ]);
     }
-
 
     // update data rekening
     public function update(Request $request,$id)
@@ -77,7 +74,6 @@ class DatakategoriController extends Controller
         return redirect('data-kategori')->with('success','Data kategori Telah Diupdate!');
     }
 
-
     public function hapus($id)
     {
         $kategori = Kategori::find($id);
@@ -85,12 +81,4 @@ class DatakategoriController extends Controller
         return back() -> with('success', "Data kategori berhasil dihapus!");
     }
 
-    public function search_data_kategori(Request $request)
-    {
-        $keyword = $request->input('search_data_kategori');
-        $kategori = kategori::where('nama_kategori', 'LIKE', '%' . $keyword . '%')
-            ->get();
-
-            return view('dashboard.data-kategori',compact('kategori'));
-    }
 }

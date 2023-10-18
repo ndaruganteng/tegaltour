@@ -3,6 +3,7 @@
 @include('sweetalert::alert')
 
 <div class="content-wrapper">
+
     <div class="content-header">
         <div class="container-fluid">
             <div class="row">
@@ -146,6 +147,7 @@
             </div>
         </div>
     </div>
+    
 </div>
 
 <script>
@@ -168,9 +170,7 @@
         }
     }
 </script>
-
 <script>
-    // Set file input value to empty after a validation error
     $('#image').on('change', function() {
         if ($(this).is(':invalid')) {
             $(this).val('');

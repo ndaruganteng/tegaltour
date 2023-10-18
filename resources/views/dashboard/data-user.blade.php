@@ -20,30 +20,13 @@
       </div>
     </div>
 
-    <section class="content">
+    <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between">
-                                <h3 class="card-title">Data User</h3>
-                                <div class="card-tools">
-                                    <form action="{{route('users.search_user') }}" method="GET">
-                                        <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="search_user"  id="search_user" class="form-control float-right" placeholder="Search" >
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-default">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form> 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap text-center">
+                        <div class="card-body">
+                            <table id="kategori-table" class="table table-striped table-bordered text-center" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Nama</th>
@@ -52,31 +35,31 @@
                                         <th>Role</th> 
                                         <th>Aksi</th>
                                     </tr>
-                                </thead>
-                                @foreach($users as $p)
+                                </thead>                   
                                 <tbody>
-                                    <tr>
-                                        <td>{{$p->nama_lengkap}}</td>
-                                        <td>{{$p->email}}</td>
-                                        <td>{{$p->no_telepon}}</td>
-                                        <td>
-                                            <span class="badge badge-dark">{{$p->role}}</span>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                @endforeach
+                                     @foreach($users as $p)
+                                        <tr>
+                                            <td>{{$p->nama_lengkap}}</td>
+                                            <td>{{$p->email}}</td>
+                                            <td>{{$p->no_telepon}}</td>
+                                            <td>
+                                                <span class="badge badge-dark">{{$p->role}}</span>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>   
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

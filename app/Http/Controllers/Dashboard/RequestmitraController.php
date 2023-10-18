@@ -84,21 +84,6 @@ class RequestmitraController extends Controller
         return back()->with('error', "Data berhasil dihapus!");
     }
 
-    // search data mitra
-    public function search_data_mitra(Request $request)
-    {
-        $keyword = $request->input('search_data_mitra');
-        $mitra = mitra::where('nama_lengkap', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('nama_bisnis','LIKE', '%' . $keyword . '%')
-            ->orWhere('alamat', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('telepon', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('email', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('password', 'LIKE', '%' . $keyword . '%')
-            ->get();
-
-        return view('dashboard.request-mitra',compact('mitra'));
-    }
-
     public function konfirmasiMitra($id)
     {
         $mitra = User::find($id);

@@ -6,44 +6,27 @@
 
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row">
           <div class="col-sm-6">
-            <h1 class="m-0"> Data User </h1>
+            <h1 class="m-0"> Request Mitra </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">Dashboard</a></li>
-              <li class="breadcrumb-item active"> Data User</li>
+              <li class="breadcrumb-item active"> Requset Mitra</li>
             </ol>
           </div>
         </div>
       </div>
     </div>
 
-    <section class="content">
+    <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between">
-                                <h3 class="card-title">Data User</h3>
-                                <div class="card-tools">
-                                    <form action="{{route('users.search_user') }}" method="GET">
-                                        <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="search_user"  id="search_user" class="form-control float-right" placeholder="Search" >
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-default">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form> 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap text-center">
+                        <div class="card-body">
+                            <table id="requestmitra-table" class="table table-striped table-bordered text-center" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Bukti Mitra</th>
@@ -55,29 +38,27 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                @if(count($users) > 0)
+                                <tbody>
                                     @foreach($users as $p)
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <a href="#" data-toggle="modal" data-target="#buktimitraModal{{$p->id}}" data-whatever="@getbootstrap">
-                                                        <img src="{{ asset('storage/image/bukti-mitra/' . $p->bukti_mitra) }}" alt="wisata" style="width: 50px;">
-                                                    </a>
-                                                </td>
-                                                <td>{{$p->nama_lengkap}}</td>
-                                                <td>{{$p->alamat}}</td>
-                                                <td>{{$p->email}}</td>
-                                                <td>{{$p->no_telepon}}</td>
-                                                <td>
-                                                    <span class="badge badge-dark">{{$p->role}}</span>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-success btn-sm" href="/konfirmasi-mitra/{{$p->id}}">
-                                                        <i class="fa-solid fa-envelope"></i> Konfimasi
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="#" data-toggle="modal" data-target="#buktimitraModal{{$p->id}}" data-whatever="@getbootstrap">
+                                                    <img src="{{ asset('storage/image/bukti-mitra/' . $p->bukti_mitra) }}" alt="wisata" style="width: 50px;">
+                                                </a>
+                                            </td>
+                                            <td>{{$p->nama_lengkap}}</td>
+                                            <td>{{$p->alamat}}</td>
+                                            <td>{{$p->email}}</td>
+                                            <td>{{$p->no_telepon}}</td>
+                                            <td>
+                                                <span class="badge badge-dark">{{$p->role}}</span>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-success btn-sm" href="/konfirmasi-mitra/{{$p->id}}">
+                                                    <i class="fa-solid fa-envelope"></i> Konfimasi
+                                                </a>
+                                            </td>
+                                        </tr>
                                         <div class="modal fade" id="buktimitraModal{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="buktimitraModalLabel{{$p->id}}" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
@@ -97,24 +78,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>                         
                                     @endforeach
-                                @else
-                                <tbody>
-                                    <tr>
-                                        <td colspan="6" class="text-center">
-                                            <p>Request-mitra kosong.</p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                @endif
+                                </tbody>     
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
 </div>
 
