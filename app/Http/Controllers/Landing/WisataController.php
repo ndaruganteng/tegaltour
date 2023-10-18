@@ -26,7 +26,7 @@ class WisataController extends Controller
     // search wisata
     public function search(Request $request)
     {
-       $kategori = kategori::all();
+        $kategori = kategori::all();
         $keyword = $request->input('search');
         $wisata = DB::table('wisata')
             ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
@@ -47,7 +47,7 @@ class WisataController extends Controller
     // search range tanggal
     public function search_date(Request $request)
     {
-       $kategori = kategori::all();
+        $kategori = kategori::all();
         $keyword = $request->input('search_date');
         $wisata = DB::table('wisata')
         ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')

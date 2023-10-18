@@ -87,10 +87,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
+                <div class="col-lg-12 ">
                     <div class="row" id="wisata-list">
                         @foreach($wisata as $item)                           
-                        <div class="col-md-12 col-lg-4">                     
+                        <div class="col-md-12 col-lg-4 tour-card">                     
                             <div class="card shadow-0 border border-2">
                                 <a href="/{{ ($item->id_wisata) }}/{{$item->slug}}" class="bg-image hover-zoom">
                                     <img class="card-img-top" src="{{asset('storage/image/wisata/'.$item->image)}}" alt="Card image cap w-100"

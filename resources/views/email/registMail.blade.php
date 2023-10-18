@@ -63,8 +63,9 @@
                 <div class="card">
                     <h1>Selamat akun anda telah dikonfimarsi oleh admin</h1>
                     <h4>Informasi Mitra:</h4>
-                    <p>Email: {{ $details['email'] }}</p>
-                    <p>Nama: {{ $details['nama_lengkap'] }}</p>
+                    <p>Email : </p>
+                    <p>Nama  : {{ $details['nama_lengkap'] }}</p>
+                    <p>Email : {{ $details['email'] }}</p>
                 </div>
             </div>
         </div>
