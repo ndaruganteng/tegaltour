@@ -30,7 +30,8 @@ class WisataController extends Controller
         $keyword = $request->input('search');
         $wisata = DB::table('wisata')
             ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
-            ->select('wisata.*', 'kategori.nama_kategori as kategori')
+            ->join('users', 'wisata.id_mitra', '=', 'users.id')
+            ->select('wisata.*', 'kategori.nama_kategori as kategori','users.nama_lengkap as nama_lengkap')
             ->where('namawisata', 'LIKE', '%' . $keyword . '%')
             ->orWhere('tanggalberangkat', 'LIKE', '%' . $keyword . '%')
             ->orWhere('kategori', 'LIKE', '%' . $keyword . '%')
@@ -39,6 +40,7 @@ class WisataController extends Controller
             ->orWhere('lokasi', 'LIKE', '%' . $keyword . '%')
             ->orWhere('fasilitas', 'LIKE', '%' . $keyword . '%')
             ->orWhere('deskripsi', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('nama_lengkap', 'LIKE', '%' . $keyword . '%')
             ->get();
 
             return view('landing.wisata',compact('wisata','kategori'));
