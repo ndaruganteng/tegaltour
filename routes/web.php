@@ -89,6 +89,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     Route::get('/data-user', [DatauserController::class, 'index'])->name('data-user.index');
     Route::get('/request-mitra', [DatauserController::class, 'join_mitra'])->name('request-mitra.index');
     Route::get('/konfirmasi-mitra/{id}', [RequestmitraController::class, 'konfirmasiMitra']);
+    Route::get('/data-user/hapus_user/{id}', [DatauserController::class, 'hapus_user'])->name('hapus_user');
 
     //DATA kATERGORI
     Route::get('/data-kategori', [DatakategoriController::class, 'index'])->name('data-kategori.index');

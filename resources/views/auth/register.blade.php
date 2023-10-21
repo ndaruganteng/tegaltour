@@ -36,41 +36,58 @@
             </div>       
             <div class="col-md-6 right-box">
                 <div class="row align-items-center">
-                        <div class="header-text mb-4">
-                            <h1>Register</h1>
+                    <div class="header-text mb-4">
+                        <h1>Register</h1>
+                    </div>
+                    <form action="/register" method="POST">
+                        @csrf
+                        <div class="input-group mb-3">
+                            <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}" class="form-control form-control-lg bg-light fs-6" placeholder="Nama Lengkap">
                         </div>
-                        <form action="/register" method="POST">
-                            @csrf
-                            <div class="input-group mb-3">
-                                <input type="text" name="nama_lengkap" class="form-control form-control-lg bg-light fs-6" placeholder="Nama Lengkap">
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" name="no_telepon" class="form-control form-control-lg bg-light fs-6" placeholder="Nomor Telepon">
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="email" name="email" class="form-control form-control-lg bg-light fs-6" placeholder="Email">
-                                @error('email')
+                        <div class="input-group mb-3">
+                            <input type="text" name="no_telepon" value="{{ old('no_telepon') }}" class="form-control form-control-lg bg-light fs-6" placeholder="Nomor Telepon">
+                            @error('no_telepon')
                                 <script>
                                     swal("Gagal", "{{ $message }}", "error");
                                 </script>
-                                 @enderror        
-                            </div>
-                            <div class="input-group mb-4">
-                                <input type="password" name="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password">
-                                @error('password')
+                            @enderror  
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="email" name="email" value="{{ old('email') }}" class="form-control form-control-lg bg-light fs-6" placeholder="Email">
+                            @error('email')
                                 <script>
                                     swal("Gagal", "{{ $message }}", "error");
                                 </script>
-                                @enderror  
-                            </div>
-                           
-                            <div class="input-group mb-3">
-                                <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" style="background: #103cbe;">Register</button>
-                            </div>
-                        </form>
-                        <div class="row">
-                            <small>Sudah memiliki akun? <a href="{{route('login.index')}}">Login</a></small>
+                            @enderror        
                         </div>
+                        <!-- <div class="input-group mb-4">
+                            <input type="password" name="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password">
+                            @error('password')
+                            <script>
+                                swal("Gagal", "{{ $message }}", "error");
+                            </script>
+                            @enderror  
+                        </div> -->
+                        <div class="input-group mb-4">
+                            <input type="password" name="password" id="password" class="form-control form-control-lg bg-light fs-6" value="{{ old('password') }}" placeholder="Password">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="show-password" style="cursor: pointer;">
+                                    <i class="fa fa-eye" id="eyeIcon"></i>
+                                </span>
+                            </div>
+                            @error('password')
+                                <script>
+                                    swal("Gagal", "{{ $message }}", "error");
+                                </script>
+                            @enderror
+                        </div>
+                        <div class="input-group mb-3">
+                            <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" style="background: #103cbe;">Register</button>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <small>Sudah memiliki akun? <a href="{{route('login.index')}}">Login</a></small>
+                    </div>
                 </div>
             </div> 
         </div>
@@ -95,7 +112,24 @@
         once: true,
       });
     </script>
-    
+    <!-- icon password js -->
+    <script>
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+        const showPasswordButton = document.getElementById('show-password');
+
+        showPasswordButton.addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        });
+    </script>
    
   </body>
 </html>

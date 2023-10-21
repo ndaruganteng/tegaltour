@@ -22,7 +22,13 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => [
+                'required',
+                'string',
+                'min:6',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'
+            ], 
         ]);
         
         $existingUser = User::where('email', $request->input('email'))->first();

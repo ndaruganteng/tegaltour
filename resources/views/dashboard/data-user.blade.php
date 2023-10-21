@@ -49,9 +49,10 @@
                                                 <a href="https://wa.me/{{$p->no_telepon}}#{{$p->id}}" target="_blank" class="btn btn-success btn-sm">
                                                     <i class="fa-brands fa-whatsapp"></i>
                                                 </a>
-                                                <a class="btn btn-danger btn-sm">
+                                                <a href="/data-user/hapus_user/{{ $p->id }}" class="btn btn-danger btn-sm deleteuser">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -118,5 +119,32 @@
     </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const deleteButtons = document.querySelectorAll('.deleteuser');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault(); 
+
+            Swal.fire({
+                title: 'Konfirmasi Hapus Data User ',
+                text: 'Apakah Anda yakin ingin menghapus User ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    window.location.href = button.getAttribute('href');
+                }
+            });
+        });
+    });
+</script>
+
 
 @endsection

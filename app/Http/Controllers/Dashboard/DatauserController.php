@@ -30,5 +30,24 @@ class DatauserController extends Controller
         return view('dashboard.request-mitra',['users' => $users]);
     }
 
+    // fungsi hapus user
+    public function hapus_user($id)
+    {
+        // Cari pengguna berdasarkan ID
+        $user = User::find($id);
+    
+        // Periksa apakah pengguna ditemukan
+        if ($user) {
+            // Hapus pengguna
+            $user->delete();
+            
+            // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+            return back()->with('success', 'Pengguna berhasil dihapus.');
+        } else {
+            // Jika pengguna tidak ditemukan, berikan pesan error
+            return back()->with('error', 'Pengguna tidak ditemukan.');
+        }
+    }
+
 
 }

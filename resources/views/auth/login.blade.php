@@ -53,8 +53,12 @@
                             <input type="email" class="form-control form-control-lg bg-light fs-6" name="email" placeholder="Masukan Email">
                         </div>
                         <div class="input-group mb-1">
-                            <input type="password" class="form-control form-control-lg bg-light fs-6"  name="password" placeholder="Masukan Password">
-                   
+                            <input type="password" class="form-control form-control-lg bg-light fs-6" name="password" id="password" placeholder="Masukan Password">
+                            <div class="input-group-append">
+                                <button type="button" id="togglePassword" class="btn border shadow-0">
+                                    <i id="eyeIcon" class="fa fa-eye"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="input-group mb-3">
                             <div class="forgot">
@@ -92,6 +96,25 @@
         once: true,
       });
     </script>
+
+<script>
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
+    const togglePasswordButton = document.getElementById('togglePassword');
+
+    togglePasswordButton.addEventListener('click', function () {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        }
+    });
+</script>
+
      
   </body>
 </html>

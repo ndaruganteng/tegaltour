@@ -63,7 +63,7 @@
         <li class="nav-item">
           <a href="{{route('request-mitra.index')}}" class="nav-link">
             <i class="nav-icon fa-regular fa-handshake"></i>
-            <p>Join Mitra</p>
+            <p>Request Mitra</p>
           </a>
         </li>
         @endif
