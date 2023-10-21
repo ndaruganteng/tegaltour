@@ -18,7 +18,7 @@ class RequestmitraController extends Controller
     // mengambil data dari table mitra
     public function index()
     {   
-    	$mitra = DB::table('mitra')->simplepaginate(5);
+    	$mitra = DB::table('mitra')->get();
 
         return view('dashboard.request-mitra',['mitra' => $mitra]);
     }

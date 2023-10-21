@@ -26,58 +26,60 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <table id="perjalanan-table" class="table table-striped table-bordered text-center" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Nama Pemesan</th>
-                                        <th>Status Perjalanan</th>
-                                        <th>Nama Wisata</th>
-                                        <th>Tanggal Berangkat</th>
-                                        <th>Jumlah Orang</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>          
-                                <tbody>
-                                    @foreach($pemesanan as $p)
-                                        @if($p->status == 2)
-                                            <tr>
-                                                <td>{{$p->nama_pengguna}}</td>
-                                                <td>
-                                                    @if($p->status_perjalanan == null)
-                                                        <div class="badge badge-warning">Menunggu </div>
-                                                    @elseif($p->status_perjalanan == 2)
-                                                        <div class="badge badge-info">Berangkat </div>
-                                                    @elseif($p->status_perjalanan == 3)
-                                                        <div class="badge badge-success">Selesai</div>                          
-                                                    @endif
-                                                </td>  
-                                                <td>{{$p->nama_wisata}}</td>     
-                                                <td>{{ $p->tanggal}}</td>
-                                                <td>{{ $p->jumlah_orang}}</td>   
-                                                <td>
-                                                    @if($p->status_perjalanan == null)
-                                                        <form  method="post" action="{{route('berangkat', ['id_pemesanan'=> $p->id_pemesanan])}}">
-                                                            @csrf
-                                                            @method('put')
-                                                            <button type="submit" class="btn btn-info btn-sm mx-1">
-                                                                <i class="fa-solid fa-car-side mr-2"></i>Berangkat
-                                                            </button>
-                                                        </form>
-                                                    @else($p->status_perjalanan == 2)
-                                                        <form  method="post" action="{{route('selesai', ['id_pemesanan'=> $p->id_pemesanan])}}">
-                                                            @csrf
-                                                            @method('put')
-                                                            <button type="submit" class="btn btn-success btn-sm mx-1">
-                                                                <i class="fa-solid fa-check-to-slot mr-2"></i>Selesai
-                                                            </button>
-                                                        </form>                              
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>                                                                    
-                            </table>
+                            <div class="table-responsive">
+                                <table id="perjalanan-table" class="table table-striped table-bordered text-center" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Pemesan</th>
+                                            <th>Status Perjalanan</th>
+                                            <th>Nama Wisata</th>
+                                            <th>Tanggal Berangkat</th>
+                                            <th>Jumlah Orang</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>          
+                                    <tbody>
+                                        @foreach($pemesanan as $p)
+                                            @if($p->status == 2)
+                                                <tr>
+                                                    <td>{{$p->nama_pengguna}}</td>
+                                                    <td>
+                                                        @if($p->status_perjalanan == null)
+                                                            <div class="badge badge-warning">Menunggu </div>
+                                                        @elseif($p->status_perjalanan == 2)
+                                                            <div class="badge badge-info">Berangkat </div>
+                                                        @elseif($p->status_perjalanan == 3)
+                                                            <div class="badge badge-success">Selesai</div>                          
+                                                        @endif
+                                                    </td>  
+                                                    <td>{{$p->nama_wisata}}</td>     
+                                                    <td>{{ $p->tanggal}}</td>
+                                                    <td>{{ $p->jumlah_orang}}</td>   
+                                                    <td>
+                                                        @if($p->status_perjalanan == null)
+                                                            <form  method="post" action="{{route('berangkat', ['id_pemesanan'=> $p->id_pemesanan])}}">
+                                                                @csrf
+                                                                @method('put')
+                                                                <button type="submit" class="btn btn-info btn-sm mx-1">
+                                                                    <i class="fa-solid fa-car-side mr-2"></i>Berangkat
+                                                                </button>
+                                                            </form>
+                                                        @else($p->status_perjalanan == 2)
+                                                            <form  method="post" action="{{route('selesai', ['id_pemesanan'=> $p->id_pemesanan])}}">
+                                                                @csrf
+                                                                @method('put')
+                                                                <button type="submit" class="btn btn-success btn-sm mx-1">
+                                                                    <i class="fa-solid fa-check-to-slot mr-2"></i>Selesai
+                                                                </button>
+                                                            </form>                              
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>                                                                    
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

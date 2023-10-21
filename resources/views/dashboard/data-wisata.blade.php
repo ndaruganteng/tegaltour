@@ -35,44 +35,46 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table id="wisata-table" class="table table-striped table-bordered text-center" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Image</th>
-                                        <th>Nama Paket Wisata</th>
-                                        <th>Tanggal Berangkat</th>
-                                        <th>Kategori</th>
-                                        <th>harga/Orang</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>                            
-                                <tbody>
-                                     @foreach($wisata as $p)
+                            <div class="table-responsive">
+                                <table id="wisata-table" class="table table-striped table-bordered text-center" style="width:100%">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                <img src="{{asset('storage/image/wisata/'.$p->image)}}" alt="wisata" style="width:50px">
-                                            </td>
-                                            <td>{{ $p->namawisata}}</td>
-                                            <td>{{ \Carbon\Carbon::parse($p->tanggalberangkat)->format('l, j F Y') }}</td>
-                                            <td>{{ $p->kategori}}</td>
-                                            <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
-                                            <td>
-                                                <a href="/detail-data-wisata/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm" >
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a href="/data-wisata/edit/{{ $p->id_wisata }}">
-                                                    <button class="btn btn-warning btn-sm">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                </a>
-                                                <a href="/data-wisata/hapus/{{ $p->id_wisata }}" class="btn btn-danger btn-sm deletewisata" id="deletwisata">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
+                                            <th>Image</th>
+                                            <th>Nama Paket Wisata</th>
+                                            <th>Tanggal Berangkat</th>
+                                            <th>Kategori</th>
+                                            <th>harga/Orang</th>
+                                            <th>Aksi</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>                            
-                            </table>
+                                    </thead>                            
+                                    <tbody>
+                                        @foreach($wisata as $p)
+                                            <tr>
+                                                <td>
+                                                    <img src="{{asset('storage/image/wisata/'.$p->image)}}" alt="wisata" style="width:50px">
+                                                </td>
+                                                <td>{{ $p->namawisata}}</td>
+                                                <td>{{ \Carbon\Carbon::parse($p->tanggalberangkat)->format('l, j F Y') }}</td>
+                                                <td>{{ $p->kategori}}</td>
+                                                <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
+                                                <td>
+                                                    <a href="/detail-data-wisata/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm" >
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a href="/data-wisata/edit/{{ $p->id_wisata }}">
+                                                        <button class="btn btn-warning btn-sm">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </a>
+                                                    <a href="/data-wisata/hapus/{{ $p->id_wisata }}" class="btn btn-danger btn-sm deletewisata" id="deletwisata">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>                            
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

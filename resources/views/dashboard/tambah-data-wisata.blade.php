@@ -43,8 +43,7 @@
                                     <div class="col-md-4 mb-3">
                                         <img id="image-preview" src="" class="img-thumbnail" style="display:none; max-width: 100%; max-height: 100px;" alt="Preview Image">
                                     </div>
-                                </div>
-                                
+                                </div>                               
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">

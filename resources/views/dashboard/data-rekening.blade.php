@@ -34,91 +34,93 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table id="rekening-table" class="table table-striped table-bordered text-center" style="width:100%">
-                                <thead>
-                                    <tr>
-                                    <th>Image</th>
-                                    <th>Nama Bank</th>
-                                    <th>Nomor Rekening</th>
-                                    <th>Nama Rekening</th>
-                                    <th>Aksi</th>
-                                    </tr>
-                                </thead>                           
-                                <tbody>
-                                    @foreach($rekening as $p)
+                            <div class="table-responsive">
+                                <table id="rekening-table" class="table table-striped table-bordered text-center" style="width:100%">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                <img src="{{asset('storage/image/rekening/'.$p->image_rekening)}}" alt="wisata" style="width:50px; heigth:auto;">
-                                            </td>
-                                            <td>{{ $p->nama_bank}}</td>
-                                            <td>{{ $p->no_rekening}}</td>
-                                            <td>{{ $p->nama_rekening}}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editrekening{{ $p->id_rekening }}">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <a href="/data-rekening/hapus/{{ $p->id_rekening }}" class="btn btn-danger btn-sm delete-rekening" id="delete-rekening">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-
-                                            </td>
+                                        <th>Image</th>
+                                        <th>Nama Bank</th>
+                                        <th>Nomor Rekening</th>
+                                        <th>Nama Rekening</th>
+                                        <th>Aksi</th>
                                         </tr>
-                                        <div class="modal fade" id="editrekening{{ $p->id_rekening }}" tabindex="-1" role="dialog" aria-labelledby="editrekeningTitle" aria-hidden="true">
-                                            <div class="modal-dialog  " role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="editrekeningTitle">Edit Rekening</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="{{ url('/data-rekening/update/'.$p->id_rekening) }}"  method="post" enctype="multipart/form-data">
-                                                            @csrf
-                                                            @method('put')
-                                                            <div class="card-body">
-                                                            <input type="hidden" name="id" id="id" value="{{ $p->id_rekening }}">
-                                                                <div class="row">
-                                                                    <div class="col-md-8">
-                                                                        <div class="form-group">
-                                                                            <label for="image_rekening" class="col-form-label">Image</label>
-                                                                            <input type="file" value="{{ $p->image_rekening}}" name="image_rekening" class="form-control" accept="image/*" onchange="previewImage(event)">
-                                                                            <p  style="font-style: italic; font-size: 12px;">size foto maksimal 2 mb dan extensi jpg, png, jpeg</p>     
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="form-grup">
-                                                                            @if ($p->image_rekening)
-                                                                            <img src="{{asset('storage/image/rekening/'.$p->image_rekening)}}" class="img-thumbnail" width="200">
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="nama_bank">Nama Bank</label>
-                                                                    <input type="text" class="form-control" value="{{ $p->nama_bank}}"  name="nama_bank"  placeholder="Masukan Nama Bank">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="no_rekening">Nomor Rekening</label>
-                                                                    <input type="text" class="form-control" value="{{ $p->no_rekening}}"  name="no_rekening" placeholder="Masukan Nomor Rekening Rekening">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="nama_rekening">Nama Rekening</label>
-                                                                    <input type="text" class="form-control" value="{{ $p->nama_rekening}}"  name="nama_rekening" placeholder="Nama Rekening">
-                                                                </div>
+                                    </thead>                           
+                                    <tbody>
+                                        @foreach($rekening as $p)
+                                            <tr>
+                                                <td>
+                                                    <img src="{{asset('storage/image/rekening/'.$p->image_rekening)}}" alt="wisata" style="width:50px; heigth:auto;">
+                                                </td>
+                                                <td>{{ $p->nama_bank}}</td>
+                                                <td>{{ $p->no_rekening}}</td>
+                                                <td>{{ $p->nama_rekening}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editrekening{{ $p->id_rekening }}">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <a href="/data-rekening/hapus/{{ $p->id_rekening }}" class="btn btn-danger btn-sm delete-rekening" id="delete-rekening">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
 
-                                                                <div>
-                                                                    <button type="submit" class="btn btn-secondary " value="Simpan Data" >Simpan</button>
+                                                </td>
+                                            </tr>
+                                            <div class="modal fade" id="editrekening{{ $p->id_rekening }}" tabindex="-1" role="dialog" aria-labelledby="editrekeningTitle" aria-hidden="true">
+                                                <div class="modal-dialog  " role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="editrekeningTitle">Edit Rekening</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{ url('/data-rekening/update/'.$p->id_rekening) }}"  method="post" enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('put')
+                                                                <div class="card-body">
+                                                                <input type="hidden" name="id" id="id" value="{{ $p->id_rekening }}">
+                                                                    <div class="row">
+                                                                        <div class="col-md-8">
+                                                                            <div class="form-group">
+                                                                                <label for="image_rekening" class="col-form-label">Image</label>
+                                                                                <input type="file" value="{{ $p->image_rekening}}" name="image_rekening" class="form-control" accept="image/*" onchange="previewImage(event)">
+                                                                                <p  style="font-style: italic; font-size: 12px;">size foto maksimal 2 mb dan extensi jpg, png, jpeg</p>     
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-grup">
+                                                                                @if ($p->image_rekening)
+                                                                                <img src="{{asset('storage/image/rekening/'.$p->image_rekening)}}" class="img-thumbnail" width="200">
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="nama_bank">Nama Bank</label>
+                                                                        <input type="text" class="form-control" value="{{ $p->nama_bank}}"  name="nama_bank"  placeholder="Masukan Nama Bank">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="no_rekening">Nomor Rekening</label>
+                                                                        <input type="text" class="form-control" value="{{ $p->no_rekening}}"  name="no_rekening" placeholder="Masukan Nomor Rekening Rekening">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="nama_rekening">Nama Rekening</label>
+                                                                        <input type="text" class="form-control" value="{{ $p->nama_rekening}}"  name="nama_rekening" placeholder="Nama Rekening">
+                                                                    </div>
+
+                                                                    <div>
+                                                                        <button type="submit" class="btn btn-secondary " value="Simpan Data" >Simpan</button>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>  
-                                                    </div>                                          
+                                                            </form>  
+                                                        </div>                                          
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
-                                </tbody>                  
-                            </table>
+                                        @endforeach
+                                    </tbody>                  
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
