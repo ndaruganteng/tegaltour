@@ -49,6 +49,18 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{route('data-rekening-admin.index')}}" class="nav-link">
+            <i class="nav-icon fa-solid fa-wallet"></i>
+            <p>Data Rekening</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('data-order-admin.index')}}" class="nav-link">
+            <i class="nav-icon fa-solid fa-cart-shopping"></i>
+            <p>Data Order</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{route('request-mitra.index')}}" class="nav-link">
             <i class="nav-icon fa-regular fa-handshake"></i>
             <p>Join Mitra</p>

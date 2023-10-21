@@ -21,7 +21,7 @@ class DatarekeningController extends Controller
     {   $mitraId = Auth::user()->id;
         $rekening = DB::table('rekening')
         ->where('id_mitra', $mitraId)
-        ->simplepaginate(5);
+        ->get();
         return view('dashboard.data-rekening',['rekening' => $rekening]);
     }
 
@@ -130,6 +130,17 @@ class DatarekeningController extends Controller
        $rekening->delete(); 
        return back() -> with('success', "Data rekening berhasil dihapus!");
    }
+
+    // view data rekening admin
+    public function rekening_admin()
+    {   
+        $rekening = DB::table('rekening')
+        ->join('users', 'rekening.id_mitra', '=', 'users.id')
+        ->select('rekening.*','users.nama_lengkap as nama')
+        ->get();
+        return view('dashboard.data-rekening-admin',['rekening' => $rekening]);
+    }
+
    
 
 }

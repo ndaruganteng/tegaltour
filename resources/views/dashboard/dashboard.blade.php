@@ -23,7 +23,7 @@
       <section class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
               <div class="small-box bg-info">
                 <div class="inner">
                   <h3>{{ $totalwisataadmin }}</h3>
@@ -35,7 +35,7 @@
                 <a href="{{ route('data-wisata-admin.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
               <div class="small-box bg-primary ">
                 <div class="inner">
                   <h3>{{ $totalUsers }} </h3>
@@ -43,6 +43,54 @@
                 </div>
                 <div class="icon">
                   <i class="fa-solid fa-users"></i>
+                </div>
+                <a href="{{ route('data-user.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="small-box bg-danger ">
+                <div class="inner">
+                  <h3>{{ $totalKategori }} </h3>
+                  <p>Data Kategori</p>
+                </div>
+                <div class="icon">
+                  <i class="fa-solid fa-list"></i>
+                </div>
+                <a href="{{ route('data-kategori.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="small-box bg-success ">
+                <div class="inner">
+                  <h3>{{ $totalRekeningadmin }} </h3>
+                  <p>Data Rekening</p>
+                </div>
+                <div class="icon">
+                  <i class="fa-solid fa-credit-card"></i>
+                </div>
+                <a href="{{ route('data-rekening-admin.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="small-box bg-warning ">
+                <div class="inner">
+                  <h3>{{ $totalPesananadmin }} </h3>
+                  <p>Data Pemesanan</p>
+                </div>
+                <div class="icon">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <a href="{{ route('data-order-admin.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="small-box bg-secondary ">
+                <div class="inner">
+                  <h3>{{ $totalRequestmitra }} </h3>
+                  <p>Request Mitra</p>
+                </div>
+                <div class="icon">
+                  <i class=" fa-regular fa-handshake"></i>
                 </div>
                 <a href="{{ route('data-user.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>

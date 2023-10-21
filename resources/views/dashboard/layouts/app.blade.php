@@ -146,6 +146,17 @@
     });
 </script>
 
+<script>
+    $(document).ready(function() {
+        $('#rekeningadmin-table').DataTable();
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#orderadmin-table').DataTable();
+    });
+</script>
 
 </body>
 </html>

@@ -170,6 +170,7 @@
         }
     }
 </script>
+
 <script>
     $('#image').on('change', function() {
         if ($(this).is(':invalid')) {
@@ -177,5 +178,28 @@
         }
     });
 </script>
+
+<script>
+
+    var tanggalBerangkatInput = document.querySelector('input[name="tanggalberangkat"]');
+
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = (today.getMonth() + 1).toString().padStart(2, '0');
+    var day = today.getDate().toString().padStart(2, '0');
+    var currentDate = year + '-' + month + '-' + day;
+
+    tanggalBerangkatInput.setAttribute('min', currentDate);
+
+    tanggalBerangkatInput.addEventListener('change', function () {
+        if (tanggalBerangkatInput.value < currentDate) {
+            alert('Tanggal berangkat tidak boleh sebelum hari ini.');
+            tanggalBerangkatInput.value = currentDate;
+        }
+    });
+</script>
+
+
+
 
 @endsection

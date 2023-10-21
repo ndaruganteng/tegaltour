@@ -46,6 +46,9 @@
                                                 <span class="badge badge-dark">{{$p->role}}</span>
                                             </td>
                                             <td>
+                                                <a href="https://wa.me/{{$p->no_telepon}}#{{$p->id}}" target="_blank" class="btn btn-success btn-sm">
+                                                    <i class="fa-brands fa-whatsapp"></i>
+                                                </a>
                                                 <a class="btn btn-danger btn-sm">
                                                     <i class="fas fa-trash"></i>
                                                 </a>

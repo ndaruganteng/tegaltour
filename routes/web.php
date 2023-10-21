@@ -6,21 +6,21 @@ use App\Models\wisata;
 use App\Models\kategori;
 use Illuminate\Support\Facades\DB;
 
-use App\http\Controllers\landing\HomeController;
-use App\http\Controllers\landing\WisataController;
-use App\http\Controllers\landing\DetailwisataController;
-use App\http\Controllers\landing\TransaksiController;
-use App\http\Controllers\landing\PemesananController;
-use App\http\Controllers\landing\UlasanController;
-use App\http\Controllers\landing\HistoryController;
+use App\http\Controllers\Landing\HomeController;
+use App\http\Controllers\Landing\WisataController;
+use App\http\Controllers\Landing\DetailwisataController;
+use App\http\Controllers\Landing\TransaksiController;
+use App\http\Controllers\Landing\PemesananController;
+use App\http\Controllers\Landing\UlasanController;
+use App\http\Controllers\Landing\HistoryController;
 
-use App\http\Controllers\dashboard\DashboardController;
-use App\http\Controllers\dashboard\DetaildatawisataController;
-use App\http\Controllers\dashboard\DatawisataController;
-use App\http\Controllers\dashboard\DatarekeningController;
-use App\http\Controllers\dashboard\RequestmitraController;
-use App\http\Controllers\dashboard\DatauserController;
-use App\http\Controllers\dashboard\DatakategoriController;
+use App\http\Controllers\Dashboard\DashboardController;
+use App\http\Controllers\Dashboard\DetaildatawisataController;
+use App\http\Controllers\Dashboard\DatawisataController;
+use App\http\Controllers\Dashboard\DatarekeningController;
+use App\http\Controllers\Dashboard\RequestmitraController;
+use App\http\Controllers\Dashboard\DatauserController;
+use App\http\Controllers\Dashboard\DatakategoriController;
 
 use App\http\Controllers\Auth\LoginController;
 use App\http\Controllers\Auth\RegisterController;
@@ -95,6 +95,12 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     Route::post('/data-kategori', [DatakategoriController::class, 'store'])->name('Kategori.index');
     Route::put('/data-kategori/update/{id_kategori}', [DatakategoriController::class, 'update'])->name('updateKategori.index');
     Route::get('/data-kategori/hapus/{id_kategori}', [DatakategoriController::class, 'hapus'])->name('hapus.index');
+
+    // DATA REKENING
+    Route::get('/data-rekening-admin', [DatarekeningController::class, 'rekening_admin'])->name('data-rekening-admin.index');
+
+    // DATA ORDER
+    Route::get('/data-order-admin', [PemesananController::class, 'pemesanan_admin'])->name('data-order-admin.index');
 
  });
 

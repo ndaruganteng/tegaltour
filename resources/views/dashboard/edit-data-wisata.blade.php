@@ -100,13 +100,15 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="tanggalberangkat" class="col-sm-3 col-form-label">Tanggal Berangkat</label>
-                                            <div class="col-sm-9">
-                                                <input type="date" class="form-control" value="{{ $wisata->tanggalberangkat}}" name="tanggalberangkat">
-                                            </div>
-                                        </div>
-                                    </div>
+    <div class="form-group row">
+        <label for="tanggalberangkat" class="col-sm-3 col-form-label">Tanggal Berangkat</label>
+        <div class="col-sm-9">
+            <input type="date" class="form-control" name="tanggalberangkat" 
+                   value="{{ $wisata->tanggalberangkat }}" 
+                   min="{{ $wisata->tanggalberangkat }}">
+        </div>
+    </div>
+</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="lokasi">Highlight</label>
@@ -138,4 +140,26 @@
     </div>
     
 </div>
+
+<script>
+
+    var tanggalBerangkatInput = document.querySelector('input[name="tanggalberangkat"]');
+
+    // Mengatur tanggal minimal ke tanggal sekarang
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = (today.getMonth() + 1).toString().padStart(2, '0');
+    var day = today.getDate().toString().padStart(2, '0');
+    var currentDate = year + '-' + month + '-' + day;
+
+    tanggalBerangkatInput.setAttribute('min', currentDate);
+
+    // Memeriksa perubahan pada input tanggal
+    tanggalBerangkatInput.addEventListener('change', function () {
+        if (tanggalBerangkatInput.value < currentDate) {
+            alert('Tanggal berangkat tidak boleh sebelum hari ini.');
+            tanggalBerangkatInput.value = currentDate;
+        }
+    });
+</script>
 @endsection

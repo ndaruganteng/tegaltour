@@ -133,10 +133,6 @@
     </section>
     <!-- endcard -->
 
-
-
-
 </div>
-
 
 @endsection

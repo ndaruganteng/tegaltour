@@ -243,4 +243,33 @@ class PemesananController extends Controller
         $dompdf->stream();
     }
 
+    // view data pemesanan admin
+    public function pemesanan_admin()
+    {
+        $pemesanan = DB::table('pemesanan')
+            ->join('users as mitra', 'pemesanan.id_mitra', '=', 'mitra.id')
+            ->join('users as user', 'pemesanan.id_user', '=', 'user.id')
+            ->join('wisata', 'pemesanan.id_wisata', '=', 'wisata.id_wisata')
+            ->select(
+                'pemesanan.id_pemesanan as id_pemesanan',
+                'pemesanan.id_user', 
+                'pemesanan.id_mitra', 
+                'user.nama_lengkap as nama_pengguna', 
+                'mitra.nama_lengkap as namamitra', 
+                'wisata.namawisata as nama_wisata',
+                'wisata.image as image',
+                'wisata.tanggalberangkat as tanggal',
+                'pemesanan.status as status',
+                'pemesanan.status_perjalanan as status_perjalanan',
+                'pemesanan.date as date',
+                'pemesanan.harga_total as hargatotal',
+                'pemesanan.bukti_pembayaran as bukti_pembayaran',
+                'pemesanan.jumlah_orang as jumlah_orang', 
+                'wisata.harga as harga')
+                
+            ->get();
+    
+        return view('dashboard.data-order-admin', ['pemesanan' => $pemesanan]);
+    }
+
 }

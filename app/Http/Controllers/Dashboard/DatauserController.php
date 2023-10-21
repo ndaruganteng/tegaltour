@@ -30,4 +30,5 @@ class DatauserController extends Controller
         return view('dashboard.request-mitra',['users' => $users]);
     }
 
+
 }

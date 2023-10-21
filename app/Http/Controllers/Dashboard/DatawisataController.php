@@ -175,6 +175,7 @@ class DatawisataController extends Controller
          
     }
 
+    // hapus
     public function hapus($id)
     {
         $wisata = Wisata::find($id);
@@ -192,7 +193,9 @@ class DatawisataController extends Controller
         $wisata = DB::table('wisata')
         ->join('users', 'wisata.id_mitra', '=', 'users.id')
         ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
-        ->select('wisata.*','users.nama_lengkap as nama','kategori.nama_kategori as kategori')
+        ->select('wisata.*',
+            'users.nama_lengkap as nama',
+            'kategori.nama_kategori as kategori')
         ->get();
         
         return view('dashboard.data-wisata-admin',['wisata' => $wisata]);

@@ -40,6 +40,7 @@
                                     <tr>
                                         <th>Image</th>
                                         <th>Nama Paket Wisata</th>
+                                        <th>Tanggal Berangkat</th>
                                         <th>Kategori</th>
                                         <th>harga/Orang</th>
                                         <th>Aksi</th>
@@ -52,6 +53,7 @@
                                                 <img src="{{asset('storage/image/wisata/'.$p->image)}}" alt="wisata" style="width:50px">
                                             </td>
                                             <td>{{ $p->namawisata}}</td>
+                                            <td>{{ \Carbon\Carbon::parse($p->tanggalberangkat)->format('l, j F Y') }}</td>
                                             <td>{{ $p->kategori}}</td>
                                             <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                             <td>
@@ -105,5 +107,7 @@
         });
     });
 </script>
+
+
 
 @endsection
