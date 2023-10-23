@@ -25,6 +25,8 @@
   </head>   
   <body >
 
+  @include('sweetalert::alert')
+
      <div class="container d-flex justify-content-center align-items-center min-vh-100 login">
         <div class="row border rounded-5 p-3 bg-white box-area">
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #103cbe;">
@@ -68,7 +70,7 @@
                             </script>
                             @enderror  
                         </div> -->
-                        <div class="input-group mb-4">
+                        <div class="input-group mb-1">
                             <input type="password" name="password" id="password" class="form-control form-control-lg bg-light fs-6" value="{{ old('password') }}" placeholder="Password">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="show-password" style="cursor: pointer;">
@@ -81,6 +83,7 @@
                                 </script>
                             @enderror
                         </div>
+                        <div id="passwordMessage" class="mb-4"></div>
                         <div class="input-group mb-3">
                             <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" style="background: #103cbe;">Register</button>
                         </div>
@@ -93,6 +96,24 @@
         </div>
     </div>
 
+    <style>
+        .password-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+            width: 300px;
+        }
+
+        /* Menambahkan gaya saat persyaratan tidak terpenuhi */
+        .invalid {
+            color: red;
+        }
+
+        /* Menambahkan gaya saat persyaratan terpenuhi */
+        .valid {
+            color: green;
+        }
+    </style>
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
@@ -129,6 +150,42 @@
                 eyeIcon.classList.add('fa-eye');
             }
         });
+    </script>
+
+    
+<script>
+        // Fungsi untuk validasi password
+        $("#password").on("input", function() {
+            var password = $(this).val();
+            var passwordIsValid = isPasswordValid(password);
+
+            if (passwordIsValid) {
+                $("#passwordMessage").html("<span class='text-success'>Password valid</span>");
+            } else {
+                $("#passwordMessage").html("<span class='text-danger'>Password tidak valid</span>");
+            }
+        });
+
+        // Fungsi untuk validasi password
+        function isPasswordValid(password) {
+            // Validasi panjang minimal (minimal 6 karakter)
+            if (password.length < 6) {
+                return false;
+            }
+
+            // Validasi huruf kecil, huruf besar, angka, dan karakter khusus
+            var lowercaseRegex = /[a-z]/;
+            var uppercaseRegex = /[A-Z]/;
+            var digitRegex = /[0-9]/;
+            var specialCharacterRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
+
+            return (
+                lowercaseRegex.test(password) &&
+                uppercaseRegex.test(password) &&
+                digitRegex.test(password) &&
+                specialCharacterRegex.test(password)
+            );
+        }
     </script>
    
   </body>

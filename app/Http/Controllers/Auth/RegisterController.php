@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
@@ -23,12 +24,7 @@ class RegisterController extends Controller
     {
         $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => [
-                'required',
-                'string',
-                'min:6',
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'
-            ], 
+            
         ]);
         
         $existingUser = User::where('email', $request->input('email'))->first();
@@ -50,13 +46,31 @@ class RegisterController extends Controller
             $user->status = 1;
             $user->role = ($request->input('role') === 'user') ? 'user' : 'user';
             $password = $request->input('password');
-            if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', $password)) {
-                alert()->error('Gagal', 'Password harus mengandung setidaknya satu huruf kecil, satu huruf besar, dan satu angka.');
-                return redirect()->back()->withInput(); 
-            } else {
-                $hashedPassword = bcrypt($password);
-                $user->password = $hashedPassword;
-            }
+
+            $errors = [];
+
+if (!preg_match('/[a-z]/', $password)) {
+    $errors[] = 'Password harus mengandung setidaknya satu huruf kecil.';
+}
+
+if (!preg_match('/[A-Z]/', $password)) {
+    $errors[] = 'Password harus mengandung setidaknya satu huruf besar.';
+}
+
+if (!preg_match('/\d/', $password)) {
+    $errors[] = 'Password harus mengandung setidaknya satu angka.';
+}
+
+if (empty($errors)) {
+    $hashedPassword = bcrypt($password);
+    $user->password = $hashedPassword;
+} else {
+    foreach ($errors as $error) {
+        alert()->error('Gagal', $error);
+    }
+    return redirect()->back()->withInput();
+}
+
             $phone = $request->input('no_telepon');
             if (!preg_match('/^\d{11,13}$/', $phone)) {
              alert()->error('Gagal', 'Nomor telepon harus terdiri dari 11 sampai 13 digit angka.');

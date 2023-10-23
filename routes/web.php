@@ -28,6 +28,8 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 
+
+
 //AUTH
 Route::group(['middleware' => ['guest']], function(){
     Route::get('/login', [LoginController::class, 'index'])->name('login.index');

@@ -216,12 +216,15 @@ class PemesananController extends Controller
         $dompdf = new Dompdf();
         $pemesanan = DB::table('pemesanan')
             ->join('users', 'pemesanan.id_user', '=', 'users.id')
+            ->join('users as mitra', 'pemesanan.id_mitra', '=', 'mitra.id')
             ->join('wisata', 'pemesanan.id_wisata', '=', 'wisata.id_wisata')
             ->where('pemesanan.id_pemesanan', $id) 
             ->select(
                 'pemesanan.id_pemesanan as id_pemesanan',
                 'pemesanan.id_user', 
-                'users.nama_lengkap as nama_pengguna', 
+                'pemesanan.id_mitra', 
+                'users.nama_lengkap as nama_pengguna',
+                'mitra.nama_lengkap as namamitra',  
                 'wisata.namawisata as nama_wisata',
                 'wisata.image as image',
                 'wisata.tanggalberangkat as tanggal',

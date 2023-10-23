@@ -54,7 +54,14 @@
                                                     <img src="{{asset('storage/image/wisata/'.$p->image)}}" alt="wisata" style="width:50px">
                                                 </td>
                                                 <td>{{ $p->namawisata}}</td>
-                                                <td>{{ \Carbon\Carbon::parse($p->tanggalberangkat)->format('l, j F Y') }}</td>
+
+                                                <?php
+                                                setlocale(LC_TIME, 'id_ID'); 
+                                                \Carbon\Carbon::setLocale('id'); 
+                                                $tanggalBerangkat = \Carbon\Carbon::parse($p->tanggalberangkat);
+                                                $date = $tanggalBerangkat->isoFormat('dddd, D MMMM Y');
+                                                ?>
+                                                <td>{{$date}}</td>
                                                 <td>{{ $p->kategori}}</td>
                                                 <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                                 <td>

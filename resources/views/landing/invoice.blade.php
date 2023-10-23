@@ -77,6 +77,12 @@
                         </p>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Nama Biro Wisata:</strong></p>
+                        <p>{{$pemesanan->namamitra}}</p>
+                    </div>
+                </div>
             </div>
             <div class="invoice-table">
                 <table class="table table-bordered">
@@ -94,12 +100,12 @@
                             <td>{{$pemesanan->nama_wisata}}</td>
                             <td>{{$pemesanan->tanggal}}</td>
                             <td>{{$pemesanan->jumlah_orang}}</td>
-                            <td>Rp. {{$pemesanan->harga}}</td>
-                            <td>Rp. {{$pemesanan->hargatotal}}</td>
+                            <td>Rp {{ number_format($pemesanan->harga, 0, ',', '.') }}</td>
+                            <td>Rp {{ number_format($pemesanan->hargatotal, 0, ',', '.') }}</td>
                         </tr>
                     </tbody>
                 </table>
-                <p class="text-right total-amount">Total Bayar: Rp. {{$pemesanan->hargatotal}}</p>
+                <p class="text-right total-amount">Total Bayar: Rp {{ number_format($pemesanan->hargatotal, 0, ',', '.') }}</p>
             </div>
         </div>
     </div>

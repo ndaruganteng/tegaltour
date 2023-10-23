@@ -27,6 +27,10 @@ class DashboardController extends Controller
         $totalRekeningadmin = DB::table('rekening')->count();
         $totalKategori = DB::table('kategori')->count();
         $totalPesananadmin = DB::table('pemesanan')->count();
+        $totalStatusperjalan = DB::table('pemesanan')
+        ->where('status', 2)
+        ->where('id_mitra', $mitraId)
+        ->count();
         $totalRequestmitra = DB::table('users')
         ->where('status', null)
         ->count();
@@ -49,7 +53,8 @@ class DashboardController extends Controller
             'totalRekeningadmin',
             'totalKategori',
             'totalPesananadmin',
-            'totalRequestmitra'
+            'totalRequestmitra',
+            'totalStatusperjalan'
         ));
     }
 
