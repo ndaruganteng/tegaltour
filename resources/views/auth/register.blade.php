@@ -62,15 +62,7 @@
                                 </script>
                             @enderror        
                         </div>
-                        <!-- <div class="input-group mb-4">
-                            <input type="password" name="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password">
-                            @error('password')
-                            <script>
-                                swal("Gagal", "{{ $message }}", "error");
-                            </script>
-                            @enderror  
-                        </div> -->
-                        <div class="input-group mb-1">
+                        <div class="input-group mb-3">
                             <input type="password" name="password" id="password" class="form-control form-control-lg bg-light fs-6" value="{{ old('password') }}" placeholder="Password">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="show-password" style="cursor: pointer;">
@@ -83,10 +75,19 @@
                                 </script>
                             @enderror
                         </div>
-                        <div id="passwordMessage" class="mb-4"></div>
+                        <div class="input-group mb-1">
+                            <input type="text" name="password_confirmation" class="form-control form-control-lg bg-light fs-6" placeholder="Konfirmasi Password">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="show-password-confirmation" style="cursor: pointer;" onclick="togglePasswordConfirmation()">
+                                    <i class="fa fa-eye" id="eyeIconConfirmation"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div id="passwordMessage" class="mb-2"></div>
                         <div class="input-group mb-3">
                             <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" style="background: #103cbe;">Register</button>
                         </div>
+
                     </form>
                     <div class="row">
                         <small>Sudah memiliki akun? <a href="{{route('login.index')}}">Login</a></small>
@@ -103,13 +104,9 @@
             margin-top: 10px;
             width: 300px;
         }
-
-        /* Menambahkan gaya saat persyaratan tidak terpenuhi */
         .invalid {
             color: red;
         }
-
-        /* Menambahkan gaya saat persyaratan terpenuhi */
         .valid {
             color: green;
         }
@@ -117,7 +114,6 @@
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
     <!-- Option 2: Separate Popper and Bootstrap JS --> 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 
@@ -187,6 +183,21 @@
             );
         }
     </script>
+
+<script>
+    function togglePasswordConfirmation() {
+        var passwordConfirmationInput = document.querySelector('input[name="password_confirmation"]');
+        var eyeIconConfirmation = document.querySelector('#eyeIconConfirmation');
+
+        if (passwordConfirmationInput.type === 'password') {
+            passwordConfirmationInput.type = 'text';
+            eyeIconConfirmation.className = 'fa fa-eye-slash';
+        } else {
+            passwordConfirmationInput.type = 'password';
+            eyeIconConfirmation.className = 'fa fa-eye';
+        }
+    }
+</script>
    
   </body>
 </html>

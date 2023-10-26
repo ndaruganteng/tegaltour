@@ -40,7 +40,7 @@
                                 <p class="card-text">Lokasi : {{ $data_wisata_detail->lokasi }}</p>
                                 <p class="card-text">Harga/Orang : Rp {{ number_format($data_wisata_detail->harga, 0, ',', '.') }}</p>
                                 <p class="card-text">Titik Kumpul : {{ $data_wisata_detail->titikkumpul }}</p>
-                                <p class="card-text">Tanggal Berangkat : {{ $data_wisata_detail->tanggalberangkat}}</p>
+                                <p class="card-text">Tanggal Berangkat : {{ \Carbon\Carbon::parse($data_wisata_detail->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
                                 <a type="button" href="{{ $data_wisata_detail->linklokasi }}" target="_blank" class="btn btn-dark btn-sm d-block shadow-0 me-2"><i class="fa-solid fa-location-dot mr-2"></i>Link Lokasi</a>
                             </div>
                         </div>

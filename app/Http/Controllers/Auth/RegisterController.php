@@ -24,6 +24,7 @@ class RegisterController extends Controller
     {
         $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
             
         ]);
         
@@ -46,37 +47,32 @@ class RegisterController extends Controller
             $user->status = 1;
             $user->role = ($request->input('role') === 'user') ? 'user' : 'user';
             $password = $request->input('password');
-
             $errors = [];
-
-if (!preg_match('/[a-z]/', $password)) {
-    $errors[] = 'Password harus mengandung setidaknya satu huruf kecil.';
-}
-
-if (!preg_match('/[A-Z]/', $password)) {
-    $errors[] = 'Password harus mengandung setidaknya satu huruf besar.';
-}
-
-if (!preg_match('/\d/', $password)) {
-    $errors[] = 'Password harus mengandung setidaknya satu angka.';
-}
-
-if (empty($errors)) {
-    $hashedPassword = bcrypt($password);
-    $user->password = $hashedPassword;
-} else {
-    foreach ($errors as $error) {
-        alert()->error('Gagal', $error);
-    }
-    return redirect()->back()->withInput();
-}
+            if (!preg_match('/[a-z]/', $password)) {
+                $errors[] = 'Password harus mengandung setidaknya satu huruf kecil.';
+            }
+            if (!preg_match('/[A-Z]/', $password)) {
+                $errors[] = 'Password harus mengandung setidaknya satu huruf besar.';
+            }
+            if (!preg_match('/\d/', $password)) {
+                $errors[] = 'Password harus mengandung setidaknya satu angka.';
+            }
+            if (empty($errors)) {
+                $hashedPassword = bcrypt($password);
+                $user->password = $hashedPassword;
+            } else {
+                foreach ($errors as $error) {
+                    alert()->error('Gagal', $error);
+                }
+                return redirect()->back()->withInput();
+            }
 
             $phone = $request->input('no_telepon');
             if (!preg_match('/^\d{11,13}$/', $phone)) {
-             alert()->error('Gagal', 'Nomor telepon harus terdiri dari 11 sampai 13 digit angka.');
-              return redirect()->back()->withInput();
+                alert()->error('Gagal', 'Nomor telepon harus terdiri dari 11 sampai 13 digit angka.');
+                return redirect()->back()->withInput();
             } else {
-             $user->no_telepon = $phone;
+                $user->no_telepon = $phone;
             }
             $user->save();
             return redirect()->route('login.index')->with('success', "Akun berhasil dibuat");

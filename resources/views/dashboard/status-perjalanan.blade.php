@@ -53,7 +53,7 @@
                                                         @endif
                                                     </td>  
                                                     <td>{{$p->nama_wisata}}</td>     
-                                                    <td>{{ $p->tanggal}}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($p->tanggal)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
                                                     <td>{{ $p->jumlah_orang}}</td>   
                                                     <td>
                                                         @if($p->status_perjalanan == null)

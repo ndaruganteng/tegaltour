@@ -27,7 +27,7 @@
                     <div class="card">
                         <div class="card-header"  style="background-color: white;">
                             <div class="d-flex justify-content-between">
-                                <h5>Data Kategori Wisata</h5>
+                                <h5>Data Paket Wisata</h5>
                                 <a href="{{route('tambah-data-wisata.index')}}"  class="btn bg-dark btn-sm">
                                     <i class="fa-solid fa-plus mr-1"></i>
                                     Tambah Paket Wisata
@@ -54,15 +54,10 @@
                                                     <img src="{{asset('storage/image/wisata/'.$p->image)}}" alt="wisata" style="width:50px">
                                                 </td>
                                                 <td>{{ $p->namawisata}}</td>
-
-                                                <?php
-                                                setlocale(LC_TIME, 'id_ID'); 
-                                                \Carbon\Carbon::setLocale('id'); 
-                                                $tanggalBerangkat = \Carbon\Carbon::parse($p->tanggalberangkat);
-                                                $date = $tanggalBerangkat->isoFormat('dddd, D MMMM Y');
-                                                ?>
-                                                <td>{{$date}}</td>
-                                                <td>{{ $p->kategori}}</td>
+                                                <td>{{ \Carbon\Carbon::parse($p->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
+                                                <td>
+                                                    <span class="badge badge-dark">{{ $p->kategori}}</span>
+                                                </td>
                                                 <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                                 <td>
                                                     <a href="/detail-data-wisata/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm" >

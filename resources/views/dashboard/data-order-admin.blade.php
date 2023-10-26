@@ -64,8 +64,8 @@
                                                         <div class="badge badge-success"> Dikonfirmasi</div>
                                                     @endif
                                                 </td>
-                                                <td>{{ $p->tanggal}}</td>
-                                                <td>{{ $p->date}}</td>
+                                                <td>{{ \Carbon\Carbon::parse($p->tanggal)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($p->date)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
                                                 <td>{{ $p->jumlah_orang}}</td>
                                                 <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                                 <td>Rp {{ number_format($p->hargatotal, 0, ',', '.') }}</td>

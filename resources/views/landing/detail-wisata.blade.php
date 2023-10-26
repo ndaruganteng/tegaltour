@@ -1,4 +1,5 @@
-@extends('landing.layouts.app') @section('content')
+@extends('landing.layouts.app') 
+@section('content')
 
 <div class="content-wrapper">
     <section id="{{$detail_wisata->namawisata}}">
@@ -13,24 +14,24 @@
                         <div class="col-lg-12 info-detail border border-start-0 border-end-0">
                             <div class="row">
                                 <div class="col-lg">
-                                    <img src="/images/detail-tour/durasi-tour.png" alt="" class="float-left" />
+                                    <img src="/images/detail-tour/durasi-tour.png" class="float-left" />
                                     <h4>Durasi Wisata</h4>
                                     <p>{{ $detail_wisata->durasi }}</p>
                                 </div>
                                 <div class="col-lg">
-                                    <img src="/images/detail-tour/jenis-tour.png" alt="" class="float-left" />
+                                    <img src="/images/detail-tour/jenis-tour.png" class="float-left" />
                                     <h4>Kategori Wisata</h4>
                                     <p>{{ $detail_wisata->kategori }}</p>
                                 </div>
                                 <div class="col-lg">
-                                    <img src="/images/detail-tour/calendar.png" alt="" class="float-left" />
+                                    <img src="/images/detail-tour/calendar.png" class="float-left" />
                                     <h4>Tanggal Berangkat</h4>
-                                    <p>{{ $detail_wisata->tanggalberangkat }}</p>
+                                    <p>{{ \Carbon\Carbon::parse($detail_wisata->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
                                 </div>
                                 <div class="col-lg">
-                                    <img src="/images/detail-tour/money.png" alt="" class="float-left" />
+                                    <img src="/images/detail-tour/money.png" class="float-left" />
                                     <h4>Harga</h4>
-                                    <p>Rp.{{ number_format($detail_wisata->harga, 0, ',', '.') }} /orang</p>
+                                    <p>Rp {{ number_format($detail_wisata->harga, 0, ',', '.') }} /orang</p>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +56,7 @@
                                 <div class="card-header d-flex justify-content-between">
                                     <h3>lokasi wisata</h3>
                                     <a class="btn btn-dark btn-rounded btn-sm shadow-0" href="{{ $detail_wisata->linklokasi }}" target="_blank"
-                                        role="button" style="text-transform: lowercase;"> 
+                                         style="text-transform: lowercase;"> 
                                         <i class="fa-solid fa-location-dot me-1"></i>
                                         detail lokasi
                                     </a>
@@ -72,29 +73,28 @@
                             <div class="card border shadow-0 rounded-0">
                                 <div class="card-header fs-4">Ulasan</div>
                                 @if($ulasan->isEmpty())
-                                <h1 class="text-center">belum Ada ulasan</h1>
+                                    <h1 class="text-center">belum Ada ulasan</h1>
                                 @else
-                                @foreach($ulasan as $item) 
-                                <div class="card-body mt-2">                             
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <img src="/images/icon/profile.png" alt="" class="float-left me-3" />
-                                            <h1 class="pt-2">{{ $item->nama }}</h1> 
-                                        </div>
-                                        <div class="col-lg-8">
-                                        @for ($i = 1; $i <= $item->rating; $i++)
-                                            <span class="fa fa-star checked"></span>
-                                        @endfor
-                                        @for ($i = $item->rating + 1; $i <= 5; $i++)
-                                            <span class="fa fa-star"></span>
-                                        @endfor
-                                           
-                                        <h2 >{{ $item->komentar }}</h2>
-                                        <h4 >{{ $item->date }}</h4>
+                                    @foreach($ulasan as $item) 
+                                    <div class="card-body mt-2">                             
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <img src="/images/icon/profile.png" class="float-left me-3" />
+                                                <h1 class="pt-2">{{ $item->nama }}</h1> 
+                                            </div>
+                                            <div class="col-lg-8">
+                                                @for ($i = 1; $i <= $item->rating; $i++)
+                                                    <span class="fa fa-star checked"></span>
+                                                @endfor
+                                                @for ($i = $item->rating + 1; $i <= 5; $i++)
+                                                    <span class="fa fa-star"></span>
+                                                @endfor
+                                                <h2 >{{ $item->komentar }}</h2>
+                                                <h4>{{ \Carbon\Carbon::parse($item->date)->locale('id')->isoFormat('dddd, D MMMM Y') }}</h4>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                @endforeach
+                                    @endforeach
                                 @endif
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                         <div class="col-lg-12 host">
                             <div class="card text-center border border-2 shadow-0">
                                 <div class="card-body">
-                                    <img src="/images/detail-tour/profile.png" alt="" class="rounded-circle" />
+                                    <img src="/images/detail-tour/profile.png" class="rounded-circle" />
                                     <p class="card-text">
                                         {{$mitra->nama_lengkap}}
                                         <i class="fas fa-check-circle" style="color: #1fbd00"></i>
@@ -120,7 +120,7 @@
                             <div class="card text-center border border-2 shadow-0">
                                 <div class="card-body">
                                     <h1>Harga /orang</h1>
-                                    <p>Rp.{{ number_format($detail_wisata->harga, 0, ',', '.') }}</p>
+                                    <p>Rp {{ number_format($detail_wisata->harga, 0, ',', '.') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                                     <form action="/boking" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-outline mb-4" style="display: none;">
-                                            <input class="form-control bg-white" for="namawisata" name="id_wisata"
+                                            <input class="form-control bg-white" name="id_wisata"
                                             value="{{ $detail_wisata->id_wisata }}" readonly/>
                                         </div>
                                         <div class="form-outline mb-4" style="display: none;">
@@ -140,7 +140,7 @@
                                             value="{{ $detail_wisata->id_mitra }}" readonly/>
                                         </div>
                                         <div class="form-outline mb-4" style="display: none;">
-                                            <input class="form-control bg-white" for="namauser" name="id_user"
+                                            <input class="form-control bg-white" name="id_user"
                                              value="{{ Auth::user()->id }}" readonly/>
                                         </div>
                                         <div class="form-outline mb-4"  style="display: none;">
@@ -150,7 +150,7 @@
                                         </div>
                                         <div class="form-outline mb-4">
                                             <input type="number" min="1" name="jumlah_orang" id="jumlahorang" class="form-control" onchange="updateHargaTotal()"/>
-                                            <label class="form-label" for="jumlahorang">Masukan Jumlah Orang</label>
+                                            <label class="form-label" for="jumlahorang">Jumlah Orang</label>
                                         </div>
                                        
                                         <div class="form-outline mb-4">

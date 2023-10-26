@@ -100,15 +100,15 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-    <div class="form-group row">
-        <label for="tanggalberangkat" class="col-sm-3 col-form-label">Tanggal Berangkat</label>
-        <div class="col-sm-9">
-            <input type="date" class="form-control" name="tanggalberangkat" 
-                   value="{{ $wisata->tanggalberangkat }}" 
-                   min="{{ $wisata->tanggalberangkat }}">
-        </div>
-    </div>
-</div>
+                                        <div class="form-group row">
+                                            <label for="tanggalberangkat" class="col-sm-3 col-form-label">Tanggal Berangkat</label>
+                                            <div class="col-sm-9">
+                                                <input type="date" class="form-control" name="tanggalberangkat" 
+                                                    value="{{ $wisata->tanggalberangkat }}" 
+                                                    min="{{ $wisata->tanggalberangkat }}">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="lokasi">Highlight</label>

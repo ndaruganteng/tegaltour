@@ -22,8 +22,8 @@
                                             <div class="card-body">
                                                 <h5 class="card-title mb-3">Wisata : {{$p->nama_wisata}}</h5>
                                                 <p class="card-text">Nama Pemesan: {{$p->nama_pengguna}}</p>
-                                                <p class="card-text">Tanggal Pemesanan : {{$p->date}}</p>
-                                                <p class="card-text">Tanggal Berangkat : {{$p->tanggal}}</p>                                      
+                                                <p class="card-text">Tanggal Pemesanan : {{ \Carbon\Carbon::parse($p->date)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
+                                                <p class="card-text">Tanggal Berangkat : {{ \Carbon\Carbon::parse($p->tanggal)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>                                      
                                             </div>
                                         </div>
                                         <div class="col-md-4">

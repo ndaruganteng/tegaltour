@@ -47,7 +47,7 @@
                                                     <img src="{{asset('storage/image/wisata/'.$p->image)}}" alt="wisata" style="width:70px">
                                                 </td>
                                                 <td>{{ $p->namawisata}}</td>
-                                                <td>{{ $p->tanggalberangkat}}</td>
+                                                <td>{{ \Carbon\Carbon::parse($p->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
                                                 <td>
                                                     <span class="badge badge-dark">{{ $p->kategori}}</span>
                                                 </td>                                         

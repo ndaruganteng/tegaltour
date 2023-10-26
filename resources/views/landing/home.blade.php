@@ -67,21 +67,21 @@
             <div class="row">
                 <div class="col-md-12 col-lg-4 " data-aos="fade-right" data-aos-duration="500" >
                     <div class="card bg-dark text-white text-center my-3">
-                        <img src="images/home/g1.jpg" class="card-img " alt="Stony Beach"  style="height:230px"/>
+                        <img src="images/home/g2.jpg" class="card-img " alt="Stony Beach" />
                         <div class="card-img-overlay">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4 " data-aos="fade-up" data-aos-duration="1000" >
                     <div class="card bg-dark text-white text-center my-3">
-                        <img src="images/home/g2.jpg" class="card-img " alt="Stony Beach"  style="height:230px"/>
+                        <img src="images/home/g3.jpg" class="card-img " alt="Stony Beach" />
                         <div class="card-img-overlay">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4 " data-aos="fade-left" data-aos-duration="1500" >
                     <div class="card bg-dark text-white text-center my-3">
-                        <img src="images/home/g3.jpg" class="card-img " alt="Stony Beach"  style="height:230px"/>
+                        <img src="images/home/g1.jpg" class="card-img " alt="Stony Beach"/>
                         <div class="card-img-overlay">
                         </div>
                     </div>

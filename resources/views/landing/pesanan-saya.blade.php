@@ -23,8 +23,8 @@
                                             <div class="card-body">
                                                 <h6 class="card-title mb-3">Wisata : {{$p->nama_wisata}}</h6>
                                                 <p class="card-text" style="font-size: 14px; margin-top: -5px;">Nama Pemesan: {{$p->nama_pengguna}}</p>
-                                                <p class="card-text"style="font-size: 14px; margin-top: -5px;">Tanggal Pemesanan : {{$p->date}}</p>
-                                                <p class="card-text"style="font-size: 14px; margin-top: -5px;">Tanggal Berangkat : {{$p->tanggal}}</p>
+                                                <p class="card-text"style="font-size: 14px; margin-top: -5px;">Tanggal Pemesanan : {{ \Carbon\Carbon::parse($p->date)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
+                                                <p class="card-text" style="font-size: 14px; margin-top: -5px;">Tanggal Berangkat: {{ \Carbon\Carbon::parse($p->tanggal)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
                                                 <p class="card-text"style="font-size: 14px; margin-top: -5px;">Titik Kumpul : {{$p->titikkumpul}}</p>
                                                 <p class="card-text"style="font-size: 14px; margin-top: -5px;">Jumlah Orang : {{$p->jumlah_orang}}</p>
                                                 <p class="card-text"style="font-size: 14px; margin-top: -5px;">Harga/pax : Rp. {{ number_format($p->harga, 0, ',', '.') }}</p>
