@@ -44,7 +44,7 @@
                                             <tr>
                                                 <td>
                                                     <a href="#" data-toggle="modal" data-target="#buktimitraModal{{$p->id}}" data-whatever="@getbootstrap">
-                                                        <img src="{{ asset('storage/image/bukti-mitra/' . $p->bukti_mitra) }}" alt="wisata" style="width: 50px;">
+                                                        <img src="{{ asset('storage/image/bukti-mitra/' . $p->bukti_mitra) }}" alt="wisata" style="width: 40px;">
                                                     </a>
                                                 </td>
                                                 <td>{{$p->nama_lengkap}}</td>
@@ -56,7 +56,10 @@
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-success btn-sm" href="/konfirmasi-mitra/{{$p->id}}">
-                                                        <i class="fa-solid fa-envelope"></i> Konfimasi
+                                                        <i class="fa-solid fa-envelope"></i> 
+                                                    </a>
+                                                    <a class="btn btn-danger btn-sm" href="/cancel-mitra/{{$p->id}}">
+                                                        <i class="fa-solid fa-xmark"></i>
                                                     </a>
                                                 </td>
                                             </tr>

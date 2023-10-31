@@ -43,17 +43,18 @@
                                 placeholder="Enter" required="required" name="email" value="{{ old('email') }}" />
                             <label class="form-label" for="email">Email</label>
                         </div>
-                        <div class="form-outline mb-3">
+                        <!-- <div class="form-outline mb-3">
                             <input type="password" class="form-control form-control-lg"
                                 placeholder="Enter password" required="required" name="password" value="{{ old('password') }}" />
                             <label class="form-label" for="password">Password</label>
-                        </div>
+                        </div> -->
+                        <div class="form-outline mb-3">
+    <input type="password" class="form-control form-control-lg" placeholder="Enter password" required="required" name="password" id="password" value="{{ old('password') }}" />
+    <label class="form-label" for="password">Password</label>
+    <span toggle="#password" class="password-toggle-icon fa fa-eye"></span>
+</div>
                         <div class="row mb-3">
                             <div class="col-lg-6">
-                                <!-- <div>
-                                    <label class="form-label" for="customFile">Upload Bukti Usaha</label>
-                                    <input type="file" class="form-control" name="bukti_mitra" id="bukti_mitra" accept="image/*" onchange="previewImage(event)"/>
-                                </div> -->
                                 <div class="customtour">
                                     <input type="file" id="file" name="bukti_mitra" accept="image/*" onchange="previewImage(event)">
                                     <label for="file">
@@ -217,4 +218,33 @@
 
 </style>
 
+<style>
+    .password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
+}
+
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $(".password-toggle-icon").on('click', function() {
+        var passwordField = $($(this).attr("toggle"));
+        if (passwordField.attr("type") == "password") {
+            passwordField.attr("type", "text");
+            $(this).removeClass("fa-eye");
+            $(this).addClass("fa-eye-slash");
+        } else {
+            passwordField.attr("type", "password");
+            $(this).removeClass("fa-eye-slash");
+            $(this).addClass("fa-eye");
+        }
+    });
+});
+</script>
 @endsection

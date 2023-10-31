@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\User;
 use App\Mail\Email;
+use App\Mail\cencelMail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -102,6 +103,25 @@ class RequestmitraController extends Controller
         \Mail::to($email)->send(new Email($details));
 
         return redirect('/request-mitra')->with('success', "Mitra Telah Dikonfirmasi!");
+    }
+
+    public function cencelMitra($id){
+        $mitra = User::find($id);
+        $mitra->status = 3;
+        $mitra->save();
+
+        $namaMitra = $mitra->nama_lengkap;
+        $email = $mitra->email;
+
+        $data = [
+            'email' => $email,
+            'nama_lengkap' => $namaMitra,
+        ];
+       
+        \Mail::to($email)->send(new cencelMail($data));
+
+        return redirect('/request-mitra')->with('error', "Mitra Telah Cancel!");
+
     }
 
 }

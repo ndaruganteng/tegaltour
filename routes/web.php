@@ -6,24 +6,24 @@ use App\Models\wisata;
 use App\Models\kategori;
 use Illuminate\Support\Facades\DB;
 
-use App\http\Controllers\Landing\HomeController;
-use App\http\Controllers\Landing\WisataController;
-use App\http\Controllers\Landing\DetailwisataController;
-use App\http\Controllers\Landing\TransaksiController;
-use App\http\Controllers\Landing\PemesananController;
-use App\http\Controllers\Landing\UlasanController;
-use App\http\Controllers\Landing\HistoryController;
+use App\Http\Controllers\Landing\HomeController;
+use App\Http\Controllers\Landing\WisataController;
+use App\Http\Controllers\Landing\DetailwisataController;
+use App\Http\Controllers\Landing\TransaksiController;
+use App\Http\Controllers\Landing\PemesananController;
+use App\Http\Controllers\Landing\UlasanController;
+use App\Http\Controllers\Landing\HistoryController;
 
-use App\http\Controllers\Dashboard\DashboardController;
-use App\http\Controllers\Dashboard\DetaildatawisataController;
-use App\http\Controllers\Dashboard\DatawisataController;
-use App\http\Controllers\Dashboard\DatarekeningController;
-use App\http\Controllers\Dashboard\RequestmitraController;
-use App\http\Controllers\Dashboard\DatauserController;
-use App\http\Controllers\Dashboard\DatakategoriController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\DetaildatawisataController;
+use App\Http\Controllers\Dashboard\DatawisataController;
+use App\Http\Controllers\Dashboard\DatarekeningController;
+use App\Http\Controllers\Dashboard\RequestmitraController;
+use App\Http\Controllers\Dashboard\DatauserController;
+use App\Http\Controllers\Dashboard\DatakategoriController;
 
-use App\http\Controllers\Auth\LoginController;
-use App\http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
@@ -91,6 +91,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     Route::get('/data-user', [DatauserController::class, 'index'])->name('data-user.index');
     Route::get('/request-mitra', [DatauserController::class, 'join_mitra'])->name('request-mitra.index');
     Route::get('/konfirmasi-mitra/{id}', [RequestmitraController::class, 'konfirmasiMitra']);
+    Route::get('/cancel-mitra/{id}', [RequestmitraController::class, 'cencelMitra']);
     Route::get('/data-user/hapus_user/{id}', [DatauserController::class, 'hapus_user'])->name('hapus_user');
 
     //DATA kATERGORI
