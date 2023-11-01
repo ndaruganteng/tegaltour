@@ -108,7 +108,7 @@
                                         {{$mitra->nama_lengkap}}
                                         <i class="fas fa-check-circle" style="color: #1fbd00"></i>
                                     </p>
-                                    <a href="https://wa.me/{{$mitra->no_telepon}}" target="_blank" type="button"
+                                    <a href="https://api.whatsapp.com/send?phone={{$mitra->no_telepon}}" target="_blank" type="button"
                                         class="btn btn-dark shadow-0">
                                         <i class="fa-brands fa-whatsapp me-2"></i>
                                         Chat Host

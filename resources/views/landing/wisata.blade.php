@@ -53,30 +53,30 @@
                     <div class="card shadow-0 border rounded-0">
                         <div class="card-header fs-5 text-center">FILTER</div>
                         <div class="card-body">
-    <div class="kategori">
-        <h5 class="mb-3 card-title">Kategori</h5>
-        <select id="filter_kategori" class="form-select">
-            <option value="">Semua Kategori</option>
-            @foreach($kategori as $data)
-            <option value="{{$data->nama_kategori}}">{{$data->nama_kategori}}</option>
-            @endforeach
-        </select>
-    </div>
-    <div class="hargadropwon mt-3">
-        <h5 class="mb-3 card-title">Harga</h5>
-        <select id="filter_harga" class="form-select">
-            <option value="">Semua Harga</option>
-            <option value="Rp 10.000 /orang">Rp 10.000</option>
-            <option value="Rp 15.000 /orang">Rp 15.000</option>
-            <option value="Rp 20.000 /orang">Rp 20.000</option>
-            <option value="Rp 250.000 /orang">Rp 25.000</option>
-            <option value="Rp 50.000 /orang">Rp 50.000</option>
-            <option value="Rp 100.000 /orang">Rp 100.000</option>
-            <option value="Rp 150.000 /orang">Rp 150.000</option>
-            <option value="Rp 200.000 /orang">Rp 200.000</option>
-        </select>
-    </div>
-</div> 
+                            <div class="kategori">
+                                <h5 class="mb-3 card-title">Kategori</h5>
+                                <select id="filter_kategori" class="form-select">
+                                    <option value="">Semua Kategori</option>
+                                    @foreach($kategori as $data)
+                                    <option value="{{$data->nama_kategori}}">{{$data->nama_kategori}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="hargadropwon mt-3">
+                                <h5 class="mb-3 card-title">Harga</h5>
+                                <select id="filter_harga" class="form-select">
+                                    <option value="">Semua Harga</option>
+                                    <option value="Rp 10.000 /orang">Rp 10.000</option>
+                                    <option value="Rp 15.000 /orang">Rp 15.000</option>
+                                    <option value="Rp 20.000 /orang">Rp 20.000</option>
+                                    <option value="Rp 250.000 /orang">Rp 25.000</option>
+                                    <option value="Rp 50.000 /orang">Rp 50.000</option>
+                                    <option value="Rp 100.000 /orang">Rp 100.000</option>
+                                    <option value="Rp 150.000 /orang">Rp 150.000</option>
+                                    <option value="Rp 200.000 /orang">Rp 200.000</option>
+                                </select>
+                            </div>
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -137,38 +137,6 @@
     <!-- end card -->
 
 </div>
-
-<!-- <script>
-    const filterSelect = document.getElementById("filter");
-    const wisataList = document.getElementById("wisata-list");
-    const noCategoryFound = document.getElementById("no-category-found");
-    filterSelect.addEventListener("change", filterItems);
-
-    function filterItems() {
-        const selectedValue = filterSelect.value;
-
-        const items = wisataList.getElementsByClassName("col-md-12 col-lg-4");
-        let found = false;
-
-        for (const item of items) {
-            const category = item.querySelector(".badge").textContent;
-            if (selectedValue === "" || category === selectedValue) {
-                item.style.display = "block";
-                found = true;
-            } else {
-                item.style.display = "none";
-            }
-        }
-
-        if (!found) {
-            noCategoryFound.style.display = "block";
-        } else {
-            noCategoryFound.style.display = "none";
-        }
-    }
-
-    filterItems();
-</script> -->
 
 <script>
     const filterCategorySelect = document.getElementById("filter_kategori");

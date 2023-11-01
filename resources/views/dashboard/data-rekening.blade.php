@@ -154,11 +154,12 @@
                         </div>                         
                         <div class="form-group">
                             <label for="nama_bank">Nama Bank</label>
-                            <input type="text" class="form-control" required="required"  name="nama_bank"  placeholder="Masukan Nama Bank">
+                            <input type="text" class="form-control" required="required" name="nama_bank" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')" placeholder="Masukan Nama Bank">
                         </div>
+
                         <div class="form-group">
                             <label for="no_rekening">Nomor Rekening</label>
-                            <input type="text" class="form-control" required="required"  name="no_rekening" placeholder="Masukan Nomor Rekening Rekening">
+                            <input type="text" class="form-control" required="required" name="no_rekening" placeholder="Masukan Nomor Rekening Rekening" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </div>
                         <div class="form-group">
                             <label for="nama_rekening">Nama Rekening</label>
