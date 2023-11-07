@@ -24,7 +24,10 @@ class HistoryController extends Controller
                 ->join('users', 'pemesanan.id_user', '=', 'users.id')
                 ->join('wisata', 'pemesanan.id_wisata', '=', 'wisata.id_wisata')
                 ->where('pemesanan.id_user', $usersId) 
-                ->where('pemesanan.status', '3')
+                ->where(function($query) {
+                    $query->where('pemesanan.status', '3')
+                          ->orWhere('pemesanan.status', '4');
+                })
                 ->select(
                     'pemesanan.id_pemesanan as id_pemesanan',
                     'pemesanan.id_user',

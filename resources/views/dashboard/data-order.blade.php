@@ -58,6 +58,11 @@
                                                 
                                                 <td>{{$p->nama_wisata}}</td>
                                                 <td>{{$p->nama_pengguna}}</td>
+                                                @if($p->status == 4)
+                                                <td>
+                                                    <p>-</p>
+                                                </td>
+                                                @else
                                                 <td>
                                                     @if($p->status_perjalanan == null)
                                                     <p class="card-text" > <span class="badge badge-warning">Menunggu</span> </p>
@@ -67,11 +72,16 @@
                                                     <p class="card-text" ><span class="badge badge-success">Selesai</span> </p>
                                                     @endif
                                                 </td>
+                                                @endif
                                                 <td>
                                                     @if($p->status == null)
                                                         <div class="badge badge-warning">Belum disetuji </div>
-                                                    @else($p->status == 2)
+                                                    @elseif($p->status == 2)
                                                         <div class="badge badge-success"> Dikonfirmasi</div>
+                                                    @elseif($p->status == 3)
+                                                        <div class="badge badge-success"> Dikonfirmasi</div>
+                                                    @elseif($p->status == 4)
+                                                        <div class="badge badge-danger"> Dibatalkan</div>
                                                     @endif
                                                 </td>
                                                 <td>{{ \Carbon\Carbon::parse($p->tanggal)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
@@ -85,7 +95,14 @@
                                                             @csrf
                                                             @method('put')
                                                             <button type="submit" class="btn btn-success btn-sm">
-                                                                <i class="fa-solid fa-check mr-2"></i>  
+                                                                <i class="fa-solid fa-check"></i>  
+                                                            </button>
+                                                        </form>
+                                                        <form  method="post" action="{{route('cancel', ['id_pemesanan'=> $p->id_pemesanan])}}">
+                                                            @csrf
+                                                            @method('put')
+                                                            <button type="submit" class="btn btn-warning btn-sm">
+                                                                <i class="fa-solid fa-xmark"></i>  
                                                             </button>
                                                         </form>
                                                     @else

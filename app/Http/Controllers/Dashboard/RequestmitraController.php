@@ -35,9 +35,8 @@ class RequestmitraController extends Controller
         $validator = $request->validate([
             'nama_lengkap' => 'required',
             'telepon' => 'required|regex:/^[0-9]{11,13}$/',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|regex:/^[\w\.-]+@gmail\.com$/i|unique:users',
             'password' => 'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
-            'bukti_mitra' => 'required|file|mimes:jpg,jpeg,png|max:2048', 
         ], 
         [
             "nama_lengkap.required" => "Harap masukkan Nama Lengkap",
@@ -45,14 +44,11 @@ class RequestmitraController extends Controller
             "telepon.regex" => "Nomor telepon harus berisi hanya angka dan panjang 11-13 karakter",
             "email.required" => "Harap masukkan alamat email",
             "email.email" => "Format alamat email tidak valid",
+            "email.regex" => "Alamat email harus menggunakan domain @gmail.com",
             "email.unique" => "Alamat email sudah digunakan",
             "password.required" => "Harap masukkan kata sandi",
             "password.min" => "Kata sandi minimal harus 6 karakter",
             "password.regex" => "Kata sandi harus mengandung huruf besar, huruf kecil, angka, dan karakter khusus (@$!%*?&)",
-            "bukti_mitra.required" => "Harap unggah bukti mitra",
-            "bukti_mitra.file" => "Bukti mitra harus berupa berkas",
-            "bukti_mitra.mimes" => "Format berkas yang diizinkan adalah jpeg dan png",
-            "bukti_mitra.max" => "Ukuran berkas maksimum adalah 2 MB",
         ]);
 
 
@@ -64,13 +60,6 @@ class RequestmitraController extends Controller
         $mitra->role= 'mitra';
         $password = $request->input('password');
         $mitra->password = bcrypt($password);
-        if ($request->hasFile('bukti_mitra')) {
-            $file = $request->file('bukti_mitra');
-            $extension = $file->getClientOriginalExtension();
-            $filename = $mitra->nama_lengkap. '_' . now()->timestamp . '.' . $extension;
-            $file->storeAs('image/bukti-mitra/', $filename);
-            $mitra->bukti_mitra = $filename;
-        }
         $mitra->save();
         
         return redirect('/join-mitra')->with('message', 'Permintaan Join Mitra Anda telah Terkirim, Silahkan Cek Email! ');

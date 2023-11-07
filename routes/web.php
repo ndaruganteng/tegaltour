@@ -139,6 +139,7 @@ Route::get('/search',[WisataController::class, 'search'])->name('wisata.search')
 Route::post('/boking', [PemesananController::class, 'store']);
 Route::get('/invoice/{id_pemesanan}', [PemesananController::class, 'pdf']);
 Route::put('/konfirmasi/{id_pemesanan}', [PemesananController::class, 'konfirmasi'])->name('konfirmasi');
+Route::put('/cancel/{id_pemesanan}', [PemesananController::class, 'cancel'])->name('cancel');
 Route::get('/data-order/hapus/{id}', [PemesananController::class, 'hapus'])->name('hapus.index');
 Route::group(['middleware' => ['auth','ceklevel:user']], function(){
     Route::post('/upload-bukti_pembayaran/{id}', [PemesananController::class, 'update'])->name('upload-bukti_pembayaran');

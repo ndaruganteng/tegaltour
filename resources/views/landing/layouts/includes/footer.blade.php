@@ -30,7 +30,7 @@
             TegalTour
           </h6>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos incidunt dolor illo? Sequi, fugiat magni.
+          Tegaltour adalah sebuah platform marketplace yang memfasilitasi penjualan berbagai paket wisata yang diunggah oleh mitra-mitra kami.
           </p>
         </div>
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -76,7 +76,7 @@
 
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
     © 2023 Copyright:
-    <a class="text-reset fw-bold" href="#">TegalTour.com </a>
+    <a class="text-reset fw-bold" href="#">TegalTour.my.id </a>
   </div>
 
 </footer>

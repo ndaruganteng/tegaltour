@@ -64,14 +64,14 @@
                                                                     <i class="fa-solid fa-car-side mr-2"></i>Berangkat
                                                                 </button>
                                                             </form>
-                                                        @else($p->status_perjalanan == 2)
+                                                        @elseif($p->status_perjalanan == 2)
                                                             <form  method="post" action="{{route('selesai', ['id_pemesanan'=> $p->id_pemesanan])}}">
                                                                 @csrf
                                                                 @method('put')
                                                                 <button type="submit" class="btn btn-success btn-sm mx-1">
                                                                     <i class="fa-solid fa-check-to-slot mr-2"></i>Selesai
                                                                 </button>
-                                                            </form>                              
+                                                            </form>                            
                                                         @endif
                                                     </td>
                                                 </tr>

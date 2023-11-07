@@ -150,9 +150,8 @@
                                         </div>
                                         <div class="form-outline mb-4">
                                             <input type="number" min="1" name="jumlah_orang" id="jumlahorang" class="form-control" onchange="updateHargaTotal()"/>
-                                            <label class="form-label" for="jumlahorang">Jumlah Orang</label>
-                                        </div>
-                                       
+                                            <label class="form-label" for="jumlahorang" require>Jumlah Orang</label>
+                                        </div>                         
                                         <div class="form-outline mb-4">
                                             <input class="form-control bg-white" id="viewhargatotal" type="text" placeholder="Total Harga" readonly/>
                                         </div>

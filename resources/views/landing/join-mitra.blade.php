@@ -17,7 +17,7 @@
                     <img src="images/mitra/mitra.png"
                     class="img-fluid" alt="Sample image" style="width: 100;">
                 </div>
-                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" >
                     <form action="{{ route('Mitra.index') }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }} 
                         <div class="divider d-flex align-items-center my-3">
@@ -35,40 +35,19 @@
                         </div>
                         <div class="form-outline mb-3">
                             <input type="text" class="form-control form-control-lg"
-                                placeholder="Masukan Alamat" required="required" name="alamat" value="{{ old('alamat') }}" />
-                            <label class="form-label" for="alamat">Alamat</label>
+                                placeholder="Masukan Alamat Bisnis" required="required" name="alamat" value="{{ old('alamat') }}" />
+                            <label class="form-label" for="alamat">Alamat Lengkap</label>
                         </div>
                         <div class="form-outline mb-3">
                             <input type="email" class="form-control form-control-lg"
                                 placeholder="Enter" required="required" name="email" value="{{ old('email') }}" />
                             <label class="form-label" for="email">Email</label>
                         </div>
-                        <!-- <div class="form-outline mb-3">
-                            <input type="password" class="form-control form-control-lg"
-                                placeholder="Enter password" required="required" name="password" value="{{ old('password') }}" />
-                            <label class="form-label" for="password">Password</label>
-                        </div> -->
                         <div class="form-outline mb-3">
-    <input type="password" class="form-control form-control-lg" placeholder="Enter password" required="required" name="password" id="password" value="{{ old('password') }}" />
-    <label class="form-label" for="password">Password</label>
-    <span toggle="#password" class="password-toggle-icon fa fa-eye"></span>
-</div>
-                        <div class="row mb-3">
-                            <div class="col-lg-6">
-                                <div class="customtour">
-                                    <input type="file" id="file" name="bukti_mitra" accept="image/*" onchange="previewImage(event)">
-                                    <label for="file">
-                                        <i class="fa-solid fa-upload me-2"></i>
-                                        upload Bukti Usaha
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div>
-                                    <img id="image-preview" src="" class="img-thumbnail" style="display:none; max-width: 50%; max-height: 50%;" alt="Preview Image">
-                                </div>
-                            </div>
-                        </div> 
+                            <input type="password" class="form-control form-control-lg" placeholder="Enter password" required="required" name="password" id="password" value="{{ old('password') }}" />
+                            <label class="form-label" for="password">Password</label>
+                            <span toggle="#password" class="password-toggle-icon fa fa-eye"></span>
+                        </div>
                         <div class="text-center text-lg-start">
                             <button type="submit" class="btn btn-dark "
                             style="padding-left: 2.5rem; padding-right: 2.5rem;">Join Mitra</button>
@@ -143,27 +122,27 @@
             <h2 class="text-center fw-bold mb-3">FAQs</h2>
             <div class="row">
                 <div class="col-md-12 col-lg-6 mt-5">
-                    <h3><i class="fa-solid fa-comment-dots me-2"></i>Apa itu TegalTour.com?</h3>
+                    <h3><i class="fa-solid fa-comment-dots me-2"></i>Apa itu TegalTour?</h3>
                     <p class="mt-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, ullam. Amet esse nisi voluptatum maiores? Praesentium quae sunt saepe, cupiditate quas incidunt suscipit cum, maiores quidem atque aut error voluptatibus?
+                    Tegaltour adalah sebuah platform marketplace yang memfasilitasi penjualan berbagai paket wisata yang diunggah oleh mitra-mitra kami.
                     </p>
                 </div>
                 <div class="col-md-12 col-lg-6 mt-5">
-                    <h3><i class="fa-solid fa-comment-dots me-2"></i>Apa keuntungan menjadi mitra TegalTour.com ?</h3>
+                    <h3><i class="fa-solid fa-comment-dots me-2"></i>Apa keuntungan menjadi mitra TegalTour?</h3>
                     <p class="mt-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, ullam. Amet esse nisi voluptatum maiores? Praesentium quae sunt saepe, cupiditate quas incidunt suscipit cum, maiores quidem atque aut error voluptatibus?
+                        Keuntungan menjadi mitra TegalTour.com mencakup eksposur lebih luas, akses ke pangsa pasar yang luas, manajemen yang mudah, dukungan teknis, peluang kolaborasi, dan peningkatan pendapatan, sehingga Anda dapat mengembangkan bisnis wisata Anda dengan lebih baik.
                     </p>
                 </div>
                 <div class="col-md-12 col-lg-6 mt-5">
-                    <h3><i class="fa-solid fa-comment-dots me-2"></i>  Bagaimana cara bergabung sebagai mitra TegalTour.com?</h3>
-                    <p class="mt-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, ullam. Amet esse nisi voluptatum maiores? Praesentium quae sunt saepe, cupiditate quas incidunt suscipit cum, maiores quidem atque aut error voluptatibus?
+                    <h3><i class="fa-solid fa-comment-dots me-2"></i>  Bagaimana cara bergabung sebagai mitra TegalTour?</h3>
+                    <p class="mt-4">                     
+                        Anda dapat bergabung sebagai mitra TegalTour dengan mengakses situs web kami, mengisi formulir pendaftaran, mengunggah dokumen pendukung, menunggu verifikasi, dan jika disetujui, Anda akan mendapatkan akses ke akun mitra di platform TegalTour untuk mengelola dan menjual produk wisata Anda.
                     </p>
                 </div>
                 <div class="col-md-12 col-lg-6 mt-5">
-                    <h3><i class="fa-solid fa-comment-dots me-2"></i>  Bagaimana cara memposting layanan saya di platform TegalTour.com?</h3>
+                    <h3><i class="fa-solid fa-comment-dots me-2"></i>  Bagaimana cara memposting layanan saya di platform TegalTour?</h3>
                     <p class="mt-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, ullam. Amet esse nisi voluptatum maiores? Praesentium quae sunt saepe, cupiditate quas incidunt suscipit cum, maiores quidem atque aut error voluptatibus?
+                    Untuk memposting layanan atau produk wisata Anda di platform TegalTour, masuk ke akun mitra Anda, tambahkan detail produk, termasuk deskripsi, harga, foto, dan metode pembayaran, lalu publikasikan produk Anda untuk menawarkannya kepada calon pelanggan.
                     </p>
                 </div>
             </div>
@@ -171,52 +150,6 @@
     </div>
 
 </div>
-
-<script>
-    function previewImage(event) {
-        var input = event.target;
-        var preview = document.getElementById('image-preview');
-
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            preview.src = "";
-            preview.style.display = 'none';
-        }
-    }
-</script>
-
-<style>
-
-    .customtour input[type="file"]{
-        display: none;
-    }
-    
-    .customtour label {
-        color: black;
-        height: 40px;
-        width: 170px;
-        background-color: transparent;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        font-size: 14px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 5px;
-        border: 1px solid gray;
-    }
-
-</style>
 
 <style>
     .password-toggle-icon {
@@ -226,25 +159,24 @@
     transform: translateY(-50%);
     cursor: pointer;
     z-index: 2;
-}
-
+    }
 </style>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function() {
-    $(".password-toggle-icon").on('click', function() {
-        var passwordField = $($(this).attr("toggle"));
-        if (passwordField.attr("type") == "password") {
-            passwordField.attr("type", "text");
-            $(this).removeClass("fa-eye");
-            $(this).addClass("fa-eye-slash");
-        } else {
-            passwordField.attr("type", "password");
-            $(this).removeClass("fa-eye-slash");
-            $(this).addClass("fa-eye");
-        }
+    $(document).ready(function() {
+        $(".password-toggle-icon").on('click', function() {
+            var passwordField = $($(this).attr("toggle"));
+            if (passwordField.attr("type") == "password") {
+                passwordField.attr("type", "text");
+                $(this).removeClass("fa-eye");
+                $(this).addClass("fa-eye-slash");
+            } else {
+                passwordField.attr("type", "password");
+                $(this).removeClass("fa-eye-slash");
+                $(this).addClass("fa-eye");
+            }
+        });
     });
-});
 </script>
+
 @endsection

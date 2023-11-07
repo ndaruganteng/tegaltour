@@ -19,29 +19,61 @@ class PemesananController extends Controller
 {
 
 
-    public function store(Request $request)
-    {
-        $pemesanan = new Pemesanan;
-        $pemesanan->id_user = $request->input('id_user');
-        $pemesanan->id_wisata = $request->input('id_wisata');
-        $pemesanan->id_mitra = $request->input('id_mitra');
-        $pemesanan->jumlah_orang = $request->input('jumlah_orang');
-        $pemesanan->harga_satuan = $request->input('harga_satuan');
-        $pemesanan->harga_total = $request->input('harga_total');
-        $pemesanan->status = null;
-        $pemesanan->status_perjalanan = null;
-        $pemesanan->date = Carbon::now()->toDateTimeString();
-        if ($request->hasFile('bukti_pembayaran')) {
-            $file = $request->file('bukti_pembayaran');
-            $extension = $file->getClientOriginalExtension();
-            $filename = $request->input('namauser') . '_' . now()->timestamp . '.' . $extension;
-            $file->storeAs('image/bukti-transfer/', $filename);
-            $pemesanan->bukti_pembayaran = $filename;
-        }
-        $pemesanan->save();
+    // public function store(Request $request)
+    // {
+    //     $pemesanan = new Pemesanan;
+    //     $pemesanan->id_user = $request->input('id_user');
+    //     $pemesanan->id_wisata = $request->input('id_wisata');
+    //     $pemesanan->id_mitra = $request->input('id_mitra');
+    //     $pemesanan->jumlah_orang = $request->input('jumlah_orang');
+    //     $pemesanan->harga_satuan = $request->input('harga_satuan');
+    //     $pemesanan->harga_total = $request->input('harga_total');
+    //     $pemesanan->status = null;
+    //     $pemesanan->status_perjalanan = null;
+    //     $pemesanan->date = Carbon::now()->toDateTimeString();
+    //     if ($request->hasFile('bukti_pembayaran')) {
+    //         $file = $request->file('bukti_pembayaran');
+    //         $extension = $file->getClientOriginalExtension();
+    //         $filename = $request->input('namauser') . '_' . now()->timestamp . '.' . $extension;
+    //         $file->storeAs('image/bukti-transfer/', $filename);
+    //         $pemesanan->bukti_pembayaran = $filename;
+    //     }
+    //     $pemesanan->save();
 
-        return redirect('/transaksi')->with('success', "Pemesanan Telah Berhasil, <br> Silahkan Melakukan Pembayaran!");
+    //     return redirect('/transaksi')->with('success', "Pemesanan Telah Berhasil, <br> Silahkan Melakukan Pembayaran!");
+    // }
+
+    public function store(Request $request)
+{
+    $request->validate([
+        'jumlah_orang' => 'required|numeric|min:1',
+    ], [
+        'jumlah_orang.required' => 'Jumlah orang harus diisi.',
+        'jumlah_orang.numeric' => 'Jumlah orang harus berupa angka.',
+        'jumlah_orang.min' => 'Jumlah orang harus lebih besar atau sama dengan 1.',
+    ]);
+
+    $pemesanan = new Pemesanan;
+    $pemesanan->id_user = $request->input('id_user');
+    $pemesanan->id_wisata = $request->input('id_wisata');
+    $pemesanan->id_mitra = $request->input('id_mitra');
+    $pemesanan->jumlah_orang = $request->input('jumlah_orang');
+    $pemesanan->harga_satuan = $request->input('harga_satuan');
+    $pemesanan->harga_total = $request->input('harga_total');
+    $pemesanan->status = null;
+    $pemesanan->status_perjalanan = null;
+    $pemesanan->date = Carbon::now()->toDateTimeString();
+    if ($request->hasFile('bukti_pembayaran')) {
+        $file = $request->file('bukti_pembayaran');
+        $extension = $file->getClientOriginalExtension();
+        $filename = $request->input('namauser') . '_' . now()->timestamp . '.' . $extension;
+        $file->storeAs('image/bukti-transfer/', $filename);
+        $pemesanan->bukti_pembayaran = $filename;
     }
+    $pemesanan->save();
+
+    return redirect('/transaksi')->with('success', "Pemesanan Telah Berhasil, <br> Silahkan Melakukan Pembayaran!");
+}
 
     public function update(Request $request, $id)
     {
@@ -111,6 +143,19 @@ class PemesananController extends Controller
             ]);
 
         return redirect('data-order')->with('success', 'Pembayaran telah dikonfirmasi ');
+    }
+
+
+    // Fungsi Cancel pemesanan
+    public function cancel(Request $request, $id)
+    { 
+        $konfirmasi = DB::table('pemesanan')
+            ->where('id_pemesanan', $id)
+            ->update([
+                'status' => 4
+            ]);
+
+        return redirect('data-order')->with('success', 'Pembayaran telah dibatalkan ');
     }
 
     // fungsi untuk hapus

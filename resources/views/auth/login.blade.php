@@ -25,8 +25,8 @@
     
   </head>
   <body >
-  @include('sweetalert::alert')
-     <div class="container d-flex justify-content-center align-items-center min-vh-100 login">
+    @include('sweetalert::alert')
+    <div class="container d-flex justify-content-center align-items-center min-vh-100 login">
         <div class="row border rounded-5 p-3 bg-white box-area">
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #103cbe;">
                 <div class="featured-image mb-3">

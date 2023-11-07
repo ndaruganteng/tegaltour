@@ -40,7 +40,7 @@
 
 </head>
 <body class="sidebar-mini layout-fixed sidebar-open bg-dark"  >
-
+    @include('sweetalert::alert')
 
     <div class="wrapper bg-white" >
 
@@ -48,7 +48,6 @@
         @include('dashboard.layouts.includes.sidebar')
 
         <div>
-            @include('sweetalert::alert')
             @yield('content')
         </div>
 
