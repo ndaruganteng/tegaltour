@@ -103,7 +103,7 @@
                         <div class="col-lg-12 host">
                             <div class="card text-center border border-2 shadow-0">
                                 <div class="card-body">
-                                    <img src="/images/detail-tour/profile.png" class="rounded-circle" />
+                                    <img src="/images/detail-tour/user.png" class="rounded-circle" />
                                     <p class="card-text">
                                         {{$mitra->nama_lengkap}}
                                         <i class="fas fa-check-circle" style="color: #1fbd00"></i>

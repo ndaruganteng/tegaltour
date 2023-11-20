@@ -41,7 +41,7 @@
                     <div class="header-text mb-4">
                         <h1>Register</h1>
                     </div>
-                    <form action="/register" method="POST">
+                    <form action="/register" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="input-group mb-3">
                             <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}" class="form-control form-control-lg bg-light fs-6" placeholder="Nama Lengkap">

@@ -5,15 +5,18 @@
   </a>
   <div class="sidebar">
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    @if(auth()->user()->role == "admin")
       <div class="image">
         <img src="/images/icon/profile.png" class="img-circle" alt="User Image">
-      </div>
-      @if(auth()->user()->role == "admin")
+      </div> 
       <div class="info">
         <a href="#" class="d-block">{{ Auth::User()->nama_lengkap }}</a>
       </div>
       @endif
       @if(auth()->user()->role == "mitra")
+      <div class="image">
+        <img src="images/detail-tour/user.png" class="img-circle" alt="User Image">
+      </div> 
       <div class="info">
         <a href="#" class="d-block">{{ Auth::User()->nama_lengkap }}</a>
       </div>

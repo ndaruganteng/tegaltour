@@ -24,7 +24,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card card-primary card-outline">
                         <div class="card-header"  style="background-color: white;">
                             <div class="d-flex justify-content-between">
                                 <h5>Data Paket Wisata</h5>
@@ -111,6 +111,7 @@
         });
     });
 </script>
+
 
 
 

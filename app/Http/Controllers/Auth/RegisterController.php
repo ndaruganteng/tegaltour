@@ -35,7 +35,6 @@ class RegisterController extends Controller
         $Domain = explode('@', $email);
     
         if ($existingUser) {
-           
             alert()->error('Gagal', 'Email sudah digunakan');
             return redirect()->back()->withInput();
         } else if (!checkdnsrr($Domain[1],"MX")){
@@ -77,7 +76,10 @@ class RegisterController extends Controller
                 $user->no_telepon = $phone;
             }
             $user->save();
+
             return redirect()->route('login.index')->with('success', "Akun berhasil dibuat");
         }
     }
+
+    
 }

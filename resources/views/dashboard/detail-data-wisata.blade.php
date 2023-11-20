@@ -25,14 +25,14 @@
             <div class="container-fluid mt-3">
                 <div class="row mb-3">
                     <div class="col-lg-6">
-                        <div class="card">
+                        <div class="card card-primary card-outline">
                             <div class="card-body">
                             <img src="{{asset('storage/image/wisata/'.$data_wisata_detail->image)}}" class="img-thumbnail" style="width:100%" alt="Wild Landscape"/>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="card">
+                        <div class="card card-primary card-outline">
                             <div class="card-body">
                                 <p class="card-text">Nama Wisata : {{ $data_wisata_detail->namawisata }}</p>
                                 <p class="card-text">Kategori : {{ $data_wisata_detail->kategori }}</p>
@@ -48,14 +48,14 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="card">
+                        <div class="card card-primary card-outline">
                             <div class="card-body">
                                 <p class="card-text">Deskripsi : {!! $data_wisata_detail->deskripsi !!}</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="card">
+                        <div class="card card-primary card-outline">
                             <div class="card-body">
                                 <p class="card-text">Fasilitas : {!! $data_wisata_detail->fasilitas !!}</p>
                             </div>
