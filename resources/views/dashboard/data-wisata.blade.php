@@ -60,6 +60,9 @@
                                                 </td>
                                                 <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                                 <td>
+                                                     <a  href="/ulasan-wisata/{{$p->id_wisata}}" class="btn btn-info btn-sm">
+                                                        <i class="fa-solid fa-message"></i>  
+                                                    </a>
                                                     <a href="/detail-data-wisata/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm" >
                                                         <i class="fas fa-eye"></i>
                                                     </a>

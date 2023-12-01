@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice Wisata</title>
+    <link rel="icon" href="/images/icon/tour-logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -52,7 +53,12 @@
             font-weight: 700;
             color: #000;
         }
-
+        .invoice-img {
+            max-width: 100px;
+            height: auto;
+            border: 2px solid #000;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
@@ -90,6 +96,7 @@
                         <tr class="text-center">
                             <th>Wisata</th>
                             <th>Tanggal Berangkat</th>
+                            <th>Jam Berangkat</th>
                             <th>Jumlah Orang</th>
                             <th>Harga/pax</th>
                             <th>Total Harga</th>
@@ -98,7 +105,8 @@
                     <tbody>
                         <tr class="text-center">
                             <td>{{$pemesanan->nama_wisata}}</td>
-                            <td>{{$pemesanan->tanggal}}</td>
+                            <td>{{ \Carbon\Carbon::parse($pemesanan->tanggal)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
+                            <td>{{$pemesanan->jamberangkat}} WIB</td>
                             <td>{{$pemesanan->jumlah_orang}}</td>
                             <td>Rp {{ number_format($pemesanan->harga, 0, ',', '.') }}</td>
                             <td>Rp {{ number_format($pemesanan->hargatotal, 0, ',', '.') }}</td>

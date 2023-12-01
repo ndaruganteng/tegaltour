@@ -14,7 +14,7 @@
                         <div class="col-lg-12 info-detail border border-start-0 border-end-0">
                             <div class="row">
                                 <div class="col-lg">
-                                    <img src="/images/detail-tour/durasi-tour.png" class="float-left" />
+                                    <img src="/images/detail-tour/durasi.png" class="float-left" />
                                     <h4>Durasi Wisata</h4>
                                     <p>{{ $detail_wisata->durasi }}</p>
                                 </div>
@@ -29,9 +29,9 @@
                                     <p>{{ \Carbon\Carbon::parse($detail_wisata->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
                                 </div>
                                 <div class="col-lg">
-                                    <img src="/images/detail-tour/money.png" class="float-left" />
-                                    <h4>Harga</h4>
-                                    <p>Rp {{ number_format($detail_wisata->harga, 0, ',', '.') }} /orang</p>
+                                    <img src="/images/detail-tour/jam.png" class="float-left" />
+                                    <h4>Jam Berangkat</h4>
+                                    <p>{{ $detail_wisata->jamberangkat }}</p>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                                     <div class="card-body mt-2">                             
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                <img src="/images/icon/profile.png" class="float-left me-3" />
+                                                <img src="{{ asset('storage/image/user/' . $item->profile_picture) }}" class="float-left me-3" />
                                                 <h1 class="pt-2">{{ $item->nama }}</h1> 
                                             </div>
                                             <div class="col-lg-8">
@@ -103,11 +103,8 @@
                         <div class="col-lg-12 host">
                             <div class="card text-center border border-2 shadow-0">
                                 <div class="card-body">
-                                    <img src="/images/detail-tour/user.png" class="rounded-circle" />
-                                    <p class="card-text">
-                                        {{$mitra->nama_lengkap}}
-                                        <i class="fas fa-check-circle" style="color: #1fbd00"></i>
-                                    </p>
+                                    <img src="{{ asset('storage/image/user/' . $mitra->profile_picture) }}" class="rounded-circle  border-dark" alt="Gambar Pengguna">
+                                    <p class="card-text">{{$mitra->nama_lengkap}}<i class="fas fa-check-circle" style="color: #1fbd00"></i></p>                              
                                     <a href="https://api.whatsapp.com/send?phone={{$mitra->no_telepon}}" target="_blank" type="button"
                                         class="btn btn-dark shadow-0">
                                         <i class="fa-brands fa-whatsapp me-2"></i>

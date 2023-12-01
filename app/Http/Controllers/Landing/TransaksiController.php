@@ -12,10 +12,10 @@ use App\Models\wisata;
 
 class TransaksiController extends Controller
 {
+    // view transaksi
     public function index()
     {
         $userId = Auth::user()->id;
-
         $pemesanan = DB::table('pemesanan')
         ->join('users', 'pemesanan.id_user', '=', 'users.id')
         ->join('wisata', 'pemesanan.id_wisata', '=', 'wisata.id_wisata')
@@ -27,6 +27,7 @@ class TransaksiController extends Controller
             'wisata.namawisata as nama_wisata',
             'wisata.image as image',
             'wisata.tanggalberangkat as tanggal',
+            'wisata.jamberangkat as jamberangkat',
             'pemesanan.status as status',
             'pemesanan.status_perjalanan as status_perjalanan',
             'pemesanan.date as date',
@@ -38,16 +39,14 @@ class TransaksiController extends Controller
         
         ->get();
     
-    $rekening = DB::table('rekening')
-        ->join('pemesanan', 'rekening.id_mitra', '=', 'pemesanan.id_mitra')
-        ->whereIn('pemesanan.id_pemesanan', $pemesanan->pluck('id_pemesanan')->toArray())
-        ->select('rekening.*', 'pemesanan.id_pemesanan')
-        ->get()
-        ->groupBy('id_pemesanan');
-    
+        $rekening = DB::table('rekening')
+            ->join('pemesanan', 'rekening.id_mitra', '=', 'pemesanan.id_mitra')
+            ->whereIn('pemesanan.id_pemesanan', $pemesanan->pluck('id_pemesanan')->toArray())
+            ->select('rekening.*', 'pemesanan.id_pemesanan')
+            ->get()
+            ->groupBy('id_pemesanan');
         
-
-        return view('landing.transaksi', ['rekening' => $rekening, 'pemesanan' => $pemesanan]);
+            return view('landing.transaksi', ['rekening' => $rekening, 'pemesanan' => $pemesanan]);
     }
    
 }

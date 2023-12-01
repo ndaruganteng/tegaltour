@@ -14,7 +14,7 @@ use Carbon\Carbon;
 
 class WisataController extends Controller
 {
-    // menampilkan data dari table wisata
+    // view data wisata
     public function index()
     {
         $kategori = kategori::all();
@@ -37,6 +37,7 @@ class WisataController extends Controller
             ->select('wisata.*', 'kategori.nama_kategori as kategori','users.nama_lengkap as nama_lengkap')
             ->where('namawisata', 'LIKE', '%' . $keyword . '%')
             ->orWhere('tanggalberangkat', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('jamberangkat', 'LIKE', '%' . $keyword . '%')
             ->orWhere('kategori', 'LIKE', '%' . $keyword . '%')
             ->orWhere('harga', 'LIKE', '%' . $keyword . '%')
             ->orWhere('durasi', 'LIKE', '%' . $keyword . '%')
@@ -61,6 +62,5 @@ class WisataController extends Controller
         ->get();
         return view('landing.wisata',compact('wisata','kategori'));
     }
-
     
 }

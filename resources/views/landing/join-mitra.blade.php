@@ -17,11 +17,20 @@
                     <img src="images/mitra/mitra.png"
                     class="img-fluid" alt="Sample image" style="width: 100;">
                 </div>
-                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" >
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 "  >
                     <form action="{{ route('Mitra.index') }}" method="post" enctype="multipart/form-data">
-                        {{ csrf_field() }} 
+                        {{ csrf_field() }}                       
                         <div class="divider d-flex align-items-center my-3">
                             <h4 class="text-center fw-bold">Form Pengajuan Gabung Mitra</h4>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12 col-lg-8">
+                                <label class="form-label" for="customFile">Foto Profile</label>
+                                <input type="file" name="profile_picture" id="profile_picture" accept="image/*" onchange="previewImage(event)" class="form-control"/>
+                            </div>
+                            <div class="col-md-12 col-lg-4">
+                                <img id="image-preview" src="" class="rounded-circle border border-2 border-dark m-2" style="display:none; max-width: 100px; max-height: 100px;" alt="Preview Image">
+                            </div>
                         </div>
                         <div class="form-outline mb-3">
                             <input type="text" class="form-control form-control-lg"
@@ -43,11 +52,12 @@
                                 placeholder="Enter" required="required" name="email" value="{{ old('email') }}" />
                             <label class="form-label" for="email">Email</label>
                         </div>
-                        <div class="form-outline mb-3">
+                        <div class="form-outline mb-2">
                             <input type="password" class="form-control form-control-lg" placeholder="Enter password" required="required" name="password" id="password" value="{{ old('password') }}" />
                             <label class="form-label" for="password">Password</label>
                             <span toggle="#password" class="password-toggle-icon fa fa-eye"></span>
                         </div>
+                        <div id="passwordMessage" class="mb-3"></div>
                         <div class="text-center text-lg-start">
                             <button type="submit" class="btn btn-dark "
                             style="padding-left: 2.5rem; padding-right: 2.5rem;">Join Mitra</button>
@@ -152,6 +162,25 @@
 </div>
 
 <style>
+    .custom-file {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+    }
+    .custom-file-input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .custom-file-label {
+        cursor: pointer;
+    }
+</style>
+
+<style>
     .password-toggle-icon {
     position: absolute;
     top: 50%;
@@ -178,5 +207,58 @@
         });
     });
 </script>
+<script>
+    // Fungsi untuk validasi password
+    $("#password").on("input", function() {
+        var password = $(this).val();
+        var passwordIsValid = isPasswordValid(password);
+
+        if (passwordIsValid) {
+            $("#passwordMessage").html("<span class='text-success'>Password valid</span>");
+        } else {
+            $("#passwordMessage").html("<span class='text-danger'>Password tidak valid </span>");
+        }
+    });
+
+    // Fungsi untuk validasi password
+    function isPasswordValid(password) {
+        if (password.length < 6) {
+            return false;
+        }
+
+        var lowercaseRegex = /[a-z]/;
+        var uppercaseRegex = /[A-Z]/;
+        var digitRegex = /[0-9]/;
+        var specialCharacterRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
+
+        return (
+            lowercaseRegex.test(password) &&
+            uppercaseRegex.test(password) &&
+            digitRegex.test(password) &&
+            specialCharacterRegex.test(password)
+        );
+    }
+</script>
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        var preview = document.getElementById('image-preview');
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.src = "";
+            preview.style.display = 'none';
+        }
+    }
+</script>
+
 
 @endsection

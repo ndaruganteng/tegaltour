@@ -35,6 +35,7 @@
                                             <th>Nama Pemesan</th>
                                             <th>Status Perjalalanan</th>
                                             <th>Status Pemesanan</th>
+                                            <th>Jam Berangkat</th>
                                             <th>Tanggal Berangkat</th>
                                             <th>Tanggal Pemesanan</th>
                                             <th>Jumlah Orang</th>
@@ -74,6 +75,7 @@
                                                         <div class="badge badge-danger"> Dibatalkan</div>
                                                     @endif
                                                 </td>
+                                                <td>{{$p->jamberangkat }} WIB</td>
                                                 <td>{{ \Carbon\Carbon::parse($p->tanggal)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($p->date)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
                                                 <td>{{ $p->jumlah_orang}}</td>

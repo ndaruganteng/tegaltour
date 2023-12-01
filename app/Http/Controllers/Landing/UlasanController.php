@@ -16,12 +16,13 @@ use App\Models\ulasan;
 class UlasanController extends Controller
 {
 
+    // view form ulasa
     public function tambah()
     {
         return view('landing.pesanan-saya');
     }
 
-    
+    // fungsi ulasan
     public function store(Request $request)
     {
         $validator = $request -> validate([
@@ -31,7 +32,6 @@ class UlasanController extends Controller
         [
             "komentar.required" => "Please enter komentar ",
             "rating.required" => "Please enter rating ",
-            "date.required" => "Please enter date",
         ]);
 
         $ulasan = new Ulasan;
@@ -51,5 +51,17 @@ class UlasanController extends Controller
             ]);
 
         return redirect('/pesanan-saya') -> with('success', "Ulasan Anda Telah Terkirim!");
+    }
+
+    // view Ulasan Wisata Biro
+    public function ulasan_wisata($id)
+    {
+
+        $ulasan = DB::table('ulasan')
+        ->join('users', 'ulasan.id_user', '=', 'users.id')
+        ->select('ulasan.*', 'users.nama_lengkap as nama', 'users.profile_picture as profile_picture')
+        ->where('id_wisata', $id)
+        ->get();
+        return view('dashboard.ulasan-wisata', compact('ulasan'));
     }
 }

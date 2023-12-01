@@ -45,6 +45,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:user']], function(){
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
     Route::post('/pesanan-saya', [UlasanController::class, 'store'])->name('Ulasan.index');
     Route::get('/history', [HistoryController::class, 'history_user'])->name('history.index');
+    Route::get('/profile-user', [HomeController::class, 'profile_user'])->name('profile_user');
+    Route::post('/profile-user/update/{id}', [HomeController::class, 'updateprofileUser'])->name('profileUser.update');
 });
 
 
@@ -106,11 +108,25 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     // DATA ORDER
     Route::get('/data-order-admin', [PemesananController::class, 'pemesanan_admin'])->name('data-order-admin.index');
 
+    // regist admin
+    Route::post('/register_admin', [RegisterController::class, 'store_admin'])->name('register.store_admin');
+
  });
 
 
  Route::group(['middleware' => ['auth', 'ceklevel:admin,mitra']], function () {
+
+    // DASHBOARD
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+    // PROFILE
+    Route::get('/profile', [DatauserController::class, 'profile'])->name('profile');
+
+    // EDITPROFILE
+    Route::post('/profile/update/{id}', [DatauserController::class, 'updateProfile'])->name('profile.update');
+
+    // ULASAN WISATA
+    Route::get('/ulasan-wisata/{id}', [UlasanController::class, 'ulasan_wisata'])->name('ulasan-wisata');
 });
 
 

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('titikkumpul');
             $table->text('fasilitas');
             $table->string('tanggalberangkat');
+            $table->string('jamberangkat');
             $table->string('linklokasi');
             $table->longText('deskripsi');
             $table->timestamp('date')->nullable();

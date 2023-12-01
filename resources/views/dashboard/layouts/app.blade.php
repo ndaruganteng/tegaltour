@@ -7,7 +7,7 @@
   <!-- icon fontawesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- icon atas -->
-  <link rel="icon" href="images/icon/tour-logo.png" type="image/x-icon">
+  <link rel="icon" href="/images/icon/tour-logo.png" type="image/x-icon">
   <!-- Google Font: Source Sans Pro -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,6 +106,18 @@
 <script>
     $(document).ready(function() {
         $('#datauser-table').DataTable();
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#datamitra-table').DataTable();
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#datacust-table').DataTable();
     });
 </script>
 

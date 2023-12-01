@@ -7,7 +7,7 @@
         <div class="container">
             <h2 class="text-center fw-bold">Pesanan Saya</h2>
             <div class="row">
-                <div class="col-md-12 col-lg-12 mt-3">
+                <div class="col-md-12 col-lg-12 ">
                     <div class="col-lg-12">
                         @if($pemesanan->isEmpty())
                             <h4 class="p-3 text-center"> Tidak Ada Pesanan</h4> 
@@ -25,10 +25,11 @@
                                                 <p class="card-text" style="font-size: 14px; margin-top: -5px;">Nama Pemesan: {{$p->nama_pengguna}}</p>
                                                 <p class="card-text"style="font-size: 14px; margin-top: -5px;">Tanggal Pemesanan : {{ \Carbon\Carbon::parse($p->date)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
                                                 <p class="card-text" style="font-size: 14px; margin-top: -5px;">Tanggal Berangkat: {{ \Carbon\Carbon::parse($p->tanggal)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
+                                                <p class="card-text" style="font-size: 14px; margin-top: -5px;">Jam Berangkat: {{$p->jamberangkat}} WIB</p>
                                                 <p class="card-text"style="font-size: 14px; margin-top: -5px;">Titik Kumpul : {{$p->titikkumpul}}</p>
                                                 <p class="card-text"style="font-size: 14px; margin-top: -5px;">Jumlah Orang : {{$p->jumlah_orang}}</p>
-                                                <p class="card-text"style="font-size: 14px; margin-top: -5px;">Harga/pax : Rp. {{ number_format($p->harga, 0, ',', '.') }}</p>
-                                                <p class="card-text"style="font-size: 14px; margin-top: -5px;">Harga Total : Rp {{$p->hargatotal}}</p>
+                                                <p class="card-text"style="font-size: 14px; margin-top: -5px;">Harga/pax : Rp {{ number_format($p->harga, 0, ',', '.') }}</p>
+                                                <p class="card-text"style="font-size: 14px; margin-top: -5px;">Harga Total : Rp {{ number_format($p->hargatotal, 0, ',', '.') }}</p>
                                                 @if($p->status == 2)
                                                     <p class="card-text"style="font-size: 14px; margin-top: -5px;">Transaksi : <span class="badge badge-success">Telah Dikonfirmasi</span></p>
                                                 @endif

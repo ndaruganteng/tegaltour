@@ -25,13 +25,13 @@
                     <div class="row" date-rangepicker>
                         <div class="col-md">
                             <div class="form-outline ">
-                                <input type="date" name="start-date" class="form-control" />
+                                <input type="date" name="start-date" class="form-control"/>
                                 <label class="form-label" for="stardate">Dari Tanggal</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-outline ">
-                                <input type="date" name="end-date" class="form-control" />
+                                <input type="date" name="end-date" class="form-control"/>
                                 <label class="form-label" for="end-date">Sampai Tanggal</label>
                             </div>
                         </div>

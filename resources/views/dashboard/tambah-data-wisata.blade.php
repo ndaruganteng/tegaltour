@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2 class="m-0 ">Tambah Paket Wisata</h2>
+                    <h3 class="m-0 ">Tambah Paket Wisata</h3>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -22,14 +22,14 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 grid-margin">
-                    <div class="card card-secondary">
-                        <div class="card-header">
-                            <h3 class="text-center ">Form Tambah Paket Wisata</h3>
+                    <div class="card card-primary card-outline">
+                        <div class="card-header" style="background-color: white;">
+                            <h4 class="text-center ">Form Tambah Paket Wisata</h4>
                         </div>
                         <div class="card-body">
                             <form class="form-sample" action="{{ route('Wisata.index') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group mb-2">
                                             <label for="image" class="col-form-label">Image</label>
@@ -43,7 +43,28 @@
                                     <div class="col-md-4 mb-3">
                                         <img id="image-preview" src="" class="img-thumbnail" style="display:none; max-width: 100%; max-height: 100px;" alt="Preview Image">
                                     </div>
-                                </div>                               
+                                </div>                                -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="image" class="col-sm-3 col-form-label">Gambar Wisata</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" class="form-control" required="required"
+                                                    name="image" accept="image/*" id="image" onchange="previewImage(event)"
+                                                >
+                                                <p class="text-secondary" style="font-size: 14px; font-style: italic;">size foto maksimal 2 mb dan extensi jpg, png, jpeg</p>
+                                                @if ($errors->has('image'))
+                                                    <div class="text-danger">{{ $errors->first('image') }}</div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group row">                                        
+                                            <img id="image-preview" src="" class="img-thumbnail" style="display:none; max-width: 100%; max-height: 100px;" alt="Preview Image">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
@@ -59,13 +80,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="titikkumpul" class="col-sm-3 col-form-label">Titik Kumpul</label>
+                                            <label for="durasi" class="col-sm-3 col-form-label">Durasi</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" required="required"
-                                                    name="titikkumpul" value="{{ old('titikkumpul') }}" placeholder="Masukan Titik Kumpul Wisata">
-                                                @if($errors->has('titikkumpul'))
-                                                    <p class="text-danger">{{ $errors->first('titikkumpul') }}</p>
-                                                @endif
+                                                    name="durasi" value="{{ old('durasi') }}" placeholder="Masukan Kuota Tour">
                                             </div>
                                         </div>
                                     </div>
@@ -99,10 +117,10 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="durasi" class="col-sm-3 col-form-label">Durasi</label>
+                                            <label for="jam_berangkat" class="col-sm-3 col-form-label">Jam Berangkat</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" required="required"
-                                                    name="durasi" value="{{ old('durasi') }}" placeholder="Masukan Kuota Tour">
+                                                <input type="time" class="form-control" required="required"
+                                                    name="jamberangkat" value="{{ old('jam_berangkat') }}" placeholder="Masukan Titik Kumpul Wisata">
                                             </div>
                                         </div>
                                     </div>
@@ -116,10 +134,29 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="lokasi">Highlight Wisata</label>
-                                    <input type="text" class="form-control" value="{{ old('lokasi') }}" required="required" name="lokasi"
-                                        placeholder="Masukan Highlight Wisata">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="titikkumpul" class="col-sm-3 col-form-label">Titik Kumpul</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" value="{{ old('titikkumpul') }}" required="required" name="titikkumpul"
+                                                    placeholder="Masukan Titik Kumpul">
+                                                @if($errors->has('titikkumpul'))
+                                                    <p class="text-danger">{{ $errors->first('titikkumpul') }}</p>
+                                                @endif
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="lokasi" class="col-sm-3 col-form-label">Highlight Wisata</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" value="{{ old('lokasi') }}" required="required" name="lokasi"
+                                                    placeholder="Masukan Highlight Wisata">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="linklokasi">Link Lokasi</label>

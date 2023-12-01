@@ -13,12 +13,14 @@ use App\Models\User;
 
 class ForgotPasswordController extends Controller
 {
+
+    // view lupa password
     public function showForgetPasswordForm()
     {
         return view('auth.forgetPassword');
     }
 
-
+    // form lupa password
     public function submitForgetPasswordForm(Request $request)
     {
         $request->validate([
@@ -41,6 +43,7 @@ class ForgotPasswordController extends Controller
         return back()->with('message', 'Kami telah mengirimkan tautan pengaturan ulang kata sandi Anda melalui email!');
     }
 
+    // view form password baru
     public function showResetPasswordForm($token)
     {
         $tokenExists = DB::table('password_reset_tokens')
@@ -55,6 +58,7 @@ class ForgotPasswordController extends Controller
         return view('auth.forgetPasswordLink', ['token' => $token]);
     }
 
+    // fungsi lupa password
     public function submitResetPasswordForm(Request $request)
     {
         $request->validate([
@@ -82,4 +86,5 @@ class ForgotPasswordController extends Controller
 
         return redirect('/login')->with('message', 'Kata sandi Anda telah diubah!');
     }
+
 }

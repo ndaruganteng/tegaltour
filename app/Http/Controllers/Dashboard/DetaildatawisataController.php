@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DetaildatawisataController extends Controller
 {
-    // menampilkan data detail-data-wisata
+    // view data detail data wisata
     public function showdetail($id)
     {      
         $data_wisata_detail = DB::table('wisata')
@@ -22,7 +22,7 @@ class DetaildatawisataController extends Controller
         return view('dashboard.detail-data-wisata', compact('data_wisata_detail'));
     }
 
-    // detail data wisata admin
+    // view data detail wisata admin
     public function showdetailadmin($id)
     {      
         $detail_data_wisata_admin = DB::table('wisata')

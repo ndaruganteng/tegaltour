@@ -30,6 +30,7 @@
                                 <table id="requestmitra-table" class="table table-striped table-bordered text-center" style="width:100%">
                                     <thead>
                                         <tr>
+                                            <th>Foto Profile</th>
                                             <th>Nama Bisnis</th>
                                             <th>Alamat Lengkap</th>
                                             <th>Email</th>
@@ -41,6 +42,9 @@
                                     <tbody>
                                         @foreach($users as $p)
                                             <tr>
+                                                <td>
+                                                    <img src="{{asset('storage/image/user/'.$p->profile_picture)}}" style="width:50px">
+                                                </td>
                                                 <td>{{$p->nama_lengkap}}</td>
                                                 <td>{{$p->alamat}}</td>
                                                 <td>{{$p->email}}</td>
@@ -50,9 +54,9 @@
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-success btn-sm" href="/konfirmasi-mitra/{{$p->id}}">
-                                                        <i class="fa-solid fa-envelope"></i> 
+                                                        <i class="fa-solid fa-check"></i> 
                                                     </a>
-                                                    <a class="btn btn-danger btn-sm" href="/cancel-mitra/{{$p->id}}">
+                                                    <a class="btn btn-danger btn-sm mt-1" href="/cancel-mitra/{{$p->id}}">
                                                         <i class="fa-solid fa-xmark"></i>
                                                     </a>
                                                 </td>

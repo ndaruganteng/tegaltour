@@ -33,6 +33,7 @@
                                             <th>Nama Pemesan</th>
                                             <th>Status Perjalanan</th>
                                             <th>Nama Wisata</th>
+                                            <th>Jam Berangkat</th>
                                             <th>Tanggal Berangkat</th>
                                             <th>Jumlah Orang</th>
                                             <th>Aksi</th>
@@ -53,6 +54,7 @@
                                                         @endif
                                                     </td>  
                                                     <td>{{$p->nama_wisata}}</td>     
+                                                    <td>{{$p->jamberangkat}} WIB</td>     
                                                     <td>{{ \Carbon\Carbon::parse($p->tanggal)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
                                                     <td>{{ $p->jumlah_orang}}</td>   
                                                     <td>

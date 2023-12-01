@@ -19,6 +19,7 @@ use App\Models\pemesanan;
 
 class DashboardController extends Controller
 {
+    // view dashboard
     public function index()
     {   
         $mitraId = Auth::user()->id;
@@ -57,7 +58,5 @@ class DashboardController extends Controller
             'totalStatusperjalan'
         ));
     }
-
-
 
 }

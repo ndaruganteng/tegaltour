@@ -22,6 +22,7 @@ class wisata extends Model
     'titikkumpul ',
     'fasilitas',
     'tanggalberangkat',
+    'jamberangkat',
     'linklokasi',
     'deskripsi',
     'date',

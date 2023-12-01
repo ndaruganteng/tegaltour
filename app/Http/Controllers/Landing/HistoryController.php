@@ -16,6 +16,7 @@ use App\Models\wisata;
 
 class HistoryController extends Controller
 {
+    // view histori pemesanan
     public function history_user()
     {
         {
@@ -37,6 +38,7 @@ class HistoryController extends Controller
                     'wisata.image as image',
                     'wisata.harga as harga',
                     'wisata.tanggalberangkat as tanggal',
+                    'wisata.jamberangkat as jamberangkat',
                     'pemesanan.status as status',
                     'pemesanan.status_perjalanan as status_perjalanan',
                     'pemesanan.date as date',
@@ -44,7 +46,7 @@ class HistoryController extends Controller
                     'pemesanan.bukti_pembayaran as bukti_pembayaran',
                     'pemesanan.jumlah_orang as jumlah_orang')
                     
-                ->get();       
+            ->get();       
             return view('landing.history', ['pemesanan' => $pemesanan]);
         }
     }

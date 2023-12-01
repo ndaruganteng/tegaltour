@@ -6,19 +6,31 @@
   <div class="sidebar">
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     @if(auth()->user()->role == "admin")
+      <!-- <div class="image">
+        <img src="image/user/admin.png" class="rounded-circle border border-2 border-dark" alt="">
+        <img src="{{asset('storage/image/user/'.Auth::user()->profile_picture)}}" class="img-circle" alt="User Image">
+      </div>  -->
       <div class="image">
-        <img src="/images/icon/profile.png" class="img-circle" alt="User Image">
-      </div> 
+        @if(Auth::user()->profile_picture && Storage::disk('public')->exists('image/user/' . Auth::user()->profile_picture))
+            <img src="{{ asset('storage/image/user/' . Auth::user()->profile_picture) }}" class="rounded-circle border border-2 border-dark" alt="Gambar Pengguna">
+        @else
+            <img src="\images\icon\profile.png" class="rounded-circle border border-2 border-dark" alt="Gambar Default">
+        @endif
+    </div>
       <div class="info">
-        <a href="#" class="d-block">{{ Auth::User()->nama_lengkap }}</a>
+        <a href="{{route('profile')}}" class="d-block">{{ Auth::User()->nama_lengkap }}</a>
       </div>
       @endif
       @if(auth()->user()->role == "mitra")
       <div class="image">
-        <img src="images/detail-tour/user.png" class="img-circle" alt="User Image">
-      </div> 
+        @if(Auth::user()->profile_picture && Storage::disk('public')->exists('image/user/' . Auth::user()->profile_picture))
+            <img src="{{ asset('storage/image/user/' . Auth::user()->profile_picture) }}" class="rounded-circle border border-2 border-dark" alt="Gambar Pengguna">
+        @else
+            <img src="\images\icon\profile.png" class="rounded-circle border border-2 border-dark" alt="Gambar Default">
+        @endif
+    </div>
       <div class="info">
-        <a href="#" class="d-block">{{ Auth::User()->nama_lengkap }}</a>
+        <a href="{{route('profile')}}" class="d-block">{{ Auth::User()->nama_lengkap }}</a>
       </div>
       @endif
     </div>

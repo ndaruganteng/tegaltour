@@ -18,70 +18,54 @@ use Carbon\Carbon;
 class PemesananController extends Controller
 {
 
-
-    // public function store(Request $request)
-    // {
-    //     $pemesanan = new Pemesanan;
-    //     $pemesanan->id_user = $request->input('id_user');
-    //     $pemesanan->id_wisata = $request->input('id_wisata');
-    //     $pemesanan->id_mitra = $request->input('id_mitra');
-    //     $pemesanan->jumlah_orang = $request->input('jumlah_orang');
-    //     $pemesanan->harga_satuan = $request->input('harga_satuan');
-    //     $pemesanan->harga_total = $request->input('harga_total');
-    //     $pemesanan->status = null;
-    //     $pemesanan->status_perjalanan = null;
-    //     $pemesanan->date = Carbon::now()->toDateTimeString();
-    //     if ($request->hasFile('bukti_pembayaran')) {
-    //         $file = $request->file('bukti_pembayaran');
-    //         $extension = $file->getClientOriginalExtension();
-    //         $filename = $request->input('namauser') . '_' . now()->timestamp . '.' . $extension;
-    //         $file->storeAs('image/bukti-transfer/', $filename);
-    //         $pemesanan->bukti_pembayaran = $filename;
-    //     }
-    //     $pemesanan->save();
-
-    //     return redirect('/transaksi')->with('success', "Pemesanan Telah Berhasil, <br> Silahkan Melakukan Pembayaran!");
-    // }
-
+    // fungsi pemesanan
     public function store(Request $request)
-{
-    $request->validate([
-        'jumlah_orang' => 'required|numeric|min:1',
-    ], [
-        'jumlah_orang.required' => 'Jumlah orang harus diisi.',
-        'jumlah_orang.numeric' => 'Jumlah orang harus berupa angka.',
-        'jumlah_orang.min' => 'Jumlah orang harus lebih besar atau sama dengan 1.',
-    ]);
+    {
+        $request->validate([
+            'jumlah_orang' => 'required|numeric|min:1',
+            'bukti_pembayaran' => 'image|mimes:jpeg,png,jpg|max:2048',
+        ], 
+        [
+            'jumlah_orang.required' => 'Jumlah orang harus diisi.',
+            'jumlah_orang.numeric' => 'Jumlah orang harus berupa angka.',
+            'jumlah_orang.min' => 'Jumlah orang harus lebih besar atau sama dengan 1.',
+            'bukti_pembayaran.required' => 'Bidang bukti pembayaran harus diisi.',
+            'bukti_pembayaran.image' => 'File yang diunggah harus berupa gambar.',
+            'bukti_pembayaran.mimes' => 'File harus berupa gambar dengan tipe jpeg, png, atau jpg.',
+            'bukti_pembayaran.max' => 'Ukuran file tidak boleh melebihi 2MB.',
+        ]);
 
-    $pemesanan = new Pemesanan;
-    $pemesanan->id_user = $request->input('id_user');
-    $pemesanan->id_wisata = $request->input('id_wisata');
-    $pemesanan->id_mitra = $request->input('id_mitra');
-    $pemesanan->jumlah_orang = $request->input('jumlah_orang');
-    $pemesanan->harga_satuan = $request->input('harga_satuan');
-    $pemesanan->harga_total = $request->input('harga_total');
-    $pemesanan->status = null;
-    $pemesanan->status_perjalanan = null;
-    $pemesanan->date = Carbon::now()->toDateTimeString();
-    if ($request->hasFile('bukti_pembayaran')) {
-        $file = $request->file('bukti_pembayaran');
-        $extension = $file->getClientOriginalExtension();
-        $filename = $request->input('namauser') . '_' . now()->timestamp . '.' . $extension;
-        $file->storeAs('image/bukti-transfer/', $filename);
-        $pemesanan->bukti_pembayaran = $filename;
+        $pemesanan = new Pemesanan;
+        $pemesanan->id_user = $request->input('id_user');
+        $pemesanan->id_wisata = $request->input('id_wisata');
+        $pemesanan->id_mitra = $request->input('id_mitra');
+        $pemesanan->jumlah_orang = $request->input('jumlah_orang');
+        $pemesanan->harga_satuan = $request->input('harga_satuan');
+        $pemesanan->harga_total = $request->input('harga_total');
+        $pemesanan->status = null;
+        $pemesanan->status_perjalanan = null;
+        $pemesanan->date = Carbon::now()->toDateTimeString();
+        if ($request->hasFile('bukti_pembayaran')) {
+            $file = $request->file('bukti_pembayaran');
+            $extension = $file->getClientOriginalExtension();
+            $filename = $request->input('namauser') . '_' . now()->timestamp . '.' . $extension;
+            $file->storeAs('image/bukti-transfer/', $filename);
+            $pemesanan->bukti_pembayaran = $filename;
+        }
+        $pemesanan->save();
+
+        return redirect('/transaksi')->with('success', "Pemesanan Telah Berhasil, <br> Silahkan Melakukan Pembayaran!");
     }
-    $pemesanan->save();
 
-    return redirect('/transaksi')->with('success', "Pemesanan Telah Berhasil, <br> Silahkan Melakukan Pembayaran!");
-}
-
+    // fungsi upload bukti transfer
     public function update(Request $request, $id)
     {
         $pemesanan = Pemesanan::where('id_pemesanan', $id)->first();
     
         $validator = Validator::make($request->all(), [
-            'bukti_pembayaran' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'bukti_pembayaran' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ], [
+            'bukti_pembayaran.required' => 'bukti pembayaran harus diisi.',
             'bukti_pembayaran.image' => 'File yang diunggah harus berupa gambar.',
             'bukti_pembayaran.mimes' => 'File harus berupa gambar dengan tipe jpeg, png, atau jpg.',
             'bukti_pembayaran.max' => 'Ukuran file tidak boleh melebihi 2MB.',
@@ -105,7 +89,7 @@ class PemesananController extends Controller
         return redirect()->back()->with('success', "Bukti Pembayaran Sudah Dikirim!");
     }
 
-    // menampilkan view data order
+    // view data order
     public function data_order()
     {
         $mitraId = Auth::user()->id;
@@ -120,6 +104,7 @@ class PemesananController extends Controller
                 'wisata.namawisata as nama_wisata',
                 'wisata.image as image',
                 'wisata.tanggalberangkat as tanggal',
+                'wisata.jamberangkat as jamberangkat',
                 'pemesanan.status as status',
                 'pemesanan.status_perjalanan as status_perjalanan',
                 'pemesanan.date as date',
@@ -145,7 +130,6 @@ class PemesananController extends Controller
         return redirect('data-order')->with('success', 'Pembayaran telah dikonfirmasi ');
     }
 
-
     // Fungsi Cancel pemesanan
     public function cancel(Request $request, $id)
     { 
@@ -158,7 +142,7 @@ class PemesananController extends Controller
         return redirect('data-order')->with('success', 'Pembayaran telah dibatalkan ');
     }
 
-    // fungsi untuk hapus
+    // fungsi hapus
     public function hapus($id)
     {
         $pemesanan = Pemesanan::find($id);
@@ -171,7 +155,7 @@ class PemesananController extends Controller
         return back()->with('success', "Data Pemesanan berhasil dihapus!");
     }
 
-    // method untuk menampilkan halaman pesanan saya
+    // view halaman pesanan saya
     public function pesanan_saya()
     {
         {
@@ -189,6 +173,7 @@ class PemesananController extends Controller
                     'wisata.namawisata as nama_wisata',
                     'wisata.image as image',
                     'wisata.tanggalberangkat as tanggal',
+                    'wisata.jamberangkat as jamberangkat',
                     'wisata.harga as harga',
                     'wisata.titikkumpul as titikkumpul',
                     'pemesanan.status as status',
@@ -204,7 +189,7 @@ class PemesananController extends Controller
         }
     }
 
-    // menampilkan view status perjalanan
+    // view status perjalanan
     public function status_perjalanan()
     {
         $mitraId = Auth::user()->id;
@@ -219,6 +204,7 @@ class PemesananController extends Controller
                 'wisata.namawisata as nama_wisata',
                 'wisata.image as image',
                 'wisata.tanggalberangkat as tanggal',
+                'wisata.jamberangkat as jamberangkat',
                 'wisata.harga as harga',
                 'pemesanan.status as status',
                 'pemesanan.status_perjalanan as status_perjalanan',
@@ -244,7 +230,7 @@ class PemesananController extends Controller
         return redirect('status-perjalanan')->with('success', 'Status Perjalanan Berangkat ');
     }
 
-    // status perjalanan selesai
+    // fungsi status perjalanan selesai
     public function selesai(Request $request, $id)
     { 
         $selesai = DB::table('pemesanan')
@@ -256,7 +242,7 @@ class PemesananController extends Controller
         return redirect('status-perjalanan')->with('success', 'Perjalanan telah Selesai ');
     }
 
-    // invoice wisata
+    // fungsi invoice wisata
     public function pdf($id){
         $dompdf = new Dompdf();
         $pemesanan = DB::table('pemesanan')
@@ -270,9 +256,11 @@ class PemesananController extends Controller
                 'pemesanan.id_mitra', 
                 'users.nama_lengkap as nama_pengguna',
                 'mitra.nama_lengkap as namamitra',  
+                'mitra.profile_picture as profile_picture',  
                 'wisata.namawisata as nama_wisata',
                 'wisata.image as image',
                 'wisata.tanggalberangkat as tanggal',
+                'wisata.jamberangkat as jamberangkat',
                 'wisata.titikkumpul as titikkumpul',
                 'pemesanan.status as status',
                 'pemesanan.status_perjalanan as status_perjalanan',
@@ -283,7 +271,8 @@ class PemesananController extends Controller
                 'wisata.harga as harga',
                 'pemesanan.id_wisata as id_wisata')
             ->first();
-
+        
+       
         $html = view('landing.invoice',compact('pemesanan'))->render();
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4');
@@ -304,9 +293,11 @@ class PemesananController extends Controller
                 'pemesanan.id_mitra', 
                 'user.nama_lengkap as nama_pengguna', 
                 'mitra.nama_lengkap as namamitra', 
+                'mitra.profile_picture as profile', 
                 'wisata.namawisata as nama_wisata',
                 'wisata.image as image',
                 'wisata.tanggalberangkat as tanggal',
+                'wisata.jamberangkat as jamberangkat',
                 'pemesanan.status as status',
                 'pemesanan.status_perjalanan as status_perjalanan',
                 'pemesanan.date as date',

@@ -20,16 +20,25 @@
       </div>
     </div>
 
-    <div class="content">
+    <div class="content admin">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card card-primary card-outline">
+                        <div class="card-header"  style="background-color: white;">
+                            <div class="d-flex justify-content-between">
+                                <h5>Data Admin</h5>
+                                <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#tambahadmin">
+                                    <i class="fa-solid fa-plus mr-1"></i> Tambah Admin
+                                </button>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="kategori-table" class="table table-striped table-bordered text-center" style="width:100%">
+                                <table id="datauser-table" class="table table-striped table-bordered text-center" style="width:100%">
                                     <thead>
                                         <tr>
+                                            <th>Foto Profile</th>
                                             <th>Nama</th>
                                             <th>Email</th>
                                             <th>No Telephone</th>
@@ -39,22 +48,27 @@
                                     </thead>                   
                                     <tbody>
                                         @foreach($users as $p)
-                                            <tr>
-                                                <td>{{$p->nama_lengkap}}</td>
-                                                <td>{{$p->email}}</td>
-                                                <td>{{$p->no_telepon}}</td>
-                                                <td>
-                                                    <span class="badge badge-dark">{{$p->role}}</span>
-                                                </td>
-                                                <td>
-                                                    <a href="https://api.whatsapp.com/send?phone={{$p->no_telepon}}#{{$p->id}}" target="_blank" class="btn btn-success btn-sm">
-                                                        <i class="fa-brands fa-whatsapp"></i>
-                                                    </a>
-                                                    <a href="/data-user/hapus_user/{{ $p->id }}" class="btn btn-danger btn-sm deleteuser">
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            @if($p->role == 'admin')
+                                                <tr>
+                                                    <td>
+                                                        <img src="{{ asset('storage/image/user/' . $p->profile_picture) }}" class="rounded-circle" style="width:50px; heigth:auto;">
+                                                    </td>
+                                                    <td>{{$p->nama_lengkap}}</td>
+                                                    <td>{{$p->email}}</td>
+                                                    <td>{{$p->no_telepon}}</td>
+                                                    <td>
+                                                        <span class="badge badge-dark">{{$p->role}}</span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="https://api.whatsapp.com/send?phone={{$p->no_telepon}}#{{$p->id}}" target="_blank" class="btn btn-success btn-sm">
+                                                            <i class="fa-brands fa-whatsapp"></i>
+                                                        </a>
+                                                        <a href="/data-user/hapus_user/{{ $p->id }}" class="btn btn-danger btn-sm deleteuser">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endforeach
                                     </tbody>   
                                 </table>
@@ -66,55 +80,188 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="content mitra">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header"  style="background-color: white;">
+                            <h5>Data Mitra</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="datamitra-table" class="table table-striped table-bordered text-center" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Foto Profile</th>
+                                            <th>Nama</th>
+                                            <th>Alamat</th>
+                                            <th>Email</th>
+                                            <th>No Telephone</th>
+                                            <th>Role</th> 
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>                   
+                                    <tbody>
+                                        @foreach($users as $p)
+                                            @if($p->role == 'mitra')
+                                                <tr>
+                                                    <td>
+                                                        <img src="{{ asset('storage/image/user/' . $p->profile_picture) }}" class="rounded-circle" style="width:50px; heigth:auto;">
+                                                    </td>
+                                                    <td>{{$p->nama_lengkap}}</td>
+                                                    <td style="word-wrap: break-word; max-width: 200px;">{{$p->alamat}}</td>
+                                                    <td>{{$p->email}}</td>
+                                                    <td>{{$p->no_telepon}}</td>
+                                                    <td>
+                                                        <span class="badge badge-dark">{{$p->role}}</span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="https://api.whatsapp.com/send?phone={{$p->no_telepon}}#{{$p->id}}" target="_blank" class="btn btn-success btn-sm">
+                                                            <i class="fa-brands fa-whatsapp"></i>
+                                                        </a>
+                                                        <a href="/data-user/hapus_user/{{ $p->id }}" class="btn btn-danger btn-sm deleteuser">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>   
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content user">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header"  style="background-color: white;">
+                            <h5>Data Pengguna</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="datacust-table" class="table table-striped table-bordered text-center" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Foto Profile</th>
+                                            <th>Nama</th>
+                                            <th>Email</th>
+                                            <th>No Telephone</th>
+                                            <th>Role</th> 
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>                   
+                                    <tbody>
+                                        @foreach($users as $p)
+                                            @if($p->role == 'user')
+                                                <tr>
+                                                    <td>
+                                                        <img src="{{ asset('storage/image/user/' . $p->profile_picture) }}" class="rounded-circle" style="width:50px; heigth:auto;">
+                                                    </td>
+                                                    <td>{{$p->nama_lengkap}}</td>
+                                                    <td>{{$p->email}}</td>
+                                                    <td>{{$p->no_telepon}}</td>
+                                                    <td>
+                                                        <span class="badge badge-dark">{{$p->role}}</span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="https://api.whatsapp.com/send?phone={{$p->no_telepon}}#{{$p->id}}" target="_blank" class="btn btn-success btn-sm">
+                                                            <i class="fa-brands fa-whatsapp"></i>
+                                                        </a>
+                                                        <a href="/data-user/hapus_user/{{ $p->id }}" class="btn btn-danger btn-sm deleteuser">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tambahadmin" tabindex="-1" role="dialog" aria-labelledby="tambahadminTitle" aria-hidden="true">
+        <div class="modal-dialog " role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit Data Wisata</h5>
+                    <h5 class="modal-title" id="tambahadminTitle">Tambah Data admin</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#">
-                        <div class="form-group">
-                            <div class="row ">
-                                <div class="col-md-9">
-                                    <div class="form-group">
-                                        <label for="image">Image</label>
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                        </div>
-                                    </div>
+                    <form action="/register_admin"  method="post" enctype="multipart/form-data">
+                    @csrf
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="" class="col-form-label">Foto Profile</label>
+                                    <input type="file"  name="profile_picture" class="form-control" accept="image/*" onchange="previewImage(event)">
+                                    <p  style="font-style: italic; font-size: 10px;">size foto maksimal 2 mb dan extensi jpg, png, jpeg</p>     
                                 </div>
-                                <div class="col-md-3 mt-3">
-                                    <img src="images/icon/profile.png" alt="" class="rounded-circle" style="width:100%">                                    
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-grup">
+                                    <img id="image-preview" src="" class="rounded-circle border border-2 border-dark" style="display:none; max-width: 100px; max-height: 100px;" alt="Preview Image">
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <label for="nama_lengkap">Nama Lengkap</label>
+                            <input type="text" class="form-control" required="required" value="{{ old('nama_lengkap') }}" name="nama_lengkap" placeholder="Masukan Nama Lengkap">
+                        </div>
+                        <div class="form-group">
+                            <label for="no_telepon">Nomor Telepon</label>
+                            <input type="text" class="form-control" required="required" value="{{ old('no_telepon') }}" name="no_telepon" placeholder="Masukan Nomor Telepon" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" required="required"  value="{{ old('email') }}"  name="email" placeholder="Masukan Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <input type="text" class="form-control" required="required" value="{{ old('alamat') }}"   name="alamat" placeholder="Masukan Alamat">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" required="required" value="{{ old('password') }}" name="password" id="password" placeholder="Masukan Password">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="togglePassword">
+                                        <i class="fa fa-eye" aria-hidden="true" onclick="togglePassword('password')"></i>
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Nama</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nama">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Email</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label>Role</label>
-                            <select class="custom-select">
-                                <option>wisatawan</option>
-                                <option>Mitra</option>
-                            </select>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-dark " value="Simpan Data">Simpan</button>
-                        </div>
-                    </form>          
-                </div>
 
+                        <div class="form-group">
+                            <label for="confirm_password">Konfirmasi Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" required="required" value="{{ old('password') }}" name="password_confirmation" id="confirm_password" placeholder="Masukan Password">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="toggleConfirmPassword">
+                                        <i class="fa fa-eye" aria-hidden="true" onclick="togglePassword('confirm_password')"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-secondary " value="Simpan Data" >Simpan</button>
+                        </div>
+                    </form>   
+                </div>             
             </div>
         </div>
     </div>
@@ -145,6 +292,42 @@
             });
         });
     });
+</script>
+
+<script>
+        function previewImage(event) {
+            var input = event.target;
+            var preview = document.getElementById('image-preview');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = "";
+                preview.style.display = 'none';
+            }
+        }
+    </script>
+
+<script>
+    function togglePassword(inputId) {
+        var input = document.getElementById(inputId);
+        var icon = document.getElementById("toggle" + inputId);
+
+        if (input.type === "password") {
+            input.type = "text";
+            icon.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true" onclick="togglePassword(\'' + inputId + '\')"></i>';
+        } else {
+            input.type = "password";
+            icon.innerHTML = '<i class="fa fa-eye" aria-hidden="true" onclick="togglePassword(\'' + inputId + '\')"></i>';
+        }
+    }
 </script>
 
 

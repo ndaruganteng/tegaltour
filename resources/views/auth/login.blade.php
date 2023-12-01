@@ -97,23 +97,55 @@
       });
     </script>
 
-<script>
-    const passwordInput = document.getElementById('password');
-    const eyeIcon = document.getElementById('eyeIcon');
-    const togglePasswordButton = document.getElementById('togglePassword');
+    <script>
+        // Fungsi untuk lihat password
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+        const togglePasswordButton = document.getElementById('togglePassword');
 
-    togglePasswordButton.addEventListener('click', function () {
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            eyeIcon.classList.remove('fa-eye');
-            eyeIcon.classList.add('fa-eye-slash');
-        } else {
-            passwordInput.type = 'password';
-            eyeIcon.classList.remove('fa-eye-slash');
-            eyeIcon.classList.add('fa-eye');
+        togglePasswordButton.addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        });
+    </script>
+
+    <script>
+        // Fungsi untuk validasi password
+        $("#password").on("input", function() {
+            var password = $(this).val();
+            var passwordIsValid = isPasswordValid(password);
+
+            if (passwordIsValid) {
+                $("#passwordMessage").html("<span class='text-success'>Password valid</span>");
+            } else {
+                $("#passwordMessage").html("<span class='text-danger'>Password tidak valid</span>");
+            }
+        });
+
+        function isPasswordValid(password) {
+            if (password.length < 6) {
+                return false;
+            }
+            var lowercaseRegex = /[a-z]/;
+            var uppercaseRegex = /[A-Z]/;
+            var digitRegex = /[0-9]/;
+            var specialCharacterRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
+
+            return (
+                lowercaseRegex.test(password) &&
+                uppercaseRegex.test(password) &&
+                digitRegex.test(password) &&
+                specialCharacterRegex.test(password)
+            );
         }
-    });
-</script>
+    </script>
 
      
   </body>

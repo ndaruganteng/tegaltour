@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>TegalTour</title>
     <!-- logo -->
-    <link rel="icon" href="images/icon/logo.png" type="image/x-icon">
+    <link rel="icon" href="/images/icon/tour-logo.png" type="image/x-icon">
     <!-- link css -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <!-- link font -->
@@ -27,7 +27,7 @@
 
   @include('sweetalert::alert')
 
-     <div class="container d-flex justify-content-center align-items-center min-vh-100 login">
+     <div class="container d-flex justify-content-center align-items-center min-vh-100 login" style="margin-top: 30px; margin-bottom: 30px;">
         <div class="row border rounded-5 p-3 bg-white box-area">
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #103cbe;">
                 <div class="featured-image mb-3">
@@ -38,11 +38,26 @@
             </div>       
             <div class="col-md-6 right-box">
                 <div class="row align-items-center">
-                    <div class="header-text mb-4">
+                    <div class="header-text mb-2">
                         <h1>Register</h1>
                     </div>
                     <form action="/register" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="profile_picture" class="col-form-label">Foto Profil</label>
+                                <div class="custom-file">
+                                    <input type="file" name="profile_picture" class="custom-file-input" id="profile_picture" accept="image/*" onchange="previewImage(event)">
+                                    <label class="custom-file-label" for="profile_picture">Pilih File</label>
+                                </div>
+                                <p style="font-style: italic; font-size: 10px;">Ukuran foto maksimal 2 MB dan format file harus jpg, png, atau jpeg.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-grup">
+                                    <img id="image-preview" src="" class="rounded-circle border border-2 border-dark" style="display:none; max-width: 100px; max-height: 100px;" alt="Preview Image">
+                                </div>
+                            </div>
+                        </div>
                         <div class="input-group mb-3">
                             <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}" class="form-control form-control-lg bg-light fs-6" placeholder="Nama Lengkap">
                         </div>
@@ -110,7 +125,9 @@
         .valid {
             color: green;
         }
+        
     </style>
+    
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
@@ -122,14 +139,27 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
     ></script>
-    <!-- aos -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-      AOS.init({
-        once: true,
-      });
+        function previewImage(event) {
+            var input = event.target;
+            var preview = document.getElementById('image-preview');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = "";
+                preview.style.display = 'none';
+            }
+        }
     </script>
-    <!-- icon password js -->
+
     <script>
         const passwordInput = document.getElementById('password');
         const eyeIcon = document.getElementById('eyeIcon');
@@ -147,9 +177,8 @@
             }
         });
     </script>
-
-    
-<script>
+  
+    <script>
         // Fungsi untuk validasi password
         $("#password").on("input", function() {
             var password = $(this).val();
@@ -184,20 +213,20 @@
         }
     </script>
 
-<script>
-    function togglePasswordConfirmation() {
-        var passwordConfirmationInput = document.querySelector('input[name="password_confirmation"]');
-        var eyeIconConfirmation = document.querySelector('#eyeIconConfirmation');
+    <script>
+        function togglePasswordConfirmation() {
+            var passwordConfirmationInput = document.querySelector('input[name="password_confirmation"]');
+            var eyeIconConfirmation = document.querySelector('#eyeIconConfirmation');
 
-        if (passwordConfirmationInput.type === 'password') {
-            passwordConfirmationInput.type = 'text';
-            eyeIconConfirmation.className = 'fa fa-eye-slash';
-        } else {
-            passwordConfirmationInput.type = 'password';
-            eyeIconConfirmation.className = 'fa fa-eye';
+            if (passwordConfirmationInput.type === 'password') {
+                passwordConfirmationInput.type = 'text';
+                eyeIconConfirmation.className = 'fa fa-eye-slash';
+            } else {
+                passwordConfirmationInput.type = 'password';
+                eyeIconConfirmation.className = 'fa fa-eye';
+            }
         }
-    }
-</script>
+    </script>
    
   </body>
 </html>

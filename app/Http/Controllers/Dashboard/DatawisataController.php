@@ -18,6 +18,7 @@ use App\Models\kategori;
 class DatawisataController extends Controller
 {
 
+    // view data wisata
     public function index()
     {   
         $mitraId = Auth::user()->id;
@@ -30,12 +31,14 @@ class DatawisataController extends Controller
         return view('dashboard.data-wisata',['wisata' => $wisata]);
     }
 
+    // view tambah data wisata
     public function tambah()
     {
         $kategori = kategori::all();
         return view('dashboard.tambah-data-wisata',compact('kategori'));
     }
 
+    // fungsi tambah data wisata
     public function store(Request $request)
     {
         $validator = $request->validate([
@@ -47,6 +50,7 @@ class DatawisataController extends Controller
             'titikkumpul' => 'required',
             'fasilitas' => 'required|string|max:9000',
             'tanggalberangkat' => 'required',
+            'jamberangkat' => 'required',
             'linklokasi' => 'required',
             'deskripsi' => 'required|string|max:9000',
             'image' => 'image|file|max:2048,jpeg,png,jpg',
@@ -61,6 +65,7 @@ class DatawisataController extends Controller
             "titikkumpul.required" => "Harap masukkan titik kumpul wisata",
             "fasilitas.required" => "Harap masukkan fasilitas wisata",
             "tanggalberangkat.required" => "Harap masukkan tanggal berangkat",
+            "jamberangkat.required" => "Harap masukkan Jam berangkat",
             "linklokasi.required" => "Harap masukkan link lokasi",
             "deskripsi.required" => "Harap masukkan deskripsi wisata",
             "deskripsi.max" => "Deskripsi tidak boleh melebihi 9000 karakter.",
@@ -82,6 +87,7 @@ class DatawisataController extends Controller
         $wisata->titikkumpul= $request->input('titikkumpul');
         $wisata->fasilitas= $request->input('fasilitas');
         $wisata->tanggalberangkat= $request->input('tanggalberangkat');
+        $wisata->jamberangkat= $request->input('jamberangkat');
         $wisata->linklokasi= $request->input('linklokasi');
         $wisata->deskripsi= $request->input('deskripsi');
         $wisata->date = Carbon::now();
@@ -97,7 +103,7 @@ class DatawisataController extends Controller
         return redirect('/data-wisata') -> with('success', "Data wisata berhasil ditambahkan!");
     }
 
-    // method untuk edit data wisata
+    // view edit data wisata
     public function edit($id)
     {   
         $kategori = kategori::all();
@@ -109,7 +115,7 @@ class DatawisataController extends Controller
         ],compact('kategori'));
     }
 
-     // update data wisata
+     // fungsi update data wisata
      public function update(Request $request,$id)
     {
          $wisata = Wisata::find($id); 
@@ -122,6 +128,7 @@ class DatawisataController extends Controller
             'titikkumpul' => 'required',
             'fasilitas' => 'required|string|max:9000',
             'tanggalberangkat' => 'required',
+            'jamberangkat' => 'required',
             'linklokasi' => 'required',
             'deskripsi' => 'required|string|max:9000',
             'image' => 'image|file|max:2048,jpeg,png,jpg',
@@ -136,6 +143,7 @@ class DatawisataController extends Controller
             "titikkumpul.required" => "Harap masukkan titik kumpul wisata",
             "fasilitas.required" => "Harap masukkan fasilitas wisata",
             "tanggalberangkat.required" => "Harap masukkan tanggal berangkat",
+            "jamberangkat.required" => "Harap masukkan Jam berangkat",
             "linklokasi.required" => "Harap masukkan link lokasi",
             "deskripsi.required" => "Harap masukkan deskripsi wisata",
             "deskripsi.max" => "Deskripsi tidak boleh melebihi 9000 karakter.",
@@ -166,6 +174,7 @@ class DatawisataController extends Controller
          $wisata->lokasi = $request->lokasi;
          $wisata->titikkumpul = $request->titikkumpul;
          $wisata->tanggalberangkat = $request->tanggalberangkat;
+         $wisata->jamberangkat = $request->jamberangkat;
          $wisata->linklokasi = $request->linklokasi;
          $wisata->deskripsi = $request->deskripsi;
          $wisata->fasilitas = $request->fasilitas;
@@ -175,7 +184,7 @@ class DatawisataController extends Controller
          
     }
 
-    // hapus
+    // fungsi hapus data wisata
     public function hapus($id)
     {
         $wisata = Wisata::find($id);
@@ -188,8 +197,8 @@ class DatawisataController extends Controller
     }
 
     // view data wisata admin
-    public function wisata_admin(){
-
+    public function wisata_admin()
+    {
         $wisata = DB::table('wisata')
         ->join('users', 'wisata.id_mitra', '=', 'users.id')
         ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')

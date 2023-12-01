@@ -4,7 +4,7 @@
 
 <div class="content-wrapper">
 
-    <div class="content-header">
+    <!-- <div class="content-header">
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="content">
         <div class="container-fluid">
@@ -35,6 +35,7 @@
                                             <th>Nama Pemesan</th>
                                             <th>Status Perjalalanan</th>
                                             <th>Status Pemesanan</th>
+                                            <th>Jam Berangkat</th>
                                             <th>Tanggal Berangkat</th>
                                             <th>Tanggal Pemesanan</th>
                                             <th>Jumlah Orang</th>
@@ -84,6 +85,7 @@
                                                         <div class="badge badge-danger"> Dibatalkan</div>
                                                     @endif
                                                 </td>
+                                                <td>{{$p->jamberangkat}} WIB</td>
                                                 <td>{{ \Carbon\Carbon::parse($p->tanggal)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($p->date)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
                                                 <td>{{ $p->jumlah_orang}}</td>
@@ -101,7 +103,7 @@
                                                         <form  method="post" action="{{route('cancel', ['id_pemesanan'=> $p->id_pemesanan])}}">
                                                             @csrf
                                                             @method('put')
-                                                            <button type="submit" class="btn btn-warning btn-sm">
+                                                            <button type="submit" class="btn btn-danger btn-sm mt-1">
                                                                 <i class="fa-solid fa-xmark"></i>  
                                                             </button>
                                                         </form>

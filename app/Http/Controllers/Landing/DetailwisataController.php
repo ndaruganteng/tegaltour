@@ -12,7 +12,7 @@ use Carbon\Carbon;
 
 class DetailwisataController extends Controller
 {   
-    // menampilkan data detail-wisata
+    // view data detail-wisata
     public function show($id)
     {      
         $detail_wisata = DB::table('wisata')

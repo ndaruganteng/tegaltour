@@ -15,6 +15,7 @@ use App\Models\kategori;
 class DatakategoriController extends Controller
 {
 
+    // view data kategori
     public function index()
     {   
         $kategori = DB::table('kategori')->get();
@@ -42,10 +43,10 @@ class DatakategoriController extends Controller
         $kategori->nama_kategori= $request->input('nama_kategori');
         $kategori->save();
 
-        return redirect('/data-kategori')->with('success', " Kategori berhasil ditambahkan!");
+        return redirect('/data-kategori')->with('toast_success', " Kategori berhasil ditambahkan!");
     }
 
-    // method untuk edit data kategori
+    // view edit data kategori
     public function edit($id)
     {
         $kategori =  Kategori:: find($id);
@@ -56,7 +57,7 @@ class DatakategoriController extends Controller
         ]);
     }
 
-    // update data rekening
+    // fungsi update data rekening
     public function update(Request $request,$id)
     {
         $kategori = Kategori::find($id); 
@@ -74,6 +75,7 @@ class DatakategoriController extends Controller
         return redirect('data-kategori')->with('success','Data kategori Telah Diupdate!');
     }
 
+    // fungsi hapus data kategori
     public function hapus($id)
     {
         $kategori = Kategori::find($id);

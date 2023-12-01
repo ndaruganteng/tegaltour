@@ -16,7 +16,7 @@ use Illuminate\Validation\Rule;
 class DatarekeningController extends Controller
 {
     
-    // menampilkan data dari database
+    // view data rening
     public function index()
     {   $mitraId = Auth::user()->id;
         $rekening = DB::table('rekening')
@@ -25,6 +25,7 @@ class DatarekeningController extends Controller
         return view('dashboard.data-rekening',['rekening' => $rekening]);
     }
 
+    // fungsi tambah rekening
     public function store(Request $request)
     {
         $validator = $request -> validate([
@@ -65,7 +66,7 @@ class DatarekeningController extends Controller
         return redirect('/data-rekening')->with('success', "Data rekening berhasil ditambahkan!");
     }
 
-    // method untuk edit data rekening
+    // view edit data rekening
     public function edit($id)
     {
         $rekening =  Rekening:: find($id);
@@ -76,7 +77,7 @@ class DatarekeningController extends Controller
         ]);
     }
 
-    // update data rekening
+    // fungsi update data rekening
     public function update(Request $request, $id)
     {
         $rekening = Rekening::find($id); 
@@ -120,16 +121,17 @@ class DatarekeningController extends Controller
         return redirect('data-rekening')->with('success', 'Data rekening Telah Diupdate!');
     }
 
-   public function hapus($id)
-   {
-       $rekening = Rekening::find($id);
-       $path = 'storage/image/rekening/'.$rekening->image_rekening;
-       if(File::exists($path)){
-           File::delete($path);
-       }
-       $rekening->delete(); 
-       return back() -> with('success', "Data rekening berhasil dihapus!");
-   }
+    // fungsi hapus data rekening
+    public function hapus($id)
+    {
+        $rekening = Rekening::find($id);
+        $path = 'storage/image/rekening/'.$rekening->image_rekening;
+        if(File::exists($path)){
+            File::delete($path);
+        }
+        $rekening->delete(); 
+        return back() -> with('success', "Data rekening berhasil dihapus!");
+    }
 
     // view data rekening admin
     public function rekening_admin()
@@ -140,7 +142,5 @@ class DatarekeningController extends Controller
         ->get();
         return view('dashboard.data-rekening-admin',['rekening' => $rekening]);
     }
-
-   
 
 }

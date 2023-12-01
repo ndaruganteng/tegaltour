@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2 class="m-0 ">Edit Paket Wisata</h2>
+                    <h3 class="m-0 ">Edit Paket Wisata</h3>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -23,16 +23,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 grid-margin">
-                    <div class="card card-secondary">
-                        <div class="card-header">
-                            <h3 class="text-center ">Edit Paket Wisata</h3>
+                    <div class="card card-primary card-outline">
+                        <div class="card-header" style="background-color: white;">
+                            <h4 class="text-center ">Edit Paket Wisata</h4>
                         </div>
                         <form class="form-sample" action="{{ url('/data-wisata/update/'.$wisata->id_wisata) }}" method="post" enctype="multipart/form-data">
                              @csrf
                             @method('put')
                             <div class="card-body">
                                 <input type="hidden" name="id" id="id" value="{{ $wisata->id }}">
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-10 ">
                                         <div class="form-group row">
                                             <label for="image" class="col-form-label">Image</label>
@@ -44,6 +44,24 @@
                                         <div class="form-grup">
                                             @if ($wisata->image)
                                             <img src="{{asset('storage/image/wisata/'.$wisata->image)}}" class="img-thumbnail" width="200">
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="image" class="col-sm-3 col-form-label">Gambar Wisata</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" class="form-control" value="{{ $wisata->image}}" name="image">
+                                                <p class="text-secondary" style="font-size: 14px; font-style: italic;">size foto maksimal 2 mb dan extensi jpg, png, jpeg</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            @if ($wisata->image)
+                                                <img src="{{asset('storage/image/wisata/'.$wisata->image)}}" class="img-thumbnail" width="200">
                                             @endif
                                         </div>
                                     </div>
@@ -59,9 +77,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="titikkumpul" class="col-sm-3 col-form-label">Titik Kumpul</label>
+                                            <label for="durasi" class="col-sm-3 col-form-label">Durasi</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="{{ $wisata->titikkumpul}}" name="titikkumpul"> 
+                                                <input type="text" class="form-control" value="{{ $wisata->durasi}}" name="durasi">
                                             </div>
                                         </div>
                                     </div>
@@ -93,9 +111,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="durasi" class="col-sm-3 col-form-label">Durasi</label>
+                                            <label for="jamberangkat" class="col-sm-3 col-form-label">Jam Berangkat</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="{{ $wisata->durasi}}" name="durasi">
+                                                <input type="time" class="form-control" value="{{ $wisata->jamberangkat}}" name="jamberangkat"> 
                                             </div>
                                         </div>
                                     </div>
@@ -110,10 +128,37 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="titikkumpul" class="col-sm-3 col-form-label">Titik Kumpul</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="titikkumpul" 
+                                                    value="{{ $wisata->titikkumpul }}" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="lokasi" class="col-sm-3 col-form-label">Highlight</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" value="{{ $wisata->lokasi}}" name="lokasi"> 
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="lokasi" class="col-sm-3 col-form-label">Highlight</label>
+                                            <div class="col-sm-9">
+                                                <textarea class="form-control" rows="3" name="lokasi">{{ $wisata->lokasi}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                                <!-- <div class="form-group">
                                     <label for="lokasi">Highlight</label>
                                     <input type="text" class="form-control" value="{{ $wisata->lokasi}}" name="lokasi">
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="linklokasi">Link Lokasi</label>
                                     <input type="text" class="form-control" value="{{ $wisata->linklokasi}}" name="linklokasi">

@@ -26,6 +26,7 @@
                                                 <p class="card-text">Nama Pemesan: {{$p->nama_pengguna}} </p>
                                                 <p class="card-text" style="margin-top: -10px;">Tanggal Pemesanan : {{ \Carbon\Carbon::parse($p->date)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
                                                 <p class="card-text" style="margin-top: -10px;">Tanggal Berangkat : {{ \Carbon\Carbon::parse($p->tanggal)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
+                                                <p class="card-text" style="margin-top: -10px;">Jam Berangkat : {{$p->jamberangkat}} WIB</p>
                                                 <p class="card-text" style="margin-top: -10px;">Jumlah Orang : {{$p->jumlah_orang}} Orang</p>
                                                 <p class="card-text" style="margin-top: -10px;">Harga/pax : Rp {{ number_format($p->harga, 0, ',', '.') }}</p>
                                                 @if($p->status == 2)
@@ -47,10 +48,11 @@
                                                     <span class="badge badge-danger">Belum Melakukan Transaksi</span>
                                                     @endif
                                                 </p>
-                                                @if($p->status == null)
-                                                <div class="alert alert-warning">
-                                                    Harga Yang harus Dibayar : Rp {{ number_format($p->hargatotal, 0, ',', '.') }}
-                                                </div>
+                                                @if($p->bukti_pembayaran)
+                                                @else
+                                                    <div class="alert alert-warning">
+                                                        Harga Yang harus Dibayar : Rp {{ number_format($p->hargatotal, 0, ',', '.') }}
+                                                    </div>
                                                 @endif
                                                 <div>
                                                     @if($p->bukti_pembayaran)
@@ -99,7 +101,7 @@
                                                         <div class="form-group ">
                                                             <label class="col-form-label">Bukti transfer</label>
                                                             <input type="file" id="bukti_pembayaran" class="form-control" name="bukti_pembayaran" 
-                                                            accept="image/*" onchange="previewImage(event)">
+                                                            accept="image/*" onchange="previewImage(event)" require>
                                                         </div>
                                                         <div class="col-lg-12 mb-3">
                                                             <img id="image-preview" src="" class="img-thumbnail" style="display:none; max-width: 100%; max-height: 100%;" alt="Preview Image">

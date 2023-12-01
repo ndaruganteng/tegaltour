@@ -31,10 +31,18 @@
                 <div class="dropdown">
                     <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
                         id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                        <img src="/images/icon/dua.png"  class="rounded-circle" height="30"
+                        @if(Auth::user()->profile_picture && Storage::disk('public')->exists('image/user/' . Auth::user()->profile_picture))
+                        <img src="{{asset('storage/image/user/'.Auth::user()->profile_picture)}}"  class="rounded-circle" height="30"
                             alt="Black and White Portrait of a Man" loading="lazy" />
+                        @else
+                            <img src="\images\icon\dua.png"  class="rounded-circle" height="30"
+                            alt="Black and White Portrait of a Man" loading="lazy" />
+                        @endif
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                        <li>
+                            <a class="dropdown-item" href="{{route('profile_user')}}">Profile Saya</a>
+                        </li>
                         <li>
                             <a class="dropdown-item" href="{{route('pesanan-saya.index')}}">Pesanan Saya</a>
                         </li>
