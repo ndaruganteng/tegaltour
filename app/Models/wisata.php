@@ -25,6 +25,7 @@ class wisata extends Model
     'jamberangkat',
     'linklokasi',
     'deskripsi',
+    'status_wisata',
     'date',
   ];
 

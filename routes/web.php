@@ -13,6 +13,7 @@ use App\Http\Controllers\Landing\TransaksiController;
 use App\Http\Controllers\Landing\PemesananController;
 use App\Http\Controllers\Landing\UlasanController;
 use App\Http\Controllers\Landing\HistoryController;
+use App\Http\Controllers\Landing\BirowisataController;
 
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DetaildatawisataController;
@@ -59,6 +60,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){
     Route::get('/data-wisata/edit/{id_wisata}', [DatawisataController::class, 'edit'])->name('edit-data-wisata.index');
     Route::put('/data-wisata/update/{id_wisata}', [DatawisataController::class, 'update'])->name('updateWisata.index');
     Route::get('/data-wisata/hapus/{id_wisata}', [DatawisataController::class, 'hapus'])->name('hapus.index');
+    Route::put('/nonaktif/{id_wisata}', [DatawisataController::class, 'nonaktif'])->name('nonaktif');
+    Route::put('/wisataaktif/{id_wisata}', [DatawisataController::class, 'wisataaktif'])->name('wisataaktif');
     Route::pattern('id', '[0-9]+');
     Route::get('/detail-data-wisata/{id}', [DetaildatawisataController::class,'showdetail']);
 
@@ -174,4 +177,7 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 //LANDING
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
+Route::get('/biro-wisata', [BirowisataController::class, 'index'])->name('biro-wisata.index');
+Route::pattern('id', '[0-9]+');
+Route::get('/detail-biro-wisata/{id}', [BirowisataController::class,'showdetailbiro']);
 Route::get('/pesanan-saya', [PemesananController::class, 'pesanan_saya'])->name('pesanan-saya.index');

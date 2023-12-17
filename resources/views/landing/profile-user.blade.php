@@ -71,7 +71,7 @@
                         <label for="no_telepon">Nomor Telepon</label>
                         <input type="text" class="form-control" required="required" name="no_telepon" value="{{ Auth::user()->no_telepon }}" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" hidden>
                         <label for="alamat">Alamat</label>
                         <input type="text" class="form-control" name="alamat" value="{{ Auth::user()->alamat }}">
                     </div>

@@ -4,7 +4,7 @@
 
 <div class="content-wrapper">
 
-    <!-- <div class="content-header">
+    <div class="content-header">
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <div class="content">
         <div class="container-fluid">
@@ -109,7 +109,7 @@
                                                         </form>
                                                     @else
                                                         <a href="/data-order/hapus/{{ $p->id_pemesanan }}" class="btn btn-danger btn-sm delete-button-pemesanan">
-                                                            <i class="fa-solid fa-trash mr-1"></i> 
+                                                            <i class="fa-solid fa-trash"></i> 
                                                         </a>
                                                     @endif
                                                 </td>

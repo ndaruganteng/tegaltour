@@ -22,66 +22,6 @@ class RegisterController extends Controller
     }
 
     // fungsi register user
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-    //         'password' => ['required', 'string', 'min:6', 'confirmed'],
-    //         'nama_lengkap' => ['required'],
-    //         'no_telepon' => ['required'],
-            
-    //     ]);
-        
-    //     $existingUser = User::where('email', $request->input('email'))->first();
-    //     $email = $request->input('email');
-    //     $Domain = explode('@', $email);
-    
-    //     if ($existingUser) {
-    //         alert()->error('Gagal', 'Email sudah digunakan');
-    //         return redirect()->back()->withInput();
-    //     } else if (!checkdnsrr($Domain[1],"MX")){
-    //         alert()->error('Gagal', 'Domain email tidak ditemukan');
-    //         return redirect()->back()->withInput();
-    //     } else{
-    //         alert()->success('Berhasil', 'Akun berhasil dibuat');
-    //         $user = new User();
-    //         $user->nama_lengkap = $request->input('nama_lengkap');
-    //         $user->email = $request->input('email');
-    //         $user->status = 1;
-    //         $user->role = ($request->input('role') === 'user') ? 'user' : 'user';
-    //         $password = $request->input('password');
-    //         $errors = [];
-    //         if (!preg_match('/[a-z]/', $password)) {
-    //             $errors[] = 'Password harus mengandung setidaknya satu huruf kecil.';
-    //         }
-    //         if (!preg_match('/[A-Z]/', $password)) {
-    //             $errors[] = 'Password harus mengandung setidaknya satu huruf besar.';
-    //         }
-    //         if (!preg_match('/\d/', $password)) {
-    //             $errors[] = 'Password harus mengandung setidaknya satu angka.';
-    //         }
-    //         if (empty($errors)) {
-    //             $hashedPassword = bcrypt($password);
-    //             $user->password = $hashedPassword;
-    //         } else {
-    //             foreach ($errors as $error) {
-    //                 alert()->error('Gagal', $error);
-    //             }
-    //             return redirect()->back()->withInput();
-    //         }
-
-    //         $phone = $request->input('no_telepon');
-    //         if (!preg_match('/^\d{11,13}$/', $phone)) {
-    //             alert()->error('Gagal', 'Nomor telepon harus terdiri dari 11 sampai 13 digit angka.');
-    //             return redirect()->back()->withInput();
-    //         } else {
-    //             $user->no_telepon = $phone;
-    //         }
-    //         $user->save();
-
-    //         return redirect()->route('login.index')->with('success', "Akun berhasil dibuat");
-    //     }
-    // }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -90,27 +30,28 @@ class RegisterController extends Controller
             'nama_lengkap' => ['required'],
             'no_telepon' => ['required', 'numeric', 'digits_between:11,13', 'unique:users'],
             'profile_picture' => ['required', 'image', 'max:2048', 'mimes:jpeg,png,jpg'],
-        ], [
-            'required' => 'Kolom :attribute harus diisi.',
-            'email' => 'Format :attribute tidak valid.',
-            'max' => [
-                'numeric' => ':attribute tidak boleh lebih dari :max.',
-                'file' => ':attribute tidak boleh lebih dari :max kilobytes.',
-                'string' => ':attribute tidak boleh lebih dari :max karakter.',
-                'array' => ':attribute tidak boleh lebih dari :max item.',
-            ],
-            'unique' => ':attribute sudah digunakan.',
-            'confirmed' => 'Konfirmasi :attribute tidak cocok.',
-            'min' => [
-                'numeric' => ':attribute harus setidaknya :min.',
-                'string' => ':attribute harus setidaknya :min karakter.',
-            ],
-            'digits_between' => ':attribute harus terdiri dari 11 sampai 13 digit.',
-            'numeric' => ':attribute harus berupa angka.',
-            'profile_picture.required' => 'Kolom foto profil harus diisi.',
+        ], 
+        [
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.max' => 'Panjang email tidak boleh lebih dari :max karakter.',
+            'email.unique' => 'Email sudah digunakan oleh pengguna lain.',
+            
+            'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Panjang password minimal :min karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai.',
+            
+            'nama_lengkap.required' => 'Nama lengkap wajib diisi.',
+            
+            'no_telepon.required' => 'Nomor telepon wajib diisi.',
+            'no_telepon.numeric' => 'Nomor telepon harus berupa angka.',
+            'no_telepon.digits_between' => 'Panjang nomor telepon harus antara :min dan :max digit.',
+            'no_telepon.unique' => 'Nomor telepon sudah digunakan oleh pengguna lain.',
+            
+            'profile_picture.required' => 'Foto profil wajib diunggah.',
             'profile_picture.image' => 'File harus berupa gambar.',
-            'profile_picture.max' => 'Ukuran file gambar tidak boleh lebih dari 2MB.',
-            'profile_picture.mimes' => 'Format file gambar harus jpeg, png, atau jpg.',
+            'profile_picture.max' => 'Ukuran foto profil tidak boleh lebih dari :max kilobyte.',
+            'profile_picture.mimes' => 'Format file tidak valid. Hanya menerima file dengan format jpeg, png, atau jpg.',
         ]);
 
         $existingUser = User::where('email', $request->input('email'))->first();
@@ -119,9 +60,6 @@ class RegisterController extends Controller
 
         if ($existingUser) {
             alert()->error('Gagal', 'Email sudah digunakan');
-            return redirect()->back()->withInput();
-        } elseif (!checkdnsrr($Domain[1], "MX")) {
-            alert()->error('Gagal', 'Domain email tidak ditemukan');
             return redirect()->back()->withInput();
         } else {
             $existingPhone = User::where('no_telepon', $request->input('no_telepon'))->first();

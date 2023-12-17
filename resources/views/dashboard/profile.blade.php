@@ -36,7 +36,7 @@
                                 <img src="\images\icon\profile.png" class="rounded-circle border border-2 border-dark" alt="Gambar Default" style="width:100px; heigth:100px;">
                             @endif
                             </div>
-                            <h5 style="text-align: center; margin-top:10px; margin-bottom:20px;">{{ Auth::user()->nama_lengkap }}</h5>
+                            <h5 style="text-align: center; margin-top:14px; margin-bottom:20px;">{{ Auth::user()->nama_lengkap }}</h5>
                             <button type="button" class="btn btn-dark btn-sm" data-toggle="modal"
                                     data-target="#editprofile">
                                     <i class="fa-solid fa-pen-to-square mr-1"></i> Edit profile
@@ -61,6 +61,7 @@
                             <hr>
                             <strong><i class="fa-solid fa-users-rectangle mr-1"></i>Role</strong>
                             <p class="text-muted">{{ Auth::User()->role }}</p>
+                            <hr>
                         </div>
                     </div>
                 </div>

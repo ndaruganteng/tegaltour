@@ -44,25 +44,29 @@
                     <form action="/register" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="form-group">
-                                <label for="profile_picture" class="col-form-label">Foto Profil</label>
-                                <div class="custom-file">
-                                    <input type="file" name="profile_picture" class="custom-file-input" id="profile_picture" accept="image/*" onchange="previewImage(event)">
-                                    <label class="custom-file-label" for="profile_picture">Pilih File</label>
+                            <div class="col-lg-8 col-md-12">
+                                <div class="form-group">
+                                    <label for="profile_picture" class="col-form-label">Foto Profil</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="profile_picture" required class="custom-file-input" id="profile_picture" accept="image/*" onchange="previewImage(event)">
+                                        <label class="custom-file-label" id="fileLabel" >Pilih File</label>
+                                    </div>
+                                    <p style="font-style: italic; font-size: 10px; margin-top: 6px;">Ukuran foto maksimal 2 MB dan format file harus jpg, png, atau jpeg.</p>
                                 </div>
-                                <p style="font-style: italic; font-size: 10px;">Ukuran foto maksimal 2 MB dan format file harus jpg, png, atau jpeg.</p>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-lg-4 .col-lg-12">
                                 <div class="form-grup">
-                                    <img id="image-preview" src="" class="rounded-circle border border-2 border-dark" style="display:none; max-width: 100px; max-height: 100px;" alt="Preview Image">
+                                    <img id="image-preview" src="" class="img-thumb" style="display:none; max-width: 100px; max-height: 100px; margin-top: -10px; margin-bottom: 10px;" alt="Preview Image">
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="input-group mb-3">
-                            <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}" class="form-control form-control-lg bg-light fs-6" placeholder="Nama Lengkap">
+                            <input type="text" name="nama_lengkap" required value="{{ old('nama_lengkap') }}" class="form-control form-control-lg bg-light fs-6" placeholder="Nama Lengkap">
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" name="no_telepon" value="{{ old('no_telepon') }}" class="form-control form-control-lg bg-light fs-6" placeholder="Nomor Telepon">
+                            <input type="text" name="no_telepon" required value="{{ old('no_telepon') }}" class="form-control form-control-lg bg-light fs-6" placeholder="Nomor Telepon">
                             @error('no_telepon')
                                 <script>
                                     swal("Gagal", "{{ $message }}", "error");
@@ -70,7 +74,7 @@
                             @enderror  
                         </div>
                         <div class="input-group mb-3">
-                            <input type="email" name="email" value="{{ old('email') }}" class="form-control form-control-lg bg-light fs-6" placeholder="Email">
+                            <input type="email" name="email" required value="{{ old('email') }}" class="form-control form-control-lg bg-light fs-6" placeholder="Email">
                             @error('email')
                                 <script>
                                     swal("Gagal", "{{ $message }}", "error");
@@ -78,7 +82,7 @@
                             @enderror        
                         </div>
                         <div class="input-group mb-3">
-                            <input type="password" name="password" id="password" class="form-control form-control-lg bg-light fs-6" value="{{ old('password') }}" placeholder="Password">
+                            <input type="password" name="password" required id="password" class="form-control form-control-lg bg-light fs-6" value="{{ old('password') }}" placeholder="Password">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="show-password" style="cursor: pointer;">
                                     <i class="fa fa-eye" id="eyeIcon"></i>
@@ -91,7 +95,7 @@
                             @enderror
                         </div>
                         <div class="input-group mb-1">
-                            <input type="text" name="password_confirmation" class="form-control form-control-lg bg-light fs-6" placeholder="Konfirmasi Password">
+                            <input type="text" name="password_confirmation" required class="form-control form-control-lg bg-light fs-6" placeholder="Konfirmasi Password">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="show-password-confirmation" style="cursor: pointer;" onclick="togglePasswordConfirmation()">
                                     <i class="fa fa-eye" id="eyeIconConfirmation"></i>
@@ -127,6 +131,14 @@
         }
         
     </style>
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var label = document.getElementById("fileLabel");
+            var fileName = input.files[0].name;
+            label.innerHTML = fileName;
+        }
+    </script>
     
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

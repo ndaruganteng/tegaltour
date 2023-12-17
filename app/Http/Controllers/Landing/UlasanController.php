@@ -56,7 +56,6 @@ class UlasanController extends Controller
     // view Ulasan Wisata Biro
     public function ulasan_wisata($id)
     {
-
         $ulasan = DB::table('ulasan')
         ->join('users', 'ulasan.id_user', '=', 'users.id')
         ->select('ulasan.*', 'users.nama_lengkap as nama', 'users.profile_picture as profile_picture')

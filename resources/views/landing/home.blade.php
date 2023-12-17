@@ -111,22 +111,23 @@
                 </div>
             </div>           
             <div class="row">
-                @foreach($wisata as $item)  
-                    <div class="col-md-12 col-lg-3">
-                        <div class="card" data-aos="zoom-in"  data-aos-duration="500"  data-aos-delay="100">
-                            <a href="/{{$item->id_wisata}}/{{$item->slug}}" class="bg-image hover-zoom">
-                                <img class="card-img-top" src="{{asset('storage/image/wisata/'.$item->image)}}"  alt="Card image cap w-100" >
-                            </a>        
-                            <div class="card-body">
-                                <span class="badge badge-dark">{{ $item->kategori }}</span>
-                                <a href="/{{ ($item->id_wisata) }}/{{$item->slug}}" class="mt-2">
-                                    <p class="card-title">{{ $item->namawisata }}</p>
-                                </a>
-                                <h3 class="card-text">Rp {{ number_format($item->harga, 0, ',', '.') }} <span style="color: grey;">/orang</span></h3>
-                                
+                @foreach($wisata as $item)
+                    @if($item->status_wisata == null)  
+                        <div class="col-md-12 col-lg-3">
+                            <div class="card" data-aos="zoom-in"  data-aos-duration="500"  data-aos-delay="100">
+                                <a href="/{{$item->id_wisata}}/{{$item->slug}}" class="bg-image hover-zoom">
+                                    <img class="card-img-top" src="{{asset('storage/image/wisata/'.$item->image)}}"  alt="Card image cap " style="height:180px">
+                                </a>        
+                                <div class="card-body">
+                                    <span class="badge badge-dark">{{ $item->kategori }}</span>
+                                    <a href="/{{ ($item->id_wisata) }}/{{$item->slug}}" class="mt-2">
+                                        <p class="card-title">{{ $item->namawisata }}</p>
+                                    </a>
+                                    <h3 class="card-text">Rp {{ number_format($item->harga, 0, ',', '.') }} <span style="color: grey;">/orang</span></h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
         </div>

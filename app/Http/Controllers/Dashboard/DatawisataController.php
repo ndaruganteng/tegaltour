@@ -90,6 +90,7 @@ class DatawisataController extends Controller
         $wisata->jamberangkat= $request->input('jamberangkat');
         $wisata->linklokasi= $request->input('linklokasi');
         $wisata->deskripsi= $request->input('deskripsi');
+        $wisata->status_wisata= null;
         $wisata->date = Carbon::now();
         if($request->hasFile('image')&& $request->file('image')->isValid()){
             $file = $request->file('image');
@@ -194,6 +195,28 @@ class DatawisataController extends Controller
         }
         $wisata->delete(); 
         return back() -> with('success', "Data Wisata berhasil dihapus!");
+    }
+
+    // fungsi aktif/nonaktif
+    public function nonaktif(Request $request, $id)
+    { 
+        $nonaktif = DB::table('wisata')
+            ->where('id_wisata', $id)
+            ->update([
+                'status_wisata' => 2
+            ]);
+
+        return redirect('data-wisata')->with('toast_success', 'wisata telah Di NonAktifkan');
+    }
+    public function wisataaktif(Request $request, $id)
+    { 
+        $wisataaktif = DB::table('wisata')
+            ->where('id_wisata', $id)
+            ->update([
+                'status_wisata' => null
+            ]);
+
+        return redirect('data-wisata')->with('toast_success', 'wisata telah Di Aktifkan');
     }
 
     // view data wisata admin

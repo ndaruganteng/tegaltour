@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('jamberangkat');
             $table->string('linklokasi');
             $table->longText('deskripsi');
+            $table->string('status_wisata')->nullable();
             $table->timestamp('date')->nullable();
             $table->timestamps();
         });

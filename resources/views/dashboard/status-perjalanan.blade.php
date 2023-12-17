@@ -63,7 +63,7 @@
                                                                 @csrf
                                                                 @method('put')
                                                                 <button type="submit" class="btn btn-info btn-sm mx-1">
-                                                                    <i class="fa-solid fa-car-side mr-2"></i>Berangkat
+                                                                    <i class="fa-solid fa-car-side"></i>Berangkat
                                                                 </button>
                                                             </form>
                                                         @elseif($p->status_perjalanan == 2)
@@ -71,7 +71,7 @@
                                                                 @csrf
                                                                 @method('put')
                                                                 <button type="submit" class="btn btn-success btn-sm mx-1">
-                                                                    <i class="fa-solid fa-check-to-slot mr-2"></i>Selesai
+                                                                    <i class="fa-solid fa-check-to-slot"></i>Selesai
                                                                 </button>
                                                             </form>                            
                                                         @endif

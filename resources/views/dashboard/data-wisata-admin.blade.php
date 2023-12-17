@@ -35,6 +35,7 @@
                                             <th>Nama Paket Wisata</th>
                                             <th>Tanggal Berangkat</th>
                                             <th>Kategori</th>
+                                            <th>Status Wisata</th>
                                             <th>harga/Orang</th>
                                             <th>Aksi</th>                           
                                         </tr>
@@ -50,6 +51,13 @@
                                                 <td>{{ \Carbon\Carbon::parse($p->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
                                                 <td>
                                                     <span class="badge badge-dark">{{ $p->kategori}}</span>
+                                                </td>                                         
+                                                <td>
+                                                    @if($p->status_wisata == null)
+                                                    <span class="badge badge-success">Aktif</span>
+                                                    @elseif($p->status_wisata == 2)
+                                                    <span class="badge badge-danger">Non Aktif</span>
+                                                    @endif
                                                 </td>                                         
                                                 <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                                 <td>

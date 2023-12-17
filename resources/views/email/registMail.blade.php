@@ -62,8 +62,8 @@
             <div class="col-md-6 offset-md-3">
                 <div class="card">
                     <h1>Selamat akun anda telah dikonfimarsi oleh admin</h1>
-                    <h4>Informasi Mitra:</h4>
-                    <p>Nama  : {{ $details['nama_lengkap'] }}</p>
+                    <h4>Informasi Akun:</h4>
+                    <p>Nama Bisnis : {{ $details['nama_lengkap'] }}</p>
                     <p>Email : {{ $details['email'] }}</p>
                     <p>Alamat : {{ $details['alamat'] }}</p>
                 </div>

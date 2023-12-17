@@ -18,7 +18,10 @@ class HomeController extends Controller
     {
         $wisata = DB::table('wisata')
         ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
-        ->select('wisata.*', 'kategori.nama_kategori as kategori')
+        ->join('users', 'users.id', '=', 'wisata.id_mitra')
+        ->select('wisata.*', 
+        'kategori.nama_kategori as kategori',
+        'users.nama_lengkap as namamitra',)
         ->inRandomOrder()->simplePaginate(4);
         return view('landing.home', ['wisata' => $wisata]);
     }
@@ -30,6 +33,7 @@ class HomeController extends Controller
         return view('landing.profile-user', compact('user'));
     }
 
+    // UPDATE PROFIL USER
     public function updateprofileUser(Request $request, $id)
     {
         $user = User::find($id);
@@ -64,6 +68,6 @@ class HomeController extends Controller
     
         $user->save();
     
-        return redirect()->route('profile_user')->with('success', 'Profil berhasil diperbarui.');
+        return redirect()->route('profile_user')->with('toast_success', 'Profil berhasil diperbarui.');
     }
 }

@@ -20,6 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('join-mitra.index')}}">Join Mitra</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('biro-wisata.index')}}">Biro Wisata</a>
+                </li>
             </ul>
         </div>
         <div class="d-flex align-items-center">

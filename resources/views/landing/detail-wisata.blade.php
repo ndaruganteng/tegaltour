@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="content-wrapper">
-    <section id="{{$detail_wisata->namawisata}}">
+    <section id="detail-biro-wisata">
         <div class="image-tour text-center">
             <img src="{{asset('storage/image/wisata/'.$detail_wisata->image)}}" class="img-fluid" alt="detail-tour image" />
         </div>
@@ -40,16 +40,16 @@
                             <p>{{ $detail_wisata->titikkumpul }}</p>
                         </div>
                         <div class="col-lg-12 deskripsi ">
-                            <h3>Highlight</h3>                
+                            <h3>Highlight Wisata</h3>                
                             <p>{{ $detail_wisata->lokasi }}</p>
                         </div>
                         <div class="col-lg-12 deskripsi">
                             <h3>Deskripsi</h3>
-                            <p> {!! $detail_wisata->deskripsi !!}</p>
+                            <article>{!! $detail_wisata->deskripsi !!}</article>
                         </div>
                         <div class="col-lg-12 deskripsi">
                             <h3>Fasilitas</h3>
-                            <p> {!! $detail_wisata->fasilitas !!}</p>
+                            <article>{!! $detail_wisata->fasilitas !!}</article>
                         </div>
                         <div class="col-lg-12 maps">
                             <div class="card text-center border shadow-2 rounded-0">
@@ -79,7 +79,7 @@
                                     <div class="card-body mt-2">                             
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                <img src="{{ asset('storage/image/user/' . $item->profile_picture) }}" class="float-left me-3" />
+                                                <img src="{{ asset('storage/image/user/' . $item->profile_picture) }}" class="float-left me-3 rounded-circle" />
                                                 <h1 class="pt-2">{{ $item->nama }}</h1> 
                                             </div>
                                             <div class="col-lg-8">
@@ -103,7 +103,7 @@
                         <div class="col-lg-12 host">
                             <div class="card text-center border border-2 shadow-0">
                                 <div class="card-body">
-                                    <img src="{{ asset('storage/image/user/' . $mitra->profile_picture) }}" class="rounded-circle  border-dark" alt="Gambar Pengguna">
+                                    <img src="{{ asset('storage/image/user/' . $mitra->profile_picture) }}" class="rounded-circle border border-dark">
                                     <p class="card-text">{{$mitra->nama_lengkap}}<i class="fas fa-check-circle" style="color: #1fbd00"></i></p>                              
                                     <a href="https://api.whatsapp.com/send?phone={{$mitra->no_telepon}}" target="_blank" type="button"
                                         class="btn btn-dark shadow-0">

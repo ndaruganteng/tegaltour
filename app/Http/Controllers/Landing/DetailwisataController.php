@@ -23,7 +23,7 @@ class DetailwisataController extends Controller
 
         $ulasan = DB::table('ulasan')
         ->join('users', 'ulasan.id_user', '=', 'users.id')
-        ->select('ulasan.*', 'users.nama_lengkap as nama')
+        ->select('ulasan.*', 'users.nama_lengkap as nama','users.profile_picture as profile_picture')
         ->where('id_wisata', $id)
         ->get();
         

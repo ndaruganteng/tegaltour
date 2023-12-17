@@ -111,7 +111,6 @@
 .t-terbaru {
     margin-top: 50px;
     margin-bottom: 50px;
-
 }
 
 /* card */
@@ -124,26 +123,25 @@
 
 .tour-card .card {
     width: auto;
-    height: auto;
+    height: 350px;
     margin-top: 20px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
         rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
         rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
-.tour-card .card img{
+.tour-card .card img {
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
     padding: 8px;
-    height: 160px;
 }
 
 .tour-card .card p {
     font-size: 16px;
     color: black;
-    margin-top: 18px;
-    margin-bottom: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .tour-card .card p:hover {
@@ -155,7 +153,12 @@
     color: red;
 }
 
-
+.tour-card .card h4 {
+    font-size: 12px;
+    float: right;
+    margin-top: 16px;
+    margin-bottom: 0px;
+}
 
 /* tour */
 .tour h1 {
@@ -170,7 +173,6 @@
 }
 
 /* detail tour */
-
 
 .judul-tour h1 {
     margin-top: 20px;
@@ -311,37 +313,36 @@
     text-transform: none;
 }
 
-
 .judul-tour .penilaian {
     margin-top: 50px;
     margin-bottom: 50px;
     padding: 10px;
 }
 
-.judul-tour .penilaian img{
+.judul-tour .penilaian img {
     width: 50px;
     height: 50px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.judul-tour .penilaian h1{
+.judul-tour .penilaian h1 {
     font-size: 16px;
     margin-top: -5;
 }
 
-.judul-tour .penilaian h2{
+.judul-tour .penilaian h2 {
     font-size: 16px;
     margin-top: 10px;
     margin-bottom: 20px;
 }
 
-.judul-tour .penilaian h3{
+.judul-tour .penilaian h3 {
     font-size: 14px;
     color: black;
 }
 
-.judul-tour .penilaian h4{
+.judul-tour .penilaian h4 {
     font-size: 14px;
     color: #acacac;
 }
@@ -434,24 +435,21 @@ c.mitra .card {
     margin-bottom: 70px;
 }
 
-
 /* cart */
-.cart{
+.cart {
     margin-top: 120px;
     margin-bottom: 200px;
 }
 
-.cart .card{
+.cart .card {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
         rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
         rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 
-
 .cart .info-rekening {
     background-color: white;
     padding: 30px;
-
 }
 
 .cart .info-rekening img {
@@ -466,68 +464,85 @@ c.mitra .card {
     margin-top: -10px;
 }
 
-.form-penilaian{
+.form-penilaian {
     margin-top: 120px;
     margin-bottom: 100px;
 }
-
 
 /* ratting */
 .rating {
     display: inline-block;
     font-size: 24px;
     cursor: pointer;
-  }
-  
-  .star {
+}
+
+.star {
     color: grey;
-  }
-  
-  .star:hover,
-  .star.active {
+}
+
+.star:hover,
+.star.active {
     color: gold;
-  }
+}
 
-  .fAQs{
+.fAQs {
     margin-bottom: 100px;
-  }
+}
 
-  .image-tour img{
+.image-tour img {
     width: 100%;
     background-size: cover;
     margin-top: 65px;
+}
 
-    }
-
-
-.profil_saya{
+.profil_saya {
     margin-top: 100px;
     margin-bottom: 100px;
 }
 
-.profil_saya .judul{
+.profil_saya .judul {
     text-align: center;
     font-weight: bold;
 }
 
-.profil_saya .card_profile{
+.profil_saya .card_profile {
     margin-top: 30px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
         rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
         rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
-
-    
 }
 
-.profil_saya .card_profile .image_profile{
+.profil_saya .card_profile .image_profile {
     margin-bottom: 16px;
 }
 
-.image_profile img{
+.image_profile img {
     height: 120px;
     width: 120px;
 }
-  
+
+
+
+.content-biro {
+    margin-top: 10px;
+    margin-bottom: 150px;
+}
+
+.content-biro .card-biro{
+    width: auto;
+    height: 280px;
+    margin-top: 50px;
+}
+
+.content-biro .card-biro .img-biro{
+    width: 100px;
+    height: 100px;
+}
+
+.content-detail-biro{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
 
 
 
@@ -631,9 +646,28 @@ c.mitra .card {
         margin-bottom: 120px;
     }
 
-
     .daftar-wisata {
         margin-top: 30px;
     }
 
+    .content-biro {
+        margin-top: 10px;
+        margin-bottom: 150px;
+    }
+
+    .content-biro .card-biro{
+        width: auto;
+        height: 280px;
+        margin-top: 50px;
+    }
+
+    .content-biro .card-biro .img-biro{
+        width: 100px;
+        height: 100px;
+    }
+
+    .content-detail-biro{
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
 }

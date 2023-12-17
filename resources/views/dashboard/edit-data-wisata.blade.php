@@ -25,29 +25,13 @@
                 <div class="col-12 grid-margin">
                     <div class="card card-primary card-outline">
                         <div class="card-header" style="background-color: white;">
-                            <h4 class="text-center ">Edit Paket Wisata</h4>
+                            <h5 class="text-center "> Form Edit Paket Wisata</h5>
                         </div>
                         <form class="form-sample" action="{{ url('/data-wisata/update/'.$wisata->id_wisata) }}" method="post" enctype="multipart/form-data">
                              @csrf
                             @method('put')
                             <div class="card-body">
                                 <input type="hidden" name="id" id="id" value="{{ $wisata->id }}">
-                                <!-- <div class="row">
-                                    <div class="col-md-10 ">
-                                        <div class="form-group row">
-                                            <label for="image" class="col-form-label">Image</label>
-                                            <input type="file" value="{{ $wisata->image}}" name="image" class="form-control">
-                                            <p class="fst-italic text-secondary">size foto maksimal 2 mb dan extensi jpg, png, jpeg</p>     
-                                        </div>             
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-grup">
-                                            @if ($wisata->image)
-                                            <img src="{{asset('storage/image/wisata/'.$wisata->image)}}" class="img-thumbnail" width="200">
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
@@ -103,7 +87,7 @@
                                         <div class="form-group row">
                                             <label for="harga" class="col-sm-3 col-form-label">Harga Wisata</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="{{ $wisata->harga}}" name="harga">
+                                                <input type="text" class="form-control"  id="hargaInput" value="{{ $wisata->harga}}" name="harga">
                                             </div>
                                         </div>
                                     </div>
@@ -138,14 +122,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="lokasi" class="col-sm-3 col-form-label">Highlight</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="{{ $wisata->lokasi}}" name="lokasi"> 
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="lokasi" class="col-sm-3 col-form-label">Highlight</label>
@@ -155,10 +131,6 @@
                                         </div>
                                     </div>
                                 </div>  
-                                <!-- <div class="form-group">
-                                    <label for="lokasi">Highlight</label>
-                                    <input type="text" class="form-control" value="{{ $wisata->lokasi}}" name="lokasi">
-                                </div> -->
                                 <div class="form-group">
                                     <label for="linklokasi">Link Lokasi</label>
                                     <input type="text" class="form-control" value="{{ $wisata->linklokasi}}" name="linklokasi">
@@ -204,6 +176,16 @@
         if (tanggalBerangkatInput.value < currentDate) {
             alert('Tanggal berangkat tidak boleh sebelum hari ini.');
             tanggalBerangkatInput.value = currentDate;
+        }
+    });
+</script>
+
+<script>
+    document.getElementById('hargaInput').addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+
+        if (parseInt(this.value) < 0) {
+            this.value = '0';
         }
     });
 </script>

@@ -45,7 +45,8 @@
                                                 @if(count($ulasan) > 0)
                                                     @foreach($ulasan as $item)
                                                         <div class="user-block">
-                                                            <img class="img-circle img-bordered-sm" src="/images/icon/dua.png" alt="user image">
+                                                            <img class="img-circle img-bordered-sm" src="{{asset('storage/image/user/'.$item->profile_picture)}}" alt="user image">
+                                                            
                                                             <span class="username">
                                                                 <h5>{{ $item->nama }}</h5>
                                                             </span>
@@ -62,6 +63,7 @@
                                                             @endfor
                                                         </p>
                                                         <p>{{ $item->komentar }}</p>
+                                                        <hr>
                                                     @endforeach
                                                 @else
                                                     <p>Belum ada ulasan.</p>

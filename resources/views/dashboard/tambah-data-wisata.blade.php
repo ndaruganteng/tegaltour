@@ -29,21 +29,6 @@
                         <div class="card-body">
                             <form class="form-sample" action="{{ route('Wisata.index') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                                <!-- <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="form-group mb-2">
-                                            <label for="image" class="col-form-label">Image</label>
-                                            <input type="file" class="form-control" id="image" required="required" name="image" accept="image/*" onchange="previewImage(event)">
-                                            @if ($errors->has('image'))
-                                                <div class="text-danger">{{ $errors->first('image') }}</div>
-                                            @endif
-                                            <p class="fst-italic text-secondary">size foto maksimal 2 mb dan extensi jpg, png, jpeg</p>     
-                                         </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <img id="image-preview" src="" class="img-thumbnail" style="display:none; max-width: 100%; max-height: 100px;" alt="Preview Image">
-                                    </div>
-                                </div>                                -->
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
@@ -105,11 +90,17 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group row">
+                                        <!-- <div class="form-group row">
                                             <label for="harga" class="col-sm-3 col-form-label">Harga Wisata</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" required="required"
-                                                    name="harga" value="{{ old('harga') }}" placeholder="Masukan Harga Wisata">
+                                                    name="harga" value="{{ old('harga') }}" min="0" placeholder="Masukan Harga Wisata">
+                                            </div>
+                                        </div> -->
+                                        <div class="form-group row">
+                                            <label for="harga" class="col-sm-3 col-form-label">Harga Wisata</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" required="required" name="harga" id="hargaInput" value="{{ old('harga') }}" placeholder="Masukkan Harga Wisata">
                                             </div>
                                         </div>
                                     </div>
@@ -173,7 +164,7 @@
                                     <input id="fasilitas" type="hidden" name="fasilitas" value="{{ old('fasilitas') }}">
                                     <trix-editor input="fasilitas"></trix-editor>
                                 </div>
-                                <div class="#">
+                                <div>
                                     <button type="submit" class="btn btn-secondary " value="Simpan Data">Simpan</button>
                                 </div>
                             </form>
@@ -231,6 +222,17 @@
         if (tanggalBerangkatInput.value < currentDate) {
             alert('Tanggal berangkat tidak boleh sebelum hari ini.');
             tanggalBerangkatInput.value = currentDate;
+        }
+    });
+</script>
+
+
+<script>
+    document.getElementById('hargaInput').addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+
+        if (parseInt(this.value) < 0) {
+            this.value = '0';
         }
     });
 </script>

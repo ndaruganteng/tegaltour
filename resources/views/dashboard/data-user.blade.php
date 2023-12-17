@@ -51,7 +51,11 @@
                                             @if($p->role == 'admin')
                                                 <tr>
                                                     <td>
+                                                    @if($p->profile_picture == null)
+                                                        <img src="https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg" class="rounded-circle" style="width:50px; heigth:auto;">
+                                                        @else
                                                         <img src="{{ asset('storage/image/user/' . $p->profile_picture) }}" class="rounded-circle" style="width:50px; heigth:auto;">
+                                                        @endif
                                                     </td>
                                                     <td>{{$p->nama_lengkap}}</td>
                                                     <td>{{$p->email}}</td>
@@ -107,7 +111,11 @@
                                             @if($p->role == 'mitra')
                                                 <tr>
                                                     <td>
+                                                        @if($p->profile_picture == null)
+                                                        <img src="https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg" class="rounded-circle" style="width:50px; heigth:auto;">
+                                                        @else
                                                         <img src="{{ asset('storage/image/user/' . $p->profile_picture) }}" class="rounded-circle" style="width:50px; heigth:auto;">
+                                                        @endif
                                                     </td>
                                                     <td>{{$p->nama_lengkap}}</td>
                                                     <td style="word-wrap: break-word; max-width: 200px;">{{$p->alamat}}</td>
@@ -120,7 +128,7 @@
                                                         <a href="https://api.whatsapp.com/send?phone={{$p->no_telepon}}#{{$p->id}}" target="_blank" class="btn btn-success btn-sm">
                                                             <i class="fa-brands fa-whatsapp"></i>
                                                         </a>
-                                                        <a href="/data-user/hapus_user/{{ $p->id }}" class="btn btn-danger btn-sm deleteuser">
+                                                        <a href="/data-user/hapus_user/{{ $p->id }}" class="btn btn-danger btn-sm deleteuser mt-1">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
                                                     </td>
@@ -163,7 +171,11 @@
                                             @if($p->role == 'user')
                                                 <tr>
                                                     <td>
+                                                    @if($p->profile_picture == null)
+                                                        <img src="https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg" class="rounded-circle" style="width:50px; heigth:auto;">
+                                                        @else
                                                         <img src="{{ asset('storage/image/user/' . $p->profile_picture) }}" class="rounded-circle" style="width:50px; heigth:auto;">
+                                                    @endif
                                                     </td>
                                                     <td>{{$p->nama_lengkap}}</td>
                                                     <td>{{$p->email}}</td>
@@ -193,8 +205,8 @@
     </div>
 
     <div class="modal fade" id="tambahadmin" tabindex="-1" role="dialog" aria-labelledby="tambahadminTitle" aria-hidden="true">
-        <div class="modal-dialog " role="document">
-            <div class="modal-content">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content ">
                 <div class="modal-header">
                     <h5 class="modal-title" id="tambahadminTitle">Tambah Data admin</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -203,7 +215,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="/register_admin"  method="post" enctype="multipart/form-data">
-                    @csrf
+                        @csrf
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-group">
@@ -245,7 +257,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="confirm_password">Konfirmasi Password</label>
                             <div class="input-group">
@@ -269,6 +280,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     const deleteButtons = document.querySelectorAll('.deleteuser');
     deleteButtons.forEach(button => {
@@ -295,25 +307,25 @@
 </script>
 
 <script>
-        function previewImage(event) {
-            var input = event.target;
-            var preview = document.getElementById('image-preview');
+    function previewImage(event) {
+        var input = event.target;
+        var preview = document.getElementById('image-preview');
 
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                };
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
 
-                reader.readAsDataURL(input.files[0]);
-            } else {
-                preview.src = "";
-                preview.style.display = 'none';
-            }
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.src = "";
+            preview.style.display = 'none';
         }
-    </script>
+    }
+</script>
 
 <script>
     function togglePassword(inputId) {
