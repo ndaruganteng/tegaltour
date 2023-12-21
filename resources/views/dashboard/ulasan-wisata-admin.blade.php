@@ -8,11 +8,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Ulasan Wisata</h1>
+                    <h1 class="m-0">Ulasan Wisata Admin</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item "><a href="{{ route('data-wisata.index') }}"> <i
+                        <li class="breadcrumb-item "><a href="{{ route('data-wisata-admin.index') }}"> <i
                                     class="fa-solid fa-arrow-left mr-2"></i>Kembali</a></li>
                     </ol>
                 </div>

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 
 class DatauserController extends Controller
@@ -23,15 +24,35 @@ class DatauserController extends Controller
         return view('dashboard.data-user',['users' => $users]);
     }
 
-    // view join mitra
+    // view REQQUEST MITRA 
+    // public function join_mitra()
+    // {   
+    // 	$users = DB::table('users')
+    //     ->where('status', null)
+    //     ->get();
+
+    //     return view('dashboard.request-mitra',['users' => $users]);
+    // }
     public function join_mitra()
     {   
-    	$users = DB::table('users')
-        ->where('status', null)
-        ->get();
+        // Assuming $newMitraRequests is calculated or fetched somewhere in your code
+        $newMitraRequests = User::where('status', 'new')->count();
 
-        return view('dashboard.request-mitra',['users' => $users]);
+        $users = DB::table('users')
+            ->where('status', null)
+            ->get();
+
+        return view('dashboard.request-mitra', ['users' => $users, 'newMitraRequests' => $newMitraRequests]);
     }
+
+    // public function boot()
+    // {
+    //     $newMitraRequests = DB::table('mitra_requests')->where('status', 'new')->count();
+
+    //     View::share('newMitraRequests', $newMitraRequests);
+    // }
+        
+
 
     // hapus user
     public function hapus_user($id)

@@ -63,9 +63,6 @@ class DashboardController extends Controller
 
     $totalPotongan = $destinasi->sum('potongan');
     
-    
-
-
         $destinasi = Wisata::select(
             'wisata.namawisata',
             DB::raw('COUNT(pemesanan.id_pemesanan) as total_pemesan'),
@@ -96,5 +93,6 @@ class DashboardController extends Controller
         'totalHargaPotong'
         ));
     }
+
 
 }

@@ -77,12 +77,28 @@
                     <a href="{{route('data-order-admin.index')}}" class="nav-link">
                         <i class="nav-icon fa-solid fa-cart-shopping"></i>
                         <p>Data Order</p>
+                        @if($newOrders > 0)
+                        <span class="right badge badge-danger">{{ $newOrders }}</span>
+                        @endif
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="{{route('request-mitra.index')}}" class="nav-link">
                         <i class="nav-icon fa-solid fa-handshake"></i>
+                        <p>
+                            <span class="right badge badge-danger">New</span>
+                        </p>
                         <p>Request Mitra</p>
+                    </a>
+                </li> -->
+                <li class="nav-item">
+                    <a href="{{ route('request-mitra.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-handshake"></i>
+                        <p>Request Mitra</p>
+                        @if($newMitraRequests > 0)
+                        <span class="right badge badge-danger">{{ $newMitraRequests }}</span>
+                        @endif
+
                     </a>
                 </li>
                 <li class="nav-header">Keuangan</li>

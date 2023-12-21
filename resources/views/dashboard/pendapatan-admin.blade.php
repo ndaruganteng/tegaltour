@@ -27,10 +27,11 @@
                     <div class="card card-dark card-outline">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="" class="table table-bordered text-center" style="width:100%">
-                                    <thead style="background-color: black;">
+                                <table id="jumlahpendapatanadmin-table"
+                                    class="table table-striped  table-bordered text-center" style="width:100%">
+                                    <thead>
                                         <tr>
-                                            <th style="color: white;">Total Pendapatan</th>
+                                            <th>Total Pendapatan</th>
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -1,10 +1,11 @@
-@extends('landing.layouts.app') 
+@extends('landing.layouts.app')
 @section('content')
 
 <div class="content-wrapper">
     <section id="detail-biro-wisata">
         <div class="image-tour text-center">
-            <img src="{{asset('storage/image/wisata/'.$detail_wisata->image)}}" class="img-fluid" alt="detail-tour image" />
+            <img src="{{asset('storage/image/wisata/'.$detail_wisata->image)}}" class="img-fluid"
+                alt="detail-tour image" />
         </div>
         <div class="judul-tour">
             <div class="container">
@@ -26,7 +27,8 @@
                                 <div class="col-lg">
                                     <img src="/images/detail-tour/calendar.png" class="float-left" />
                                     <h4>Tanggal Berangkat</h4>
-                                    <p>{{ \Carbon\Carbon::parse($detail_wisata->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
+                                    <p>{{ \Carbon\Carbon::parse($detail_wisata->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}
+                                    </p>
                                 </div>
                                 <div class="col-lg">
                                     <img src="/images/detail-tour/jam.png" class="float-left" />
@@ -40,7 +42,7 @@
                             <p>{{ $detail_wisata->titikkumpul }}</p>
                         </div>
                         <div class="col-lg-12 deskripsi ">
-                            <h3>Highlight Wisata</h3>                
+                            <h3>Highlight Wisata</h3>
                             <p>{{ $detail_wisata->lokasi }}</p>
                         </div>
                         <div class="col-lg-12 deskripsi">
@@ -55,8 +57,9 @@
                             <div class="card text-center border shadow-2 rounded-0">
                                 <div class="card-header d-flex justify-content-between">
                                     <h3>lokasi wisata</h3>
-                                    <a class="btn btn-dark btn-rounded btn-sm shadow-0" href="{{ $detail_wisata->linklokasi }}" target="_blank"
-                                         style="text-transform: lowercase;"> 
+                                    <a class="btn btn-dark btn-rounded btn-sm shadow-0"
+                                        href="{{ $detail_wisata->linklokasi }}" target="_blank"
+                                        style="text-transform: lowercase;">
                                         <i class="fa-solid fa-location-dot me-1"></i>
                                         detail lokasi
                                     </a>
@@ -71,33 +74,52 @@
                         </div>
                         <div class="col-lg-12 penilaian">
                             <div class="card border shadow-0 rounded-0">
-                                <div class="card-header fs-4">Ulasan</div>
-                                @if($ulasan->isEmpty())
-                                    <h1 class="text-center">belum Ada ulasan</h1>
-                                @else
-                                    @foreach($ulasan as $item) 
-                                    <div class="card-body mt-2">                             
-                                        <div class="row">
-                                            <div class="col-lg-3">
-                                                <img src="{{ asset('storage/image/user/' . $item->profile_picture) }}" class="float-left me-3 rounded-circle" />
-                                                <h1 class="pt-2">{{ $item->nama }}</h1> 
-                                            </div>
-                                            <div class="col-lg-9">
-                                                @for ($i = 1; $i <= $item->rating; $i++)
-                                                    <span class="fa fa-star checked"></span>
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p style="font-size: 24px; margin-bottom: 0;">Ulasan </p>
+                                        <div class="rating-container text-center d-flex align-items-center">
+                                            @for ($i = 1; $i <= 5; $i++) @if ($i <=round($averageRating)) <i
+                                                class="fa fa-star checked"></i>
+                                                @else
+                                                <i class="fa fa-star"></i>
+                                                @endif
                                                 @endfor
-                                                @for ($i = $item->rating + 1; $i <= 5; $i++)
-                                                    <span class="fa fa-star"></span>
-                                                @endfor
-                                                <h2> <strong>Ulasan Biro Wisata </strong><br>{{ $item->komentar }}</h2>
-                                                <h2> <strong>Ulasan Tempat Wisata </strong><br>{{ $item->komentar_wisata }}</h2>
-                                                <h4>{{ \Carbon\Carbon::parse($item->date)->locale('id')->isoFormat('dddd, D MMMM Y') }}</h4>
-                                                <hr>
-                                            </div>
-
+                                                <span class="ml-2">( {{ number_format($averageRating, 1, '.', '') }}/5
+                                                    )</span>
                                         </div>
                                     </div>
-                                    @endforeach
+                                </div>
+                                @if($ulasan->isEmpty())
+                                <h1 class="text-center">belum Ada ulasan</h1>
+                                @else
+                                @foreach($ulasan as $item)
+                                <div class="card-body mt-2">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <img src="{{ asset('storage/image/user/' . $item->profile_picture) }}"
+                                                class="float-left me-3 rounded-circle" />
+                                            <h1 class="pt-2">{{ $item->nama }}</h1>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            @for ($i = 1; $i <= $item->rating; $i++)
+                                                <span class="fa fa-star checked"></span>
+                                                @endfor
+                                                @for ($i = $item->rating + 1; $i <= 5; $i++) <span class="fa fa-star">
+                                                    </span>
+                                                    @endfor
+                                                    <h2> <strong>Ulasan Biro Wisata
+                                                        </strong><br>{{ $item->komentar }}
+                                                    </h2>
+                                                    <h2> <strong>Ulasan Tempat Wisata
+                                                        </strong><br>{{ $item->komentar_wisata }}</h2>
+                                                    <h4>{{ \Carbon\Carbon::parse($item->date)->locale('id')->isoFormat('dddd, D MMMM Y') }}
+                                                    </h4>
+                                                    <hr>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                @endforeach
                                 @endif
                             </div>
                         </div>
@@ -106,10 +128,12 @@
                         <div class="col-lg-12 host">
                             <div class="card text-center border border-2 shadow-0">
                                 <div class="card-body">
-                                    <img src="{{ asset('storage/image/user/' . $mitra->profile_picture) }}" class="rounded-circle border border-dark">
-                                    <p class="card-text">{{$mitra->nama_lengkap}}<i class="fas fa-check-circle" style="color: #1fbd00"></i></p>                              
-                                    <a href="https://api.whatsapp.com/send?phone={{$mitra->no_telepon}}" target="_blank" type="button"
-                                        class="btn btn-dark shadow-0">
+                                    <img src="{{ asset('storage/image/user/' . $mitra->profile_picture) }}"
+                                        class="rounded-circle border border-dark">
+                                    <p class="card-text">{{$mitra->nama_lengkap}}<i class="fas fa-check-circle"
+                                            style="color: #1fbd00"></i></p>
+                                    <a href="https://api.whatsapp.com/send?phone={{$mitra->no_telepon}}" target="_blank"
+                                        type="button" class="btn btn-dark shadow-0">
                                         <i class="fa-brands fa-whatsapp me-2"></i>
                                         Chat Host
                                     </a>
@@ -126,43 +150,48 @@
                         </div>
                         <div class="col-lg-12 booking">
                             @if (Auth::check())
-                                <div class="card text-center border border-2">
-                                    <div class="card-header fw-blod">-BOOKING-</div>
-                                    <div class="card-body">
-                                        <form action="/boking" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="form-outline mb-4" style="display: none;">
-                                                <input class="form-control bg-white" name="id_wisata"
-                                                value="{{ $detail_wisata->id_wisata }}" readonly/>
-                                            </div>
-                                            <div class="form-outline mb-4" style="display: none;">
-                                                <input class="form-control bg-white"  name="id_mitra"
-                                                value="{{ $detail_wisata->id_mitra }}" readonly/>
-                                            </div>
-                                            <div class="form-outline mb-4" style="display: none;">
-                                                <input class="form-control bg-white" name="id_user"
-                                                value="{{ Auth::user()->id }}" readonly/>
-                                            </div>
-                                            <div class="form-outline mb-4"  style="display: none;">
-                                                <input class="form-control" name="harga_satuan" id="hargasatuan" type="text"
-                                                    value="{{ $detail_wisata->harga }}"  onchange="updateHargaTotal()" readonly/>
-                                                <label class="form-label" for="hargasatuan">Harga /pax</label>
-                                            </div>
-                                            <div class="form-outline mb-4">
-                                                <input type="number" min="1" name="jumlah_orang" id="jumlahorang" class="form-control" onchange="updateHargaTotal()"/>
-                                                <label class="form-label" for="jumlahorang" require>Jumlah Orang</label>
-                                            </div>                         
-                                            <div class="form-outline mb-4">
-                                                <input class="form-control bg-white" id="viewhargatotal" type="text" placeholder="Total Harga" readonly/>
-                                            </div>
-                                            <div class="form-outline mb-4">
-                                                <input class="form-control bg-white" name="harga_total" id="hargatotal" type="text" placeholder="Total Harga" hidden/>
-                                            </div>
-                                            <button type="submit"
-                                                class="btn btn-dark btn-block mb-4">Pesan Sekarang</button>
-                                        </form>
-                                    </div>
+                            <div class="card text-center border border-2">
+                                <div class="card-header fw-blod">-BOOKING-</div>
+                                <div class="card-body">
+                                    <form action="/boking" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-outline mb-4" style="display: none;">
+                                            <input class="form-control bg-white" name="id_wisata"
+                                                value="{{ $detail_wisata->id_wisata }}" readonly />
+                                        </div>
+                                        <div class="form-outline mb-4" style="display: none;">
+                                            <input class="form-control bg-white" name="id_mitra"
+                                                value="{{ $detail_wisata->id_mitra }}" readonly />
+                                        </div>
+                                        <div class="form-outline mb-4" style="display: none;">
+                                            <input class="form-control bg-white" name="id_user"
+                                                value="{{ Auth::user()->id }}" readonly />
+                                        </div>
+                                        <div class="form-outline mb-4" style="display: none;">
+                                            <input class="form-control" name="harga_satuan" id="hargasatuan" type="text"
+                                                value="{{ $detail_wisata->harga }}" onchange="updateHargaTotal()"
+                                                readonly />
+                                            <label class="form-label" for="hargasatuan">Harga /pax</label>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input type="number" min="1" name="jumlah_orang" id="jumlahorang"
+                                                class="form-control" onchange="updateHargaTotal()" />
+                                            <label class="form-label" for="jumlahorang" require>Jumlah
+                                                Orang</label>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input class="form-control bg-white" id="viewhargatotal" type="text"
+                                                placeholder="Total Harga" readonly />
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input class="form-control bg-white" name="harga_total" id="hargatotal"
+                                                type="text" placeholder="Total Harga" hidden />
+                                        </div>
+                                        <button type="submit" class="btn btn-dark btn-block mb-4">Pesan
+                                            Sekarang</button>
+                                    </form>
                                 </div>
+                            </div>
                             @endif
                         </div>
                     </div>
@@ -172,20 +201,33 @@
     </section>
 
     <script>
-        function updateHargaTotal() {
+    function updateHargaTotal() {
         const jumlahOrang = parseFloat(document.getElementById('jumlahorang').value);
         const hargaSatuan = parseFloat(document.getElementById('hargasatuan').value);
         const hargaTotal = isNaN(jumlahOrang) || isNaN(hargaSatuan) ? '' : jumlahOrang * hargaSatuan;
         document.getElementById('hargatotal').value = hargaTotal;
-        const viewhargaTotal = isNaN(jumlahOrang) || isNaN(hargaSatuan) ? '' : (jumlahOrang * hargaSatuan).toLocaleString('id-ID', {
-            style: 'currency',
-            currency: 'IDR'
-        });
+        const viewhargaTotal = isNaN(jumlahOrang) || isNaN(hargaSatuan) ? '' : (jumlahOrang * hargaSatuan)
+            .toLocaleString('id-ID', {
+                style: 'currency',
+                currency: 'IDR'
+            });
         document.getElementById('viewhargatotal').value = viewhargaTotal;
-        }
+    }
     </script>
 
-    <style>.checked { color: orange; }</style> 
+    <style>
+    /* Gaya CSS */
+    .checked {
+        color: #f7d943;
+        font-size: 18px;
+        /* Sesuaikan ukuran ikon bintang */
+    }
+
+    .rating-container {
+        margin-left: 14px;
+        /* Sesuaikan jarak antara ikon bintang dan nilai rata-rata */
+    }
+    </style>
 
 </div>
 @endsection

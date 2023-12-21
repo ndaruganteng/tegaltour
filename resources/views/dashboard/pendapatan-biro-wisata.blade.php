@@ -37,6 +37,7 @@
                                             <th>Total Pendapatan Kotor</th>
                                             <th>Total Pendapatan Bersih</th>
                                             <th>Total Potongan Admin</th>
+                                            <th>Pajak</th>
                                             <!-- <th>Status Pendapatan</th>
                                             <th>Aksi</th> -->
                                         </tr>
@@ -48,12 +49,13 @@
                                             <td>{{ $wisata->namawisata }}</td>
                                             <td>{{ $wisata->total_pemesan }}</td>
                                             <td>
-                                                Rp{{ rtrim(number_format($wisata->total_harga, 2, ',', '.'), '0') }}
+                                                Rp{{ number_format($wisata->total_harga, 2, ',', '.'), '0' }}
                                             </td>
                                             <td>
-                                                Rp{{ rtrim(number_format($wisata->total_harga_potong, 2, ',', '.'), '0') }}
+                                                Rp{{ number_format($wisata->total_harga_potong, 2, ',', '.'), '0' }}
                                             </td>
                                             <td>Rp{{ rtrim(number_format($wisata->potongan, 2, ',', '.'), '0') }}</td>
+                                            <td><span class="badge badge-dark">10%</span></td>
                                             <!-- <td>
                                                 @if ($wisata->status_pendapatan == 1)
                                                 <span class="badge badge-success">Ditarik</span>

@@ -117,16 +117,16 @@
                                         <p>{{ $item->namawisata }}</p>
                                     </a>
                                     <div class="d-flex align-items-center ">
-                                        <span class="rating d-flex align-items-center">
-                                            @for ($i = 1; $i <= 5; $i++) @if ($i <=round($item->getAverageRating()))
-                                                <i class="fa fa-star checked"></i>
+                                        <div class="rating-container text-center d-flex align-items-center">
+                                            @for ($i = 1; $i <= 5; $i++) @if ($i <=round($item->getAverageRating()))<i
+                                                    class="fa fa-star checked"></i>
                                                 @else
                                                 <i class="fa fa-star"></i>
                                                 @endif
                                                 @endfor
-                                        </span>
-                                        <div class="ml-2 rating-text align-middle">
-                                            {{ number_format($item->getAverageRating(), 1, '.', '') }}/5
+                                                <span class="ml-2">(
+                                                    {{ number_format($item->getAverageRating(), 1, '.', '') }}/5
+                                                    )</span>
                                         </div>
                                     </div>
                                     <h3 class="card-text harga">Rp {{ number_format($item->harga, 0, ',', '.') }} <span

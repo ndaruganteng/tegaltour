@@ -112,7 +112,7 @@
                         <div class="icon">
                             <i class=" fa-regular fa-handshake"></i>
                         </div>
-                        <a href="{{ route('data-user.index') }}" class="small-box-footer">More info <i
+                        <a href="{{ route('request-mitra.index') }}" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -155,7 +155,7 @@
                         <div class="icon">
                             <i class="ion fa-solid fa-money-check-dollar"></i>
                         </div>
-                        <a href="{{ route('status-perjalanan.index') }}" class="small-box-footer">More info <i
+                        <a href="{{ route('pendapatan.index') }}" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>

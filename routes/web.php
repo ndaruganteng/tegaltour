@@ -87,9 +87,6 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){
 
 Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 
-    //DASHBOARD
-    Route::get('/request-mitra', [DashboardController::class, 'requestmitra'])->name('request-mitra.index');
-
     //DATA WISATA
     Route::get('/data-wisata-admin', [DatawisataController::class, 'wisata_admin'])->name('data-wisata-admin.index');
     Route::pattern('id', '[0-9]+');
@@ -146,6 +143,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 
     // ULASAN WISATA
     Route::get('/ulasan-wisata/{id}', [UlasanController::class, 'ulasan_wisata'])->name('ulasan-wisata');
+    Route::get('/ulasan-wisata-admin/{id}', [UlasanController::class, 'ulasan_wisata_admin'])->name('ulasan-wisata-admin');
 });
 
 
