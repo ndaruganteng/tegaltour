@@ -22,14 +22,12 @@ use App\Http\Controllers\Dashboard\DatarekeningController;
 use App\Http\Controllers\Dashboard\RequestmitraController;
 use App\Http\Controllers\Dashboard\DatauserController;
 use App\Http\Controllers\Dashboard\DatakategoriController;
+use App\Http\Controllers\Dashboard\PendapatanController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-
-
-
-
+use App\Http\Controllers\OrderController;
 
 //AUTH
 Route::group(['middleware' => ['guest']], function(){
@@ -66,10 +64,10 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){
     Route::get('/detail-data-wisata/{id}', [DetaildatawisataController::class,'showdetail']);
 
     //DATA REKENINGG
-    Route::get('/data-rekening', [DatarekeningController::class, 'index'])->name('data-rekening.index');
-    Route::post('/data-rekening', [DatarekeningController::class, 'store'])->name('Rekening.index');
-    Route::put('/data-rekening/update/{id_rekening}', [DatarekeningController::class, 'update'])->name('updateRekening.index');
-    Route::get('/data-rekening/hapus/{id_rekening}', [DatarekeningController::class, 'hapus'])->name('hapus.index');
+    // Route::get('/data-rekening', [DatarekeningController::class, 'index'])->name('data-rekening.index');
+    // Route::post('/data-rekening', [DatarekeningController::class, 'store'])->name('Rekening.index');
+    // Route::put('/data-rekening/update/{id_rekening}', [DatarekeningController::class, 'update'])->name('updateRekening.index');
+    // Route::get('/data-rekening/hapus/{id_rekening}', [DatarekeningController::class, 'hapus'])->name('hapus.index');
 
     // DATA-ORDER
     Route::get('/data-order', [PemesananController::class, 'data_order'])->name('data-order.index');
@@ -78,6 +76,11 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){
     Route::get('/status-perjalanan', [PemesananController::class, 'status_perjalanan'])->name('status-perjalanan.index');
     Route::put('/berangkat/{id_pemesanan}', [PemesananController::class, 'berangkat'])->name('berangkat');
     Route::put('/selesai/{id_pemesanan}', [PemesananController::class, 'selesai'])->name('selesai');
+
+    // PENDAPATAN
+    Route::get('/pendapatan', [PendapatanController::class, 'index'])->name('pendapatan.index');
+
+
 
 });
 
@@ -110,10 +113,23 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 
     // DATA ORDER
     Route::get('/data-order-admin', [PemesananController::class, 'pemesanan_admin'])->name('data-order-admin.index');
+    Route::put('/konfirmasi/{id_pemesanan}', [PemesananController::class, 'konfirmasi'])->name('konfirmasi');
+    Route::put('/canceladmin/{id_pemesanan}', [PemesananController::class, 'canceladmin'])->name('canceladmin');
+
 
     // regist admin
     Route::post('/register_admin', [RegisterController::class, 'store_admin'])->name('register.store_admin');
 
+    //DATA REKENINGG
+    Route::get('/data-rekening', [DatarekeningController::class, 'index'])->name('data-rekening.index');
+    Route::post('/data-rekening', [DatarekeningController::class, 'store'])->name('Rekening.index');
+    Route::put('/data-rekening/update/{id_rekening}', [DatarekeningController::class, 'update'])->name('updateRekening.index');
+    Route::get('/data-rekening/hapus/{id_rekening}', [DatarekeningController::class, 'hapus'])->name('hapus.index');
+    
+    // PENDAPATAN ADMIN
+    Route::get('/pendapatan-admin', [PendapatanController::class, 'view_pendapatan'])->name('pendapatan-admin.index');
+    Route::get('/pendapatan-biro-wisata', [PendapatanController::class, 'view_pendapatan_biro'])->name('pendapatan-biro-wisata.index');
+    Route::put('/tarikSaldo/{id_wisata}', [PendapatanController::class, 'tarikSaldo'])->name('tarikSaldo');
  });
 
 
@@ -143,8 +159,9 @@ Route::get('/search_date', function (Request $request) {
     $endDate = $request->input('end-date'); 
     $kategori = kategori::all();
     $wisata = DB::table('wisata')
+    ->join('users', 'users.id', '=', 'wisata.id_mitra')
     ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
-    ->select('wisata.*', 'kategori.nama_kategori as kategori')
+    ->select('wisata.*', 'kategori.nama_kategori as kategori', 'users.nama_lengkap as nama_lengkap')
     ->whereBetween('tanggalberangkat', [$startDate, $endDate])
     ->get();
     return view('landing.wisata', compact('wisata','kategori'));
@@ -153,6 +170,7 @@ Route::get('/search_date', function (Request $request) {
 
 // SEARCH WISATA
 Route::get('/search',[WisataController::class, 'search'])->name('wisata.search');
+Route::get('/search_biro_wisata',[BirowisataController::class, 'search_biro_wisata'])->name('wisata.search_biro_wisata');
 
 // PEMESANAN
 Route::post('/boking', [PemesananController::class, 'store']);

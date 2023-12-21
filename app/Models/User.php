@@ -27,6 +27,7 @@ class User extends Authenticatable
         'status',
         'alamat',
         'bukti_mitra',
+        'rekening',
     ];
 
     /**

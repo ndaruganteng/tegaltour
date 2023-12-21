@@ -38,7 +38,7 @@ class DatauserController extends Controller
     {
         $user = User::find($id);
         if (!$user) {
-            return back()->with('error', "Data user tidak ditemukan!");
+            return back()->with('toast_error', "Data user tidak ditemukan!");
         }
         $profilePicture = $user->profile_picture;
         if ($profilePicture) {
@@ -46,7 +46,7 @@ class DatauserController extends Controller
         }
         $user->delete();
     
-        return back()->with('success', "Data user berhasil dihapus!");
+        return back()->with('toast_success', "Data user berhasil dihapus!");
     }
 
     // view profile
@@ -62,6 +62,7 @@ class DatauserController extends Controller
     
         $request->validate([
             'nama_lengkap' => ['required'],
+            'rekening' => ['required'],
             'no_telepon' => ['required', 'numeric', 'digits_between:11,13'],
             'profile_picture' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ], [
@@ -76,6 +77,7 @@ class DatauserController extends Controller
         $user->nama_lengkap = $request->input('nama_lengkap');
         $user->no_telepon = $request->input('no_telepon');
         $user->alamat = $request->input('alamat');
+        $user->rekening = $request->input('rekening');
     
         if ($request->hasFile('profile_picture')) {
             if ($user->profile_picture) {
@@ -90,6 +92,6 @@ class DatauserController extends Controller
     
         $user->save();
     
-        return redirect()->route('profile')->with('success', 'Profil berhasil diperbarui.');
+        return redirect()->route('profile')->with('toast_success', 'Profil berhasil diperbarui.');
     }
 }

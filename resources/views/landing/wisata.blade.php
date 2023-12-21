@@ -4,8 +4,8 @@
 <div class="content-wrapper">
 
     <!-- Jumbotron -->
-    <div class="p-5 text-center bg-image tour" style="background-image: url('https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80'); 
-         height: 500px">
+    <div class="p-5 text-center bg-image tour" style="background-image: url('https://img.freepik.com/free-photo/travel-items-assortment-top-view_23-2149617655.jpg?size=626&ext=jpg&ga=GA1.2.1961799179.1697825242&semt=ais'); 
+         height: 400px">
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div class="text-white">
@@ -20,18 +20,18 @@
     <div class="container mt-5">
         <h1 class="text-center judul-date ">Cari Wisata Dengan Range Tanggal</h1>
         <div class="row justify-content-center">
-            <div class="col-10 info-panel" >
+            <div class="col-12 info-panel">
                 <form class="justify-content-center" action="{{route('wisata.search_date') }}" method="GET">
                     <div class="row" date-rangepicker>
                         <div class="col-md">
                             <div class="form-outline ">
-                                <input type="date" name="start-date" class="form-control"/>
+                                <input type="date" name="start-date" class="form-control" min="{{ date('Y-m-d') }}" />
                                 <label class="form-label" for="stardate">Dari Tanggal</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-outline ">
-                                <input type="date" name="end-date" class="form-control"/>
+                                <input type="date" name="end-date" class="form-control" min="{{ date('Y-m-d') }}" />
                                 <label class="form-label" for="end-date">Sampai Tanggal</label>
                             </div>
                         </div>
@@ -46,11 +46,11 @@
     <!-- end info-panel -->
 
     <!-- card -->
-    <div class="container mt-5 mb-5 tour-card "> 
+    <div class="container mt-5 mb-5 tour-card ">
         <div class="row">
             <div class="col md-12 col-lg-3">
                 <div class="col-lg-12">
-                    <div class="card shadow-0 border rounded-0">
+                    <div class="card shadow-0 border rounded-0" style="height: auto;">
                         <div class="card-header fs-5 text-center">FILTER</div>
                         <div class="card-body">
                             <div class="kategori">
@@ -76,7 +76,7 @@
                                     <option value="Rp 200.000 /orang">Rp 200.000</option>
                                 </select>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,8 +84,8 @@
                 <div class="col-lg-12 daftar-wisata">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <h4>Daftar Wisata</h4>
-                        </div>    
+                            <h4>Daftar Paket Wisata</h4>
+                        </div>
                         <div>
                             <form action="{{route('wisata.search') }}">
                                 <div class="input-group" style="width: 200px;">
@@ -102,26 +102,43 @@
                     </div>
                 </div>
                 <div class="col-lg-12 ">
-                    <div class="row" id="wisata-list" >
+                    <div class="row" id="wisata-list">
                         @foreach($wisata as $item)
-                            @if($item->status_wisata == null)                            
-                                <div class="col-md-12 col-lg-4 tour-card">                     
-                                    <div class="card shadow-0 border border-2">
-                                        <a href="/{{ ($item->id_wisata) }}/{{$item->slug}}" class="bg-image hover-zoom">
-                                            <img class="card-img-top " src="{{asset('storage/image/wisata/'.$item->image)}}" alt="Card image cap w-100"
-                                                style="height:180px;">
-                                        </a>
-                                        <div class="card-body">
-                                            <span class="badge badge-dark">{{ $item->kategori }}</span>
-                                            <a href="/{{ ($item->id_wisata) }}/{{$item->slug}}" class="mt-2">
-                                                <p>{{ $item->namawisata }}</p>
-                                            </a>
-                                            <h3 class="card-text harga">Rp {{ number_format($item->harga, 0, ',', '.') }} <span style="color: grey;">/orang</span></h3>
-                                        </div>                      
-                                    </div>  
+                        @if($item->status_wisata == null)
+                        <div class="col-md-12 col-lg-4 tour-card">
+                            <div class="card shadow-0 border border-2">
+                                <a href="/{{ ($item->id_wisata) }}/{{$item->slug}}" class="bg-image hover-zoom">
+                                    <img class="card-img-top " src="{{asset('storage/image/wisata/'.$item->image)}}"
+                                        alt="Card image cap w-100" style="height:180px;">
+                                </a>
+                                <div class="card-body">
+                                    <span class="badge badge-dark">{{ $item->kategori }}</span>
+                                    <a href="/{{ ($item->id_wisata) }}/{{$item->slug}}" class="mt-2">
+                                        <p>{{ $item->namawisata }}</p>
+                                    </a>
+                                    <div class="d-flex align-items-center ">
+                                        <span class="rating d-flex align-items-center">
+                                            @for ($i = 1; $i <= 5; $i++) @if ($i <=round($item->getAverageRating()))
+                                                <i class="fa fa-star checked"></i>
+                                                @else
+                                                <i class="fa fa-star"></i>
+                                                @endif
+                                                @endfor
+                                        </span>
+                                        <div class="ml-2 rating-text align-middle">
+                                            {{ number_format($item->getAverageRating(), 1, '.', '') }}/5
+                                        </div>
+                                    </div>
+                                    <h3 class="card-text harga">Rp {{ number_format($item->harga, 0, ',', '.') }} <span
+                                            style="color: grey;">/orang</span></h3>
+                                    <h5 class="text-center" style="font-size: 12px; margin-top: 14px;">-
+                                        {{ $item->nama_lengkap}} -
+                                    </h5>
                                 </div>
-                            @endif                        
-                        @endforeach                       
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach
                         <div id="no-category-found" style="display: none;">
                             Tidak Ada Wisata
                         </div>
@@ -129,7 +146,7 @@
                 </div>
                 <div class="col-lg-12 pagination mt-4 ">
                     <div class="col-lg-12">
-                        <div class="text-center">                          
+                        <div class="text-center">
                         </div>
                     </div>
                 </div>
@@ -138,48 +155,82 @@
     </div>
     <!-- end card -->
 
+    <style>
+    /* Di dalam stylesheet Anda */
+    .rating {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        /* Sesuaikan ukuran bintang */
+    }
+
+    .rating>i {
+        margin: 0 2px;
+        font-size: 0.9em;
+        /* Sesuaikan ukuran bintang */
+    }
+
+    .checked {
+        color: #f7d943;
+        /* Warna yang sesuai dengan nilai tertinggi */
+    }
+
+    .rating-text {
+        line-height: 1.2;
+        /* Sesuaikan dengan kebutuhan */
+        font-size: 14px;
+    }
+
+    .align-middle {
+        vertical-align: middle;
+        /* Menyusun teks agar sejajar dengan bintang */
+    }
+    </style>
+
 </div>
 
 <script>
-    const filterCategorySelect = document.getElementById("filter_kategori");
-    const filterHargaSelect = document.getElementById("filter_harga");
-    const wisataList = document.getElementById("wisata-list");
-    const noCategoryFound = document.getElementById("no-category-found");
+const filterCategorySelect = document.getElementById("filter_kategori");
+const filterHargaSelect = document.getElementById("filter_harga");
+const wisataList = document.getElementById("wisata-list");
+const noCategoryFound = document.getElementById("no-category-found");
 
-    filterCategorySelect.addEventListener("change", filterItems);
-    filterHargaSelect.addEventListener("change", filterItems);
+filterCategorySelect.addEventListener("change", filterItems);
+filterHargaSelect.addEventListener("change", filterItems);
 
-    function filterItems() {
-        const selectedCategory = filterCategorySelect.value;
-        const selectedHarga = filterHargaSelect.value;
+function filterItems() {
+    const selectedCategory = filterCategorySelect.value;
+    const selectedHarga = filterHargaSelect.value;
 
-        const items = wisataList.getElementsByClassName("tour-card");
-        let found = false;
+    const items = wisataList.getElementsByClassName("tour-card");
+    let found = false;
 
-        for (const item of items) {
-            const category = item.querySelector(".badge").textContent;
-            const harga = item.querySelector(".harga").textContent;
+    for (const item of items) {
+        const category = item.querySelector(".badge").textContent;
+        const harga = item.querySelector(".harga").textContent;
 
-            if (
-                (selectedCategory === "" || category === selectedCategory) &&
-                (selectedHarga === "" || harga.includes(selectedHarga))
-            ) {
-                item.style.display = "block";
-                found = true;
-            } else {
-                item.style.display = "none";
-            }
-        }
-
-        if (!found) {
-            noCategoryFound.style.display = "block";
+        if (
+            (selectedCategory === "" || category === selectedCategory) &&
+            (selectedHarga === "" || harga.includes(selectedHarga))
+        ) {
+            item.style.display = "block";
+            found = true;
         } else {
-            noCategoryFound.style.display = "none";
+            item.style.display = "none";
         }
     }
 
-    filterItems();
+    if (!found) {
+        noCategoryFound.style.display = "block";
+    } else {
+        noCategoryFound.style.display = "none";
+    }
+}
+
+filterItems();
 </script>
+
+
 
 
 

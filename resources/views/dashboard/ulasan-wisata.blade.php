@@ -62,7 +62,11 @@
                                                                 <span class="fa fa-star"></span>
                                                             @endfor
                                                         </p>
-                                                        <p>{{ $item->komentar }}</p>
+                                                        <p>
+                                                            <strong>Ulasan Untuk Biro Wisata :</strong> <br> {{ $item->komentar }}
+                                                        </p>
+                                                        <p>
+                                                            <strong>Ulasan Untuk Tempat Wisata :</strong> <br>{{ $item->komentar_wisata }}</p>
                                                         <hr>
                                                     @endforeach
                                                 @else

@@ -24,10 +24,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-primary card-outline">
+                    <div class="card card-dark card-outline">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="paket-table" class="table table-striped table-bordered text-center" style="width:100%">
+                                <table id="paket-table" class="table table-responsive table-striped table-bordered text-center" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Nama Mitra</th>

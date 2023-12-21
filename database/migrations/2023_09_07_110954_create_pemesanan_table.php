@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('harga_total');
             $table->string('status')->nullable();
             $table->string('status_perjalanan')->nullable();
+            $table->string('status_pendapatan')->nullable();
             $table->string ('bukti_pembayaran')->nullable();
             $table->timestamp('date')->nullable();
             $table->timestamps();

@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ulasan', function (Blueprint $table) {
-            $table->id('id_ulasan');
-            $table->integer('id_wisata');
-            $table->integer('id_user');
-            $table->string('komentar');
-            $table->string('komentar_wisata');
-            $table->string('rating');
-            $table->timestamp('date')->nullable();
+        Schema::create('mitra', function (Blueprint $table) {
+            $table->id('id_mitra');
+            $table->string('nama_lengkap');
+            $table->string('nama_bisnis');
+            $table->string('telepon');
+            $table->string('alamat');
+            $table->string('email');
+            $table->string('password');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ulasan');
+        Schema::dropIfExists('mitra');
     }
 };

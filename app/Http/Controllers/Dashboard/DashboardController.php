@@ -36,26 +36,64 @@ class DashboardController extends Controller
         ->where('status', null)
         ->count();
         $totalRekening = DB::table('rekening')
-        ->where('id_mitra', $mitraId)
         ->count();
         $totalWisata = DB::table('wisata')
         ->where('id_mitra', $mitraId)
         ->count();
         $totalOrder = DB::table('pemesanan')
         ->where('id_mitra', $mitraId)
+        ->where('status', 3)
         ->count();
+        $totalOrdermasuk = DB::table('pemesanan')
+        ->where('id_mitra', $mitraId)
+        ->where('status', 2)
+        ->count();
+        $destinasi = Wisata::select('wisata.namawisata', 
+        'pemesanan.id_mitra',
+        'mitra.nama_lengkap as nama_lengkap',
+            DB::raw('COUNT(pemesanan.id_pemesanan) as total_pemesan'), 
+            DB::raw('SUM(pemesanan.harga_total) as total_harga'),
+            DB::raw('SUM(pemesanan.harga_total * 0.9) as total_harga_potong'),
+            DB::raw('(SUM(pemesanan.harga_total) - SUM(pemesanan.harga_total * 0.9)) as potongan'))
+        ->join('pemesanan', 'wisata.id_wisata', '=', 'pemesanan.id_wisata')
+        ->join('users as mitra', 'pemesanan.id_mitra', '=', 'mitra.id')
+        ->whereIn('pemesanan.status', [2, 3]) 
+        ->groupBy('wisata.id_wisata', 'wisata.namawisata', 'pemesanan.id_mitra', 'mitra.nama_lengkap')
+        ->get();
+
+    $totalPotongan = $destinasi->sum('potongan');
+    
+    
+
+
+        $destinasi = Wisata::select(
+            'wisata.namawisata',
+            DB::raw('COUNT(pemesanan.id_pemesanan) as total_pemesan'),
+            DB::raw('SUM(pemesanan.harga_total) as total_harga'),
+            DB::raw('SUM(pemesanan.harga_total * 0.9) as total_harga_potong')
+        )
+            ->leftJoin('pemesanan', 'wisata.id_wisata', '=', 'pemesanan.id_wisata')
+            ->where('pemesanan.id_mitra', $mitraId)
+            ->where('pemesanan.status_perjalanan', 3)
+            ->groupBy('wisata.id_wisata', 'wisata.namawisata')
+            ->get();
+
+            $totalHargaPotong = $destinasi->sum('total_harga_potong');
 
         return view('dashboard.dashboard',
-            compact('totalWisata',
-            'totalUsers',
-            'totalwisataadmin',
-            'totalRekening',
-            'totalOrder',
-            'totalRekeningadmin',
-            'totalKategori',
-            'totalPesananadmin',
-            'totalRequestmitra',
-            'totalStatusperjalan'
+        compact('totalWisata',
+        'totalUsers',
+        'totalwisataadmin',
+        'totalRekening',
+        'totalOrder',
+        'totalRekeningadmin',
+        'totalKategori',
+        'totalPesananadmin',
+        'totalRequestmitra',
+        'totalOrdermasuk',
+        'totalStatusperjalan',
+        'totalPotongan',
+        'totalHargaPotong'
         ));
     }
 

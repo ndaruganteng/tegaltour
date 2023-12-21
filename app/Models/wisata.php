@@ -34,4 +34,30 @@ class wisata extends Model
     ->translatedFormat('1, d  F Y');
   }
 
+  public function ulasan()
+  {
+      return $this->hasMany(Ulasan::class, 'id_wisata');
+  }
+
+  public function getAverageRating()
+  {
+      return $this->ulasan->avg('rating');
+  }
+
+  public function getTotalRatingHtml()
+  {
+      $totalRating = $this->getAverageRating();
+      $stars = '';
+
+      for ($i = 1; $i <= 5; $i++) {
+          if ($i <= round($totalRating)) {
+              $stars .= '<span class="fa fa-star checked"></span>';
+          } else {
+              $stars .= '<span class="fa fa-star"></span>';
+          }
+      }
+
+      return $stars;
+  }
+
 }

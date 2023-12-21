@@ -20,6 +20,7 @@ class AdminSeeder extends Seeder
         'email' => 'muhamadndarusabitturahman24@gmail.com',
         'password' => bcrypt("Superadmin123?"),
         'role' => 'admin',
+        'rekening' => '',
         'status' => 1,
     ]);
 
@@ -30,6 +31,7 @@ class AdminSeeder extends Seeder
         'email' => 'ndarusabitturahman@gmail.com',
         'password' => bcrypt("Ndaru240101?"),
         'role' => 'user',
+        'rekening' => '',
         'status' => 1,
     ]);
 
@@ -40,6 +42,7 @@ class AdminSeeder extends Seeder
         'email' => 'cipungtour@gmail.com',
         'password' => bcrypt("Cipungtour123?"),
         'role' => 'mitra',
+        'rekening' => '12121212',
         'status' => 1,
     ]);
     
@@ -50,6 +53,7 @@ class AdminSeeder extends Seeder
         'email' => 'senotour@gmail.com',
         'password' => bcrypt("Senotour123?"),
         'role' => 'mitra',
+        'rekening' => '13131313113',
         'status' => 1,
     ]);
 

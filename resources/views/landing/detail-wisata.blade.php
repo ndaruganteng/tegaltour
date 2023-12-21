@@ -78,20 +78,23 @@
                                     @foreach($ulasan as $item) 
                                     <div class="card-body mt-2">                             
                                         <div class="row">
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-3">
                                                 <img src="{{ asset('storage/image/user/' . $item->profile_picture) }}" class="float-left me-3 rounded-circle" />
                                                 <h1 class="pt-2">{{ $item->nama }}</h1> 
                                             </div>
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-9">
                                                 @for ($i = 1; $i <= $item->rating; $i++)
                                                     <span class="fa fa-star checked"></span>
                                                 @endfor
                                                 @for ($i = $item->rating + 1; $i <= 5; $i++)
                                                     <span class="fa fa-star"></span>
                                                 @endfor
-                                                <h2 >{{ $item->komentar }}</h2>
+                                                <h2> <strong>Ulasan Biro Wisata </strong><br>{{ $item->komentar }}</h2>
+                                                <h2> <strong>Ulasan Tempat Wisata </strong><br>{{ $item->komentar_wisata }}</h2>
                                                 <h4>{{ \Carbon\Carbon::parse($item->date)->locale('id')->isoFormat('dddd, D MMMM Y') }}</h4>
+                                                <hr>
                                             </div>
+
                                         </div>
                                     </div>
                                     @endforeach
@@ -122,45 +125,45 @@
                             </div>
                         </div>
                         <div class="col-lg-12 booking">
-                        @if (Auth::check())
-                            <div class="card text-center border border-2">
-                                <div class="card-header fw-blod">-BOOKING-</div>
-                                <div class="card-body">
-                                    <form action="/boking" method="post" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="form-outline mb-4" style="display: none;">
-                                            <input class="form-control bg-white" name="id_wisata"
-                                            value="{{ $detail_wisata->id_wisata }}" readonly/>
-                                        </div>
-                                        <div class="form-outline mb-4" style="display: none;">
-                                            <input class="form-control bg-white"  name="id_mitra"
-                                            value="{{ $detail_wisata->id_mitra }}" readonly/>
-                                        </div>
-                                        <div class="form-outline mb-4" style="display: none;">
-                                            <input class="form-control bg-white" name="id_user"
-                                             value="{{ Auth::user()->id }}" readonly/>
-                                        </div>
-                                        <div class="form-outline mb-4"  style="display: none;">
-                                            <input class="form-control" name="harga_satuan" id="hargasatuan" type="text"
-                                                value="{{ $detail_wisata->harga }}"  onchange="updateHargaTotal()" readonly/>
-                                            <label class="form-label" for="hargasatuan">Harga /pax</label>
-                                        </div>
-                                        <div class="form-outline mb-4">
-                                            <input type="number" min="1" name="jumlah_orang" id="jumlahorang" class="form-control" onchange="updateHargaTotal()"/>
-                                            <label class="form-label" for="jumlahorang" require>Jumlah Orang</label>
-                                        </div>                         
-                                        <div class="form-outline mb-4">
-                                            <input class="form-control bg-white" id="viewhargatotal" type="text" placeholder="Total Harga" readonly/>
-                                        </div>
-                                        <div class="form-outline mb-4">
-                                            <input class="form-control bg-white" name="harga_total" id="hargatotal" type="text" placeholder="Total Harga" hidden/>
-                                        </div>
-                                        <button type="submit"
-                                            class="btn btn-dark btn-block mb-4">Pesan Sekarang</button>
-                                    </form>
+                            @if (Auth::check())
+                                <div class="card text-center border border-2">
+                                    <div class="card-header fw-blod">-BOOKING-</div>
+                                    <div class="card-body">
+                                        <form action="/boking" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-outline mb-4" style="display: none;">
+                                                <input class="form-control bg-white" name="id_wisata"
+                                                value="{{ $detail_wisata->id_wisata }}" readonly/>
+                                            </div>
+                                            <div class="form-outline mb-4" style="display: none;">
+                                                <input class="form-control bg-white"  name="id_mitra"
+                                                value="{{ $detail_wisata->id_mitra }}" readonly/>
+                                            </div>
+                                            <div class="form-outline mb-4" style="display: none;">
+                                                <input class="form-control bg-white" name="id_user"
+                                                value="{{ Auth::user()->id }}" readonly/>
+                                            </div>
+                                            <div class="form-outline mb-4"  style="display: none;">
+                                                <input class="form-control" name="harga_satuan" id="hargasatuan" type="text"
+                                                    value="{{ $detail_wisata->harga }}"  onchange="updateHargaTotal()" readonly/>
+                                                <label class="form-label" for="hargasatuan">Harga /pax</label>
+                                            </div>
+                                            <div class="form-outline mb-4">
+                                                <input type="number" min="1" name="jumlah_orang" id="jumlahorang" class="form-control" onchange="updateHargaTotal()"/>
+                                                <label class="form-label" for="jumlahorang" require>Jumlah Orang</label>
+                                            </div>                         
+                                            <div class="form-outline mb-4">
+                                                <input class="form-control bg-white" id="viewhargatotal" type="text" placeholder="Total Harga" readonly/>
+                                            </div>
+                                            <div class="form-outline mb-4">
+                                                <input class="form-control bg-white" name="harga_total" id="hargatotal" type="text" placeholder="Total Harga" hidden/>
+                                            </div>
+                                            <button type="submit"
+                                                class="btn btn-dark btn-block mb-4">Pesan Sekarang</button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
                         </div>
                     </div>
                 </div>

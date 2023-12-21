@@ -101,7 +101,7 @@ class DatawisataController extends Controller
         }
         $wisata->save();
 
-        return redirect('/data-wisata') -> with('success', "Data wisata berhasil ditambahkan!");
+        return redirect('/data-wisata') -> with('toast_success', "Data wisata berhasil ditambahkan!");
     }
 
     // view edit data wisata
@@ -181,7 +181,7 @@ class DatawisataController extends Controller
          $wisata->fasilitas = $request->fasilitas;
          $wisata->save();
  
-         return redirect('data-wisata')->with('success','Data wisata Telah Diupdate!');
+         return redirect('data-wisata')->with('toast_success','Data wisata Telah Diupdate!');
          
     }
 
@@ -194,7 +194,7 @@ class DatawisataController extends Controller
             File::delete($path);
         }
         $wisata->delete(); 
-        return back() -> with('success', "Data Wisata berhasil dihapus!");
+        return back() -> with('toast_success', "Data Wisata berhasil dihapus!");
     }
 
     // fungsi aktif/nonaktif

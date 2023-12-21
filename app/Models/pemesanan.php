@@ -18,6 +18,7 @@ class pemesanan extends Model
       'harga_total',
       'status',
       'status_perjalanan',
+      'status_pendapatan',
       'date',
       
     ];

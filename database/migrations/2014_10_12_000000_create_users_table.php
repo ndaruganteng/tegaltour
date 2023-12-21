@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('role');       
             $table->string ('status')->nullable(); 
             $table->string ('alamat')->nullable(); 
+            $table->string ('rekening')->nullable(); 
             $table->string ('bukti_mitra')->nullable(); 
             $table->rememberToken();
             $table->timestamps();

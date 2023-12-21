@@ -7,19 +7,15 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-6">
-            <h1 class="m-0">Paket Wisata </h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active">
-                <a href="{{route('tambah-data-wisata.index')}}"  class="btn bg-dark btn-sm">
-                    <i class="fa-solid fa-plus mr-1"></i>
-                    Tambah Paket Wisata
-                </a>
-              </li>
-            </ol>
-          </div>
+            <div class="col-12">
+                <div class="d-flex justify-content-between">
+                    <h1>Paket Wisata </h1>
+                    <a href="{{route('tambah-data-wisata.index')}}"  class="btn bg-dark btn-sm">
+                        <i class="fa-solid fa-plus mr-1"></i>
+                        Tambah Paket Wisata
+                    </a>
+                </div>
+            </div>
         </div>
       </div>
     </div>
@@ -28,18 +24,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-primary card-tabs">
+                    <div class="card card-dark card-tabs">
                         <div class="card-header p-0 pt-1">
                             <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Wisata Aktif</a>
+                                    <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Paket Wisata Aktif</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Wisata NonAktif</a>
+                                    <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Paket Wisata Non Aktif</a>
                                 </li>
-                                <!-- <li class="nav-item">
-                                    <a class="nav-link ml-auto" href="#custom-tabs-one-profile" >Tambah Paket Wisata</a>
-                                </li> -->
                             </ul>
                         </div>
                         <div class="card-body">
@@ -50,13 +43,13 @@
                                             <thead>
                                                 <tr>
                                                     <th>Image</th>
-                                                    <th style="word-wrap: break-word; max-width: 80px;">Nama Paket Wisata</th>
-                                                    <th style="word-wrap: break-word; max-width: 80px;">Tanggal Berangkat</th>
-                                                    <th style="word-wrap: break-word; max-width: 30px;">Kategori</th>
+                                                    <th>Nama Paket Wisata</th>
+                                                    <th>Tanggal Berangkat</th>
+                                                    <th>Kategori</th>
                                                     <th >harga/Orang</th>                                                    
-                                                    <th style="word-wrap: break-word; max-width: 50px;">Ulasan </th>
-                                                    <th style="word-wrap: break-word; max-width: 200px;">Aksi</th>
-                                                    <th style="word-wrap: break-word; max-width: 70px;">Status Wisata</th>
+                                                    <th>Ulasan </th>
+                                                    <th>Aksi</th>
+                                                    <th>Status Wisata</th>
                                                 </tr>
                                             </thead>                            
                                             <tbody>
@@ -64,7 +57,7 @@
                                                     @if($p->status_wisata == null)
                                                         <tr>
                                                             <td>
-                                                                <img src="{{asset('storage/image/wisata/'.$p->image)}}" alt="wisata" style="width:50px">
+                                                                <img src="{{asset('storage/image/wisata/'.$p->image)}}" alt="wisata" style="width:100px">
                                                             </td>
                                                             <td>{{ $p->namawisata}}</td>
                                                             <td style="word-wrap: break-word; max-width: 50px;">{{ \Carbon\Carbon::parse($p->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
@@ -75,20 +68,20 @@
 
                                                             <td>
                                                                 <a  href="/ulasan-wisata/{{$p->id_wisata}}" class="btn btn-info btn-sm">
-                                                                    <i class="fa-solid fa-message"></i> 
+                                                                    Ulasan
                                                                 </a>
                                                             </td>
                                                             <td style="word-wrap: break-word; max-width: 100px;">
                                                                 <a href="/detail-data-wisata/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm my-1" >
-                                                                    <i class="fas fa-eye"></i>
+                                                                    <i class="fas fa-eye me-2"></i> Detail
                                                                 </a>
                                                                 <a href="/data-wisata/edit/{{ $p->id_wisata }}">
                                                                     <button class="btn btn-warning btn-sm my-1">
-                                                                        <i class="fas fa-edit"></i>
+                                                                        <i class="fas fa-edit me-2"></i> Edit
                                                                     </button>
                                                                 </a>
                                                                 <a href="/data-wisata/hapus/{{ $p->id_wisata }}" class="btn btn-danger btn-sm deletewisata my-1" id="deletwisata">
-                                                                    <i class="fas fa-trash"></i>
+                                                                    <i class="fas fa-trash me-2"></i> Hapus
                                                                 </a>
                                                             </td>
                                                             <td>
@@ -149,21 +142,21 @@
                                                             <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
 
                                                             <td>
-                                                                <a  href="/ulasan-wisata/{{$p->id_wisata}}" class="btn btn-info btn-sm">
-                                                                    <i class="fa-solid fa-message"></i> 
+                                                                <a href="/ulasan-wisata/{{$p->id_wisata}}" class="btn btn-info btn-sm">
+                                                                    Ulasan
                                                                 </a>
                                                             </td>
                                                             <td>
                                                                 <a href="/detail-data-wisata/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm my-1" >
-                                                                    <i class="fas fa-eye"></i>
+                                                                    <i class="fas fa-eye me-2"></i> Detail
                                                                 </a>
                                                                 <a href="/data-wisata/edit/{{ $p->id_wisata }}">
                                                                     <button class="btn btn-warning btn-sm my-1">
-                                                                        <i class="fas fa-edit"></i>
+                                                                        <i class="fas fa-edit me-2"></i> Edit
                                                                     </button>
                                                                 </a>
                                                                 <a href="/data-wisata/hapus/{{ $p->id_wisata }}" class="btn btn-danger btn-sm deletewisata my-1" id="deletwisata">
-                                                                    <i class="fas fa-trash"></i>
+                                                                    <i class="fas fa-trash me-2"></i> Hapus
                                                                 </a>
                                                             </td>
                                                             <td>
@@ -201,92 +194,6 @@
             </div>
         </div>
     </div>
-
-
-
-    <!-- <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header"  style="background-color: white;">
-                            <div class="d-flex justify-content-between">
-                                <h5>Data Paket Wisata</h5>
-                                <a href="{{route('tambah-data-wisata.index')}}"  class="btn bg-dark btn-sm">
-                                    <i class="fa-solid fa-plus mr-1"></i>
-                                    Tambah Paket Wisata
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="wisata-table" class="table table-striped table-bordered text-center" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Image</th>
-                                            <th style="word-wrap: break-word; max-width: 80px;">Nama Paket Wisata</th>
-                                            <th style="word-wrap: break-word; max-width: 80px;">Tanggal Berangkat</th>
-                                            <th style="word-wrap: break-word; max-width: 30px;">Kategori</th>
-                                            <th>harga/Orang</th>
-                                            
-                                            <th>Ulasan </th>
-                                            <th style="word-wrap: break-word; max-width: 200px;">Aksi</th>
-                                            <th style="word-wrap: break-word; max-width: 70px;">Status Wisata</th>
-                                        </tr>
-                                    </thead>                            
-                                    <tbody>
-                                        @foreach($wisata as $p)
-                                            @if($p->status_wisata == null)
-                                                <tr>
-                                                    <td>
-                                                        <img src="{{asset('storage/image/wisata/'.$p->image)}}" alt="wisata" style="width:100px">
-                                                    </td>
-                                                    <td>{{ $p->namawisata}}</td>
-                                                    <td style="word-wrap: break-word; max-width: 50px;">{{ \Carbon\Carbon::parse($p->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}</td>
-                                                    <td>
-                                                        <span class="badge badge-dark">{{ $p->kategori}}</span>
-                                                    </td>
-                                                    <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
-
-                                                    <td>
-                                                        <a  href="/ulasan-wisata/{{$p->id_wisata}}" class="btn btn-info btn-sm">
-                                                            <i class="fa-solid fa-message"></i> 
-                                                        </a>
-                                                    </td>
-                                                    <td style="word-wrap: break-word; max-width: 100px;">
-                                                        <a href="/detail-data-wisata/{{($p->id_wisata)}}#{{$p->namawisata}}" class="btn btn-primary btn-sm my-1" >
-                                                            <i class="fas fa-eye"></i>
-                                                        </a>
-                                                        <a href="/data-wisata/edit/{{ $p->id_wisata }}">
-                                                            <button class="btn btn-warning btn-sm my-1">
-                                                                <i class="fas fa-edit"></i>
-                                                            </button>
-                                                        </a>
-                                                        <a href="/data-wisata/hapus/{{ $p->id_wisata }}" class="btn btn-danger btn-sm deletewisata my-1" id="deletwisata">
-                                                            <i class="fas fa-trash"></i>
-                                                        </a>
-                                                    </td>
-                                                    <td style="word-wrap: break-word; max-width: 100px;">
-                                                        <form  method="post" action="{{route('nonaktif', ['id_wisata'=> $p->id_wisata])}}">
-                                                            @csrf
-                                                            @method('put')
-                                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                                NonAktif
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    </tbody>                            
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
 </div>
 

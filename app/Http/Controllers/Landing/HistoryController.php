@@ -27,7 +27,8 @@ class HistoryController extends Controller
                 ->where('pemesanan.id_user', $usersId) 
                 ->where(function($query) {
                     $query->where('pemesanan.status', '3')
-                          ->orWhere('pemesanan.status', '4');
+                          ->orWhere('pemesanan.status', '4')
+                          ->orWhere('pemesanan.status', '5');
                 })
                 ->select(
                     'pemesanan.id_pemesanan as id_pemesanan',
@@ -41,6 +42,7 @@ class HistoryController extends Controller
                     'wisata.jamberangkat as jamberangkat',
                     'pemesanan.status as status',
                     'pemesanan.status_perjalanan as status_perjalanan',
+                    'pemesanan.status_pendapatan as status_pendapatan',
                     'pemesanan.date as date',
                     'pemesanan.harga_total as hargatotal',
                     'pemesanan.bukti_pembayaran as bukti_pembayaran',

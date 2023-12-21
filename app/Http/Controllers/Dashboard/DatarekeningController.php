@@ -63,7 +63,7 @@ class DatarekeningController extends Controller
         }
         $rekening->save();
 
-        return redirect('/data-rekening')->with('success', "Data rekening berhasil ditambahkan!");
+        return redirect('/data-rekening')->with('toast_success', "Data rekening berhasil ditambahkan!");
     }
 
     // view edit data rekening
@@ -118,7 +118,7 @@ class DatarekeningController extends Controller
         $rekening->nama_rekening = $request->nama_rekening;
         $rekening->save();
 
-        return redirect('data-rekening')->with('success', 'Data rekening Telah Diupdate!');
+        return redirect('data-rekening')->with('toast_success', 'Data rekening Telah Diupdate!');
     }
 
     // fungsi hapus data rekening
@@ -130,7 +130,7 @@ class DatarekeningController extends Controller
             File::delete($path);
         }
         $rekening->delete(); 
-        return back() -> with('success', "Data rekening berhasil dihapus!");
+        return back() -> with('toast_success', "Data rekening berhasil dihapus!");
     }
 
     // view data rekening admin

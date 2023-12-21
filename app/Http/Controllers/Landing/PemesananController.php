@@ -44,6 +44,7 @@ class PemesananController extends Controller
         $pemesanan->harga_total = $request->input('harga_total');
         $pemesanan->status = null;
         $pemesanan->status_perjalanan = null;
+        $pemesanan->status_pendapatan = null;
         $pemesanan->date = Carbon::now()->toDateTimeString();
         if ($request->hasFile('bukti_pembayaran')) {
             $file = $request->file('bukti_pembayaran');
@@ -86,7 +87,7 @@ class PemesananController extends Controller
         }
         $pemesanan->save();
     
-        return redirect()->back()->with('success', "Bukti Pembayaran Sudah Dikirim!");
+        return redirect()->back()->with('toast_success', "Bukti Pembayaran Sudah Dikirim!");
     }
 
     // view data order
@@ -107,6 +108,7 @@ class PemesananController extends Controller
                 'wisata.jamberangkat as jamberangkat',
                 'pemesanan.status as status',
                 'pemesanan.status_perjalanan as status_perjalanan',
+                'pemesanan.status_pendapatan as status_pendapatan',
                 'pemesanan.date as date',
                 'pemesanan.harga_total as hargatotal',
                 'pemesanan.bukti_pembayaran as bukti_pembayaran',
@@ -127,19 +129,29 @@ class PemesananController extends Controller
                 'status' => 2
             ]);
 
-        return redirect('data-order')->with('success', 'Pembayaran telah dikonfirmasi ');
+        return redirect('data-order-admin')->with('toast_success', 'Pembayaran telah dikonfirmasi ');
     }
 
     // Fungsi Cancel pemesanan
     public function cancel(Request $request, $id)
     { 
-        $konfirmasi = DB::table('pemesanan')
+        $cancel = DB::table('pemesanan')
             ->where('id_pemesanan', $id)
             ->update([
                 'status' => 4
             ]);
 
-        return redirect('data-order')->with('success', 'Pembayaran telah dibatalkan ');
+        return redirect('data-order')->with('toast_success', 'Pembayaran telah dibatalkan ');
+    }
+    public function canceladmin(Request $request, $id_pemesanan)
+    { 
+        $canceladmin = DB::table('pemesanan')
+            ->where('id_pemesanan', $id_pemesanan)
+            ->update([
+                'status' => 5
+            ]);
+
+        return redirect('data-order-admin')->with('toast_success', 'Pembayaran telah dibatalkan ');
     }
 
     // fungsi hapus
@@ -152,7 +164,7 @@ class PemesananController extends Controller
         }
         $pemesanan->delete();
         
-        return back()->with('success', "Data Pemesanan berhasil dihapus!");
+        return back()->with('toast_success', "Data Pemesanan berhasil dihapus!");
     }
 
     // view halaman pesanan saya
@@ -178,6 +190,7 @@ class PemesananController extends Controller
                     'wisata.titikkumpul as titikkumpul',
                     'pemesanan.status as status',
                     'pemesanan.status_perjalanan as status_perjalanan',
+                    'pemesanan.status_pendapatan as status_pendapatan',
                     'pemesanan.date as date',
                     'pemesanan.harga_total as hargatotal',
                     'pemesanan.bukti_pembayaran as bukti_pembayaran',
@@ -208,6 +221,7 @@ class PemesananController extends Controller
                 'wisata.harga as harga',
                 'pemesanan.status as status',
                 'pemesanan.status_perjalanan as status_perjalanan',
+                'pemesanan.status_pendapatan as status_pendapatan',
                 'pemesanan.date as date',
                 'pemesanan.harga_total as hargatotal',
                 'pemesanan.bukti_pembayaran as bukti_pembayaran',
@@ -227,7 +241,7 @@ class PemesananController extends Controller
                 'status_perjalanan' => 2
             ]);
 
-        return redirect('status-perjalanan')->with('success', 'Status Perjalanan Berangkat ');
+        return redirect('status-perjalanan')->with('toast_success', 'Status Perjalanan Berangkat ');
     }
 
     // fungsi status perjalanan selesai
@@ -239,7 +253,7 @@ class PemesananController extends Controller
                 'status_perjalanan' => 3
             ]);
 
-        return redirect('status-perjalanan')->with('success', 'Perjalanan telah Selesai ');
+        return redirect('status-perjalanan')->with('toast_success', 'Perjalanan telah Selesai ');
     }
 
     // fungsi invoice wisata
@@ -264,6 +278,7 @@ class PemesananController extends Controller
                 'wisata.titikkumpul as titikkumpul',
                 'pemesanan.status as status',
                 'pemesanan.status_perjalanan as status_perjalanan',
+                'pemesanan.status_pendapatan as status_pendapatan',
                 'pemesanan.date as date',
                 'pemesanan.harga_total as hargatotal',
                 'pemesanan.bukti_pembayaran as bukti_pembayaran',
@@ -300,6 +315,7 @@ class PemesananController extends Controller
                 'wisata.jamberangkat as jamberangkat',
                 'pemesanan.status as status',
                 'pemesanan.status_perjalanan as status_perjalanan',
+                'pemesanan.status_pendapatan as status_pendapatan',
                 'pemesanan.date as date',
                 'pemesanan.harga_total as hargatotal',
                 'pemesanan.bukti_pembayaran as bukti_pembayaran',

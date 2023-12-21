@@ -16,16 +16,17 @@ class HomeController extends Controller
     // view home
     public function index()
     {
-        $wisata = DB::table('wisata')
-        ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
-        ->join('users', 'users.id', '=', 'wisata.id_mitra')
-        ->select('wisata.*', 
-        'kategori.nama_kategori as kategori',
-        'users.nama_lengkap as namamitra',)
-        ->inRandomOrder()->simplePaginate(4);
+        $wisata = Wisata::join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
+            ->join('users', 'users.id', '=', 'wisata.id_mitra')
+            ->select('wisata.*', 
+                'kategori.nama_kategori as kategori',
+                'users.nama_lengkap as nama_lengkap')
+            ->inRandomOrder()
+            ->simplePaginate(4);
+    
         return view('landing.home', ['wisata' => $wisata]);
     }
-
+ 
     // PROFILE USER
     public function profile_user()
     {

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\carbon;
+use Illuminate\Support\Carbon;
 
-class ulasan extends Model
+class Ulasan extends Model
 {
     use HasFactory;
     
@@ -15,12 +15,21 @@ class ulasan extends Model
     protected $fillable = [
         'nama',
         'komentar',
+        'komentar_wisata',
         'rating',
         'date',
-      ];
+        'id_wisata', // tambahkan jika belum ada
+    ];
 
-    public function getFromDateAttribute() {
-    return Carbon::parse($this->attributes['created_at'])
-    ->translatedFormat('1, d  F Y');
+    // Definisikan relasi dengan model Wisata
+    public function wisata()
+    {
+        return $this->belongsTo(Wisata::class, 'id_wisata');
+    }
+
+    public function getFromDateAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])
+            ->translatedFormat('1, d  F Y');
     }
 }

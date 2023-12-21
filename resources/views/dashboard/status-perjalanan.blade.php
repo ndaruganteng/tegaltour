@@ -24,7 +24,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-primary card-outline">
+                    <div class="card card-dark card-outline">
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="perjalanan-table" class="table table-striped table-bordered text-center" style="width:100%">
@@ -63,7 +63,7 @@
                                                                 @csrf
                                                                 @method('put')
                                                                 <button type="submit" class="btn btn-info btn-sm mx-1">
-                                                                    <i class="fa-solid fa-car-side"></i>Berangkat
+                                                                    Berangkat
                                                                 </button>
                                                             </form>
                                                         @elseif($p->status_perjalanan == 2)
@@ -71,7 +71,7 @@
                                                                 @csrf
                                                                 @method('put')
                                                                 <button type="submit" class="btn btn-success btn-sm mx-1">
-                                                                    <i class="fa-solid fa-check-to-slot"></i>Selesai
+                                                                    Selesai
                                                                 </button>
                                                             </form>                            
                                                         @endif

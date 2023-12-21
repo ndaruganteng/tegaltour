@@ -12,7 +12,7 @@
                     <h4 class="p-3 text-center">History Pemesanan Kosong</h4>
                     @else   
                         @foreach($pemesanan as $p)
-                            @if($p->status_perjalanan == 3 || $p->status == 4)                                                   
+                            @if($p->status_perjalanan == 3 || $p->status == 4 || $p->status == 5)                                                   
                                 <div class="card mt-3" >
                                     <div class="row g-0">
                                         <div class="col-md-4 p-3">
@@ -35,12 +35,14 @@
                                                     <p class="card-text" >Status Perjalanan : <span class="badge badge-success">Selesai</span> </p>       
                                                 @elseif($p->status == 4)
                                                     <p class="card-text" >Status Pemesanan : <span class="badge badge-danger">Dibatalkan</span> </p>
+                                                @elseif($p->status == 5)
+                                                    <p class="card-text" >Status Pemesanan : <span class="badge badge-danger">Dibatalkan</span> </p>
                                                 @endif                                                                                   
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endif            
+                            @endif           
                         @endforeach
                     @endif
                     </div>

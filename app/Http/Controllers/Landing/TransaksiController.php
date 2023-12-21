@@ -30,23 +30,19 @@ class TransaksiController extends Controller
             'wisata.jamberangkat as jamberangkat',
             'pemesanan.status as status',
             'pemesanan.status_perjalanan as status_perjalanan',
+            'pemesanan.status_pendapatan as status_pendapatan',
             'pemesanan.date as date',
             'pemesanan.harga_total as hargatotal',
             'pemesanan.bukti_pembayaran as bukti_pembayaran',
             'pemesanan.jumlah_orang as jumlah_orang',
             'wisata.harga as harga',
-            'pemesanan.id_mitra as id_mitra')
-        
+            'pemesanan.id_mitra as id_mitra'
+        )
         ->get();
+        $rekening = DB::table('rekening')->get();
+        return view('landing.transaksi', ['rekening' => $rekening, 'pemesanan' => $pemesanan]);
     
-        $rekening = DB::table('rekening')
-            ->join('pemesanan', 'rekening.id_mitra', '=', 'pemesanan.id_mitra')
-            ->whereIn('pemesanan.id_pemesanan', $pemesanan->pluck('id_pemesanan')->toArray())
-            ->select('rekening.*', 'pemesanan.id_pemesanan')
-            ->get()
-            ->groupBy('id_pemesanan');
-        
-            return view('landing.transaksi', ['rekening' => $rekening, 'pemesanan' => $pemesanan]);
     }
+
    
 }

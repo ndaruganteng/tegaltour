@@ -5,32 +5,80 @@
 
     <div class="content cart">
         <div class="container">
-            <h3 class="text-center fw-bold">Transaksi</h3>
+            <h2 class="text-center fw-bold">Transaksi</h2>
             <div class="row">
-                <div class="col-md-12 col-lg-12 mt-3">
+                <div class="col-md-12 col-lg-4 mt-3">
+                    <!-- <div class="col-lg-12">
+                            <div class="card  shadow-0 mt-3 border">
+                                <div class="card-header text-center" style="font-size: 18px; font-weight: bold;">Daftar Rekening TegalTour</div>
+                                    @foreach($rekening as $p)
+                                        <div class="card-body">
+                                            <img src="{{asset('storage/image/rekening/'.$p->image_rekening)}}" class="card-img-top float-left" style="width: 100px; height: 100px; margin-right: 20px; margin-bottom: 10px;"/>
+                                            <h5 style="font-size: 14px; font-weight: bold;">{{ $p->nama_bank }}</h5>
+                                            <p style="font-size: 14px; ">{{ $p->no_rekening }}</p>
+                                            <p style="font-size: 14px; margin-top: -10px;">A/N: {{ $p->nama_rekening }}</p>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div> -->
                     <div class="col-lg-12">
-                        @if($pemesanan->isEmpty())
-                        <h5 class="p-3 text-center">Tidak Ada Transaksi</h5>
-                        @else                
-                            @foreach($pemesanan as $p)
-                                @if($p->status == null)                       
+                        <div class="accordion mt-3" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button data-mdb-collapse-init class="accordion-button" type="button"
+                                        data-mdb-toggle="collapse" data-mdb-target="#collapseOne" aria-expanded="true"
+                                        aria-controls="collapseOne" style="font-size: 18px; font-weight: bold;">
+                                        Daftar Rekening TegalTour
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        @foreach($rekening as $p)
+                                            <img src="{{asset('storage/image/rekening/'.$p->image_rekening)}}" class="card-img-top float-left" style="width: 80px; height: 80px; margin-right: 30px; margin-bottom: 10px;"/>
+                                            <h5 style="font-size: 14px; font-weight: bold;">{{ $p->nama_bank }}</h5>
+                                            <p style="font-size: 14px; ">{{ $p->no_rekening }}</p>
+                                            <p style="font-size: 14px; margin-top: -10px;">A/N: {{ $p->nama_rekening }}</p>
+                                            <hr>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-8 mt-3">
+                    @if($pemesanan->isEmpty())
+                    <h5 class="p-3 text-center">Tidak Ada Transaksi</h5>
+                    @else
+                        @foreach($pemesanan as $p)
+                            @if($p->status == null)
                                 <div class="card mt-3">
                                     <div class="row g-0">
-                                        <div class="col-md-6 p-3">
+                                        <div class="col-md-12 p-3">
                                             <img src="{{asset('storage/image/wisata/'.$p->image)}}" class="img-thumbnail"
                                                 style="width: 100%; height: 100%;" />
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="card-body">
                                                 <h5 class="card-title">Wisata : {{$p->nama_wisata}}</h5>
                                                 <p class="card-text">Nama Pemesan: {{$p->nama_pengguna}} </p>
-                                                <p class="card-text" style="margin-top: -10px;">Tanggal Pemesanan : {{ \Carbon\Carbon::parse($p->date)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
-                                                <p class="card-text" style="margin-top: -10px;">Tanggal Berangkat : {{ \Carbon\Carbon::parse($p->tanggal)->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
-                                                <p class="card-text" style="margin-top: -10px;">Jam Berangkat : {{$p->jamberangkat}} WIB</p>
-                                                <p class="card-text" style="margin-top: -10px;">Jumlah Orang : {{$p->jumlah_orang}} Orang</p>
-                                                <p class="card-text" style="margin-top: -10px;">Harga/pax : Rp {{ number_format($p->harga, 0, ',', '.') }}</p>
+                                                <p class="card-text" style="margin-top: -10px;">Tanggal Pemesanan : {{
+                                                    \Carbon\Carbon::parse($p->date)->locale('id')->isoFormat('dddd, D MMMM Y') }}
+                                                </p>
+                                                <p class="card-text" style="margin-top: -10px;">Tanggal Berangkat : {{
+                                                    \Carbon\Carbon::parse($p->tanggal)->locale('id')->isoFormat('dddd, D MMMM Y') }}
+                                                </p>
+                                                <p class="card-text" style="margin-top: -10px;">Jam Berangkat : {{$p->jamberangkat}}
+                                                    WIB</p>
+                                                <p class="card-text" style="margin-top: -10px;">Jumlah Orang : {{$p->jumlah_orang}}
+                                                    Orang</p>
+                                                <p class="card-text" style="margin-top: -10px;">Harga/pax : Rp {{
+                                                    number_format($p->harga, 0, ',', '.') }}</p>
                                                 @if($p->status == 2)
-                                                <p class="card-text" style="margin-top: -10px;">Harga Total : Rp.{{$p->hargatotal}}</p>
+                                                <p class="card-text" style="margin-top: -10px;">Harga Total : Rp.{{$p->hargatotal}}
+                                                </p>
                                                 @endif
                                                 @if($p->bukti_pembayaran)
                                                 <p class="card-text" style="margin-top: -10px;">Status Transaksi:
@@ -50,80 +98,70 @@
                                                 </p>
                                                 @if($p->bukti_pembayaran)
                                                 @else
-                                                    <div class="alert alert-warning">
-                                                        Harga Yang harus Dibayar : Rp {{ number_format($p->hargatotal, 0, ',', '.') }}
-                                                    </div>
+                                                <div class="alert alert-warning">
+                                                    Harga Yang harus Dibayar : Rp {{ number_format($p->hargatotal, 0, ',', '.') }}
+                                                </div>
                                                 @endif
                                                 <div>
                                                     @if($p->bukti_pembayaran)
                                                     @else
-                                                        <button type="button" class="btn btn-dark shadow-0 btn-sm mt-2"
-                                                            data-toggle="modal" data-target="#buktiModal{{$p->id_pemesanan}}"
-                                                            data-whatever="@getbootstrap">
-                                                            <i class="fa-solid fa-upload me-2"></i>Upload Bukti transfer
-                                                        </button>
-                                                        <a href="/data-order/hapus/{{ $p->id_pemesanan }}" class="btn btn-danger btn-sm shadow-0 delete-button-pemesanan mt-2" >
-                                                            <i class="fa-solid fa-circle-xmark me-2"></i> Cancel
-                                                        </a>
+                                                    <button type="button" class="btn btn-dark shadow-0 btn-sm mt-2"
+                                                        data-toggle="modal" data-target="#buktiModal{{$p->id_pemesanan}}"
+                                                        data-whatever="@getbootstrap">
+                                                        <i class="fa-solid fa-upload me-2"></i>Upload Bukti transfer
+                                                    </button>
+                                                    <a href="/data-order/hapus/{{ $p->id_pemesanan }}"
+                                                        class="btn btn-danger btn-sm shadow-0 delete-button-pemesanan mt-2">
+                                                        <i class="fa-solid fa-circle-xmark me-2"></i> Cancel
+                                                    </a>
                                                     @endif
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12 info-rekening ">
-                                            <h4 class="text-center mb-5 border p-2">Daftar Rekening</h4>
-                                            <div class="row">
-                                                @foreach ($rekening[$p->id_pemesanan]  as $rekeningItem)
-                                                    <div class="col-lg-4 col-md-12 mt-3">
-                                                        <img src="{{asset('storage/image/rekening/'.$rekeningItem->image_rekening)}}" class="float-left" />
-                                                        <p>Bank {{ $rekeningItem->nama_bank }}</p>
-                                                        <p>Nomor Rekening : {{ $rekeningItem->no_rekening }}</p>
-                                                        <p>A.N : {{ $rekeningItem->nama_rekening }}</p>
+                                        <div class="modal fade" id="buktiModal{{$p->id_pemesanan}}" tabindex="-1" role="dialog"
+                                            aria-labelledby="buktiModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="buktiModalLabel{{$p->id_pemesanan}}">Upload
+                                                            Bukti Transfer</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal fade" id="buktiModal{{$p->id_pemesanan}}" tabindex="-1" role="dialog"
-                                        aria-labelledby="buktiModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="buktiModalLabel{{$p->id_pemesanan}}">Upload
-                                                        Bukti Transfer</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form action="/upload-bukti_pembayaran/{{$p->id_pemesanan}}" method="post"
-                                                        enctype="multipart/form-data">
-                                                        @csrf
-                                                        <div class="form-group ">
-                                                            <label class="col-form-label">Bukti transfer</label>
-                                                            <input type="file" id="bukti_pembayaran" class="form-control" name="bukti_pembayaran" 
-                                                            accept="image/*" onchange="previewImage(event)" require>
-                                                        </div>
-                                                        <div class="col-lg-12 mb-3">
-                                                            <img id="image-preview" src="" class="img-thumbnail" style="display:none; max-width: 100%; max-height: 100%;" alt="Preview Image">
-                                                        </div>
+                                                    <div class="modal-body">
+                                                        <form action="/upload-bukti_pembayaran/{{$p->id_pemesanan}}" method="post"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <div class="form-group ">
+                                                                <label class="col-form-label">Bukti transfer</label>
+                                                                <input type="file" id="bukti_pembayaran" class="form-control"
+                                                                    name="bukti_pembayaran" accept="image/*"
+                                                                    onchange="previewImage(event)" require>
+                                                            </div>
+                                                            <div class="col-lg-12 mb-3">
+                                                                <img id="image-preview" src="" class="img-thumbnail"
+                                                                    style="display:none; max-width: 100%; max-height: 100%;"
+                                                                    alt="Preview Image">
+                                                            </div>
 
-                                                        <div class="modal-footer ">
-                                                            <button type="button" class="btn btn-danger"
-                                                                data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-black">Kirim</button>
-                                                        </div>
-                                                    </form>
+                                                            <div class="modal-footer ">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-black">Kirim</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                @endif
-                            @endforeach 
-                            
-                        @endif
-                    </div>
+                            @endif
+                        @endforeach
+                    @endif
                 </div>
+
             </div>
         </div>
     </div>
@@ -174,7 +212,7 @@
             }
         }
     </script>
-    
+
 </div>
 
 @endsection

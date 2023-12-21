@@ -45,7 +45,12 @@
                         <div class="form-outline mb-3">
                             <input type="text" class="form-control form-control-lg"
                                 placeholder="Masukan Alamat Bisnis" required="required" name="alamat" value="{{ old('alamat') }}" />
-                            <label class="form-label" for="alamat">Alamat Lengkap</label>
+                            <label class="form-label" for="alamat">Alamat Lengkap </label>
+                        </div>
+                        <div class="form-outline mb-3">
+                            <input type="text" class="form-control form-control-lg"
+                                placeholder="Masukan Rekening Bisnis" required="required" name="rekening" value="{{ old('rekening') }}" />
+                            <label class="form-label" for="alamat">Rekening Bisnis</label>
                         </div>
                         <div class="form-outline mb-3">
                             <input type="email" class="form-control form-control-lg"

@@ -57,7 +57,7 @@
                                     </div>
                                     <!-- modal ulasan -->
                                     <div class="modal fade" id="ulasanModal{{$p->id_pemesanan}}" tabindex="-1" aria-labelledby="ulasanModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
+                                        <div class="modal-dialog ">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Beri Ulasan</h5>
@@ -88,9 +88,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <textarea class="form-control" id="komentar" name="komentar" placeholder="Berikan Ulasan Anda"  required></textarea>
+                                                            <textarea class="form-control" id="komentar" name="komentar" placeholder="Berikan Ulasan Untuk Biro Wisata"  required></textarea>
                                                         </div>
-
+                                                        <div class="form-group">
+                                                            <textarea class="form-control" id="komentar_wisata" name="komentar_wisata" placeholder="Berikan Ulasan Untuk Tempat Wisata"  required></textarea>
+                                                        </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-danger shadow-0" data-dismiss="modal">Batal</button>
                                                             <button type="submit" class="btn btn-dark shadow-0">Simpan</button>

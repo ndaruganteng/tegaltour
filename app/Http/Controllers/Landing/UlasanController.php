@@ -27,11 +27,13 @@ class UlasanController extends Controller
     {
         $validator = $request -> validate([
             'komentar' => 'required|string|max:900',
+            'komentar_wisata' => 'required|string|max:900',
             'rating' => 'required|integer|between:1,5',
         ], 
         [
-            "komentar.required" => "Please enter komentar ",
-            "rating.required" => "Please enter rating ",
+            "komentar.required" => "Ulasan harus di isi",
+            "komentar_wisata.required" => "Ulasan harus di isi",
+            "rating.required" => "Rating harus di isi",
         ]);
 
         $ulasan = new Ulasan;
@@ -39,6 +41,7 @@ class UlasanController extends Controller
         $ulasan->id_wisata= $request->input('id_wisata');
         $id = $request->input('id_pemesanan');
         $ulasan->komentar= $request->input('komentar');
+        $ulasan->komentar_wisata= $request->input('komentar_wisata');
         $ulasan->rating= $request->input('rating');
         $ulasan['date']= Carbon::now($request->date);
 
@@ -50,7 +53,7 @@ class UlasanController extends Controller
                 'status' => 3
             ]);
 
-        return redirect('/pesanan-saya') -> with('success', "Ulasan Anda Telah Terkirim!");
+        return redirect('/pesanan-saya') -> with('toast_success', "Ulasan Anda Telah Terkirim!");
     }
 
     // view Ulasan Wisata Biro
