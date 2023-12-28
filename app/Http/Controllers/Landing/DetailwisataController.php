@@ -38,6 +38,28 @@ class DetailwisataController extends Controller
     //     return view('landing.detail-wisata', compact('detail_wisata','ulasan','mitra'));
     // }   
 
+    // public function show($id)
+    // {      
+    //     $detail_wisata = Wisata::join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
+    //         ->select('wisata.*', 'kategori.nama_kategori as kategori')
+    //         ->where('id_wisata', $id)
+    //         ->first();
+
+    //     $ulasan = Ulasan::join('users', 'ulasan.id_user', '=', 'users.id')
+    //         ->select('ulasan.*', 'users.nama_lengkap as nama','users.profile_picture as profile_picture')
+    //         ->where('id_wisata', $id)
+    //         ->get();
+        
+    //     $mitra = User::join('wisata', 'users.id', '=', 'wisata.id_mitra')
+    //         ->select('users.*')
+    //         ->where('wisata.id_wisata', $id)
+    //         ->first(); 
+
+    //     $averageRating = $detail_wisata->getAverageRating();
+
+    //     return view('landing.detail-wisata', compact('detail_wisata', 'ulasan', 'mitra', 'averageRating'));
+    // }
+
     public function show($id)
     {      
         $detail_wisata = Wisata::join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
@@ -46,17 +68,19 @@ class DetailwisataController extends Controller
             ->first();
 
         $ulasan = Ulasan::join('users', 'ulasan.id_user', '=', 'users.id')
-            ->select('ulasan.*', 'users.nama_lengkap as nama','users.profile_picture as profile_picture')
+            ->select('ulasan.*', 'users.nama_lengkap as nama', 'users.profile_picture as profile_picture')
             ->where('id_wisata', $id)
             ->get();
-        
+
         $mitra = User::join('wisata', 'users.id', '=', 'wisata.id_mitra')
             ->select('users.*')
             ->where('wisata.id_wisata', $id)
             ->first(); 
 
+        $totalUlasan = $ulasan->count(); // Jumlah total ulasan
+
         $averageRating = $detail_wisata->getAverageRating();
 
-        return view('landing.detail-wisata', compact('detail_wisata', 'ulasan', 'mitra', 'averageRating'));
+        return view('landing.detail-wisata', compact('detail_wisata', 'ulasan', 'mitra', 'averageRating', 'totalUlasan'));
     }
 }

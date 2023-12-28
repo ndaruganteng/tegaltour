@@ -23,6 +23,7 @@ class PendapatanController extends Controller
         $destinasi = Wisata::select(
             'wisata.namawisata',
             'pemesanan.status_pendapatan',
+            'pemesanan.id_pemesanan',
             DB::raw('COUNT(pemesanan.id_pemesanan) as total_pemesan'),
             DB::raw('SUM(pemesanan.harga_total) as total_harga'),
             DB::raw('SUM(pemesanan.harga_total * 0.9) as total_harga_potong')
@@ -30,7 +31,7 @@ class PendapatanController extends Controller
             ->join('pemesanan', 'wisata.id_wisata', '=', 'pemesanan.id_wisata')
             ->where('pemesanan.id_mitra', $mitraId)
             ->where('pemesanan.status_perjalanan', 3)
-            ->groupBy('wisata.id_wisata', 'wisata.namawisata', 'pemesanan.status_pendapatan')
+            ->groupBy('wisata.id_wisata', 'wisata.namawisata', 'pemesanan.status_pendapatan','pemesanan.id_pemesanan')
             ->get();
 
         // Jumlahkan total_harga_potong berdasarkan namawisata
@@ -46,6 +47,7 @@ class PendapatanController extends Controller
         $destinasi = Wisata::select(
             'wisata.namawisata',
             'pemesanan.id_mitra',
+            'pemesanan.id_pemesanan',
             'mitra.nama_lengkap as nama_lengkap',
             DB::raw('COUNT(pemesanan.id_pemesanan) as total_pemesan'),
             DB::raw('SUM(pemesanan.harga_total) as total_harga'),
@@ -60,6 +62,7 @@ class PendapatanController extends Controller
                 'wisata.id_wisata',
                 'wisata.namawisata',
                 'pemesanan.id_mitra',
+                'pemesanan.id_pemesanan',
                 'mitra.nama_lengkap',
                 'pemesanan.status_pendapatan'
             )
@@ -77,6 +80,7 @@ class PendapatanController extends Controller
         $destinasi = Wisata::select(
             'wisata.namawisata',
             'pemesanan.id_mitra',
+            'pemesanan.id_pemesanan',
             'mitra.nama_lengkap as nama_lengkap',
             DB::raw('COUNT(pemesanan.id_pemesanan) as total_pemesan'),
             DB::raw('SUM(pemesanan.harga_total) as total_harga'),
@@ -91,6 +95,7 @@ class PendapatanController extends Controller
                 'wisata.id_wisata',
                 'wisata.namawisata',
                 'pemesanan.id_mitra',
+                'pemesanan.id_pemesanan',
                 'mitra.nama_lengkap',
                 'pemesanan.status_pendapatan'
             )
@@ -101,16 +106,36 @@ class PendapatanController extends Controller
         return view('dashboard.pendapatan-biro-wisata', compact('destinasi', 'totalPotongan'));
     }
 
-    
 
-    // public function tarikSaldo(Request $request, $id_pemesanan)
-    // {
-    //     $tarikSaldo = DB::table('pemesanan')
-    //         ->where('id_pemesanan', $id_pemesanan)
-    //         ->update([
-    //             'status_pendapatan' => 1
-    //         ]);
+    public function tarikSaldo(Request $request, $id_pemesanan)
+    {
+        DB::table('pemesanan')
+            ->where('id_pemesanan', $id_pemesanan)
+            ->update([
+                'status_pendapatan' => 1
+            ]);
 
-    //     return redirect('pendapatan-admin')->with('toast_success', 'Penarikan Saldo telah dikonfirmasi ');
-    // }
+        return redirect('pendapatan')->with('toast_success', 'Penarikan Saldo telah dikonfirmasi ');
+    }
+
+    public function konfirmasitarikSaldo(Request $request, $id_pemesanan)
+    {
+        DB::table('pemesanan')
+            ->where('id_pemesanan', $id_pemesanan)
+            ->update([
+                'status_pendapatan' => 2
+            ]);
+
+        return redirect('pendapatan-biro-wisata')->with('toast_success', 'Penarikan Saldo telah dikonfirmasi ');
+    }
+    public function canceltarikSaldo(Request $request, $id_pemesanan)
+    {
+        DB::table('pemesanan')
+            ->where('id_pemesanan', $id_pemesanan)
+            ->update([
+                'status_pendapatan' => 3
+            ]);
+
+        return redirect('pendapatan-biro-wisata')->with('toast_success', 'Penarikan Saldo telah dikonfirmasi ');
+    }
 }

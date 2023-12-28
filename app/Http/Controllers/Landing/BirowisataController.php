@@ -56,6 +56,19 @@ class BirowisataController extends Controller
     }
 
 
+    public function biro_search(Request $request)
+    {
+        $search = $request->input('search');
+        
+        $users = DB::table('users')
+            ->where('nama_lengkap', 'like', '%' . $search . '%')
+            ->get();
+
+        return view('landing.biro-wisata', ['users' => $users, 'search' => $search]);
+    }
+
+
+
         // search wisata
         // public function search_biro_wisata(Request $request)
         // {

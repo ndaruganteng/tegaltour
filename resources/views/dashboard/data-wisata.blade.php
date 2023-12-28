@@ -52,11 +52,11 @@
                                                     <th>Image</th>
                                                     <th>Nama Paket Wisata</th>
                                                     <th>Tanggal Berangkat</th>
-                                                    <th>Kategori</th>
                                                     <th>harga/Orang</th>
+                                                    <th>Kategori</th>
+                                                    <th>Status Wisata</th>
                                                     <th>Ulasan Wisata</th>
                                                     <th>Aksi</th>
-                                                    <th>Status Wisata</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -68,14 +68,19 @@
                                                             alt="wisata" style="width:100px">
                                                     </td>
                                                     <td>{{ $p->namawisata}}</td>
-                                                    <td style="word-wrap: break-word; max-width: 50px;">
-                                                        {{ \Carbon\Carbon::parse($p->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}
+                                                    <td> {{ \Carbon\Carbon::parse($p->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}
                                                     </td>
+                                                    <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                                     <td>
                                                         <span class="badge badge-dark">{{ $p->kategori}}</span>
                                                     </td>
-                                                    <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
-
+                                                    <td>
+                                                        @if($p->status_wisata == null)
+                                                        <span class="badge badge-success">Aktif</span>
+                                                        @else
+                                                        <span class="badge badge-secondary">NonAktif</span>
+                                                        @endif
+                                                    </td>
                                                     <td>
                                                         <a href="/ulasan-wisata/{{$p->id_wisata}}#{{$p->namawisata}}"
                                                             class="btn btn-info btn-sm"> <i
@@ -83,7 +88,7 @@
                                                             Ulasan
                                                         </a>
                                                     </td>
-                                                    <td style="word-wrap: break-word; max-width: 100px;">
+                                                    <td class="">
                                                         <a href="/detail-data-wisata/{{($p->id_wisata)}}#{{$p->namawisata}}"
                                                             class="btn btn-primary btn-sm my-1">
                                                             <i class="fas fa-eye me-2"></i> Detail
@@ -98,15 +103,12 @@
                                                             id="deletwisata">
                                                             <i class="fas fa-trash me-2"></i> Hapus
                                                         </a>
-                                                    </td>
-                                                    <td>
                                                         @if($p->status_wisata == null)
                                                         <form method="post"
                                                             action="{{route('nonaktif', ['id_wisata'=> $p->id_wisata])}}">
                                                             @csrf
                                                             @method('put')
-                                                            <p>Aktif</p>
-                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                            <button type="submit" class="btn btn-secondary btn-sm">
                                                                 NonAktif
                                                             </button>
                                                         </form>
@@ -115,7 +117,6 @@
                                                             action="{{route('wisataaktif', ['id_wisata'=> $p->id_wisata])}}">
                                                             @csrf
                                                             @method('put')
-                                                            <p>Non Aktif</p>
                                                             <button type="submit" class="btn btn-success btn-sm">
                                                                 Aktifkan
                                                             </button>
@@ -136,17 +137,16 @@
                                             class="table table-striped table-bordered text-center" style="width:100%">
                                             <thead>
                                                 <tr>
+                                                <tr>
                                                     <th>Image</th>
-                                                    <th>Nama Paket
-                                                        Wisata</th>
-                                                    <th>Tanggal
-                                                        Berangkat</th>
-                                                    <th>Kategori</th>
+                                                    <th>Nama Paket Wisata</th>
+                                                    <th>Tanggal Berangkat</th>
                                                     <th>harga/Orang</th>
-                                                    <th>Ulasan </th>
+                                                    <th>Kategori</th>
+                                                    <th>Status Wisata</th>
+                                                    <th>Ulasan Wisata</th>
                                                     <th>Aksi</th>
-                                                    <th>Status Wisata
-                                                    </th>
+                                                </tr>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -155,16 +155,22 @@
                                                 <tr>
                                                     <td>
                                                         <img src="{{asset('storage/image/wisata/'.$p->image)}}"
-                                                            alt="wisata" style="width:50px">
+                                                            alt="wisata" style="width:100px">
                                                     </td>
                                                     <td>{{ $p->namawisata}}</td>
-                                                    <td>{{ \Carbon\Carbon::parse($p->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}
+                                                    <td> {{ \Carbon\Carbon::parse($p->tanggalberangkat)->locale('id')->isoFormat('dddd, D MMMM Y') }}
                                                     </td>
+                                                    <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                                     <td>
                                                         <span class="badge badge-dark">{{ $p->kategori}}</span>
                                                     </td>
-                                                    <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
-
+                                                    <td>
+                                                        @if($p->status_wisata == null)
+                                                        <span class="badge badge-success">Aktif</span>
+                                                        @else
+                                                        <span class="badge badge-secondary">NonAktif</span>
+                                                        @endif
+                                                    </td>
                                                     <td>
                                                         <a href="/ulasan-wisata/{{$p->id_wisata}}#{{$p->namawisata}}"
                                                             class="btn btn-info btn-sm"> <i
@@ -172,7 +178,7 @@
                                                             Ulasan
                                                         </a>
                                                     </td>
-                                                    <td>
+                                                    <td class="">
                                                         <a href="/detail-data-wisata/{{($p->id_wisata)}}#{{$p->namawisata}}"
                                                             class="btn btn-primary btn-sm my-1">
                                                             <i class="fas fa-eye me-2"></i> Detail
@@ -187,15 +193,12 @@
                                                             id="deletwisata">
                                                             <i class="fas fa-trash me-2"></i> Hapus
                                                         </a>
-                                                    </td>
-                                                    <td>
                                                         @if($p->status_wisata == null)
                                                         <form method="post"
                                                             action="{{route('nonaktif', ['id_wisata'=> $p->id_wisata])}}">
                                                             @csrf
                                                             @method('put')
-                                                            <p>Aktif</p>
-                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                            <button type="submit" class="btn btn-secondary btn-sm">
                                                                 NonAktif
                                                             </button>
                                                         </form>
@@ -204,7 +207,6 @@
                                                             action="{{route('wisataaktif', ['id_wisata'=> $p->id_wisata])}}">
                                                             @csrf
                                                             @method('put')
-                                                            <p>Non Aktif</p>
                                                             <button type="submit" class="btn btn-success btn-sm">
                                                                 Aktifkan
                                                             </button>

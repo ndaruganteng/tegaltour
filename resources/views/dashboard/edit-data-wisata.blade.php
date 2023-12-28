@@ -24,7 +24,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 grid-margin">
-                    <div class="card card-primary card-outline">
+                    <div class="card card-dark card-outline">
                         <div class="card-header" style="background-color: white;">
                             <h5 class="text-center "> Form Edit Paket Wisata</h5>
                         </div>

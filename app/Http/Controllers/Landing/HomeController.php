@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -70,5 +71,23 @@ class HomeController extends Controller
         $user->save();
     
         return redirect()->route('profile_user')->with('toast_success', 'Profil berhasil diperbarui.');
+    }
+
+        public function changePassword(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        $request->validate([
+            'password' => ['required', 'confirmed', 'min:6'],
+        ], [
+            'required' => 'Kolom :attribute harus diisi.',
+            'confirmed' => 'Konfirmasi :attribute tidak cocok.',
+            'min' => ':attribute minimal harus 6 karakter.', // Password minimum length
+        ]);
+
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+
+        return redirect()->route('profile_user')->with('toast_success', 'Password berhasil diperbarui.');
     }
 }

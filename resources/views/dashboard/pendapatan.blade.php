@@ -34,7 +34,8 @@
                                             <th>Nama Wisata</th>
                                             <th>Total Pemesan</th>
                                             <th>Total Pendapatan</th>
-
+                                            <th>Status Pendapatan</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -43,6 +44,28 @@
                                             <td>{{ $wisata->namawisata }}</td>
                                             <td>{{ $wisata->total_pemesan }}</td>
                                             <td>Rp{{ number_format($wisata->total_harga_potong, 2) }}</td>
+                                            <td>
+                                                @if($wisata->status_pendapatan == null)
+                                                <span class="badge badge-danger">Belum di ambil</span>
+                                                @elseif($wisata->status_pendapatan == 1)
+                                                <span class="badge badge-warning">Proses</span>
+                                                @elseif($wisata->status_pendapatan == 2)
+                                                <span class="badge badge-success">Saldo Telah Di Tarik</span>
+                                                @elseif($wisata->status_pendapatan == 3)
+                                                <span class="badge badge-danger">Penarikan Dicancel</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($wisata->status_pendapatan == null)
+                                                <a href="/tariksaldo/{{$wisata->id_pemesanan}}"
+                                                    class="btn btn-sm btn-success">Request Tarik Saldo</a>
+                                                @elseif($wisata->status_pendapatan == 2)
+                                                <p>-</p>
+                                                @elseif($wisata->status_pendapatan == 3)
+                                                <a href="/tariksaldo/{{$wisata->id_pemesanan}}"
+                                                    class="btn btn-sm btn-success">Request Tarik Saldo</a>
+                                                @endif
+                                            </td>
                                         </tr>
                                         @endforeach
 

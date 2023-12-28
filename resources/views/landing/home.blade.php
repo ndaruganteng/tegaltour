@@ -42,7 +42,7 @@
     <div class="container mt-5 ">
         <h1 class="text-center judul-date ">Cari Wisata Dengan Range Tanggal</h1>
         <div class="row justify-content-center">
-            <div class="col-12 info-panel ">
+            <div class="col-lg-12 info-panel ">
                 <form class="justify-content-center" action="{{route('wisata.search_date') }}" method="GET">
                     <div class="row" date-rangepicker>
                         <div class="col-md">
@@ -73,21 +73,21 @@
             <div class="row">
                 <div class="col-md-12 col-lg-4 " data-aos="fade-right" data-aos-duration="500">
                     <div class="card bg-dark text-white text-center my-3">
-                        <img src="images/home/g2.jpg" class="card-img " alt="Stony Beach" />
+                        <img src="images/home/B1.jpg" class="card-img " alt="Stony Beach" />
                         <div class="card-img-overlay">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4 " data-aos="fade-up" data-aos-duration="1000">
                     <div class="card bg-dark text-white text-center my-3">
-                        <img src="images/home/g3.jpg" class="card-img " alt="Stony Beach" />
+                        <img src="images/home/B1.jpg" class="card-img " alt="Stony Beach" />
                         <div class="card-img-overlay">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4 " data-aos="fade-left" data-aos-duration="1500">
                     <div class="card bg-dark text-white text-center my-3">
-                        <img src="images/home/g1.jpg" class="card-img " alt="Stony Beach" />
+                        <img src="images/home/B1.jpg" class="card-img " alt="Stony Beach" />
                         <div class="card-img-overlay">
                         </div>
                     </div>
@@ -131,17 +131,6 @@
                                 <p class="card-title">{{ $item->namawisata }}</p>
                             </a>
                             <div class="d-flex align-items-center ">
-                                <!-- <span class="rating d-flex align-items-center">
-                                    @for ($i = 1; $i <= 5; $i++) @if ($i <=round($item->getAverageRating()))
-                                        <i class="fa fa-star checked"></i>
-                                        @else
-                                        <i class="fa fa-star"></i>
-                                        @endif
-                                        @endfor
-                                </span>
-                                <div class="ml-2 rating-text align-middle">
-                                    {{ number_format($item->getAverageRating(), 1, '.', '') }}/5
-                                </div> -->
                                 <div class="rating-container text-center d-flex align-items-center">
                                     @for ($i = 1; $i <= 5; $i++) @if ($i <=round($item->getAverageRating()))<i
                                             class="fa fa-star checked"></i>

@@ -55,10 +55,10 @@
                                             <td>
                                                 @if($p->profile_picture == null)
                                                 <img src="https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-700-205577532.jpg"
-                                                    class="rounded-circle" style="width:50px; heigth:auto;">
+                                                    class="rounded-circle" style="width:50px;">
                                                 @else
                                                 <img src="{{ asset('storage/image/user/' . $p->profile_picture) }}"
-                                                    class="rounded-circle" style="width:50px; heigth:auto;">
+                                                    class="rounded-circle" style="width:50px;">
                                                 @endif
                                             </td>
                                             <td>{{$p->nama_lengkap}}</td>

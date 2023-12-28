@@ -19,6 +19,27 @@
     <div class="content-biro">
         <div class="container">
             <div class="row">
+                <div class="col-lg-12 col-md-12" style="margin-top: 20px;">
+                    <div class="d-flex justify-content-between">
+                        <h2 class="fw-bold">Daftar Biro Wisata </h2>
+                        <div>
+                            <form action="{{ route('biro_search') }}">
+                                <div class="input-group" style="width: 200px;">
+                                    <div class="form-outline">
+                                        <input type="text" name="search" class="form-control" />
+                                        <label class="form-label" for="search">Cari Wisata </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark shadow-0">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @if(count($users) > 0)
                 @foreach($users as $p)
                 @if($p->role == 'mitra')
                 <div class="col-md-12 col-lg-3">
@@ -43,6 +64,11 @@
                 </div>
                 @endif
                 @endforeach
+                @else
+                <div class="col-md-12">
+                    <p class="text-center mt-3">Biro Wisata tidak ditemukan.</p>
+                </div>
+                @endif
             </div>
         </div>
     </div>

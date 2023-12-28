@@ -138,6 +138,9 @@
                     <a href="{{route('data-order.index')}}" class="nav-link">
                         <i class="nav-icon fa-solid fa-cart-shopping"></i>
                         <p>Data Order</p>
+                        @if($newOrdersBiro > 0)
+                        <span class="right badge badge-danger">{{ $newOrdersBiro }}</span>
+                        @endif
                     </a>
                 </li>
                 <li class="nav-item">

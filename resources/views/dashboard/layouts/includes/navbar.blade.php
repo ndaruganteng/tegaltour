@@ -9,13 +9,18 @@
     <ul class="navbar-nav ml-auto">
 
         <li class="nav-item">
+            <a class="nav-link" href="{{route('profile')}}" role="button">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
         </li>
-            <a class="nav-link" href="/logout" role="button">
-                <i class="fa-solid fa-right-from-bracket"></i>
-            </a>
+        <a class="nav-link" href="/logout" role="button">
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </a>
         </li>
 
     </ul>

@@ -11,7 +11,6 @@
                     <div class="card card_profile text-center shadow-0 border border-2">
                         <div class="card-body">
                             <div class="image_profile">
-
                                 @if(Auth::user()->profile_picture && Storage::disk('public')->exists('image/user/' .
                                 Auth::user()->profile_picture))
                                 <img src="{{asset('storage/image/user/'.Auth::user()->profile_picture)}}"
@@ -23,8 +22,11 @@
                             </div>
                             <h5 class="card-title">{{ Auth::user()->nama_lengkap }}</h5>
                             <button type="button" class="btn btn-dark mt-1 btn-sm shadow-0" data-mdb-toggle="modal"
-                                data-mdb-target="#profileuserModal"><i class="fas fa-edit mr-2"></i>Edit
+                                data-mdb-target="#profileuserModal"><i class="fas fa-edit mr-1"></i>Edit
                                 Profile</button>
+                            <button type="button" class="btn btn-dark mt-1 btn-sm shadow-0" data-mdb-toggle="modal"
+                                data-mdb-target="#editprofileModal"><i class="fa-solid fa-lock mr-1"></i>Ganti
+                                Password</button>
                         </div>
                     </div>
                 </div>
@@ -95,6 +97,49 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="editprofileModal" tabindex="-1" aria-labelledby="editprofileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editprofileModalLabel">Ganti Password</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('change_password_submit', ['id' => Auth::id()]) }}" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <label for="password">Password Baru</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" name="password" id="password"
+                                placeholder="Masukkan password baru">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="show-hide-password">
+                                    <i class="fa fa-eye" aria-hidden="true" onclick="togglePassword()"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password_confirmation">Konfirmasi Password Baru</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" name="password_confirmation"
+                                id="password_confirmation" placeholder="Konfirmasi password baru">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="show-hide-confirm-password">
+                                    <i class="fa fa-eye" aria-hidden="true" onclick="toggleConfirmPassword()"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-dark" value="Simpan Data">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
 function previewImage(event) {
@@ -116,5 +161,34 @@ function previewImage(event) {
     }
 }
 </script>
+
+<script>
+function togglePassword() {
+    var passwordInput = document.getElementById('password');
+    var icon = document.getElementById('show-hide-password').getElementsByTagName('i')[0];
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.className = 'fa fa-eye-slash';
+    } else {
+        passwordInput.type = 'password';
+        icon.className = 'fa fa-eye';
+    }
+}
+
+function toggleConfirmPassword() {
+    var confirmPasswordInput = document.getElementById('password_confirmation');
+    var icon = document.getElementById('show-hide-confirm-password').getElementsByTagName('i')[0];
+
+    if (confirmPasswordInput.type === 'password') {
+        confirmPasswordInput.type = 'text';
+        icon.className = 'fa fa-eye-slash';
+    } else {
+        confirmPasswordInput.type = 'password';
+        icon.className = 'fa fa-eye';
+    }
+}
+</script>
+
 
 @endsection

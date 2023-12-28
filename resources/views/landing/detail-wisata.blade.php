@@ -37,12 +37,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12 deskripsi">
+                        <div class="col-lg-12 deskripsi ">
                             <h3>Titik Kumpul</h3>
                             <p>{{ $detail_wisata->titikkumpul }}</p>
                         </div>
                         <div class="col-lg-12 deskripsi ">
-                            <h3>Highlight Wisata</h3>
+                            <h3>Destinasi Wisata</h3>
                             <p>{{ $detail_wisata->lokasi }}</p>
                         </div>
                         <div class="col-lg-12 deskripsi">
@@ -76,7 +76,9 @@
                             <div class="card border shadow-0 rounded-0">
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <p style="font-size: 24px; margin-bottom: 0;">Ulasan </p>
+                                        <p style="font-size: 24px; margin-bottom: 0;">Penilaian Wisata
+                                            <small style="font-size: 14px;">({{ $totalUlasan }} ulasan) </small>
+                                        </p>
                                         <div class="rating-container text-center d-flex align-items-center">
                                             @for ($i = 1; $i <= 5; $i++) @if ($i <=round($averageRating)) <i
                                                 class="fa fa-star checked"></i>
@@ -189,6 +191,37 @@
                                         </div>
                                         <button type="submit" class="btn btn-dark btn-block mb-4">Pesan
                                             Sekarang</button>
+                                    </form>
+                                </div>
+                            </div>
+                            @else
+                            <div class="card text-center border border-2">
+                                <div class="card-header fw-blod">-BOOKING-</div>
+                                <div class="card-body">
+                                    <form action="/boking" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-outline mb-4" style="display: none;">
+                                            <input class="form-control" name="harga_satuan" id="hargasatuan" type="text"
+                                                value="{{ $detail_wisata->harga }}" onchange="updateHargaTotal()"
+                                                readonly />
+                                            <label class="form-label" for="hargasatuan">Harga /pax</label>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input type="number" min="1" name="jumlah_orang" id="jumlahorang"
+                                                class="form-control" onchange="updateHargaTotal()" />
+                                            <label class="form-label" for="jumlahorang" require>Jumlah
+                                                Orang</label>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input class="form-control bg-white" id="viewhargatotal" type="text"
+                                                placeholder="Total Harga" readonly />
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input class="form-control bg-white" name="harga_total" id="hargatotal"
+                                                type="text" placeholder="Total Harga" hidden />
+                                        </div>
+                                        <a href="{{route('login.index')}}" class="btn btn-dark btn-block mb-4">Pesan
+                                            Sekarang</a>
                                     </form>
                                 </div>
                             </div>

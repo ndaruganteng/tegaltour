@@ -31,18 +31,92 @@
 
 <body>
     @include('sweetalert::alert')
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container p-2">
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <a class="navbar-brand me-auto mt-2 mt-lg-0" href="{{route('home.index')}}">
+                    <img src="/images/icon/tour-logo.png" height="30" alt="MDB Logo" loading="lazy" />
+                    <small>TegalTour</small>
+                </a>
+                <ul class="navbar-nav justify-content-center me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('home.index')}}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('wisata.index')}}">Paket Wisata</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('biro-wisata.index')}}">Daftar Biro Wisata</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('join-mitra.index')}}">Join Mitra</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="d-flex align-items-center">
+                @if (Auth::check() && Auth::user()->role == 'user')
+                @if (Auth::check())
+                <span class="me-2">{{ Auth::user()->nama_lengkap }}</span>
+                @else
+                @endif
+                <div class="dropdown">
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
+                        id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        @if(Auth::user()->profile_picture && Storage::disk('public')->exists('image/user/' .
+                        Auth::user()->profile_picture))
+                        <img src="{{asset('storage/image/user/'.Auth::user()->profile_picture)}}" class="rounded-circle"
+                            height="30" alt="Black and White Portrait of a Man" loading="lazy" />
+                        @else
+                        <img src="\images\icon\dua.png" class="rounded-circle" height="30"
+                            alt="Black and White Portrait of a Man" loading="lazy" />
+                        @endif
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                        <li>
+                            <a class="dropdown-item" href="{{route('profile_user')}}">Profile Saya</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{route('pesanan-saya.index')}}">Pesanan Saya</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{route('history.index')}}">History Pesanan</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="text-reset ms-2" href="{{route('transaksi.index')}}">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                @else
+                <a href="{{route('login.index')}}" type="button" class="btn btn-outline-dark btn-rounded btn-sm"
+                    data-mdb-ripple-color="dark">Login </a>
+                @endif
+            </div>
+        </div>
+    </nav>
+    <!-- end navbar -->
+
+    <!-- content -->
     <div class="container d-flex justify-content-center align-items-center min-vh-100 login">
         <div class="row border rounded-5 p-3 bg-white box-area">
-            <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
-                style="background: #103cbe;">
+            <div
+                class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box bg-dark">
                 <div class="featured-image mb-3">
                     <img src="images/login/tour-logo.png" class="img-fluid" style="width: 250px;">
                 </div>
                 <small class="text-white text-wrap text-center"
                     style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Gabung dan dapatkan pengalaman
                     berwisata yang menarik.</small>
-                <a href="{{route('home.index')}}" type="button" class="btn btn-light btn-rounded shadow-0 my-3"><i
-                        class="fa-solid fa-house me-2"></i></i>Home</a>
+
             </div>
             <div class="col-md-6 right-box">
                 <div class="row align-items-center">
@@ -77,8 +151,7 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <button type="submit" class="btn btn-lg btn-primary w-100 fs-6"
-                                style="background: #103cbe;">Login</button>
+                            <button type="submit" class="btn btn-lg btn-dark w-100 fs-6">Login</button>
                         </div>
                         <div class="row">
                             <small>Belum punya akun? <a href="{{route('register.index')}}">Register</a></small>
@@ -88,6 +161,97 @@
             </div>
         </div>
     </div>
+    <!-- endcontent -->
+
+    <!-- footer -->
+    <footer class="text-center text-lg-start bg-light text-muted" style="margin-top: -50px;">
+
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <div class="me-5 d-none d-lg-block">
+                <span>Sosial Media:</span>
+            </div>
+            <div>
+                <a href="https://wa.me/085647019630" target="_blank" class="me-4 text-reset">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.tiktok.com/@selaikelapa" target="_blank" class="me-4 text-reset">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="https://www.instagram.com/m.ndarru" target="_blank" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100009111716998" target="_blank"
+                    class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <div class="container text-center text-md-start mt-5">
+                <div class="row mt-3">
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <img src="images/icon/tour-logo.png" class="me-2" alt="" style="width:25px;">
+                            TegalTour
+                        </h6>
+                        <p>
+                            Tegaltour adalah sebuah platform marketplace yang memfasilitasi penjualan berbagai paket
+                            wisata
+                            yang diunggah oleh mitra-mitra kami.
+                        </p>
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Produk
+                        </h6>
+                        <p>
+                            <a href="{{route('wisata.index')}}" class="text-reset">Paket Wisata</a>
+                        </p>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Menu
+                        </h6>
+                        <p>
+                            <a href="{{route('home.index')}}" class="text-reset">Home</a>
+                        </p>
+                        <p>
+                            <a href="{{route('wisata.index')}}" class="text-reset">Paket Wisata</a>
+                        </p>
+                        <p>
+                            <a href="{{route('biro-wisata.index')}}" class="text-reset">Daftar Biro Wisata</a>
+                        </p>
+                        <p>
+                            <a href="{{route('join-mitra.index')}}" class="text-reset">Join Mitra</a>
+                        </p>
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                        <p>
+                            <i class="fas fa-home me-3"></i>
+                            Tegal, Jawa Tengah, Indonesia
+                        </p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            tegaltour@gmail.com
+                        </p>
+                        <p>
+                            <i class="fas fa-phone me-3"></i>
+                            085647019630
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2023 Copyright:
+            <a class="text-reset fw-bold" href="#">tegaltour.my.id </a>
+        </div>
+
+    </footer>
+    <!-- end footer -->
 
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->

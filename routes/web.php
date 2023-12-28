@@ -30,7 +30,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\OrderController;
 
 //AUTH
-Route::group(['middleware' => ['guest']], function(){
+Route::group(['middleware' => ['guest']], function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login.index');
     Route::post('/login', [LoginController::class, 'login'])->name('login.store');
     Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
@@ -39,18 +39,19 @@ Route::group(['middleware' => ['guest']], function(){
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Grup User 
-Route::group(['middleware' => ['auth', 'ceklevel:user']], function(){
+Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
     Route::get('/join-mitra', [RequestmitraController::class, 'tambah'])->name('join-mitra.index');
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
     Route::post('/pesanan-saya', [UlasanController::class, 'store'])->name('Ulasan.index');
     Route::get('/history', [HistoryController::class, 'history_user'])->name('history.index');
     Route::get('/profile-user', [HomeController::class, 'profile_user'])->name('profile_user');
     Route::post('/profile-user/update/{id}', [HomeController::class, 'updateprofileUser'])->name('profileUser.update');
+    Route::post('/profile_user/change-password/{id}', [HomeController::class, 'changePassword'])->name('change_password_submit');
 });
 
 
-Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){  
-    
+Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function () {
+
     //DATA WISATA 
     Route::get('/data-wisata', [DatawisataController::class, 'index'])->name('data-wisata.index');
     Route::get('/tambah-data-wisata', [DatawisataController::class, 'tambah'])->name('tambah-data-wisata.index');
@@ -61,7 +62,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){
     Route::put('/nonaktif/{id_wisata}', [DatawisataController::class, 'nonaktif'])->name('nonaktif');
     Route::put('/wisataaktif/{id_wisata}', [DatawisataController::class, 'wisataaktif'])->name('wisataaktif');
     Route::pattern('id', '[0-9]+');
-    Route::get('/detail-data-wisata/{id}', [DetaildatawisataController::class,'showdetail']);
+    Route::get('/detail-data-wisata/{id}', [DetaildatawisataController::class, 'showdetail']);
 
     //DATA REKENINGG
     // Route::get('/data-rekening', [DatarekeningController::class, 'index'])->name('data-rekening.index');
@@ -79,18 +80,16 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function(){
 
     // PENDAPATAN
     Route::get('/pendapatan', [PendapatanController::class, 'index'])->name('pendapatan.index');
-
-
-
+    Route::get('/tariksaldo/{id_pemesanan}', [PendapatanController::class, 'tarikSaldo'])->name('tarikSaldo');
 });
 
 
-Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
+Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
 
     //DATA WISATA
     Route::get('/data-wisata-admin', [DatawisataController::class, 'wisata_admin'])->name('data-wisata-admin.index');
     Route::pattern('id', '[0-9]+');
-    Route::get('/detail-data-wisata-admin/{id}', [DetaildatawisataController::class,'showdetailadmin']);
+    Route::get('/detail-data-wisata-admin/{id}', [DetaildatawisataController::class, 'showdetailadmin']);
 
     //DATAUSER
     Route::get('/data-user', [DatauserController::class, 'index'])->name('data-user.index');
@@ -122,15 +121,16 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     Route::post('/data-rekening', [DatarekeningController::class, 'store'])->name('Rekening.index');
     Route::put('/data-rekening/update/{id_rekening}', [DatarekeningController::class, 'update'])->name('updateRekening.index');
     Route::get('/data-rekening/hapus/{id_rekening}', [DatarekeningController::class, 'hapus'])->name('hapus.index');
-    
+
     // PENDAPATAN ADMIN
     Route::get('/pendapatan-admin', [PendapatanController::class, 'view_pendapatan'])->name('pendapatan-admin.index');
     Route::get('/pendapatan-biro-wisata', [PendapatanController::class, 'view_pendapatan_biro'])->name('pendapatan-biro-wisata.index');
-    Route::put('/tarikSaldo/{id_wisata}', [PendapatanController::class, 'tarikSaldo'])->name('tarikSaldo');
- });
+    Route::get('/konfirmasitariksaldo/{id_pemesanan}', [PendapatanController::class, 'konfirmasitarikSaldo'])->name('konfirmasitarikSaldo');
+    Route::get('/canceltariksaldo/{id_pemesanan}', [PendapatanController::class, 'canceltarikSaldo'])->name('canceltarikSaldo');
+});
 
 
- Route::group(['middleware' => ['auth', 'ceklevel:admin,mitra']], function () {
+Route::group(['middleware' => ['auth', 'ceklevel:admin,mitra']], function () {
 
     // DASHBOARD
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
@@ -140,6 +140,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 
     // EDITPROFILE
     Route::post('/profile/update/{id}', [DatauserController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/profile/update-password/{id}', [DatauserController::class, 'updatePassword'])->name('profile.updatePassword');
 
     // ULASAN WISATA
     Route::get('/ulasan-wisata/{id}', [UlasanController::class, 'ulasan_wisata'])->name('ulasan-wisata');
@@ -149,26 +150,25 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 
 // DETAIL WISATA
 Route::pattern('id', '[0-9]+');
-Route::get('/{id}/{slug}', [DetailwisataController::class,'show']);
+Route::get('/{id}/{slug}', [DetailwisataController::class, 'show']);
 
 //SEARCH RANGE TANGGAL
 Route::get('/search_date', function (Request $request) {
     $startDate = $request->input('start-date');
-    $endDate = $request->input('end-date'); 
+    $endDate = $request->input('end-date');
     $kategori = kategori::all();
     $wisata = DB::table('wisata')
-    ->join('users', 'users.id', '=', 'wisata.id_mitra')
-    ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
-    ->select('wisata.*', 'kategori.nama_kategori as kategori', 'users.nama_lengkap as nama_lengkap')
-    ->whereBetween('tanggalberangkat', [$startDate, $endDate])
-    ->get();
-    return view('landing.wisata', compact('wisata','kategori'));
-
+        ->join('users', 'users.id', '=', 'wisata.id_mitra')
+        ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
+        ->select('wisata.*', 'kategori.nama_kategori as kategori', 'users.nama_lengkap as nama_lengkap')
+        ->whereBetween('tanggalberangkat', [$startDate, $endDate])
+        ->get();
+    return view('landing.wisata', compact('wisata', 'kategori'));
 })->name('wisata.search_date');
 
 // SEARCH WISATA
-Route::get('/search',[WisataController::class, 'search'])->name('wisata.search');
-Route::get('/search_biro_wisata',[BirowisataController::class, 'search_biro_wisata'])->name('wisata.search_biro_wisata');
+Route::get('/search', [WisataController::class, 'search'])->name('wisata.search');
+Route::get('/search_biro_wisata', [BirowisataController::class, 'search_biro_wisata'])->name('wisata.search_biro_wisata');
 
 // PEMESANAN
 Route::post('/boking', [PemesananController::class, 'store']);
@@ -176,7 +176,7 @@ Route::get('/invoice/{id_pemesanan}', [PemesananController::class, 'pdf']);
 Route::put('/konfirmasi/{id_pemesanan}', [PemesananController::class, 'konfirmasi'])->name('konfirmasi');
 Route::put('/cancel/{id_pemesanan}', [PemesananController::class, 'cancel'])->name('cancel');
 Route::get('/data-order/hapus/{id}', [PemesananController::class, 'hapus'])->name('hapus.index');
-Route::group(['middleware' => ['auth','ceklevel:user']], function(){
+Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
     Route::post('/upload-bukti_pembayaran/{id}', [PemesananController::class, 'update'])->name('upload-bukti_pembayaran');
 });
 
@@ -186,7 +186,7 @@ Route::post('/join-mitra', [RequestmitraController::class, 'store'])->name('Mitr
 
 // ResetPassword
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
@@ -194,6 +194,7 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
 Route::get('/biro-wisata', [BirowisataController::class, 'index'])->name('biro-wisata.index');
+Route::get('/biro_search', [BirowisataController::class, 'biro_search'])->name('biro_search');
 Route::pattern('id', '[0-9]+');
-Route::get('/detail-biro-wisata/{id}', [BirowisataController::class,'showdetailbiro']);
+Route::get('/detail-biro-wisata/{id}', [BirowisataController::class, 'showdetailbiro']);
 Route::get('/pesanan-saya', [PemesananController::class, 'pesanan_saya'])->name('pesanan-saya.index');

@@ -10,7 +10,6 @@
                         <h3 class="text-center fw-bold">Produk Biro Wisata</h3>
                     </div>
                 </div>
-
                 <div class="row mt-2">
                     <div class="col-md-12 col-lg-12 ">
                         <div class="col-lg-12 ">
@@ -40,15 +39,14 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row tour-card mt-2">
                     @if($wisata->isEmpty())
                     <p class="text-center mt-5" style="font-size: 16px;">Paket Wisata belum ada.</p>
                     @else
                     @foreach($wisata as $item)
                     <div class="col-md-12 col-lg-3">
-                        <div class="card" data-aos="fade-right" data-aos-duration="500" data-aos-delay="100"
-                            style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                        <div class="card shadow-0 border border-2" data-aos="fade-right" data-aos-duration="500"
+                            data-aos-delay="100" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
                             <a href="/{{$item->id_wisata}}/{{$item->slug}}" class="bg-image hover-zoom">
                                 <img class="card-img-top" src="{{asset('storage/image/wisata/'.$item->image)}}"
                                     alt="Card image cap " style="height:180px">
