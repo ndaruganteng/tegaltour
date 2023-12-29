@@ -57,14 +57,17 @@
                                             </td>
                                             <td>
                                                 @if ($wisata->status_pendapatan == null)
-                                                <a href="/tariksaldo/{{$wisata->id_pemesanan}}"
-                                                    class="btn btn-sm btn-success">Request Tarik Saldo</a>
-                                                @elseif($wisata->status_pendapatan == 2)
+                                                <form
+                                                    action="{{ route('tarik-saldo', ['namaWisata' => $wisata->namawisata]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-success tarik-saldo-btn"
+                                                        data-id="{{ $wisata->id }}">Tarik Saldo</button>
+                                                </form>
+                                                @else
                                                 <p>-</p>
-                                                @elseif($wisata->status_pendapatan == 3)
-                                                <a href="/tariksaldo/{{$wisata->id_pemesanan}}"
-                                                    class="btn btn-sm btn-success">Request Tarik Saldo</a>
                                                 @endif
+
                                             </td>
                                         </tr>
                                         @endforeach
@@ -79,10 +82,57 @@
         </div>
     </div>
 
-
 </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('pendapatan-table').addEventListener('click', function(event) {
+        if (event.target.classList.contains('tarik-saldo-btn')) {
+            const idWisata = event.target.getAttribute('data-id');
+            fetch(`/tarik-saldo/${idWisata}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    updateStatus(idWisata, data.status_pendapatan);
+                    Swal.fire({
+                        title: 'Sukses',
+                        text: 'Penarikan Saldo telah dikonfirmasi',
+                        icon: 'success',
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    });
 
-
+    function updateStatus(id, newStatus) {
+        const statusElement = document.getElementById(`status_${id}`);
+        if (statusElement) {
+            switch (newStatus) {
+                case null:
+                    statusElement.innerHTML = '<span class="badge badge-danger">Belum di ambil</span>';
+                    break;
+                case 1:
+                    statusElement.innerHTML = '<span class="badge badge-warning">Proses</span>';
+                    break;
+                case 2:
+                    statusElement.innerHTML = '<span class="badge badge-success">Saldo Telah Di Tarik</span>';
+                    break;
+                case 3:
+                    statusElement.innerHTML = '<span class="badge badge-danger">Penarikan Dicancel</span>';
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+});
+</script>
 
 @endsection

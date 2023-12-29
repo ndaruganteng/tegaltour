@@ -118,16 +118,26 @@
                                     </a>
                                     <div class="d-flex align-items-center ">
                                         <div class="rating-container text-center d-flex align-items-center">
-                                            @for ($i = 1; $i <= 5; $i++) @if ($i <=round($item->getAverageRating()))<i
-                                                    class="fa fa-star checked"></i>
+                                            @php
+                                            $averageRating = $item->getAverageRating();
+                                            $fullStars = floor($averageRating);
+                                            $halfStar = $averageRating - $fullStars;
+                                            @endphp
+
+                                            @for ($i = 1; $i <= 5; $i++) @if ($i <=$fullStars) <i
+                                                class="fa fa-star checked">
+                                                </i>
+                                                @elseif ($i == ceil($averageRating) && $halfStar > 0)
+                                                <i class="fa fa-star-half-alt checked"></i>
                                                 @else
                                                 <i class="fa fa-star"></i>
                                                 @endif
                                                 @endfor
-                                                <span class="ml-2">(
-                                                    {{ number_format($item->getAverageRating(), 1, '.', '') }}/5
-                                                    )</span>
+
+                                                <span
+                                                    class="ml-2">({{ number_format($averageRating, 1, '.', '') }}/5)</span>
                                         </div>
+
                                     </div>
                                     <h3 class="card-text harga">Rp {{ number_format($item->harga, 0, ',', '.') }} <span
                                             style="color: grey;">/orang</span></h3>

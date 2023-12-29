@@ -77,17 +77,27 @@
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <p style="font-size: 24px; margin-bottom: 0;">Penilaian Wisata
-                                            <small style="font-size: 14px;">({{ $totalUlasan }} ulasan) </small>
+                                            <small style="font-size: 14px;">({{ $totalUlasan }} ulasan)</small>
                                         </p>
-                                        <div class="rating-container text-center d-flex align-items-center">
-                                            @for ($i = 1; $i <= 5; $i++) @if ($i <=round($averageRating)) <i
-                                                class="fa fa-star checked"></i>
-                                                @else
-                                                <i class="fa fa-star"></i>
-                                                @endif
-                                                @endfor
-                                                <span class="ml-2">( {{ number_format($averageRating, 1, '.', '') }}/5
-                                                    )</span>
+                                        <div class="rating-container">
+                                            @php
+                                            $roundedRating = round($averageRating);
+                                            $hasHalfStar = $averageRating - $roundedRating != 0;
+                                            @endphp
+
+                                            <div class="d-flex align-items-center">
+                                                @for ($i = 1; $i <= 5; $i++) @if ($i <=$roundedRating) <i
+                                                    class="fa fa-star checked"></i>
+                                                    @elseif ($hasHalfStar && $i == ($roundedRating + 1))
+                                                    <i class="fa fa-star-half-alt checked"></i>
+                                                    @else
+                                                    <i class="fa fa-star"></i>
+                                                    @endif
+                                                    @endfor
+                                            </div>
+
+                                            <span class="ml-2"
+                                                style="font-size: 14px;">({{ number_format($averageRating, 1, '.', '') }}/5)</span>
                                         </div>
                                     </div>
                                 </div>
@@ -257,6 +267,10 @@
     }
 
     .rating-container {
+        display: inline-flex;
+        /* Membuat kontainer menjadi flex */
+        align-items: center;
+        /* Menyusun item ke pusat vertikal */
         margin-left: 14px;
         /* Sesuaikan jarak antara ikon bintang dan nilai rata-rata */
     }

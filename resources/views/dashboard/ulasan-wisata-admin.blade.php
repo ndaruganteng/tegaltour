@@ -31,14 +31,22 @@
                                 <div>
                                     <h3 class="card-title mb-0 mr-3" style="font-size: 18px;">Total Ulasan Wisata</h3>
                                     <div class="rating-container text-center d-flex  align-items-center">
-                                        @for ($i = 1; $i <= 5; $i++) @if ($i <=round($averageRating)) <i
+                                        @php
+                                        $fullStars = floor($averageRating);
+                                        $halfStar = $averageRating - $fullStars;
+                                        @endphp
+
+                                        @for ($i = 1; $i <= 5; $i++) @if ($i <=$fullStars) <i
                                             class="fa fa-star checked"></i>
+                                            @elseif ($i == ceil($averageRating) && $halfStar > 0)
+                                            <i class="fa fa-star-half-alt checked"></i>
                                             @else
                                             <i class="fa fa-star"></i>
                                             @endif
                                             @endfor
-                                            <span class="ml-2">( {{ number_format($averageRating, 1, '.', '') }}/5
-                                                )</span>
+
+                                            <span
+                                                class="ml-2">({{ number_format($averageRating, 1, '.', '') }}/5)</span>
                                     </div>
                                 </div>
 

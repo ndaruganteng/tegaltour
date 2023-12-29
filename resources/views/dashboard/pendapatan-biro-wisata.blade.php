@@ -68,19 +68,17 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if($wisata->status_pendapatan == null)
-                                                <a href="/konfirmasitariksaldo/{{$wisata->id_pemesanan}}"
-                                                    class="btn btn-sm btn-success mt-2 konfirmasi">Konfirmasi </a>
-                                                <a href="/canceltariksaldo/{{$wisata->id_pemesanan}}"
-                                                    class="btn btn-sm btn-danger mt-2 cancel">cancel</a>
-                                                @elseif($wisata->status_pendapatan == 1)
-                                                <a href="/konfirmasitariksaldo/{{$wisata->id_pemesanan}}"
-                                                    class="btn btn-sm btn-success mt-2">Konfirmasi </a>
-                                                @elseif($wisata->status_pendapatan == 2)
+
+                                                @if($wisata->status_pendapatan == 1)
+                                                <form
+                                                    action="{{ route('konfirmasi-tarik-saldo', ['namaWisata' => $wisata->namawisata]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-sm btn-success mt-2 ">Konfirmasi</button>
+                                                </form>
+                                                @else
                                                 <p>-</p>
-                                                @elseif($wisata->status_pendapatan == 3)
-                                                <a href="/konfirmasitariksaldo/{{$wisata->id_pemesanan}}"
-                                                    class="btn btn-sm btn-success">Konfirmasi </a>
                                                 @endif
                                             </td>
                                         </tr>

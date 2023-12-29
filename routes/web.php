@@ -80,7 +80,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:mitra']], function () {
 
     // PENDAPATAN
     Route::get('/pendapatan', [PendapatanController::class, 'index'])->name('pendapatan.index');
-    Route::get('/tariksaldo/{id_pemesanan}', [PendapatanController::class, 'tarikSaldo'])->name('tarikSaldo');
+    Route::post('/tarik-saldo/{namaWisata}', [PendapatanController::class, 'tarikSaldo'])->name('tarik-saldo');
+
 });
 
 
@@ -125,8 +126,11 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
     // PENDAPATAN ADMIN
     Route::get('/pendapatan-admin', [PendapatanController::class, 'view_pendapatan'])->name('pendapatan-admin.index');
     Route::get('/pendapatan-biro-wisata', [PendapatanController::class, 'view_pendapatan_biro'])->name('pendapatan-biro-wisata.index');
-    Route::get('/konfirmasitariksaldo/{id_pemesanan}', [PendapatanController::class, 'konfirmasitarikSaldo'])->name('konfirmasitarikSaldo');
+    Route::post('/konfirmasi-tarik-saldo/{namaWisata}', [PendapatanController::class, 'konfirmasitarikSaldo'])->name('konfirmasi-tarik-saldo');
     Route::get('/canceltariksaldo/{id_pemesanan}', [PendapatanController::class, 'canceltarikSaldo'])->name('canceltarikSaldo');
+
+
+
 });
 
 

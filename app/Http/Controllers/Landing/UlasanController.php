@@ -67,22 +67,40 @@ class UlasanController extends Controller
     //     ->get();
     //     return view('dashboard.ulasan-wisata', compact('ulasan'));
     // }
+    // public function ulasan_wisata($id)
+    // {
+    //     // Ambil data wisata berdasarkan ID
+    //     $wisata = Wisata::findOrFail($id);
+
+    //     // Ambil ulasan berdasarkan ID wisata
+    //     $ulasan = $wisata->ulasan()
+    //         ->join('users', 'ulasan.id_user', '=', 'users.id')
+    //         ->select('ulasan.*', 'users.nama_lengkap as nama', 'users.profile_picture as profile_picture')
+    //         ->get();
+
+    //     // Ambil nilai rata-rata rating
+    //     $averageRating = $wisata->getAverageRating();
+
+    //     return view('dashboard.ulasan-wisata', compact('ulasan', 'averageRating'));
+    // }
+
     public function ulasan_wisata($id)
-    {
-        // Ambil data wisata berdasarkan ID
-        $wisata = Wisata::findOrFail($id);
+{
+    // Ambil data wisata berdasarkan ID
+    $wisata = Wisata::findOrFail($id);
 
-        // Ambil ulasan berdasarkan ID wisata
-        $ulasan = $wisata->ulasan()
-            ->join('users', 'ulasan.id_user', '=', 'users.id')
-            ->select('ulasan.*', 'users.nama_lengkap as nama', 'users.profile_picture as profile_picture')
-            ->get();
+    // Ambil ulasan berdasarkan ID wisata
+    $ulasan = $wisata->ulasan()
+        ->join('users', 'ulasan.id_user', '=', 'users.id')
+        ->select('ulasan.*', 'users.nama_lengkap as nama', 'users.profile_picture as profile_picture')
+        ->get();
 
-        // Ambil nilai rata-rata rating
-        $averageRating = $wisata->getAverageRating();
+    // Ambil nilai rata-rata rating
+    $averageRating = $wisata->getAverageRating();
 
-        return view('dashboard.ulasan-wisata', compact('ulasan', 'averageRating'));
-    }
+    return view('dashboard.ulasan-wisata', compact('ulasan', 'averageRating'));
+}
+
 
 
     public function ulasan_wisata_admin($id)

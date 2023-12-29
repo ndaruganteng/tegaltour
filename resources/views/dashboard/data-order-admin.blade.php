@@ -131,8 +131,7 @@
                                                         action="{{route('konfirmasi', ['id_pemesanan'=> $p->id_pemesanan])}}">
                                                         @csrf
                                                         @method('put')
-                                                        <button type="submit"
-                                                            class="btn btn-success btn-sm konfirmasi-button-pemesanan">
+                                                        <button type="submit" class="btn btn-success btn-sm ">
                                                             Konfirmasi
                                                         </button>
                                                     </form>
@@ -145,7 +144,7 @@
                                                         </button>
                                                     </form>
                                                     <a href="/data-order/hapus/{{ $p->id_pemesanan }}"
-                                                        class="btn btn-danger btn-sm delete-button-pemesanan mt-1">
+                                                        class="btn btn-danger btn-sm  mt-1">
                                                         Hapus
                                                     </a>
                                                     @else
