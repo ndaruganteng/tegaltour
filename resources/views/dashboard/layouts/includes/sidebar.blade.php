@@ -147,6 +147,9 @@
                     <a href="{{route('status-perjalanan.index')}}" class="nav-link">
                         <i class="nav-icon fa-solid fa-car-side"></i>
                         <p>Status Perjalanan</p>
+                        @if($newOrdersBiro > 0)
+                        <span class="right badge badge-danger">{{ $newOrdersBiro }}</span>
+                        @endif
                     </a>
                 </li>
                 <li class="nav-item">

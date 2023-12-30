@@ -70,14 +70,14 @@ class DetailwisataController extends Controller
         $ulasan = Ulasan::join('users', 'ulasan.id_user', '=', 'users.id')
             ->select('ulasan.*', 'users.nama_lengkap as nama', 'users.profile_picture as profile_picture')
             ->where('id_wisata', $id)
-            ->get();
+            ->simplePaginate(2);
 
         $mitra = User::join('wisata', 'users.id', '=', 'wisata.id_mitra')
             ->select('users.*')
             ->where('wisata.id_wisata', $id)
             ->first(); 
 
-        $totalUlasan = $ulasan->count(); // Jumlah total ulasan
+        $totalUlasan = $ulasan->count();
 
         $averageRating = $detail_wisata->getAverageRating();
 

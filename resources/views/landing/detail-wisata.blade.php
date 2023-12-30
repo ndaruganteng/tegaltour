@@ -133,6 +133,9 @@
                                 </div>
                                 @endforeach
                                 @endif
+                                <div class="card-footer justify-content-center">
+                                    {{ $ulasan->onEachSide(1)->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -162,6 +165,7 @@
                         </div>
                         <div class="col-lg-12 booking">
                             @if (Auth::check())
+                            @if ($detail_wisata->status_wisata == null)
                             <div class="card text-center border border-2">
                                 <div class="card-header fw-blod">-BOOKING-</div>
                                 <div class="card-body">
@@ -204,6 +208,8 @@
                                     </form>
                                 </div>
                             </div>
+                            @else
+                            @endif
                             @else
                             <div class="card text-center border border-2">
                                 <div class="card-header fw-blod">-BOOKING-</div>
@@ -273,6 +279,11 @@
         /* Menyusun item ke pusat vertikal */
         margin-left: 14px;
         /* Sesuaikan jarak antara ikon bintang dan nilai rata-rata */
+    }
+
+    .pagination-sm .page-link {
+        padding: 0.2rem 0.5rem;
+        font-size: 0.8rem;
     }
     </style>
 
