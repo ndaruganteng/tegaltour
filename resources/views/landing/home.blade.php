@@ -100,20 +100,24 @@
     <!-- card -->
     <section class="t-terbaru">
         <div class="container tour-card">
-            <div class="d-flex justify-content-between">
-                <h2 class=" fw-bold">Paket Wisata </h2>
-                <div class="#">
-                    <form action="{{route('wisata.search') }}">
-                        <div class="input-group" style="width: 200px;">
-                            <div class="form-outline">
-                                <input type="text" name="search" class="form-control" />
-                                <label class="form-label" for="search">Cari Wisata </label>
-                            </div>
-                            <button type="submit" class="btn btn-dark shadow-0">
-                                <i class="fas fa-search"></i>
-                            </button>
+            <div class="row">
+                <div class="col-lg-12 col md-12">
+                    <div class="d-flex justify-content-between">
+                        <h2 class=" fw-bold">Paket Wisata </h2>
+                        <div class="#">
+                            <form action="{{route('wisata.search') }}">
+                                <div class="input-group" style="width: 200px;">
+                                    <div class="form-outline">
+                                        <input type="text" name="search" class="form-control" />
+                                        <label class="form-label" for="search">Cari Wisata </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark shadow-0">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
             <div class="row">

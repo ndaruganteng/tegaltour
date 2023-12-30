@@ -160,15 +160,22 @@ Route::get('/{id}/{slug}', [DetailwisataController::class, 'show']);
 Route::get('/search_date', function (Request $request) {
     $startDate = $request->input('start-date');
     $endDate = $request->input('end-date');
-    $kategori = kategori::all();
-    $wisata = DB::table('wisata')
-        ->join('users', 'users.id', '=', 'wisata.id_mitra')
+    $kategori = Kategori::all();
+
+    $wisata = Wisata::join('users', 'users.id', '=', 'wisata.id_mitra')
         ->join('kategori', 'wisata.kategori', '=', 'kategori.id_kategori')
         ->select('wisata.*', 'kategori.nama_kategori as kategori', 'users.nama_lengkap as nama_lengkap')
         ->whereBetween('tanggalberangkat', [$startDate, $endDate])
         ->get();
+
+    // Menghitung rata-rata peringkat
+    foreach ($wisata as $item) {
+        $item->averageRating = $item->getAverageRating();
+    }
+
     return view('landing.wisata', compact('wisata', 'kategori'));
 })->name('wisata.search_date');
+
 
 // SEARCH WISATA
 Route::get('/search', [WisataController::class, 'search'])->name('wisata.search');
