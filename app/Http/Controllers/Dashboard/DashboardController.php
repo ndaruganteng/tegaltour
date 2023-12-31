@@ -60,9 +60,8 @@ class DashboardController extends Controller
         ->whereIn('pemesanan.status', [2, 3]) 
         ->groupBy('wisata.id_wisata', 'wisata.namawisata', 'pemesanan.id_mitra', 'mitra.nama_lengkap')
         ->get();
-
-    $totalPotongan = $destinasi->sum('potongan');
-    
+        $totalPotongan = $destinasi->sum('potongan');
+        
         $destinasi = Wisata::select(
             'wisata.namawisata',
             DB::raw('COUNT(pemesanan.id_pemesanan) as total_pemesan'),
@@ -71,11 +70,13 @@ class DashboardController extends Controller
         )
             ->leftJoin('pemesanan', 'wisata.id_wisata', '=', 'pemesanan.id_wisata')
             ->where('pemesanan.id_mitra', $mitraId)
+            ->whereIn('pemesanan.status_pendapatan', [NULL, 1])
             ->where('pemesanan.status_perjalanan', 3)
             ->groupBy('wisata.id_wisata', 'wisata.namawisata')
             ->get();
-
-            $totalHargaPotong = $destinasi->sum('total_harga_potong');
+        
+        $totalHargaPotong = $destinasi->sum('total_harga_potong');
+        
 
         return view('dashboard.dashboard',
         compact('totalWisata',

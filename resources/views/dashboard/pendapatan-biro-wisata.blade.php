@@ -34,6 +34,7 @@
                                             <th>Nama Biro Wisata</th>
                                             <th>Nama Wisata</th>
                                             <th>Total Pemesan</th>
+                                            <th>Total Wisatawan</th>
                                             <th>Total Pendapatan Kotor</th>
                                             <th>Total Pendapatan Bersih</th>
                                             <th>Total Potongan Admin</th>
@@ -48,6 +49,7 @@
                                             <td>{{ $wisata->nama_lengkap }}</td>
                                             <td>{{ $wisata->namawisata }}</td>
                                             <td>{{ $wisata->total_pemesan }}</td>
+                                            <td>{{ $wisata->jumlah_orang }}</td>
                                             <td>
                                                 Rp{{ number_format($wisata->total_harga, 2, ',', '.'), '0' }}
                                             </td>

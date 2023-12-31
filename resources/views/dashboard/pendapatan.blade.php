@@ -33,6 +33,7 @@
                                         <tr>
                                             <th>Nama Wisata</th>
                                             <th>Total Pemesan</th>
+                                            <th>Jumlah Orang</th>
                                             <th>Total Pendapatan</th>
                                             <th>Status Pendapatan</th>
                                             <th>Aksi</th>
@@ -43,6 +44,7 @@
                                         <tr>
                                             <td>{{ $wisata->namawisata }}</td>
                                             <td>{{ $wisata->total_pemesan }}</td>
+                                            <td>{{ $wisata->jumlah_orang }}</td>
                                             <td>Rp{{ number_format($wisata->total_harga_potong, 2) }}</td>
                                             <td>
                                                 @if($wisata->status_pendapatan == null)
