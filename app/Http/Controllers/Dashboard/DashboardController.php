@@ -68,12 +68,16 @@ class DashboardController extends Controller
             DB::raw('SUM(pemesanan.harga_total) as total_harga'),
             DB::raw('SUM(pemesanan.harga_total * 0.9) as total_harga_potong')
         )
-            ->leftJoin('pemesanan', 'wisata.id_wisata', '=', 'pemesanan.id_wisata')
-            ->where('pemesanan.id_mitra', $mitraId)
-            ->whereIn('pemesanan.status_pendapatan', [NULL, 1])
-            ->where('pemesanan.status_perjalanan', 3)
-            ->groupBy('wisata.id_wisata', 'wisata.namawisata')
-            ->get();
+        ->leftJoin('pemesanan', 'wisata.id_wisata', '=', 'pemesanan.id_wisata')
+        ->where('pemesanan.id_mitra', $mitraId)
+        ->where('pemesanan.status_perjalanan', 3)
+        ->where(function($query) {
+            $query->where('pemesanan.status_pendapatan', 1)
+                  ->orWhereNull('pemesanan.status_pendapatan');
+        })
+        ->groupBy('wisata.id_wisata', 'wisata.namawisata')
+        ->get();
+    
         
         $totalHargaPotong = $destinasi->sum('total_harga_potong');
         

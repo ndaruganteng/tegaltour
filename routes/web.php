@@ -94,6 +94,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
 
     //DATAUSER
     Route::get('/data-user', [DatauserController::class, 'index'])->name('data-user.index');
+    Route::get('/data-user-biro-wisata', [DatauserController::class, 'userbiro'])->name('data-user-biro-wisata.index');
+    Route::get('/data-user-wisatawan', [DatauserController::class, 'pengguna'])->name('data-user-wisatawan.index');
     Route::get('/request-mitra', [DatauserController::class, 'join_mitra'])->name('request-mitra.index');
     Route::get('/konfirmasi-mitra/{id}', [RequestmitraController::class, 'konfirmasiMitra']);
     Route::get('/cancel-mitra/{id}', [RequestmitraController::class, 'cencelMitra']);

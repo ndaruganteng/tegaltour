@@ -62,10 +62,33 @@
                 </li>
                 <li class="nav-header">View Data</li>
                 <li class="nav-item">
-                    <a href="{{route('data-user.index')}}" class="nav-link">
+                    <a href="" class="nav-link">
                         <i class="fa-solid fa-users nav-icon"></i>
-                        <p>Data User</p>
+                        <p>
+                            Data User
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a href="{{route('data-user.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Admin</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('data-user-biro-wisata.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Biro Wisata</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('data-user-wisatawan.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pengguna</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('data-wisata-admin.index')}}" class="nav-link">
@@ -82,15 +105,6 @@
                         @endif
                     </a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a href="{{route('request-mitra.index')}}" class="nav-link">
-                        <i class="nav-icon fa-solid fa-handshake"></i>
-                        <p>
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                        <p>Request Mitra</p>
-                    </a>
-                </li> -->
                 <li class="nav-item">
                     <a href="{{ route('request-mitra.index') }}" class="nav-link">
                         <i class="nav-icon fa-solid fa-handshake"></i>
